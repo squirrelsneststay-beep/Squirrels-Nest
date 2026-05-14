@@ -117,6 +117,28 @@ html.lenis, html.lenis body { height: auto; }
   color: inherit;
 }
 
+/* Small pill — savor-style minimal CTAs */
+.lef-pill-sm {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 36px;
+  padding: 0 1.1rem;
+  border-radius: 9999px;
+  font-family: var(--font-geist), -apple-system, sans-serif;
+  font-size: 0.8125rem;
+  font-weight: 400;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color 200ms ease-out, color 200ms ease-out, border-color 200ms ease-out, transform 120ms ease-out;
+}
+.lef-pill-sm:hover { opacity: 0.88; }
+.lef-pill-sm:active { transform: scale(0.97); }
+.lef-pill-sm:focus-visible {
+  outline: 2px solid #4f6b54;
+  outline-offset: 2px;
+}
+
 /* Pill button — emil's animation principles applied */
 .lef-pill {
   display: inline-flex;

@@ -9,19 +9,22 @@ if (typeof window !== "undefined") {
 }
 
 type Slide = {
-  eyebrow: string;
-  title: string;
-  body: string;
-  tone: string;
+  caption: string;
+  image: string;
+  alt: string;
 };
 
 const slides: Slide[] = [
-  { eyebrow: "001", title: "A cabin at the end of a lane.", body: "Hand-finished pine, a wood-burning stove, and a quiet view across open fields.", tone: "#2f3b34" },
-  { eyebrow: "002", title: "A working farm, slowed down.", body: "Walk the lanes at first light. Meet the sheep. Stay out of step with the rest.", tone: "#3d4f44" },
-  { eyebrow: "003", title: "An evening that lingers.", body: "Fire lit, dinner unhurried, dark skies above. No screens. Just stillness.", tone: "#262e29" },
-  { eyebrow: "004", title: "A morning that's earned.", body: "Wake to mist on the field. A pot of coffee, the door wide open.", tone: "#54635a" },
+  { caption: "The lane.",     image: "/images/squirrels-nest/sq-01.jpg", alt: "The lane at Lane End Farm" },
+  { caption: "The garden.",   image: "/images/squirrels-nest/sq-05.jpg", alt: "The garden at Lane End Farm" },
+  { caption: "The hearth.",   image: "/images/squirrels-nest/sq-25.jpg", alt: "The hearth at Lane End Farm" },
+  { caption: "The field.",    image: "/images/squirrels-nest/sq-10.jpg", alt: "The field at Lane End Farm" },
 ];
 
+/**
+ * Pinned editorial scroll — single image fills the viewport, single small
+ * caption fades through as the user scrolls. One photo + one word at a time.
+ */
 export function PinnedStack() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const [activeIdx, setActiveIdx] = useState(0);
@@ -35,7 +38,7 @@ export function PinnedStack() {
       const trigger = ScrollTrigger.create({
         trigger: root,
         start: "top top",
-        end: () => `+=${slides.length * 100}%`,
+        end: () => `+=${slides.length * 110}%`,
         pin: ".ps-pin",
         anticipatePin: 1,
         onUpdate: (self) => {
@@ -51,74 +54,74 @@ export function PinnedStack() {
 
   return (
     <section ref={sectionRef} className="relative">
-      <div className="ps-pin relative h-screen overflow-hidden flex items-center" style={{ background: "var(--v2-bg)" }}>
-        <div className="v2-container w-full">
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-10 items-center">
-            {/* Image stack — only the active card visible, with CSS transition */}
-            <div className="md:col-span-6 md:col-start-2 relative" style={{ aspectRatio: "4 / 5" }}>
-              {slides.map((s, i) => (
-                <div
-                  key={i}
-                  className="absolute inset-0 overflow-hidden"
-                  style={{
-                    background: s.tone,
-                    borderRadius: "2px",
-                    opacity: i === activeIdx ? 1 : 0,
-                    transform: i === activeIdx ? "scale(1)" : "scale(0.96)",
-                    transition: "opacity 700ms ease, transform 900ms ease",
-                    zIndex: i === activeIdx ? 2 : 1,
-                  }}
-                />
-              ))}
-              <div className="absolute -bottom-12 left-0 font-mono-eyebrow" style={{ color: "var(--v2-mute)" }}>
-                A short tour — {String(activeIdx + 1).padStart(2, "0")} / {String(slides.length).padStart(2, "0")}
-              </div>
-            </div>
-
-            {/* Text column — same pattern, one active at a time */}
-            <div className="md:col-span-4 md:col-start-9 relative" style={{ minHeight: "20rem" }}>
-              {slides.map((s, i) => (
-                <div
-                  key={i}
-                  className="absolute inset-0"
-                  style={{
-                    opacity: i === activeIdx ? 1 : 0,
-                    transform: i === activeIdx ? "translateY(0)" : "translateY(20px)",
-                    transition: "opacity 600ms ease, transform 700ms ease",
-                    pointerEvents: i === activeIdx ? "auto" : "none",
-                  }}
-                >
-                  <span className="font-mono-eyebrow block mb-6" style={{ color: "var(--v2-mute)" }}>
-                    {s.eyebrow}
-                  </span>
-                  <h2
-                    className="font-display mb-8"
-                    style={{
-                      fontSize: "clamp(2rem, 3.6vw, 3.25rem)",
-                      color: "var(--v2-ink)",
-                      lineHeight: 1.05,
-                      letterSpacing: "-0.02em",
-                      fontWeight: 400,
-                    }}
-                  >
-                    {s.title}
-                  </h2>
-                  <p
-                    style={{
-                      fontSize: "1rem",
-                      color: "var(--v2-ink-soft)",
-                      lineHeight: 1.55,
-                      maxWidth: "32ch",
-                      fontFamily: "var(--font-geist)",
-                    }}
-                  >
-                    {s.body}
-                  </p>
-                </div>
-              ))}
-            </div>
+      <div className="ps-pin relative h-screen overflow-hidden">
+        {/* Image layers — cross-fade between */}
+        {slides.map((s, i) => (
+          <div
+            key={i}
+            className="absolute inset-0 overflow-hidden"
+            style={{
+              opacity: i === activeIdx ? 1 : 0,
+              transition: "opacity 1200ms ease-out",
+              zIndex: i === activeIdx ? 2 : 1,
+            }}
+          >
+            <img
+              src={s.image}
+              alt={s.alt}
+              style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+              loading={i === 0 ? "eager" : "lazy"}
+            />
           </div>
+        ))}
+
+        {/* Subtle gradient for legibility */}
+        <div
+          aria-hidden
+          className="absolute inset-0 z-10 pointer-events-none"
+          style={{
+            background:
+              "linear-gradient(to bottom, rgba(0,0,0,0.0) 50%, rgba(0,0,0,0.35) 100%)",
+          }}
+        />
+
+        {/* Single small caption bottom-left */}
+        <div className="absolute inset-x-0 bottom-0 z-20 p-6 md:p-10 lg:p-14">
+          {slides.map((s, i) => (
+            <span
+              key={i}
+              className="block font-display-italic"
+              style={{
+                position: i === 0 ? "relative" : "absolute",
+                left: i === 0 ? undefined : "0",
+                bottom: i === 0 ? undefined : "0",
+                margin: i === 0 ? undefined : "inherit",
+                opacity: i === activeIdx ? 1 : 0,
+                transform: i === activeIdx ? "translateY(0)" : "translateY(8px)",
+                transition: "opacity 900ms ease-out, transform 900ms ease-out",
+                fontSize: "clamp(1.25rem, 2vw, 1.75rem)",
+                color: "#fff",
+                fontWeight: 300,
+                letterSpacing: "-0.01em",
+              }}
+            >
+              {s.caption}
+            </span>
+          ))}
         </div>
+
+        {/* Tiny counter top-right */}
+        <span
+          className="absolute top-6 right-6 md:top-10 md:right-10 z-20"
+          style={{
+            fontFamily: "var(--font-geist)",
+            fontSize: "0.75rem",
+            color: "color-mix(in srgb, white 70%, transparent)",
+            letterSpacing: "0.02em",
+          }}
+        >
+          {String(activeIdx + 1).padStart(2, "0")} / {String(slides.length).padStart(2, "0")}
+        </span>
       </div>
     </section>
   );

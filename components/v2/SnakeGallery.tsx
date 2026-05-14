@@ -9,13 +9,13 @@ if (typeof window !== "undefined") {
 }
 
 const tiles = [
-  { tone: "#3d4f44", caption: "The lane" },
-  { tone: "#2f3b34", caption: "The door" },
-  { tone: "#54635a", caption: "The hearth" },
-  { tone: "#3d4f44", caption: "The kitchen" },
-  { tone: "#2f3b34", caption: "The fields" },
-  { tone: "#54635a", caption: "The view" },
-  { tone: "#3d4f44", caption: "The end of the day" },
+  { image: "/images/squirrels-nest/sq-02.jpg", caption: "The lane" },
+  { image: "/images/squirrels-nest/sq-07.jpg", caption: "The door" },
+  { image: "/images/squirrels-nest/sq-20.jpg", caption: "The hearth" },
+  { image: "/images/squirrels-nest/sq-30.jpg", caption: "The kitchen" },
+  { image: "/images/squirrels-nest/sq-35.jpg", caption: "The fields" },
+  { image: "/images/squirrels-nest/sq-40.jpg", caption: "The view" },
+  { image: "/images/squirrels-nest/sq-43.jpg", caption: "The end of the day" },
 ];
 
 /**
@@ -73,10 +73,10 @@ export function SnakeGallery() {
     <section ref={sectionRef} className="relative">
       <div className="sg-pin relative h-screen overflow-hidden flex items-center" style={{ background: "var(--v2-bg)" }}>
         <div className="absolute top-10 left-0 right-0 z-20 v2-container flex items-center justify-between">
-          <span className="font-mono-eyebrow" style={{ color: "var(--v2-mute)" }}>
-            A walk through —
+          <span style={{ fontFamily: "var(--font-geist)", fontSize: "0.75rem", color: "var(--v2-mute)", letterSpacing: "0.02em" }}>
+            A walk through
           </span>
-          <span className="font-mono-eyebrow" style={{ color: "var(--v2-mute)" }}>
+          <span style={{ fontFamily: "var(--font-geist)", fontSize: "0.75rem", color: "var(--v2-mute)", letterSpacing: "0.02em" }}>
             Scroll →
           </span>
         </div>
@@ -92,10 +92,18 @@ export function SnakeGallery() {
                 style={{
                   width: "26rem",
                   aspectRatio: "4 / 5",
-                  background: t.tone,
+                  background: "#2a3328",
                   borderRadius: "2px",
+                  overflow: "hidden",
                 }}
-              />
+              >
+                <img
+                  src={t.image}
+                  alt={t.caption}
+                  loading="lazy"
+                  style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+                />
+              </div>
               <span className="font-display-italic" style={{ color: "var(--v2-ink-soft)", fontSize: "1.125rem" }}>
                 {t.caption}
               </span>
