@@ -1,26 +1,191 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* v2 palette — minimal high-end editorial */
+  --v2-bg:            #fcfaf6;
+  --v2-ink:           #1a1a1a;
+  --v2-ink-soft:      #555;
+  --v2-mute:          #9a9a92;
+  --v2-line:          #e5e1d7;
+  --v2-container-px:  clamp(1.25rem, 6vw, 6rem);
+
+  /* Lane End Farm palette — warm cabin / English country */
+  --lef-cream:        #f4eee2;
+  --lef-cream-soft:   #ece5d3;
+  --lef-stone:        #d8d3c6;
+  --lef-moss:         #4f6b54;
+  --lef-forest:       #1f2a24;
+  --lef-charcoal:     #2a2723;
+  --lef-bark:         #4a3a2c;
+  --lef-rust:         #b86b3e;
+
+  --background: var(--lef-cream);
+  --foreground: var(--lef-charcoal);
+
+  --grid-max:       144rem;
+  --grid-cols:      12;
+  --grid-gap:       2rem;
+  --grid-margin:    clamp(1.5rem, 4vw, 4rem);
+
+  --ease-expo:      cubic-bezier(0, 0, 0, 1);
+  --ease-soft:      cubic-bezier(0.22, 1, 0.36, 1);
+  --dur-fast:       0.4s;
+  --dur-base:       0.8s;
+  --dur-slow:       1.2s;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-background:   var(--background);
+  --color-foreground:   var(--foreground);
+  --color-cream:        var(--lef-cream);
+  --color-cream-soft:   var(--lef-cream-soft);
+  --color-stone:        var(--lef-stone);
+  --color-moss:         var(--lef-moss);
+  --color-forest:       var(--lef-forest);
+  --color-charcoal:     var(--lef-charcoal);
+  --color-bark:         var(--lef-bark);
+  --color-rust:         var(--lef-rust);
+
+  --font-display:       var(--font-italiana);
+  --font-italic:        var(--font-cormorant);
+  --font-sans:          var(--font-geist);
+  --font-mono:          var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* Fluid type — linear interp between 600px and 2304px viewports */
+:root {
+  --vp-min: 37.5;   /* rem  -> 600px  */
+  --vp-max: 144;    /* rem  -> 2304px */
+
+  --fs-12:  clamp(0.6875rem, calc(0.66rem + 0.1vw), 0.75rem);
+  --fs-14:  clamp(0.75rem, calc(0.72rem + 0.15vw), 0.8125rem);
+  --fs-16:  clamp(0.875rem, calc(0.83rem + 0.2vw), 1rem);
+  --fs-18:  clamp(1rem, calc(0.94rem + 0.25vw), 1.125rem);
+  --fs-22:  clamp(1.125rem, calc(1.04rem + 0.35vw), 1.375rem);
+  --fs-28:  clamp(1.25rem, calc(1.13rem + 0.55vw), 1.75rem);
+  --fs-36:  clamp(1.5rem, calc(1.32rem + 0.8vw), 2.25rem);
+  --fs-48:  clamp(1.875rem, calc(1.6rem + 1.2vw), 3rem);
+  --fs-64:  clamp(2.25rem, calc(1.85rem + 1.8vw), 4rem);
+  --fs-96:  clamp(2.75rem, calc(2.2rem + 2.4vw), 5.25rem);
+  --fs-144: clamp(3rem, calc(2.4rem + 2.8vw), 6.5rem);
+  --fs-180: clamp(3.5rem, calc(2.7rem + 3.5vw), 8rem);
 }
 
-body {
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+html {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans), system-ui, -apple-system, sans-serif;
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+body {
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* Lenis smooth scroll styling */
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+.lenis.lenis-stopped { overflow: hidden; }
+.lenis.lenis-scrolling iframe { pointer-events: none; }
+
+/* Display + body type defaults */
+.font-display {
+  font-family: var(--font-italiana), Georgia, "Times New Roman", serif;
+  font-weight: 400;
+  letter-spacing: -0.015em;
+  line-height: 0.95;
+  font-feature-settings: "liga" 1, "kern" 1;
+}
+.font-display-italic {
+  font-family: var(--font-cormorant), Georgia, "Times New Roman", serif;
+  font-weight: 300;
+  font-style: italic;
+  letter-spacing: -0.02em;
+}
+.font-mono-eyebrow {
+  font-family: var(--font-geist), -apple-system, BlinkMacSystemFont, "Inter", sans-serif;
+  font-size: 0.75rem;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  text-transform: none;
+  color: inherit;
+}
+
+/* Pill button — emil's animation principles applied */
+.lef-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 44px;
+  padding: 0 1.5rem;
+  border-radius: 9999px;
+  font-family: var(--font-geist), -apple-system, sans-serif;
+  font-size: 0.875rem;
+  font-weight: 400;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color 200ms ease-out, color 200ms ease-out, border-color 200ms ease-out, transform 120ms ease-out;
+}
+.lef-pill:hover { opacity: 0.92; }
+.lef-pill:active { transform: scale(0.97); }
+.lef-pill:focus-visible {
+  outline: 2px solid #4f6b54;
+  outline-offset: 2px;
+}
+/* Word-reveal helper */
+.word-reveal { display: inline-block; overflow: hidden; }
+.word-reveal > span { display: inline-block; will-change: transform, opacity; }
+/* eyebrow overridden above with absolute size to stay subtle */
+
+/* v2 container — wider, more whitespace */
+.v2-container {
+  width: 100%;
+  max-width: 96rem;
+  margin-inline: auto;
+  padding-inline: var(--v2-container-px);
+}
+
+/* Grid helper */
+.lef-container {
+  width: 100%;
+  max-width: var(--grid-max);
+  margin-inline: auto;
+  padding-inline: var(--grid-margin);
+}
+.lef-grid {
+  display: grid;
+  grid-template-columns: repeat(var(--grid-cols), 1fr);
+  gap: var(--grid-gap);
+}
+
+/* Scroll-reveal base — paired with GSAP */
+.reveal { opacity: 0; transform: translateY(2.5rem); }
+.reveal-fast { opacity: 0; transform: translateY(1rem); }
+.reveal-still { opacity: 0; }
+
+/* Selection */
+::selection { background: var(--lef-moss); color: var(--lef-cream); }
+
+/* Focus ring */
+:where(a, button, input, textarea, select):focus-visible {
+  outline: 2px solid var(--lef-moss);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+  .reveal, .reveal-fast, .reveal-still { opacity: 1; transform: none; }
 }
