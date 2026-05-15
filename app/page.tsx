@@ -48,8 +48,8 @@ export default function HomePage() {
 
       {/* 5. From → To #2 */}
       <FromToMoment
-        image="/images/squirrels-nest/sq-22.jpg"
-        alt="The hearth"
+        image="/images/squirrels-nest/sq-08.jpg"
+        alt="The cabin exterior"
         labelLeft="From the door"
         labelRight="to the hearth"
         subline="Logs split. Stove lit on arrival."
@@ -65,8 +65,8 @@ export default function HomePage() {
 
       {/* 7. From → To #3 */}
       <FromToMoment
-        image="/images/squirrels-nest/sq-10.jpg"
-        alt="The fields"
+        image="/images/squirrels-nest/sq-18.jpg"
+        alt="Two velvet chairs by the window"
         labelLeft="From the field"
         labelRight="to the fire"
         subline="Walk the lanes at first light. Meet the sheep."
@@ -85,8 +85,8 @@ export default function HomePage() {
 
       {/* 10. From → To #4 */}
       <FromToMoment
-        image="/images/squirrels-nest/sq-32.jpg"
-        alt="A morning at the cabin"
+        image="/images/squirrels-nest/sq-12.jpg"
+        alt="The bedroom at Lane End Farm"
         labelLeft="From the night"
         labelRight="to the morning"
         subline="Wake to mist on the field."

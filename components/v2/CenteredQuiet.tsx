@@ -61,19 +61,30 @@ export function CenteredQuiet({
     >
       <div className="text-center mx-auto" style={{ maxWidth: "44rem" }}>
         {eyebrow && (
-          <p
-            className="cq-line"
-            style={{
-              fontFamily: "var(--font-geist)",
-              fontSize: "0.75rem",
-              color: "var(--v2-mute)",
-              letterSpacing: "0.04em",
-              textTransform: "uppercase",
-              marginBottom: "1.75rem",
-            }}
-          >
-            {eyebrow}
-          </p>
+          <>
+            <div
+              className="cq-line mx-auto"
+              style={{
+                width: "2rem",
+                height: "1px",
+                background: "var(--v2-mute)",
+                marginBottom: "1.25rem",
+              }}
+            />
+            <p
+              className="cq-line"
+              style={{
+                fontFamily: "var(--font-geist)",
+                fontSize: "0.75rem",
+                color: "var(--v2-mute)",
+                letterSpacing: "0.04em",
+                textTransform: "uppercase",
+                marginBottom: "1.75rem",
+              }}
+            >
+              {eyebrow}
+            </p>
+          </>
         )}
         <p
           className="cq-line font-display"
