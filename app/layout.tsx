@@ -34,9 +34,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Lane End Farm — A converted cabin in the English countryside",
+  title: "Squirrels' Nest — A converted cabin in the English countryside",
   description:
-    "A slow, considered stay. Lane End Farm is a converted cabin on a working farm — wood-fired, hand-finished, set against open fields and quiet skies.",
+    "A slow, considered stay. Squirrels' Nest is a converted cabin on a working farm — wood-fired, hand-finished, set against open fields and quiet skies.",
 };
 
 export default function RootLayout({

@@ -9,19 +9,19 @@ if (typeof window !== "undefined") {
 }
 
 const tiles = [
-  { image: "/images/squirrels-nest/sq-02.jpg", caption: "The lane" },
-  { image: "/images/squirrels-nest/sq-07.jpg", caption: "The door" },
-  { image: "/images/squirrels-nest/sq-20.jpg", caption: "The hearth" },
-  { image: "/images/squirrels-nest/sq-30.jpg", caption: "The kitchen" },
-  { image: "/images/squirrels-nest/sq-35.jpg", caption: "The fields" },
-  { image: "/images/squirrels-nest/sq-40.jpg", caption: "The view" },
-  { image: "/images/squirrels-nest/sq-43.jpg", caption: "The end of the day" },
+  { image: "/images/squirrels-nest/sq-02.jpg", caption: "the lane" },
+  { image: "/images/squirrels-nest/sq-08.jpg", caption: "the door" },
+  { image: "/images/squirrels-nest/sq-15.jpg", caption: "the chair" },
+  { image: "/images/squirrels-nest/sq-22.jpg", caption: "the tap" },
+  { image: "/images/squirrels-nest/sq-28.jpg", caption: "the bed" },
+  { image: "/images/squirrels-nest/sq-35.jpg", caption: "the kitchen" },
+  { image: "/images/squirrels-nest/sq-42.jpg", caption: "the lamp" },
 ];
 
 /**
  * Horizontal snake gallery — section pins, vertical scroll translates a
- * horizontal row of tiles. Each tile has a Y offset that traces a sine
- * wave, so the row visually snakes as it passes through the viewport.
+ * horizontal row of image tiles. Each tile sits at a different Y offset
+ * along a sine wave, so the row visually snakes as it passes.
  */
 export function SnakeGallery() {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -57,11 +57,11 @@ export function SnakeGallery() {
         },
       });
 
-      // Wave on each tile based on its index
+      // Sine wave Y offset per tile
       const items = gsap.utils.toArray<HTMLElement>(".sg-tile");
       items.forEach((it, i) => {
         const phase = (i / items.length) * Math.PI * 2;
-        const yOffset = Math.sin(phase) * 60;
+        const yOffset = Math.sin(phase) * 70;
         gsap.set(it, { y: yOffset });
       });
     }, sectionRef);
@@ -71,30 +71,49 @@ export function SnakeGallery() {
 
   return (
     <section ref={sectionRef} className="relative">
-      <div className="sg-pin relative h-screen overflow-hidden flex items-center" style={{ background: "var(--v2-bg)" }}>
-        <div className="absolute top-10 left-0 right-0 z-20 v2-container flex items-center justify-between">
-          <span style={{ fontFamily: "var(--font-geist)", fontSize: "0.75rem", color: "var(--v2-mute)", letterSpacing: "0.02em" }}>
-            A walk through
+      <div
+        className="sg-pin relative h-screen overflow-hidden flex items-center"
+        style={{ background: "var(--v2-bg)" }}
+      >
+        <div className="absolute top-8 left-0 right-0 z-20 lef-container flex items-center justify-between">
+          <span
+            style={{
+              fontFamily: "var(--font-geist)",
+              fontSize: "0.75rem",
+              color: "var(--v2-mute)",
+              letterSpacing: "0.04em",
+              textTransform: "uppercase",
+            }}
+          >
+            04 — Around the cabin
           </span>
-          <span style={{ fontFamily: "var(--font-geist)", fontSize: "0.75rem", color: "var(--v2-mute)", letterSpacing: "0.02em" }}>
-            Scroll →
+          <span
+            style={{
+              fontFamily: "var(--font-geist)",
+              fontSize: "0.75rem",
+              color: "var(--v2-mute)",
+              letterSpacing: "0.04em",
+              textTransform: "uppercase",
+            }}
+          >
+            scroll →
           </span>
         </div>
 
-        <div className="sg-track flex items-center gap-10 will-change-transform pl-24 pr-24">
+        <div className="sg-track flex items-center gap-14 will-change-transform pl-24 pr-24">
           {tiles.map((t, i) => (
             <div
               key={i}
-              className="sg-tile flex-none flex flex-col items-center gap-4"
+              className="sg-tile flex-none flex flex-col items-start gap-4"
               style={{ willChange: "transform" }}
             >
               <div
                 style={{
                   width: "26rem",
                   aspectRatio: "4 / 5",
-                  background: "#2a3328",
-                  borderRadius: "2px",
+                  borderRadius: "3px",
                   overflow: "hidden",
+                  background: "#2a3328",
                 }}
               >
                 <img
@@ -104,8 +123,15 @@ export function SnakeGallery() {
                   style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
                 />
               </div>
-              <span className="font-display-italic" style={{ color: "var(--v2-ink-soft)", fontSize: "1.125rem" }}>
-                {t.caption}
+              <span
+                style={{
+                  fontFamily: "var(--font-geist)",
+                  fontSize: "0.85rem",
+                  color: "var(--v2-mute)",
+                  letterSpacing: "0.01em",
+                }}
+              >
+                — {t.caption}
               </span>
             </div>
           ))}

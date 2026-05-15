@@ -38,7 +38,7 @@ export function Nav() {
             fontStyle: "italic",
           }}
         >
-          lane end farm
+          squirrels' nest
         </Link>
 
         <nav

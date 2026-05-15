@@ -34,11 +34,11 @@ export function Footer() {
               Find us
             </p>
             <ul className="space-y-3" style={{ fontSize: "var(--fs-18)" }}>
-              <li>Lane End Farm</li>
+              <li>Squirrels' Nest</li>
               <li style={{ color: "var(--lef-stone)" }}>The English countryside</li>
               <li className="pt-3">
-                <a href="mailto:hello@laneendfarm.co.uk" className="underline-offset-4 hover:underline">
-                  hello@laneendfarm.co.uk
+                <a href="mailto:hello@squirrelsnest.co.uk" className="underline-offset-4 hover:underline">
+                  hello@squirrelsnest.co.uk
                 </a>
               </li>
             </ul>
@@ -74,7 +74,7 @@ export function Footer() {
           className="mt-24 pt-8 flex flex-col md:flex-row gap-4 justify-between font-mono-eyebrow"
           style={{ borderTop: "1px solid color-mix(in srgb, var(--lef-stone) 30%, transparent)", color: "var(--lef-stone)" }}
         >
-          <span>© {new Date().getFullYear()} Lane End Farm</span>
+          <span>© {new Date().getFullYear()} Squirrels' Nest</span>
           <span>Built slowly, in the countryside</span>
         </div>
       </div>

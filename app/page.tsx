@@ -1,10 +1,12 @@
 "use client";
 
 import { useEffect } from "react";
-import SmoothScrollHero from "@/components/ui/smooth-scroll-hero";
-import { FromToMoment } from "@/components/v2/FromToMoment";
-import { CenteredQuiet } from "@/components/v2/CenteredQuiet";
+import { CleanHero } from "@/components/v2/CleanHero";
+import { SignatureFromTo } from "@/components/v2/SignatureFromTo";
+import { CardDeckStack } from "@/components/v2/CardDeckStack";
+import { MultiPhotoGrid } from "@/components/v2/MultiPhotoGrid";
 import { VerticalStackReveal } from "@/components/v2/VerticalStackReveal";
+import { SnakeGallery } from "@/components/v2/SnakeGallery";
 
 export default function HomePage() {
   useEffect(() => {
@@ -13,98 +15,38 @@ export default function HomePage() {
 
   return (
     <div className="v2-root" style={{ background: "var(--v2-bg)", color: "var(--v2-ink)" }}>
-      {/* 1. Smooth scroll hero — clip-path slowly expands a photo as you scroll */}
-      <SmoothScrollHero
-        scrollHeight={3200}
-        desktopImage="/images/squirrels-nest/sq-01.jpg"
-        mobileImage="/images/squirrels-nest/sq-15.jpg"
-        initialClipPercentage={20}
-        finalClipPercentage={80}
-      />
+      {/* 1. Clean typographic hero — big "Squirrels' Nest" + two small floating photos */}
+      <CleanHero />
 
-      {/* 2. Centered editorial intro */}
-      <CenteredQuiet
-        eyebrow="Lane End Farm"
-        body="A converted cabin on a working farm,"
-        italicTail="where the lane runs out."
-      />
+      {/* 2. ONE signature From → To moment — curved hand-drawn line, BLURRED photo backdrop */}
+      <SignatureFromTo />
 
-      {/* 3. From → To #1 */}
-      <FromToMoment
-        image="/images/squirrels-nest/sq-05.jpg"
-        alt="The lane at Lane End Farm"
-        labelLeft="From the road"
-        labelRight="to the lane"
-        subline="The drive feels longer than it is."
-        italicTail="By the time you arrive, the world has already gone quiet."
-      />
+      {/* 3. Card-deck stack — images flip over each other (saltsaun pattern) */}
+      <CardDeckStack />
 
-      {/* 4. Centered moment */}
-      <CenteredQuiet
-        eyebrow="The cabin"
-        body="Hand-finished pine, a wood-burning stove,"
-        italicTail="and a window worth sitting at."
-      />
+      {/* 4. Multi-photo grid — multiple small/medium centered photos, not full-bleed */}
+      <MultiPhotoGrid />
 
-      {/* 5. From → To #2 */}
-      <FromToMoment
-        image="/images/squirrels-nest/sq-08.jpg"
-        alt="The cabin exterior"
-        labelLeft="From the door"
-        labelRight="to the hearth"
-        subline="Logs split. Stove lit on arrival."
-        italicTail="Twenty minutes from cold to warm."
-      />
-
-      {/* 6. Centered moment */}
-      <CenteredQuiet
-        eyebrow="The land"
-        body="Three years of work, by hand, on the same patch of ground."
-        italicTail="It's still going."
-      />
-
-      {/* 7. From → To #3 */}
-      <FromToMoment
-        image="/images/squirrels-nest/sq-18.jpg"
-        alt="Two velvet chairs by the window"
-        labelLeft="From the field"
-        labelRight="to the fire"
-        subline="Walk the lanes at first light. Meet the sheep."
-        italicTail="Come back when you're cold."
-      />
-
-      {/* 8. Centered moment */}
-      <CenteredQuiet
-        eyebrow="What you'll find"
-        body="No traffic. No signal worth checking."
-        italicTail="Just the field, the fire, and a slower kind of evening."
-      />
-
-      {/* 9. Vertical stack — Without traffic / signal / noise */}
+      {/* 5. Without traffic / signal / noise — small sans, dark BLURRED photo */}
       <VerticalStackReveal />
 
-      {/* 10. From → To #4 */}
-      <FromToMoment
-        image="/images/squirrels-nest/sq-12.jpg"
-        alt="The bedroom at Lane End Farm"
-        labelLeft="From the night"
-        labelRight="to the morning"
-        subline="Wake to mist on the field."
-        italicTail="A pot of coffee, the door wide open."
-      />
+      {/* 6. Snake horizontal gallery */}
+      <SnakeGallery />
 
-      {/* 11. Centered moment — final reflection */}
-      <CenteredQuiet
-        eyebrow="Stays at Lane End Farm"
-        body="Two nights, four nights,"
-        italicTail="long enough to feel the difference."
-      />
-
-      {/* 12. Final CTA */}
+      {/* 7. Final centered CTA */}
       <section
-        className="relative flex flex-col items-center justify-center text-center py-40 md:py-56 px-6"
-        style={{ background: "var(--v2-bg)" }}
+        className="relative flex flex-col items-center justify-center text-center px-6"
+        style={{ background: "var(--v2-bg)", minHeight: "70vh", paddingBlock: "12vh" }}
       >
+        <div
+          className="mx-auto"
+          style={{
+            width: "2rem",
+            height: "1px",
+            background: "var(--v2-mute)",
+            marginBottom: "1.25rem",
+          }}
+        />
         <span
           style={{
             fontFamily: "var(--font-geist)",
@@ -115,7 +57,7 @@ export default function HomePage() {
             marginBottom: "2rem",
           }}
         >
-          Bookings
+          06 — Bookings
         </span>
         <h2
           className="font-display mb-10"

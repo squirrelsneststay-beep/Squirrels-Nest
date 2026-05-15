@@ -9,13 +9,15 @@ if (typeof window !== "undefined") {
 }
 
 /**
- * "Without [stacked words]" — vertical reveal on a dark photographic background.
- * The lead label sits left, with the stacked list appearing one item at a time
- * as the user scrolls through the pinned section.
+ * "Without [stacked words]" on a dark photographic background.
+ *
+ * Same Geist sans 0.95rem weight 500 typography as the From-To labels —
+ * NOT display serif. White text on dark photo. Each item flicks in as
+ * the user scrolls through the pinned section.
  */
 export function VerticalStackReveal() {
   const rootRef = useRef<HTMLDivElement>(null);
-  const items = ["traffic.", "signal.", "noise.", "neighbours.", "rushing."];
+  const items = ["traffic", "signal", "noise", "neighbours", "rushing"];
 
   useEffect(() => {
     if (typeof window === "undefined") return;
@@ -31,7 +33,7 @@ export function VerticalStackReveal() {
       const stackItems = gsap.utils.toArray<HTMLElement>(".vs-item");
       const img = root.querySelector(".vs-img");
 
-      gsap.set([lead, ...stackItems], { opacity: 0, y: 14 });
+      gsap.set([lead, ...stackItems], { opacity: 0, y: 12 });
 
       if (prefersReducedMotion) {
         gsap.set([lead, ...stackItems], { clearProps: "all" });
@@ -42,17 +44,17 @@ export function VerticalStackReveal() {
         scrollTrigger: {
           trigger: root,
           start: "top top",
-          end: "+=180%",
+          end: "+=240%",
           pin: ".vs-pin",
-          scrub: 1,
+          scrub: 1.2,
           anticipatePin: 1,
         },
       });
 
-      tl.fromTo(img, { scale: 1 }, { scale: 1.1, ease: "none" }, 0);
-      tl.to(lead, { opacity: 1, y: 0, duration: 0.06 }, 0.05);
+      tl.fromTo(img, { scale: 1 }, { scale: 1.08, ease: "none" }, 0);
+      tl.to(lead, { opacity: 1, y: 0, duration: 0.06 }, 0.08);
       stackItems.forEach((it, i) => {
-        tl.to(it, { opacity: 1, y: 0, duration: 0.08, ease: "power3.out" }, 0.18 + i * 0.12);
+        tl.to(it, { opacity: 1, y: 0, duration: 0.06, ease: "power3.out" }, 0.2 + i * 0.12);
       });
     }, rootRef);
 
@@ -75,37 +77,69 @@ export function VerticalStackReveal() {
           style={{ background: "rgba(0,0,0,0.55)" }}
         />
 
-        <div className="absolute inset-0 flex items-center">
+        {/* Tiny top eyebrow — consistent with other moments */}
+        <div className="absolute top-0 inset-x-0 z-30 pt-8">
+          <div className="lef-container flex items-center justify-between">
+            <span
+              style={{
+                fontFamily: "var(--font-geist)",
+                fontSize: "0.75rem",
+                color: "rgba(255,255,255,0.6)",
+                letterSpacing: "0.04em",
+                textTransform: "uppercase",
+              }}
+            >
+              03 — What you'll find
+            </span>
+            <span
+              style={{
+                fontFamily: "var(--font-geist)",
+                fontSize: "0.75rem",
+                color: "rgba(255,255,255,0.6)",
+                letterSpacing: "0.04em",
+                textTransform: "uppercase",
+              }}
+            >
+              & what you won't
+            </span>
+          </div>
+        </div>
+
+        <div className="absolute inset-0 flex items-center justify-center">
           <div
             className="w-full mx-auto"
-            style={{ maxWidth: "80rem", paddingInline: "clamp(1.25rem, 6vw, 6rem)" }}
+            style={{ maxWidth: "44rem", paddingInline: "clamp(1.25rem, 5vw, 4rem)" }}
           >
-            <div className="grid grid-cols-12 gap-6 items-start">
+            <div className="text-center">
               <span
-                className="vs-lead font-display-italic col-span-3 md:col-span-2 pt-2"
+                className="vs-lead block"
                 style={{
-                  fontSize: "clamp(1.5rem, 2.6vw, 2.25rem)",
-                  color: "color-mix(in srgb, white 75%, transparent)",
-                  fontWeight: 300,
+                  fontFamily: "var(--font-geist)",
+                  fontSize: "0.95rem",
+                  fontWeight: 500,
+                  color: "#fff",
+                  letterSpacing: "0.01em",
+                  marginBottom: "1.5rem",
                 }}
               >
                 Without
               </span>
 
-              <ul className="col-span-9 md:col-span-10 space-y-1">
+              <ul className="flex flex-col gap-2 items-center">
                 {items.map((w, i) => (
                   <li
                     key={i}
-                    className="vs-item font-display"
+                    className="vs-item"
                     style={{
-                      fontSize: "clamp(1.75rem, 3.2vw, 3rem)",
+                      fontFamily: "var(--font-geist)",
+                      fontSize: "0.95rem",
+                      fontWeight: 500,
                       color: "#fff",
-                      lineHeight: 1.1,
-                      letterSpacing: "-0.02em",
-                      fontWeight: 400,
+                      letterSpacing: "0.01em",
+                      lineHeight: 1.5,
                     }}
                   >
-                    {w}
+                    {w}.
                   </li>
                 ))}
               </ul>
