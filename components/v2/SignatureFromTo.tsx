@@ -8,7 +8,6 @@ if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
 }
 
-// Linked frames of the cabin grounds — no chickens, slightly blurred backdrop
 const photos = [
   "/images/squirrels-nest/sq-08.jpg",
   "/images/squirrels-nest/sq-22.jpg",
@@ -16,16 +15,10 @@ const photos = [
 ];
 
 /**
- * The single signature scroll moment.
- *
- * Pinned. Two short labels at top connected by a HAND-DRAWN CURVED LINE
- * (not straight). A long curved descender drops to a subline below. As the
- * user scrolls, the photo behind crossfades between linked frames of the
- * arrival journey — road → lane → door — so the background tells one
- * continuous story rather than feeling disjointed.
- *
- * The labels and subline use the same Geist sans 0.95rem weight 500 used
- * everywhere else.
+ * The single signature scroll moment — all text + lines grouped tightly,
+ * one block of writing on a softly-blurred photo backdrop. The lines
+ * actually draw themselves as the user scrolls (stroke-dashoffset tied to
+ * scroll progress, not just sitting there).
  */
 export function SignatureFromTo() {
   const rootRef = useRef<HTMLDivElement>(null);
@@ -47,16 +40,23 @@ export function SignatureFromTo() {
       const subTail = root.querySelector(".sft-sub-tail");
       const layers = gsap.utils.toArray<HTMLElement>(".sft-layer");
 
+      // Hard reset visible elements
       gsap.set([lA, lB, sub, subTail], { opacity: 0, y: 12 });
-      gsap.set([arc, descender].filter(Boolean), {
-        strokeDashoffset: (i, el) => (el as SVGPathElement).getTotalLength?.() ?? 400,
+
+      // PROPERLY initialise both dasharray AND dashoffset so the line is invisible at start
+      [arc, descender].forEach((p) => {
+        if (!p) return;
+        const len = p.getTotalLength();
+        p.style.strokeDasharray = `${len}`;
+        p.style.strokeDashoffset = `${len}`;
       });
+
       // First photo visible, rest hidden
       layers.forEach((l, i) => gsap.set(l, { opacity: i === 0 ? 1 : 0 }));
 
       if (prefersReducedMotion) {
         gsap.set([lA, lB, sub, subTail], { clearProps: "all" });
-        gsap.set([arc, descender].filter(Boolean), { strokeDashoffset: 0 });
+        [arc, descender].forEach((p) => p && (p.style.strokeDashoffset = "0"));
         return;
       }
 
@@ -64,39 +64,54 @@ export function SignatureFromTo() {
         scrollTrigger: {
           trigger: root,
           start: "top top",
-          end: "+=350%",
+          end: "+=300%",
           pin: ".sft-pin",
           scrub: 1.4,
           anticipatePin: 1,
         },
       });
 
-      // 1) leading label
-      tl.to(lA, { opacity: 1, y: 0, duration: 0.05 }, 0.04);
-      // 2) curved arc draws (slowly, scrub-tied)
+      // Sequence — all reveals are tight, in one tight block of writing
+      tl.to(lA, { opacity: 1, y: 0, duration: 0.05 }, 0.06);
+
+      // Arc DRAWS — animate stroke-dashoffset from full length to 0
       if (arc) {
         const len = arc.getTotalLength();
-        tl.fromTo(arc, { strokeDashoffset: len }, { strokeDashoffset: 0, ease: "none", duration: 0.25 }, 0.08);
+        tl.fromTo(
+          arc,
+          { strokeDashoffset: len },
+          { strokeDashoffset: 0, ease: "none", duration: 0.22 },
+          0.1
+        );
       }
-      // 3) trailing label
-      tl.to(lB, { opacity: 1, y: 0, duration: 0.05 }, 0.32);
-      // 4) photo crossfade 1 → 2
+
+      tl.to(lB, { opacity: 1, y: 0, duration: 0.05 }, 0.34);
+
+      // Photo cross-fade 1 → 2 mid-way
       if (layers[1]) {
-        tl.to(layers[0], { opacity: 0, duration: 0.18 }, 0.38);
-        tl.to(layers[1], { opacity: 1, duration: 0.18 }, 0.38);
+        tl.to(layers[0], { opacity: 0, duration: 0.16 }, 0.42);
+        tl.to(layers[1], { opacity: 1, duration: 0.16 }, 0.42);
       }
-      // 5) curved descender draws
+
+      // Descender DRAWS
       if (descender) {
         const len = descender.getTotalLength();
-        tl.fromTo(descender, { strokeDashoffset: len }, { strokeDashoffset: 0, ease: "none", duration: 0.25 }, 0.46);
+        tl.fromTo(
+          descender,
+          { strokeDashoffset: len },
+          { strokeDashoffset: 0, ease: "none", duration: 0.24 },
+          0.5
+        );
       }
-      // 6) subline
-      tl.to(sub, { opacity: 1, y: 0, duration: 0.06 }, 0.62);
-      tl.to(subTail, { opacity: 1, y: 0, duration: 0.06 }, 0.7);
-      // 7) photo crossfade 2 → 3 near end
+
+      // Subline + tail
+      tl.to(sub, { opacity: 1, y: 0, duration: 0.06 }, 0.66);
+      tl.to(subTail, { opacity: 1, y: 0, duration: 0.06 }, 0.74);
+
+      // Photo cross-fade 2 → 3 near end
       if (layers[2]) {
-        tl.to(layers[1], { opacity: 0, duration: 0.18 }, 0.78);
-        tl.to(layers[2], { opacity: 1, duration: 0.18 }, 0.78);
+        tl.to(layers[1], { opacity: 0, duration: 0.18 }, 0.84);
+        tl.to(layers[2], { opacity: 1, duration: 0.18 }, 0.84);
       }
     }, rootRef);
 
@@ -111,7 +126,7 @@ export function SignatureFromTo() {
           <div
             key={i}
             className="sft-layer absolute inset-0"
-            style={{ filter: "blur(8px)", transform: "scale(1.06)" }}
+            style={{ filter: "blur(10px)", transform: "scale(1.08)" }}
           >
             <img
               src={src}
@@ -124,10 +139,10 @@ export function SignatureFromTo() {
         <div
           aria-hidden
           className="absolute inset-0"
-          style={{ background: "rgba(0,0,0,0.48)" }}
+          style={{ background: "rgba(0,0,0,0.5)" }}
         />
 
-        {/* Top eyebrow */}
+        {/* Tiny top eyebrow */}
         <div className="absolute top-0 inset-x-0 z-30 pt-8">
           <div className="lef-container flex items-center justify-between">
             <span
@@ -155,22 +170,17 @@ export function SignatureFromTo() {
           </div>
         </div>
 
-        {/* Centered moment */}
+        {/* THE TIGHT BLOCK OF WRITING — one centred composition, no large gaps */}
         <div className="absolute inset-0 z-20 flex items-center justify-center">
           <div
-            className="relative w-full mx-auto"
-            style={{ maxWidth: "60rem", paddingInline: "clamp(1.5rem, 5vw, 4rem)" }}
+            className="relative text-center"
+            style={{ width: "min(36rem, 90vw)" }}
           >
-            {/* HAND-DRAWN CURVED ARC between labels */}
-            <div
-              className="relative mx-auto"
-              style={{ width: "100%", maxWidth: "44rem", height: "8rem" }}
-            >
+            {/* Row 1: "From the road  ━━━━  to the cabin" — all on one line */}
+            <div className="flex items-center justify-center gap-4">
               <span
-                className="sft-label-a absolute"
+                className="sft-label-a"
                 style={{
-                  left: "0",
-                  top: "0",
                   fontFamily: "var(--font-geist)",
                   fontSize: "0.95rem",
                   fontWeight: 500,
@@ -183,30 +193,27 @@ export function SignatureFromTo() {
               </span>
 
               <svg
-                viewBox="0 0 100 30"
+                width="120"
+                height="20"
+                viewBox="0 0 120 20"
                 preserveAspectRatio="none"
-                width="100%"
-                height="100%"
-                style={{ display: "block", overflow: "visible" }}
+                style={{ overflow: "visible", display: "block" }}
                 aria-hidden
               >
                 <path
                   className="sft-arc"
-                  d="M 6 8 Q 30 -2, 50 10 T 94 8"
+                  d="M 0 12 Q 30 -2, 60 10 T 120 12"
                   stroke="#fff"
                   strokeWidth="2"
                   fill="none"
                   strokeLinecap="round"
-                  strokeDasharray={400}
                   vectorEffect="non-scaling-stroke"
                 />
               </svg>
 
               <span
-                className="sft-label-b absolute"
+                className="sft-label-b"
                 style={{
-                  right: "0",
-                  top: "0",
                   fontFamily: "var(--font-geist)",
                   fontSize: "0.95rem",
                   fontWeight: 500,
@@ -219,42 +226,41 @@ export function SignatureFromTo() {
               </span>
             </div>
 
-            {/* CURVED DESCENDER from end-right of arc, sweeping down to subline */}
+            {/* Row 2: curved descender — short, sits right below row 1 */}
             <div
-              className="relative ml-auto"
-              style={{ width: "70%", height: "8rem", marginTop: "-1rem" }}
+              className="relative mx-auto"
+              style={{ width: "70%", height: "4.5rem", marginTop: "0.5rem" }}
             >
               <svg
-                viewBox="0 0 100 100"
+                viewBox="0 0 100 60"
                 preserveAspectRatio="none"
                 width="100%"
                 height="100%"
-                style={{ display: "block", overflow: "visible" }}
+                style={{ overflow: "visible", display: "block" }}
                 aria-hidden
               >
                 <path
                   className="sft-descender"
-                  d="M 95 0 C 95 40, 30 60, 30 100"
+                  d="M 80 0 C 80 30, 30 35, 30 58"
                   stroke="#fff"
                   strokeWidth="2"
                   fill="none"
                   strokeLinecap="round"
-                  strokeDasharray={400}
                   vectorEffect="non-scaling-stroke"
                 />
               </svg>
             </div>
 
-            {/* Subline — same font family as labels */}
+            {/* Row 3: subline — sits right below descender, one tight block */}
             <p
               className="text-center mx-auto"
               style={{
                 fontFamily: "var(--font-geist)",
-                fontSize: "clamp(1.05rem, 1.4vw, 1.35rem)",
+                fontSize: "clamp(0.95rem, 1.1vw, 1.0625rem)",
                 color: "#fff",
-                lineHeight: 1.55,
+                lineHeight: 1.5,
                 fontWeight: 400,
-                maxWidth: "44ch",
+                maxWidth: "30ch",
               }}
             >
               <span className="sft-sub block">We've spent three years rebuilding this cabin by hand,</span>
@@ -264,7 +270,8 @@ export function SignatureFromTo() {
                   fontFamily: "var(--font-cormorant)",
                   fontStyle: "italic",
                   color: "rgba(255,255,255,0.85)",
-                  marginTop: "0.4rem",
+                  fontSize: "1.1em",
+                  marginTop: "0.35rem",
                 }}
               >
                 for the kind of stay we wanted ourselves.
