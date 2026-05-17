@@ -8,18 +8,34 @@ if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
 }
 
+/**
+ * Signature chained moment — modeled on savor.it's butter → palm oil → "we craft" sequence.
+ *
+ * Three labels chained over a pinned section:
+ *   "From the lane"   → photo 1 (the approach)
+ *   "the kettle on"   → photo 2 (the cabin warmth)
+ *   "all the way to bed." → photo 3 (rest)
+ *
+ * Between each pair of labels a clean SVG cubic-bezier line DRAWS via
+ * stroke-dashoffset tied to scroll. Photos crossfade between labels.
+ *
+ * Photos are SHARP (no CSS blur). A subtle bottom-vignette is the only
+ * background treatment, so the labels stay readable without washing out
+ * the food/cabin macro detail like a blur would.
+ */
+
 const photos = [
-  "/images/squirrels-nest/sq-08.jpg",
-  "/images/squirrels-nest/sq-22.jpg",
-  "/images/squirrels-nest/sq-12.jpg",
+  { src: "/images/squirrels-nest/sq-08.jpg", alt: "the lane approach" },
+  { src: "/images/squirrels-nest/sq-22.jpg", alt: "bronze tap macro" },
+  { src: "/images/squirrels-nest/sq-12.jpg", alt: "the bedroom" },
 ];
 
-/**
- * The single signature scroll moment — all text + lines grouped tightly,
- * one block of writing on a softly-blurred photo backdrop. The lines
- * actually draw themselves as the user scrolls (stroke-dashoffset tied to
- * scroll progress, not just sitting there).
- */
+const labels = [
+  { text: "From the lane", x: "10%", y: "30%" },
+  { text: "the kettle on", x: "50%", y: "50%" },
+  { text: "all the way to bed.", x: "82%", y: "72%" },
+];
+
 export function SignatureFromTo() {
   const rootRef = useRef<HTMLDivElement>(null);
 
@@ -32,31 +48,29 @@ export function SignatureFromTo() {
     ).matches;
 
     const ctx = gsap.context(() => {
-      const lA = root.querySelector(".sft-label-a");
-      const lB = root.querySelector(".sft-label-b");
-      const arc = root.querySelector<SVGPathElement>(".sft-arc");
-      const descender = root.querySelector<SVGPathElement>(".sft-descender");
-      const sub = root.querySelector(".sft-sub");
-      const subTail = root.querySelector(".sft-sub-tail");
-      const layers = gsap.utils.toArray<HTMLElement>(".sft-layer");
+      const labelEls = gsap.utils.toArray<HTMLElement>(".sft-label");
+      const layerEls = gsap.utils.toArray<HTMLElement>(".sft-layer");
+      const line1 = root.querySelector<SVGPathElement>(".sft-line-1");
+      const line2 = root.querySelector<SVGPathElement>(".sft-line-2");
 
-      // Hard reset visible elements
-      gsap.set([lA, lB, sub, subTail], { opacity: 0, y: 12 });
+      // Initial hidden state
+      gsap.set(labelEls, { opacity: 0, y: 14 });
+      layerEls.forEach((l, i) =>
+        gsap.set(l, { opacity: i === 0 ? 1 : 0 })
+      );
 
-      // PROPERLY initialise both dasharray AND dashoffset so the line is invisible at start
-      [arc, descender].forEach((p) => {
+      // Initialise SVG line draw — start fully hidden (offset = full length)
+      [line1, line2].forEach((p) => {
         if (!p) return;
         const len = p.getTotalLength();
         p.style.strokeDasharray = `${len}`;
         p.style.strokeDashoffset = `${len}`;
       });
 
-      // First photo visible, rest hidden
-      layers.forEach((l, i) => gsap.set(l, { opacity: i === 0 ? 1 : 0 }));
-
       if (prefersReducedMotion) {
-        gsap.set([lA, lB, sub, subTail], { clearProps: "all" });
-        [arc, descender].forEach((p) => p && (p.style.strokeDashoffset = "0"));
+        gsap.set(labelEls, { opacity: 1, y: 0 });
+        layerEls.forEach((l) => gsap.set(l, { opacity: 1 }));
+        [line1, line2].forEach((p) => p && (p.style.strokeDashoffset = "0"));
         return;
       }
 
@@ -64,221 +78,137 @@ export function SignatureFromTo() {
         scrollTrigger: {
           trigger: root,
           start: "top top",
-          end: "+=300%",
+          end: "+=320%",
           pin: ".sft-pin",
-          scrub: 1.4,
+          scrub: 1.1,
           anticipatePin: 1,
         },
       });
 
-      // Sequence — all reveals are tight, in one tight block of writing
-      tl.to(lA, { opacity: 1, y: 0, duration: 0.05 }, 0.06);
+      // === Beat 1: Label A appears ===
+      tl.to(labelEls[0], { opacity: 1, y: 0, duration: 0.08 }, 0.06);
 
-      // Arc DRAWS — animate stroke-dashoffset from full length to 0
-      if (arc) {
-        const len = arc.getTotalLength();
+      // === Beat 2: Line 1 draws between A and B ===
+      if (line1) {
+        const len = line1.getTotalLength();
         tl.fromTo(
-          arc,
+          line1,
           { strokeDashoffset: len },
           { strokeDashoffset: 0, ease: "none", duration: 0.22 },
-          0.1
+          0.16
         );
       }
 
-      tl.to(lB, { opacity: 1, y: 0, duration: 0.05 }, 0.34);
+      // === Beat 3: Label B appears + photo crossfade 1 → 2 ===
+      tl.to(labelEls[1], { opacity: 1, y: 0, duration: 0.08 }, 0.38);
+      tl.to(layerEls[0], { opacity: 0, duration: 0.22 }, 0.42);
+      tl.to(layerEls[1], { opacity: 1, duration: 0.22 }, 0.42);
 
-      // Photo cross-fade 1 → 2 mid-way
-      if (layers[1]) {
-        tl.to(layers[0], { opacity: 0, duration: 0.16 }, 0.42);
-        tl.to(layers[1], { opacity: 1, duration: 0.16 }, 0.42);
-      }
-
-      // Descender DRAWS
-      if (descender) {
-        const len = descender.getTotalLength();
+      // === Beat 4: Line 2 draws between B and C (curved descender) ===
+      if (line2) {
+        const len = line2.getTotalLength();
         tl.fromTo(
-          descender,
+          line2,
           { strokeDashoffset: len },
-          { strokeDashoffset: 0, ease: "none", duration: 0.24 },
-          0.5
+          { strokeDashoffset: 0, ease: "none", duration: 0.26 },
+          0.62
         );
       }
 
-      // Subline + tail
-      tl.to(sub, { opacity: 1, y: 0, duration: 0.06 }, 0.66);
-      tl.to(subTail, { opacity: 1, y: 0, duration: 0.06 }, 0.74);
-
-      // Photo cross-fade 2 → 3 near end
-      if (layers[2]) {
-        tl.to(layers[1], { opacity: 0, duration: 0.18 }, 0.84);
-        tl.to(layers[2], { opacity: 1, duration: 0.18 }, 0.84);
-      }
+      // === Beat 5: Label C appears + photo crossfade 2 → 3 ===
+      tl.to(labelEls[2], { opacity: 1, y: 0, duration: 0.08 }, 0.86);
+      tl.to(layerEls[1], { opacity: 0, duration: 0.18 }, 0.88);
+      tl.to(layerEls[2], { opacity: 1, duration: 0.18 }, 0.88);
     }, rootRef);
 
     return () => ctx.revert();
   }, []);
 
   return (
-    <section ref={rootRef} className="relative">
-      <div className="sft-pin relative h-screen overflow-hidden">
-        {/* Linked photo layers — softly blurred so the text reads clean */}
-        {photos.map((src, i) => (
-          <div
-            key={i}
-            className="sft-layer absolute inset-0"
-            style={{ filter: "blur(10px)", transform: "scale(1.08)" }}
-          >
+    <section ref={rootRef} className="relative" data-section-tone="dark">
+      <div className="sft-pin relative h-screen w-full overflow-hidden" style={{ background: "var(--v2-ink)" }}>
+        {/* Layered SHARP photos — no CSS blur */}
+        {photos.map((p, i) => (
+          <div key={i} className="sft-layer absolute inset-0">
             <img
-              src={src}
-              alt=""
-              style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+              src={p.src}
+              alt={p.alt}
               loading={i === 0 ? "eager" : "lazy"}
+              style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+            />
+            {/* Per-photo vignette — keeps labels readable without blurring the image */}
+            <div
+              aria-hidden
+              className="absolute inset-0"
+              style={{
+                background:
+                  "radial-gradient(ellipse 80% 70% at 50% 50%, rgba(0,0,0,0) 0%, rgba(0,0,0,0.35) 70%, rgba(0,0,0,0.6) 100%)",
+              }}
             />
           </div>
         ))}
-        <div
-          aria-hidden
-          className="absolute inset-0"
-          style={{ background: "rgba(0,0,0,0.5)" }}
-        />
 
-        {/* Tiny top eyebrow */}
+        {/* Section eyebrow — sentence case, sans, light variant */}
         <div className="absolute top-0 inset-x-0 z-30 pt-8">
           <div className="lef-container flex items-center justify-between">
-            <span
-              style={{
-                fontFamily: "var(--font-geist)",
-                fontSize: "0.75rem",
-                color: "rgba(255,255,255,0.6)",
-                letterSpacing: "0.04em",
-                textTransform: "uppercase",
-              }}
-            >
-              01 — Arrival
-            </span>
-            <span
-              style={{
-                fontFamily: "var(--font-geist)",
-                fontSize: "0.75rem",
-                color: "rgba(255,255,255,0.6)",
-                letterSpacing: "0.04em",
-                textTransform: "uppercase",
-              }}
-            >
-              A short journey
-            </span>
+            <span className="sv-eyebrow is-light">01 — Arrival</span>
+            <span className="sv-eyebrow is-light">A short journey</span>
           </div>
         </div>
 
-        {/* THE TIGHT BLOCK OF WRITING — one centred composition, no large gaps */}
-        <div className="absolute inset-0 z-20 flex items-center justify-center">
+        {/* The three labels, scattered across the viewport like savor */}
+        {labels.map((l, i) => (
           <div
-            className="relative text-center"
-            style={{ width: "min(36rem, 90vw)" }}
+            key={i}
+            className="sft-label absolute"
+            style={{
+              left: l.x,
+              top: l.y,
+              transform: "translate(-50%, -50%)",
+              fontFamily: "var(--font-geist)",
+              fontSize: "1rem",
+              fontWeight: 400,
+              color: "var(--v2-bg)",
+              letterSpacing: "-0.005em",
+              whiteSpace: "nowrap",
+              zIndex: 20,
+              textShadow: "0 1px 8px rgba(0,0,0,0.35)",
+            }}
           >
-            {/* Row 1: "From the road  ━━━━  to the cabin" — all on one line */}
-            <div className="flex items-center justify-center gap-4">
-              <span
-                className="sft-label-a"
-                style={{
-                  fontFamily: "var(--font-geist)",
-                  fontSize: "0.95rem",
-                  fontWeight: 500,
-                  color: "#fff",
-                  letterSpacing: "0.01em",
-                  whiteSpace: "nowrap",
-                }}
-              >
-                From the road
-              </span>
-
-              <svg
-                width="120"
-                height="20"
-                viewBox="0 0 120 20"
-                preserveAspectRatio="none"
-                style={{ overflow: "visible", display: "block" }}
-                aria-hidden
-              >
-                <path
-                  className="sft-arc"
-                  d="M 0 12 Q 30 -2, 60 10 T 120 12"
-                  stroke="#fff"
-                  strokeWidth="2"
-                  fill="none"
-                  strokeLinecap="round"
-                  vectorEffect="non-scaling-stroke"
-                />
-              </svg>
-
-              <span
-                className="sft-label-b"
-                style={{
-                  fontFamily: "var(--font-geist)",
-                  fontSize: "0.95rem",
-                  fontWeight: 500,
-                  color: "#fff",
-                  letterSpacing: "0.01em",
-                  whiteSpace: "nowrap",
-                }}
-              >
-                to the cabin
-              </span>
-            </div>
-
-            {/* Row 2: curved descender — short, sits right below row 1 */}
-            <div
-              className="relative mx-auto"
-              style={{ width: "70%", height: "4.5rem", marginTop: "0.5rem" }}
-            >
-              <svg
-                viewBox="0 0 100 60"
-                preserveAspectRatio="none"
-                width="100%"
-                height="100%"
-                style={{ overflow: "visible", display: "block" }}
-                aria-hidden
-              >
-                <path
-                  className="sft-descender"
-                  d="M 80 0 C 80 30, 30 35, 30 58"
-                  stroke="#fff"
-                  strokeWidth="2"
-                  fill="none"
-                  strokeLinecap="round"
-                  vectorEffect="non-scaling-stroke"
-                />
-              </svg>
-            </div>
-
-            {/* Row 3: subline — sits right below descender, one tight block */}
-            <p
-              className="text-center mx-auto"
-              style={{
-                fontFamily: "var(--font-geist)",
-                fontSize: "clamp(0.95rem, 1.1vw, 1.0625rem)",
-                color: "#fff",
-                lineHeight: 1.5,
-                fontWeight: 400,
-                maxWidth: "30ch",
-              }}
-            >
-              <span className="sft-sub block">We've spent three years rebuilding this cabin by hand,</span>
-              <span
-                className="sft-sub-tail block"
-                style={{
-                  fontFamily: "var(--font-cormorant)",
-                  fontStyle: "italic",
-                  color: "rgba(255,255,255,0.85)",
-                  fontSize: "1.1em",
-                  marginTop: "0.35rem",
-                }}
-              >
-                for the kind of stay we wanted ourselves.
-              </span>
-            </p>
+            {l.text}
           </div>
-        </div>
+        ))}
+
+        {/* SVG overlay — pixel-coord viewBox so stroke-width + dasharray maths
+            work cleanly. Scales via preserveAspectRatio=none to fill viewport. */}
+        <svg
+          className="absolute inset-0 pointer-events-none"
+          viewBox="0 0 1280 800"
+          preserveAspectRatio="none"
+          style={{ width: "100%", height: "100%", zIndex: 15 }}
+          aria-hidden
+        >
+          {/* Line 1: from Label A (10%, 30%) ~ (128, 240) -> Label B (50%, 50%) ~ (640, 400)
+              Clean cubic bezier, gentle downward S-curve */}
+          <path
+            className="sft-line-1"
+            d="M 175 240 C 320 240, 440 400, 600 400"
+            stroke="#fff9eb"
+            strokeWidth="1.5"
+            fill="none"
+            strokeLinecap="round"
+          />
+          {/* Line 2: from Label B (50%, 50%) ~ (680, 410) -> Label C (82%, 72%) ~ (1050, 576)
+              Curved descender, steeper than Line 1 to give the journey weight */}
+          <path
+            className="sft-line-2"
+            d="M 680 410 C 830 410, 920 576, 1010 576"
+            stroke="#fff9eb"
+            strokeWidth="1.5"
+            fill="none"
+            strokeLinecap="round"
+          />
+        </svg>
       </div>
     </section>
   );

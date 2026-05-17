@@ -68,17 +68,7 @@ export function MultiPhotoGrid() {
               marginBottom: "1.25rem",
             }}
           />
-          <p
-            className="mpg-line"
-            style={{
-              fontFamily: "var(--font-geist)",
-              fontSize: "0.75rem",
-              color: "var(--v2-mute)",
-              letterSpacing: "0.04em",
-              textTransform: "uppercase",
-              marginBottom: "1.5rem",
-            }}
-          >
+          <p className="mpg-line sv-eyebrow" style={{ marginBottom: "1.5rem" }}>
             03 — Around the cabin
           </p>
           <h2

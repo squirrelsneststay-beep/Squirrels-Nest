@@ -94,28 +94,8 @@ export function CardDeckStack() {
         style={{ background: "var(--v2-bg)" }}
       >
         <div className="absolute top-8 left-0 right-0 z-30 lef-container flex items-center justify-between">
-          <span
-            style={{
-              fontFamily: "var(--font-geist)",
-              fontSize: "0.75rem",
-              color: "var(--v2-mute)",
-              letterSpacing: "0.04em",
-              textTransform: "uppercase",
-            }}
-          >
-            02 — Inside
-          </span>
-          <span
-            style={{
-              fontFamily: "var(--font-geist)",
-              fontSize: "0.75rem",
-              color: "var(--v2-mute)",
-              letterSpacing: "0.04em",
-              textTransform: "uppercase",
-            }}
-          >
-            scroll to flip ↓
-          </span>
+          <span className="sv-eyebrow">02 — Inside</span>
+          <span className="sv-eyebrow">Scroll to flip ↓</span>
         </div>
 
         <div className="relative" style={{ width: "min(28rem, 80vw)", aspectRatio: "4 / 5" }}>

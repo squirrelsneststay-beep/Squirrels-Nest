@@ -20,11 +20,13 @@ export function SmoothScroll({ children }: { children: React.ReactNode }) {
     ).matches;
     if (prefersReducedMotion) return;
 
+    // Tuned for snappier scroll feel — old values (lerp 0.085, duration 1.4)
+    // gave a laggy feel where text would appear to lag behind the wheel.
     const lenis = new Lenis({
-      lerp: 0.085,
-      duration: 1.4,
+      lerp: 0.11,
+      duration: 1.0,
       smoothWheel: true,
-      wheelMultiplier: 1,
+      wheelMultiplier: 1.05,
       touchMultiplier: 1.5,
       easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
     });

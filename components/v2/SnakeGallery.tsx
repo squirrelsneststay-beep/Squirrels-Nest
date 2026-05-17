@@ -76,28 +76,8 @@ export function SnakeGallery() {
         style={{ background: "var(--v2-bg)" }}
       >
         <div className="absolute top-8 left-0 right-0 z-20 lef-container flex items-center justify-between">
-          <span
-            style={{
-              fontFamily: "var(--font-geist)",
-              fontSize: "0.75rem",
-              color: "var(--v2-mute)",
-              letterSpacing: "0.04em",
-              textTransform: "uppercase",
-            }}
-          >
-            04 — Around the cabin
-          </span>
-          <span
-            style={{
-              fontFamily: "var(--font-geist)",
-              fontSize: "0.75rem",
-              color: "var(--v2-mute)",
-              letterSpacing: "0.04em",
-              textTransform: "uppercase",
-            }}
-          >
-            scroll →
-          </span>
+          <span className="sv-eyebrow">05 — The slow tour</span>
+          <span className="sv-eyebrow">Scroll →</span>
         </div>
 
         <div className="sg-track flex items-center gap-14 will-change-transform pl-24 pr-24">

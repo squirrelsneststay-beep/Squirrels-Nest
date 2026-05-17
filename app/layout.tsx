@@ -1,15 +1,17 @@
 import type { Metadata } from "next";
-import { EB_Garamond, Cormorant_Garamond, Geist, Geist_Mono } from "next/font/google";
+import { Instrument_Serif, Cormorant_Garamond, Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { SmoothScroll } from "@/components/SmoothScroll";
 import { Nav } from "@/components/Nav";
-import { Footer } from "@/components/Footer";
+import { BigFooter } from "@/components/v2/BigFooter";
+import { CursorOrb } from "@/components/v2/CursorOrb";
+import { ScrollProgress } from "@/components/v2/ScrollProgress";
 
-const ebgaramond = EB_Garamond({
+const instrumentSerif = Instrument_Serif({
   variable: "--font-italiana",
   subsets: ["latin"],
   display: "swap",
-  weight: ["400", "500", "600"],
+  weight: ["400"],
   style: ["normal", "italic"],
 });
 
@@ -45,13 +47,15 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${ebgaramond.variable} ${cormorant.variable} ${geist.variable} ${geistMono.variable} antialiased`}
+      className={`${instrumentSerif.variable} ${cormorant.variable} ${geist.variable} ${geistMono.variable} antialiased`}
     >
       <body>
+        <ScrollProgress />
+        <CursorOrb />
         <SmoothScroll>
           <Nav />
           <main>{children}</main>
-          <Footer />
+          <BigFooter />
         </SmoothScroll>
       </body>
     </html>

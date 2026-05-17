@@ -1,21 +1,21 @@
 @import "tailwindcss";
 
 :root {
-  /* v2 palette — minimal high-end editorial */
-  --v2-bg:            #fcfaf6;
-  --v2-ink:           #1a1a1a;
-  --v2-ink-soft:      #555;
-  --v2-mute:          #9a9a92;
-  --v2-line:          #e5e1d7;
+  /* v2 palette — matched to savor.it real tokens (extracted from live DOM 2026-05-15) */
+  --v2-bg:            #fff9eb;   /* warm cream */
+  --v2-ink:           #370808;   /* dark plum-red */
+  --v2-ink-soft:      #6b3030;   /* lifted plum */
+  --v2-mute:          #9a8b85;   /* warm mute */
+  --v2-line:          #ead9c4;   /* warm hairline */
   --v2-container-px:  clamp(1.25rem, 6vw, 6rem);
 
-  /* Lane End Farm palette — warm cabin / English country */
-  --lef-cream:        #f4eee2;
-  --lef-cream-soft:   #ece5d3;
-  --lef-stone:        #d8d3c6;
+  /* Lane End Farm palette — kept for legacy refs, warmed to match v2 */
+  --lef-cream:        #fff9eb;
+  --lef-cream-soft:   #f7eed7;
+  --lef-stone:        #d8c8b8;
   --lef-moss:         #4f6b54;
   --lef-forest:       #1f2a24;
-  --lef-charcoal:     #2a2723;
+  --lef-charcoal:     #370808;
   --lef-bark:         #4a3a2c;
   --lef-rust:         #b86b3e;
 
@@ -78,6 +78,7 @@ html {
   color: var(--foreground);
   font-family: var(--font-sans), system-ui, -apple-system, sans-serif;
   font-size: 16px;
+  letter-spacing: -0.01em;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
@@ -94,11 +95,11 @@ html.lenis, html.lenis body { height: auto; }
 .lenis.lenis-stopped { overflow: hidden; }
 .lenis.lenis-scrolling iframe { pointer-events: none; }
 
-/* Display + body type defaults */
+/* Display — Instrument Serif. Editorial, high-contrast. Only weight 400. */
 .font-display {
   font-family: var(--font-italiana), Georgia, "Times New Roman", serif;
   font-weight: 400;
-  letter-spacing: -0.015em;
+  letter-spacing: -0.025em;
   line-height: 0.95;
   font-feature-settings: "liga" 1, "kern" 1;
 }
@@ -138,6 +139,51 @@ html.lenis, html.lenis body { height: auto; }
   outline: 2px solid #4f6b54;
   outline-offset: 2px;
 }
+
+/* Savor-style connector pill — "Word ━ Word" with a hairline between words */
+.sv-pill {
+  display: inline-flex;
+  align-items: center;
+  height: 44px;
+  padding: 0 1.4rem;
+  border-radius: 9999px;
+  background: var(--v2-bg);
+  color: var(--v2-ink);
+  font-family: var(--font-geist), -apple-system, sans-serif;
+  font-size: 0.875rem;
+  font-weight: 400;
+  letter-spacing: -0.005em;
+  cursor: pointer;
+  text-decoration: none;
+  border: 1px solid color-mix(in srgb, var(--v2-ink) 12%, transparent);
+  transition: background 200ms ease-out, color 200ms ease-out, transform 120ms ease-out;
+}
+.sv-pill:hover { background: color-mix(in srgb, var(--v2-ink) 6%, var(--v2-bg)); }
+.sv-pill:active { transform: scale(0.97); }
+.sv-pill.is-inverse {
+  background: var(--v2-ink);
+  color: var(--v2-bg);
+  border-color: var(--v2-ink);
+}
+.sv-pill.is-inverse:hover { background: color-mix(in srgb, var(--v2-ink) 90%, var(--v2-bg)); }
+.sv-pill .sv-pill-rule {
+  width: 1.5rem;
+  height: 1px;
+  background: currentColor;
+  opacity: 0.65;
+  margin-inline: 0.75rem;
+}
+
+/* Section eyebrow — sentence case, sans, never uppercase */
+.sv-eyebrow {
+  font-family: var(--font-geist), -apple-system, sans-serif;
+  font-size: 0.8125rem;
+  font-weight: 400;
+  color: var(--v2-mute);
+  letter-spacing: -0.005em;
+  text-transform: none;
+}
+.sv-eyebrow.is-light { color: rgba(255, 249, 235, 0.7); }
 
 /* Pill button — emil's animation principles applied */
 .lef-pill {
@@ -200,6 +246,14 @@ html.lenis, html.lenis body { height: auto; }
   outline-offset: 3px;
   border-radius: 2px;
 }
+
+/* SplitText helpers — clip overflow so chars rise from below */
+.ch-tag-line-clip { overflow: hidden; display: block; }
+.ch-mark-char { display: inline-block; }
+
+/* Custom cursor — hide native when CursorOrb is mounted */
+html.cursor-hidden,
+html.cursor-hidden * { cursor: none !important; }
 
 /* Reduced motion */
 @media (prefers-reduced-motion: reduce) {

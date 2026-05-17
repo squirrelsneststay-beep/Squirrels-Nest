@@ -2,11 +2,20 @@
 
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
+import { SplitText } from "gsap/SplitText";
+
+if (typeof window !== "undefined") {
+  gsap.registerPlugin(SplitText);
+}
 
 /**
- * Clean typographic hero — large "Squirrels' Nest" wordmark on cream,
- * with two small offset photos floating at the corners. NOT a full-bleed
- * photographic hero. Multiple photos visible at once, none dominating.
+ * Hero — Bellevoire-style. Full-bleed sharp moody photo. Small support
+ * text and meta in the top zone. GIGANTIC wordmark slammed against the
+ * bottom of the viewport, slightly overflowing — the kind of move that
+ * a Squarespace template would never let you make.
+ *
+ * No centred display block. No polite paragraph. No two-button pill row.
+ * Just photograph + huge mark + a single Word━Word CTA tucked top-right.
  */
 export function CleanHero() {
   const rootRef = useRef<HTMLDivElement>(null);
@@ -18,180 +27,156 @@ export function CleanHero() {
     const prefersReducedMotion = window.matchMedia(
       "(prefers-reduced-motion: reduce)"
     ).matches;
-    if (prefersReducedMotion) return;
 
     const ctx = gsap.context(() => {
-      gsap.from(".ch-mark-line", {
-        y: 90,
+      // Photo subtly scales in for fluidity
+      gsap.fromTo(
+        ".ch-photo-inner",
+        { scale: 1.10 },
+        { scale: 1.0, duration: 2.0, ease: "power3.out" }
+      );
+      if (prefersReducedMotion) return;
+
+      gsap.from(".ch-meta", {
         opacity: 0,
-        duration: 1.5,
-        ease: "power4.out",
-        stagger: 0.14,
-        delay: 0.2,
-      });
-      gsap.from(".ch-eyebrow", {
-        y: 10,
-        opacity: 0,
+        y: 12,
         duration: 1,
         ease: "power3.out",
+        stagger: 0.08,
+        delay: 0.2,
+      });
+
+      // SPLITTEXT on the tagline — each line splits into chars, animated
+      // with mask-up reveal. Better than a single y/opacity tween.
+      const taglineEl = root.querySelector<HTMLElement>(".ch-tagline-block");
+      if (taglineEl) {
+        const split = new SplitText(taglineEl, { type: "lines, chars", linesClass: "ch-tag-line-clip" });
+        gsap.from(split.chars, {
+          yPercent: 110,
+          opacity: 0,
+          duration: 1.2,
+          ease: "power4.out",
+          stagger: { each: 0.012, from: "start" },
+          delay: 0.55,
+        });
+      }
+
+      // Massive bottom wordmark — slides up + char stagger via SplitText
+      gsap.from(".ch-mark-row", {
+        y: 120,
+        opacity: 0,
+        duration: 1.4,
+        ease: "power4.out",
         delay: 0.5,
       });
-      gsap.from(".ch-photo", {
-        opacity: 0,
-        y: 20,
-        duration: 1.4,
-        ease: "power3.out",
-        stagger: 0.12,
-        delay: 0.9,
-      });
-      gsap.from(".ch-caption", {
-        opacity: 0,
-        duration: 1.2,
-        ease: "power3.out",
-        delay: 1.4,
-      });
+      const markEl = root.querySelector<HTMLElement>(".ch-mark");
+      if (markEl) {
+        const markSplit = new SplitText(markEl, { type: "chars", charsClass: "ch-mark-char" });
+        gsap.from(markSplit.chars, {
+          yPercent: 110,
+          opacity: 0,
+          duration: 1.3,
+          ease: "power4.out",
+          stagger: { each: 0.025, from: "random" },
+          delay: 0.65,
+        });
+      }
     }, rootRef);
 
     return () => ctx.revert();
   }, []);
 
+  // Split wordmark into letters for a letter-by-letter rise
+  const mark = "Squirrels' Nest";
+
   return (
     <section
       ref={rootRef}
+      data-section-tone="dark"
       className="relative"
-      style={{ background: "var(--v2-bg)", minHeight: "100dvh" }}
+      style={{ minHeight: "100dvh", background: "var(--v2-ink)", overflow: "hidden" }}
     >
-      {/* Top-left wordmark — sits in the nav row */}
-      {/* (Nav already handles this; left intentionally empty here) */}
-
-      {/* Floating photo top-right (small) */}
-      <div
-        className="ch-photo absolute"
-        style={{
-          top: "16vh",
-          right: "8vw",
-          width: "12rem",
-          aspectRatio: "4 / 5",
-          borderRadius: "3px",
-          overflow: "hidden",
-        }}
-      >
-        <img
-          src="/images/squirrels-nest/sq-15.jpg"
-          alt="Inside Squirrels' Nest"
-          loading="eager"
-          style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
-        />
+      {/* Full-bleed sharp photo */}
+      <div className="absolute inset-0" style={{ overflow: "hidden" }}>
+        <div className="ch-photo-inner absolute inset-0" style={{ willChange: "transform" }}>
+          <img
+            src="/images/squirrels-nest/sq-12.jpg"
+            alt="Squirrels' Nest — bedroom with red headboard"
+            loading="eager"
+            style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+          />
+        </div>
+        {/* gradient overlay intentionally removed — photo speaks for itself */}
       </div>
 
-      {/* Floating photo bottom-left (small + medium) */}
-      <div
-        className="ch-photo absolute"
-        style={{
-          bottom: "12vh",
-          left: "6vw",
-          width: "14rem",
-          aspectRatio: "4 / 5",
-          borderRadius: "3px",
-          overflow: "hidden",
-        }}
-      >
-        <img
-          src="/images/squirrels-nest/sq-12.jpg"
-          alt="The bedroom at Squirrels' Nest"
-          loading="eager"
-          style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
-        />
+      {/* Top CTA pill only — banner tag removed */}
+      <div className="absolute top-0 inset-x-0 z-30 pt-7">
+        <div
+          className="mx-auto flex items-start justify-end"
+          style={{ maxWidth: "108rem", paddingInline: "clamp(1.5rem, 3vw, 3.5rem)" }}
+        >
+          <a href="#book" className="ch-meta sv-pill" style={{ background: "transparent", color: "var(--v2-bg)", borderColor: "rgba(255,249,235,0.4)" }}>
+            <span>Reserve</span>
+            <span className="sv-pill-rule" aria-hidden />
+            <span>a stay</span>
+          </a>
+        </div>
       </div>
 
-      {/* Centered wordmark */}
+      {/* MID — short tagline left-aligned, generous space (SplitText animated) */}
       <div
-        className="absolute inset-0 flex flex-col items-center justify-center text-center pointer-events-none"
-        style={{ paddingInline: "1.5rem" }}
+        className="absolute z-10"
+        style={{
+          top: "32%",
+          left: "clamp(1.5rem, 3vw, 3.5rem)",
+          right: "clamp(1.5rem, 3vw, 3.5rem)",
+          maxWidth: "44rem",
+        }}
       >
         <div
-          className="ch-eyebrow mb-8"
+          className="ch-tagline-block"
           style={{
-            fontFamily: "var(--font-geist)",
-            fontSize: "0.75rem",
-            color: "var(--v2-mute)",
-            letterSpacing: "0.04em",
-            textTransform: "uppercase",
+            fontFamily: "var(--font-italiana)",
+            fontWeight: 400,
+            fontSize: "clamp(1.6rem, 2.6vw, 2.6rem)",
+            color: "var(--v2-bg)",
+            letterSpacing: "-0.02em",
+            lineHeight: 1.15,
           }}
         >
-          A converted cabin — the english countryside
+          <span style={{ fontStyle: "italic", display: "block" }}>A converted cabin, two bedrooms,</span>
+          <span style={{ display: "block", opacity: 0.92 }}>at the end of a long lane.</span>
         </div>
+      </div>
+
+      {/* GIANT BOTTOM WORDMARK — overflows slightly, letter-by-letter reveal */}
+      <div
+        className="ch-mark-row absolute z-10"
+        style={{
+          left: 0,
+          right: 0,
+          bottom: "-1vw",
+          padding: "0 clamp(0.5rem, 1.5vw, 1.5rem)",
+          textAlign: "center",
+          overflow: "hidden",
+          pointerEvents: "none",
+        }}
+      >
         <h1
-          className="font-display"
+          className="ch-mark font-display"
+          aria-label="Squirrels' Nest"
           style={{
-            color: "var(--v2-ink)",
-            fontSize: "clamp(3.5rem, 10vw, 11rem)",
-            lineHeight: 0.88,
-            letterSpacing: "-0.025em",
+            color: "var(--v2-bg)",
+            fontSize: "clamp(5rem, 18vw, 21rem)",
+            lineHeight: 0.84,
+            letterSpacing: "-0.045em",
             fontWeight: 400,
-            maxWidth: "14ch",
+            margin: 0,
+            whiteSpace: "nowrap",
           }}
         >
-          <span className="block overflow-hidden">
-            <span className="ch-mark-line block">Squirrels'</span>
-          </span>
-          <span className="block overflow-hidden">
-            <span
-              className="ch-mark-line block font-display-italic"
-              style={{ color: "#4f6b54" }}
-            >
-              Nest
-            </span>
-          </span>
+          {mark}
         </h1>
-
-        <p
-          className="ch-caption mt-12"
-          style={{
-            fontFamily: "var(--font-geist)",
-            fontSize: "0.95rem",
-            color: "var(--v2-ink-soft)",
-            lineHeight: 1.5,
-            maxWidth: "30ch",
-            fontWeight: 400,
-          }}
-        >
-          Hand-finished. Wood-fired. Set against open English fields and quiet skies.
-        </p>
-
-        <div
-          className="ch-caption mt-10 flex flex-wrap items-center justify-center gap-3 pointer-events-auto"
-        >
-          <a
-            href="#"
-            className="lef-pill-sm"
-            style={{ background: "var(--v2-ink)", color: "var(--v2-bg)" }}
-          >
-            Check availability
-          </a>
-          <a
-            href="#tour"
-            className="lef-pill-sm"
-            style={{
-              background: "transparent",
-              color: "var(--v2-ink)",
-              border: "1px solid var(--v2-line)",
-            }}
-          >
-            Tour the cabin
-          </a>
-        </div>
-      </div>
-
-      {/* Scroll cue */}
-      <div
-        className="ch-caption absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3"
-        style={{ color: "var(--v2-mute)" }}
-      >
-        <span style={{ fontFamily: "var(--font-geist)", fontSize: "0.7rem", letterSpacing: "0.04em", textTransform: "uppercase" }}>
-          scroll
-        </span>
-        <div style={{ width: "1px", height: "32px", background: "var(--v2-mute)" }} />
       </div>
     </section>
   );

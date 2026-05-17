@@ -62,7 +62,7 @@ export function VerticalStackReveal() {
   }, []);
 
   return (
-    <section ref={rootRef} className="relative">
+    <section ref={rootRef} className="relative" data-section-tone="dark">
       <div className="vs-pin relative h-screen overflow-hidden">
         <div className="vs-img absolute inset-0" style={{ willChange: "transform" }}>
           <img
@@ -74,34 +74,17 @@ export function VerticalStackReveal() {
         <div
           aria-hidden
           className="absolute inset-0"
-          style={{ background: "rgba(0,0,0,0.55)" }}
+          style={{
+            background:
+              "radial-gradient(ellipse 80% 70% at 50% 50%, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.45) 70%, rgba(0,0,0,0.65) 100%)",
+          }}
         />
 
-        {/* Tiny top eyebrow — consistent with other moments */}
+        {/* Section eyebrow — sentence case, sans (not uppercase, not mono) */}
         <div className="absolute top-0 inset-x-0 z-30 pt-8">
           <div className="lef-container flex items-center justify-between">
-            <span
-              style={{
-                fontFamily: "var(--font-geist)",
-                fontSize: "0.75rem",
-                color: "rgba(255,255,255,0.6)",
-                letterSpacing: "0.04em",
-                textTransform: "uppercase",
-              }}
-            >
-              03 — What you'll find
-            </span>
-            <span
-              style={{
-                fontFamily: "var(--font-geist)",
-                fontSize: "0.75rem",
-                color: "rgba(255,255,255,0.6)",
-                letterSpacing: "0.04em",
-                textTransform: "uppercase",
-              }}
-            >
-              & what you won't
-            </span>
+            <span className="sv-eyebrow is-light">04 — What you&apos;ll find</span>
+            <span className="sv-eyebrow is-light">&amp; what you won&apos;t</span>
           </div>
         </div>
 
@@ -117,8 +100,8 @@ export function VerticalStackReveal() {
                   fontFamily: "var(--font-geist)",
                   fontSize: "0.95rem",
                   fontWeight: 500,
-                  color: "#fff",
-                  letterSpacing: "0.01em",
+                  color: "var(--v2-bg)",
+                  letterSpacing: "-0.005em",
                   marginBottom: "1.5rem",
                 }}
               >
