@@ -34,10 +34,41 @@ const geistMono = Geist_Mono({
   display: "swap",
 });
 
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://squirrelsnest.co.uk";
+
 export const metadata: Metadata = {
-  title: "Squirrels' Nest — A converted cabin in the English countryside",
+  metadataBase: new URL(SITE_URL),
+  title: {
+    default: "Squirrels' Nest. A converted cabin in the English countryside.",
+    template: "%s | Squirrels' Nest",
+  },
   description:
-    "A slow, considered stay. Squirrels' Nest is a converted cabin on a working farm — wood-fired, hand-finished, set against open fields and quiet skies.",
+    "A slow, considered stay. Squirrels' Nest is a converted cabin on a working farm. Wood-fired, hand-finished, set against open fields and quiet skies.",
+  keywords: ["airbnb", "cabin", "english countryside", "weekend escape", "rural retreat", "self-catering"],
+  authors: [{ name: "Zoe" }],
+  openGraph: {
+    type: "website",
+    locale: "en_GB",
+    url: SITE_URL,
+    siteName: "Squirrels' Nest",
+    title: "Squirrels' Nest. A converted cabin in the English countryside.",
+    description: "Wood-fired, hand-finished. Two bedrooms, sleeps four. A quiet weekend down the lane.",
+    images: [
+      {
+        url: "/images/squirrels-nest/sq-12.jpg",
+        width: 1280,
+        height: 800,
+        alt: "Squirrels' Nest, the red headboard bedroom",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Squirrels' Nest",
+    description: "A converted cabin in the English countryside.",
+    images: ["/images/squirrels-nest/sq-12.jpg"],
+  },
+  robots: { index: true, follow: true },
 };
 
 export default function RootLayout({
