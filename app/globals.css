@@ -80,8 +80,12 @@
 * { box-sizing: border-box; }
 html, body { margin: 0; padding: 0; }
 html {
-  background: var(--background);
-  color: var(--foreground);
+  /* HARD-LOCK the page background to cream so dark html never leaks through
+     during pinned-section unpin/repin transitions. color-scheme prevents
+     browser-level dark-mode tinting on scrollbars + form controls. */
+  background: var(--v2-bg) !important;
+  color: var(--v2-ink);
+  color-scheme: light;
   font-family: var(--font-sans), system-ui, -apple-system, sans-serif;
   font-size: 16px;
   letter-spacing: -0.01em;
@@ -92,6 +96,9 @@ html {
 body {
   min-height: 100vh;
   overflow-x: hidden;
+  /* Same hard-lock — guarantees no dark flash between pinned sections */
+  background: var(--v2-bg);
+  color: var(--v2-ink);
 }
 
 /* Lenis smooth scroll styling */

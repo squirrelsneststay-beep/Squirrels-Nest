@@ -140,7 +140,10 @@ export function StackingCards() {
       className="relative"
       style={{ background: "var(--v2-bg)", paddingBlock: "8vh" }}
     >
-      <div className="sc-pin relative min-h-[100dvh] w-full overflow-hidden flex flex-col">
+      <div
+        className="sc-pin relative min-h-[100dvh] w-full overflow-hidden flex flex-col"
+        style={{ background: "var(--v2-bg)" }}
+      >
         {/* Header */}
         <div
           className="mx-auto text-center"
@@ -254,14 +257,15 @@ export function StackingCards() {
                   </p>
                 </div>
 
-                {/* Photo */}
+                {/* Photo wrapper — cream bg (not dark ink) so any 1-frame
+                    photo-loading state stays in-palette, never flashes dark. */}
                 <div
                   style={{
                     width: "100%",
                     height: "100%",
                     borderRadius: "3px",
                     overflow: "hidden",
-                    background: "var(--v2-ink)",
+                    background: "var(--v2-bg)",
                   }}
                 >
                   <img

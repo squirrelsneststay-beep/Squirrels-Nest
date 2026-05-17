@@ -129,7 +129,7 @@ export function InspiredBy() {
   }, []);
 
   return (
-    <section ref={rootRef} className="relative">
+    <section ref={rootRef} className="relative" style={{ background: "var(--v2-bg)" }}>
       <div
         className="ib-pin relative min-h-[100dvh] w-full overflow-hidden flex items-center justify-center"
         style={{ background: "var(--v2-bg)" }}
