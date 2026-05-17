@@ -161,7 +161,7 @@ export function UnifiedStory() {
 
   return (
     <section ref={rootRef} className="relative" data-section-tone="dark">
-      <div className="st-pin relative h-screen w-full overflow-hidden" style={{ background: "var(--v2-ink)" }}>
+      <div className="st-pin relative min-h-[100dvh] w-full overflow-hidden" style={{ background: "var(--v2-ink)" }}>
         {/* Four sharp photos that crossfade independently */}
         {[
           { src: "/images/zoe-09.jpg", overlay: 0.32 },

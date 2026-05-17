@@ -181,7 +181,7 @@ export function ExpandingGallery() {
                   letterSpacing: "-0.005em",
                 }}
               >
-                — {p.caption}
+                {p.caption}
               </span>
             </div>
           </div>

@@ -80,13 +80,13 @@ export function LiveTimeBadge() {
     if (!moodRef.current) return;
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (reduced) {
-      moodRef.current.textContent = `— ${MOODS[moodIdx]}`;
+      moodRef.current.textContent = `· ${MOODS[moodIdx]}`;
       return;
     }
     gsap.to(moodRef.current, {
       duration: 1.0,
       scrambleText: {
-        text: `— ${MOODS[moodIdx]}`,
+        text: `· ${MOODS[moodIdx]}`,
         chars: "lowerCase",
         revealDelay: 0.1,
         speed: 0.45,
@@ -134,7 +134,7 @@ export function LiveTimeBadge() {
           fontSize: "0.85rem",
         }}
       >
-        — {MOODS[moodIdx]}
+        · {MOODS[moodIdx]}
       </span>
       <style jsx>{`
         @keyframes live-pulse {

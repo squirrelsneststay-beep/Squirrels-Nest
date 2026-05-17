@@ -4,7 +4,6 @@ import "./globals.css";
 import { SmoothScroll } from "@/components/SmoothScroll";
 import { Nav } from "@/components/Nav";
 import { BigFooter } from "@/components/v2/BigFooter";
-import { CursorOrb } from "@/components/v2/CursorOrb";
 import { ScrollProgress } from "@/components/v2/ScrollProgress";
 
 const instrumentSerif = Instrument_Serif({
@@ -51,7 +50,6 @@ export default function RootLayout({
     >
       <body>
         <ScrollProgress />
-        <CursorOrb />
         <SmoothScroll>
           <Nav />
           <main>{children}</main>

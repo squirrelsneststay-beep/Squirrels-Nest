@@ -140,7 +140,7 @@ export function StackingCards() {
       className="relative"
       style={{ background: "var(--v2-bg)", paddingBlock: "8vh" }}
     >
-      <div className="sc-pin relative h-screen w-full overflow-hidden flex flex-col">
+      <div className="sc-pin relative min-h-[100dvh] w-full overflow-hidden flex flex-col">
         {/* Header */}
         <div
           className="mx-auto text-center"

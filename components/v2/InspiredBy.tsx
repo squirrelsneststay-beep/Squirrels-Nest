@@ -131,7 +131,7 @@ export function InspiredBy() {
   return (
     <section ref={rootRef} className="relative">
       <div
-        className="ib-pin relative h-screen w-full overflow-hidden flex items-center justify-center"
+        className="ib-pin relative min-h-[100dvh] w-full overflow-hidden flex items-center justify-center"
         style={{ background: "var(--v2-bg)" }}
       >
         {/* Headings — appear at end, around the shrunk frame */}

@@ -121,7 +121,7 @@ export function EditorialWelcome() {
               opacity: 0.85,
             }}
           >
-            Plate I — The Cabin at Dusk
+            Plate I. The Cabin at Dusk
           </span>
         </div>
 

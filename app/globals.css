@@ -27,8 +27,14 @@
   --grid-gap:       2rem;
   --grid-margin:    clamp(1.5rem, 4vw, 4rem);
 
+  /* Emil's curve set — stronger than built-in easings. UI interactions */
+  --ease-out:       cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out:    cubic-bezier(0.77, 0, 0.175, 1);
+  --ease-drawer:    cubic-bezier(0.32, 0.72, 0, 1);
+  /* legacy aliases */
   --ease-expo:      cubic-bezier(0, 0, 0, 1);
   --ease-soft:      cubic-bezier(0.22, 1, 0.36, 1);
+  --dur-press:      120ms;
   --dur-fast:       0.4s;
   --dur-base:       0.8s;
   --dur-slow:       1.2s;
@@ -131,9 +137,14 @@ html.lenis, html.lenis body { height: auto; }
   font-weight: 400;
   cursor: pointer;
   text-decoration: none;
-  transition: background-color 200ms ease-out, color 200ms ease-out, border-color 200ms ease-out, transform 120ms ease-out;
+  transition: background-color 200ms var(--ease-out),
+              color 200ms var(--ease-out),
+              border-color 200ms var(--ease-out),
+              transform var(--dur-press) var(--ease-out);
 }
-.lef-pill-sm:hover { opacity: 0.88; }
+@media (hover: hover) and (pointer: fine) {
+  .lef-pill-sm:hover { opacity: 0.88; }
+}
 .lef-pill-sm:active { transform: scale(0.97); }
 .lef-pill-sm:focus-visible {
   outline: 2px solid #4f6b54;
@@ -156,16 +167,22 @@ html.lenis, html.lenis body { height: auto; }
   cursor: pointer;
   text-decoration: none;
   border: 1px solid color-mix(in srgb, var(--v2-ink) 12%, transparent);
-  transition: background 200ms ease-out, color 200ms ease-out, transform 120ms ease-out;
+  transition: background-color 200ms var(--ease-out),
+              color 200ms var(--ease-out),
+              transform var(--dur-press) var(--ease-out);
 }
-.sv-pill:hover { background: color-mix(in srgb, var(--v2-ink) 6%, var(--v2-bg)); }
+@media (hover: hover) and (pointer: fine) {
+  .sv-pill:hover { background: color-mix(in srgb, var(--v2-ink) 6%, var(--v2-bg)); }
+}
 .sv-pill:active { transform: scale(0.97); }
 .sv-pill.is-inverse {
   background: var(--v2-ink);
   color: var(--v2-bg);
   border-color: var(--v2-ink);
 }
-.sv-pill.is-inverse:hover { background: color-mix(in srgb, var(--v2-ink) 90%, var(--v2-bg)); }
+@media (hover: hover) and (pointer: fine) {
+  .sv-pill.is-inverse:hover { background: color-mix(in srgb, var(--v2-ink) 90%, var(--v2-bg)); }
+}
 .sv-pill .sv-pill-rule {
   width: 1.5rem;
   height: 1px;

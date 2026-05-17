@@ -95,13 +95,14 @@ export function CleanHero() {
       data-section-tone="dark"
       className="relative"
       style={{ minHeight: "100dvh", background: "var(--v2-ink)", overflow: "hidden" }}
+      data-cleanhero
     >
       {/* Full-bleed sharp photo */}
       <div className="absolute inset-0" style={{ overflow: "hidden" }}>
         <div className="ch-photo-inner absolute inset-0" style={{ willChange: "transform" }}>
           <img
             src="/images/squirrels-nest/sq-12.jpg"
-            alt="Squirrels' Nest — bedroom with red headboard"
+            alt="Squirrels' Nest, bedroom with red headboard"
             loading="eager"
             style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
           />
