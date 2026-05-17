@@ -264,9 +264,57 @@ html.lenis, html.lenis body { height: auto; }
   border-radius: 2px;
 }
 
+/* Site-wide focus-visible — accessibility mandate from DESIGN.md.
+   Native browser default is removed by some component styles, so we restore
+   a single consistent ring using the moss accent. */
+:where(a, button, [role="button"], [tabindex]:not([tabindex="-1"]))
+  :focus-visible,
+:focus-visible {
+  outline: 2px solid var(--v2-accent, #4f6b54);
+  outline-offset: 2px;
+  border-radius: 3px;
+}
+
 /* SplitText helpers — clip overflow so chars rise from below */
 .ch-tag-line-clip { overflow: hidden; display: block; }
 .ch-mark-char { display: inline-block; }
+
+/* InspiredBy final frame: subtle breathing pulse so the photo feels alive
+   after the shrink completes. Delight pass. */
+@keyframes ib-breath {
+  0%, 100% { transform: scale(1); }
+  50%      { transform: scale(1.022); }
+}
+.ib-final-frame { animation: ib-breath 7s ease-in-out infinite; }
+@media (prefers-reduced-motion: reduce) {
+  .ib-final-frame { animation: none; }
+}
+
+/* UnifiedStory mobile fallback: on viewports < 768px, the chapter labels
+   collapse to a single centred column instead of absolute-% positions.
+   DESIGN.md mandate. */
+@media (max-width: 767px) {
+  .st-c1, .st-c2, .st-c3 {
+    display: flex !important;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding-inline: 1.25rem;
+    gap: 1.5rem;
+  }
+  .st-c1 > *, .st-c2 > *, .st-c3 > * {
+    position: relative !important;
+    left: auto !important;
+    top: auto !important;
+    right: auto !important;
+    transform: none !important;
+    white-space: normal !important;
+    max-width: 100% !important;
+  }
+  /* hide the SVG line drawings on mobile — they reference 1280×800 viewBox coords */
+  .st-c1 svg, .st-c2 svg, .st-c3 svg { display: none !important; }
+}
 
 /* Custom cursor — hide native when CursorOrb is mounted */
 html.cursor-hidden,

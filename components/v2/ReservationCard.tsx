@@ -114,7 +114,7 @@ export function ReservationCard() {
             willChange: "transform, opacity",
           }}
         >
-          {/* Decorative star/icon */}
+          {/* Decorative star — slow infinite rotation, like a quiet breath. Delight. */}
           <div
             aria-hidden
             style={{
@@ -122,12 +122,22 @@ export function ReservationCard() {
               height: "1.75rem",
               margin: "0 auto 1.5rem",
               color: "var(--v2-ink)",
+              animation: "rc-star-spin 18s linear infinite",
             }}
           >
             <svg viewBox="0 0 24 24" width="100%" height="100%" fill="currentColor" aria-hidden>
               <path d="M12 2 L13.5 10.5 L22 12 L13.5 13.5 L12 22 L10.5 13.5 L2 12 L10.5 10.5 Z" />
             </svg>
           </div>
+          <style jsx>{`
+            @keyframes rc-star-spin {
+              from { transform: rotate(0deg); }
+              to { transform: rotate(360deg); }
+            }
+            @media (prefers-reduced-motion: reduce) {
+              [aria-hidden] { animation: none !important; }
+            }
+          `}</style>
 
           <h3
             className="font-display"

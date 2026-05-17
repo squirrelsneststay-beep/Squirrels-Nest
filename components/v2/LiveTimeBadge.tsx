@@ -67,12 +67,12 @@ export function LiveTimeBadge() {
     });
   }, [time]);
 
-  // Cycle mood every 6s + scramble each swap
+  // Cycle mood every 10s — gives the eye time to read each line before scramble
   useEffect(() => {
     if (typeof window === "undefined") return;
     const id = window.setInterval(() => {
       setMoodIdx((i) => (i + 1) % MOODS.length);
-    }, 6 * 1000);
+    }, 10 * 1000);
     return () => clearInterval(id);
   }, []);
 
