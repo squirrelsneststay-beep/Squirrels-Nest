@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import Image from "next/image";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -89,6 +90,7 @@ export function SnakeGallery() {
               style={{ willChange: "transform" }}
             >
               <div
+                className="relative"
                 style={{
                   width: "26rem",
                   aspectRatio: "4 / 5",
@@ -97,11 +99,12 @@ export function SnakeGallery() {
                   background: "#2a3328",
                 }}
               >
-                <img
+                <Image
                   src={t.image}
                   alt={t.caption}
-                  loading="lazy"
-                  style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+                  fill
+                  sizes="26rem"
+                  style={{ objectFit: "cover" }}
                 />
               </div>
               <span

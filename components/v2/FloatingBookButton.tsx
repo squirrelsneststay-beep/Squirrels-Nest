@@ -68,12 +68,19 @@ export function FloatingBookButton() {
     <a
       href={AIRBNB_URL}
       {...EXTERNAL_LINK_PROPS}
-      className="sv-pill"
+      className="sv-pill fbb-pulse"
       style={{
         position: "fixed",
         top: "1.25rem",
         right: "clamp(1rem, 2.5vw, 2.5rem)",
         zIndex: 60,
+        // LOUDER: bigger height + bolder type + tighter letter-spacing
+        // so it reads as a real CTA, not a decorative pill.
+        height: "52px",
+        padding: "0 1.8rem",
+        fontSize: "0.95rem",
+        fontWeight: 500,
+        letterSpacing: "0.02em",
         transition:
           "background-color 320ms var(--ease-out)," +
           " color 320ms var(--ease-out)," +
@@ -83,8 +90,21 @@ export function FloatingBookButton() {
       }}
     >
       <span>Book</span>
-      <span className="sv-pill-rule" aria-hidden />
+      <span className="sv-pill-rule" aria-hidden style={{ width: "1.75rem" }} />
       <span>now</span>
+      <style jsx>{`
+        /* Subtle attention pulse — 3% scale + opacity nudge every 3.6s.
+           Easy to spot, not distracting. */
+        @keyframes fbb-pulse {
+          0%, 100% { transform: scale(1); }
+          50%      { transform: scale(1.035); }
+        }
+        .fbb-pulse { animation: fbb-pulse 3.6s ease-in-out infinite; }
+        .fbb-pulse:hover, .fbb-pulse:active { animation: none; }
+        @media (prefers-reduced-motion: reduce) {
+          .fbb-pulse { animation: none; }
+        }
+      `}</style>
     </a>
   );
 }

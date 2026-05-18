@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -66,11 +67,13 @@ export function PinnedStack() {
               zIndex: i === activeIdx ? 2 : 1,
             }}
           >
-            <img
+            <Image
               src={s.image}
               alt={s.alt}
-              style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
-              loading={i === 0 ? "eager" : "lazy"}
+              fill
+              sizes="100vw"
+              priority={i === 0}
+              style={{ objectFit: "cover" }}
             />
           </div>
         ))}

@@ -336,10 +336,6 @@ html.lenis, html.lenis body { height: auto; }
   .st-c1 svg, .st-c2 svg, .st-c3 svg { display: none !important; }
 }
 
-/* Custom cursor — hide native when CursorOrb is mounted */
-html.cursor-hidden,
-html.cursor-hidden * { cursor: none !important; }
-
 /* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {

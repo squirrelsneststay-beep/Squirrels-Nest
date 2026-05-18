@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import Image from "next/image";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -226,11 +227,13 @@ export function InspiredBy() {
               className="ib-layer absolute inset-0"
               style={{ willChange: "opacity" }}
             >
-              <img
+              <Image
                 src={src}
                 alt=""
-                loading={i < 2 ? "eager" : "lazy"}
-                style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+                fill
+                sizes="(max-width: 768px) 80vw, 24rem"
+                priority={i < 2}
+                style={{ objectFit: "cover" }}
               />
             </div>
           ))}

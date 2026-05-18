@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import Image from "next/image";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { AIRBNB_URL, EXTERNAL_LINK_PROPS } from "@/lib/site";
@@ -79,11 +80,12 @@ export function ReservationCard() {
       {/* Moody full-bleed photo */}
       <div className="absolute inset-0" style={{ background: "var(--v2-ink)" }}>
         <div className="rc-photo-inner absolute inset-0" style={{ willChange: "transform" }}>
-          <img
+          <Image
             src="/images/squirrels-nest/sq-25.jpg"
             alt=""
-            loading="lazy"
-            style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+            fill
+            sizes="100vw"
+            style={{ objectFit: "cover" }}
           />
         </div>
         <div

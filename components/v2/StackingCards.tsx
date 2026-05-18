@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import Image from "next/image";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -264,6 +265,7 @@ export function StackingCards() {
                 {/* Photo wrapper — cream bg (not dark ink) so any 1-frame
                     photo-loading state stays in-palette, never flashes dark. */}
                 <div
+                  className="relative"
                   style={{
                     width: "100%",
                     height: "100%",
@@ -272,11 +274,13 @@ export function StackingCards() {
                     background: "var(--v2-bg)",
                   }}
                 >
-                  <img
+                  <Image
                     src={c.photo}
                     alt={c.title}
-                    loading={i < 2 ? "eager" : "lazy"}
-                    style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+                    fill
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                    priority={i < 2}
+                    style={{ objectFit: "cover" }}
                   />
                 </div>
               </div>

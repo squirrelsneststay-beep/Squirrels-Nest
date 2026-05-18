@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import Image from "next/image";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -154,11 +155,13 @@ export function ExpandingGallery() {
               (e.currentTarget as HTMLDivElement).style.flexGrow = "1";
             }}
           >
-            <img
+            <Image
               src={p.src}
               alt={p.caption}
-              loading={i < 2 ? "eager" : "lazy"}
-              className="h-full w-full object-cover object-center"
+              fill
+              sizes="(max-width: 768px) 50vw, 20vw"
+              priority={i < 2}
+              className="object-cover object-center"
               style={{ transition: "transform 800ms cubic-bezier(0.22, 1, 0.36, 1)" }}
             />
             {/* Caption — visible on hover, sits in bottom-left */}
