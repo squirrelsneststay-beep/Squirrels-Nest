@@ -3,8 +3,8 @@
 import { useEffect } from "react";
 import { CleanHero } from "@/components/v2/CleanHero";
 import { EditorialWelcome } from "@/components/v2/EditorialWelcome";
-import { UnifiedStory } from "@/components/v2/UnifiedStory";
-import { StackingCards } from "@/components/v2/StackingCards";
+import { InsideTheNest } from "@/components/v2/InsideTheNest";
+import { EveryDetail } from "@/components/v2/EveryDetail";
 import { InspiredBy } from "@/components/v2/InspiredBy";
 import { ExpandingGallery } from "@/components/v2/ExpandingGallery";
 import { ReservationCard } from "@/components/v2/ReservationCard";
@@ -19,17 +19,22 @@ export default function HomePage() {
     <div className="v2-root" style={{ background: "var(--v2-bg)", color: "var(--v2-ink)" }}>
       <CleanHero />
       <EditorialWelcome />
-      <UnifiedStory />
 
-      {/* First inline CTA — straight after the dark photographic monologue,
-          before the cards. Cream tone, plum pill. */}
+      {/* Replaces the old pinned dark monologue. Editorial room-by-room
+          grid with alternating photo placement. */}
+      <InsideTheNest />
+
+      {/* First inline CTA — between the rooms grid and the moments list. */}
       <InlineBookCTA
         headline="Book a night. Stay a week. No minimum."
         sub="The lodge is on Airbnb."
         ctaLabel={["Book", "now"]}
       />
 
-      <StackingCards />
+      {/* Synced-scroll moments list — large photo, scroll syncs which
+          item is active and which photo is shown. */}
+      <EveryDetail />
+
       <InspiredBy />
       <ExpandingGallery />
 

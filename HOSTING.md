@@ -42,7 +42,7 @@ Last updated: 2026-05-17. Read this end-to-end before clicking deploy.
 ### Hard requirements before going live
 
 - [ ] **Domain registered.** Recommend Cloudflare Registrar (at-cost pricing, no markup). `.co.uk` is roughly £8/year.
-- [ ] **Email forwarding for `hello@squirrelsnest.co.uk`.** Cloudflare Email Routing — free, forwards to your real inbox.
+- [ ] **Email forwarding for `hello@squirrelsneststay.co.uk`.** Cloudflare Email Routing — free, forwards to your real inbox.
 - [ ] **Privacy Policy + Terms pages** (light versions) if any contact form gets added.
 - [ ] **Real Airbnb listing URL** wired into the CTAs (currently `#book` placeholder).
 - [ ] **`zoe-XX.jpg` Pinterest reference images replaced** with Zoe's own photography or licensed stock. These are currently used in UnifiedStory chapter backgrounds. Legal risk if she doesn't own them.
@@ -95,7 +95,7 @@ If the site ever exceeds these, Pro is £20/month per developer. Cabin Airbnb tr
 
 3. **Register the domain.**
    - Cloudflare Registrar: cloudflare.com/products/registrar/
-   - Buy `squirrelsnest.co.uk`. Pay ~£8.
+   - Buy `squirrelsneststay.co.uk`. Pay ~£8.
    - Optionally also grab `squirrelsnest.uk` + `squirrels-nest.co.uk` to redirect.
 
 ### Deploy (every push, automatic after first time)
@@ -109,7 +109,7 @@ If the site ever exceeds these, Pro is £20/month per developer. Cabin Airbnb tr
 5. **Set the environment variable.**
    ```bash
    vercel env add NEXT_PUBLIC_SITE_URL production
-   # paste: https://squirrelsnest.co.uk
+   # paste: https://squirrelsneststay.co.uk
    ```
 
 6. **Deploy.**
@@ -121,7 +121,7 @@ If the site ever exceeds these, Pro is £20/month per developer. Cabin Airbnb tr
 ### Attach the custom domain
 
 7. **Add the domain in Vercel.**
-   - Vercel dashboard → Project → Settings → Domains → Add `squirrelsnest.co.uk`.
+   - Vercel dashboard → Project → Settings → Domains → Add `squirrelsneststay.co.uk`.
    - Vercel will tell you what DNS records to add.
 
 8. **Update DNS at Cloudflare Registrar.**
@@ -130,17 +130,17 @@ If the site ever exceeds these, Pro is £20/month per developer. Cabin Airbnb tr
 
 9. **Enable Cloudflare Email Routing.**
    - Cloudflare dashboard → your domain → Email → Email Routing.
-   - Add `hello@squirrelsnest.co.uk` → your real inbox.
+   - Add `hello@squirrelsneststay.co.uk` → your real inbox.
    - Free.
 
-10. **Verify HTTPS.** Once DNS propagates, Vercel issues an SSL cert automatically. Visit `https://squirrelsnest.co.uk` and check the lock icon.
+10. **Verify HTTPS.** Once DNS propagates, Vercel issues an SSL cert automatically. Visit `https://squirrelsneststay.co.uk` and check the lock icon.
 
 ### Post-launch verification
 
 - [ ] Check security headers with [securityheaders.com](https://securityheaders.com). Should score A or A+.
 - [ ] Check SSL with [ssllabs.com/ssltest](https://www.ssllabs.com/ssltest/). Should be A+.
-- [ ] Verify `robots.txt` at `https://squirrelsnest.co.uk/robots.txt`.
-- [ ] Verify `sitemap.xml` at `https://squirrelsnest.co.uk/sitemap.xml`.
+- [ ] Verify `robots.txt` at `https://squirrelsneststay.co.uk/robots.txt`.
+- [ ] Verify `sitemap.xml` at `https://squirrelsneststay.co.uk/sitemap.xml`.
 - [ ] Test the page on a real phone, in landscape + portrait, on iOS Safari (the mobile fallback CSS in `globals.css` is for this).
 - [ ] Submit sitemap to Google Search Console.
 

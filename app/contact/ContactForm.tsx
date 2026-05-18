@@ -1,6 +1,7 @@
 "use client";
 
-import { useActionState } from "react";
+import Link from "next/link";
+import { useActionState, useEffect, useRef } from "react";
 import { Button } from "@/components/Button";
 import { submitContact, type ContactResult } from "./actions";
 
@@ -8,6 +9,15 @@ const initialState: ContactResult | null = null;
 
 export function ContactForm() {
   const [state, formAction, pending] = useActionState(submitContact, initialState);
+  const thanksHeadingRef = useRef<HTMLHeadingElement>(null);
+
+  // Move focus to the thank-you heading on success so keyboard + screen-reader
+  // users land on the confirmation instead of the now-removed submit button.
+  useEffect(() => {
+    if (state?.ok && thanksHeadingRef.current) {
+      thanksHeadingRef.current.focus();
+    }
+  }, [state?.ok]);
 
   if (state?.ok) {
     return (
@@ -23,6 +33,8 @@ export function ContactForm() {
           Thank you
         </p>
         <h2
+          ref={thanksHeadingRef}
+          tabIndex={-1}
           className="font-display"
           style={{
             fontSize: "var(--fs-48)",
@@ -30,6 +42,7 @@ export function ContactForm() {
             lineHeight: 1,
             letterSpacing: "-0.02em",
             fontWeight: 400,
+            outline: "none",
           }}
         >
           Your message is on its way.
@@ -49,7 +62,7 @@ export function ContactForm() {
   }
 
   return (
-    <form action={formAction} className="md:col-span-7 space-y-8" noValidate>
+    <form action={formAction} autoComplete="on" className="md:col-span-7 space-y-8" noValidate>
       {/* Honeypot — visually hidden but present in the DOM. Bots fill every
           field; humans don't see this one. Filled = silently discarded. */}
       <div
@@ -105,10 +118,18 @@ export function ContactForm() {
           {pending ? "Sending..." : "Send message"}
         </Button>
         <p
-          className="mt-6 font-mono-eyebrow"
-          style={{ color: "var(--lef-bark)" }}
+          className="mt-4 font-mono-eyebrow"
+          style={{ color: "var(--lef-bark)", lineHeight: 1.5 }}
         >
-          Replies usually arrive within a day.
+          By sending, you agree to our{" "}
+          <Link
+            href="/privacy"
+            className="underline underline-offset-2"
+            style={{ color: "var(--lef-forest)" }}
+          >
+            privacy policy
+          </Link>
+          . We use Resend to deliver your message. Replies usually arrive within a day.
         </p>
       </div>
     </form>

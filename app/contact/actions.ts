@@ -12,6 +12,19 @@ const RESEND_API_KEY = process.env.RESEND_API_KEY;
 const TO_EMAIL = process.env.CONTACT_TO_EMAIL || BRAND.email;
 const FROM_EMAIL = process.env.CONTACT_FROM_EMAIL || "onboarding@resend.dev";
 
+// Fail-loud warning if we'd silently fall back to Resend's sandbox sender
+// in production — it only delivers to the account-owner's verified email
+// and silently rate-limits beyond that, so real visitors' messages would
+// "succeed" client-side but never reach Zoe.
+if (
+  process.env.NODE_ENV === "production" &&
+  FROM_EMAIL.endsWith("@resend.dev")
+) {
+  console.error(
+    "[contact] CONTACT_FROM_EMAIL is unset in production. Falling back to Resend's sandbox sender — most messages will silently fail to deliver. Verify the squirrelsneststay.co.uk domain in Resend and set CONTACT_FROM_EMAIL=hello@squirrelsneststay.co.uk."
+  );
+}
+
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 function safeString(value: FormDataEntryValue | null, max: number): string {

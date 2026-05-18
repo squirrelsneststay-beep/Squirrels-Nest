@@ -1,12 +1,16 @@
 @import "tailwindcss";
 
 :root {
-  /* v2 palette — matched to savor.it real tokens (extracted from live DOM 2026-05-15) */
-  --v2-bg:            #fff9eb;   /* warm cream */
-  --v2-ink:           #370808;   /* dark plum-red */
-  --v2-ink-soft:      #6b3030;   /* lifted plum */
-  --v2-mute:          #9a8b85;   /* warm mute */
-  --v2-line:          #ead9c4;   /* warm hairline */
+  /* v2 palette — color-matched to the cabin photography. Dominant photo
+     tones are warm cream/beige (#e8d8c8 family) with rich red painted-
+     plaster walls (#5c1a14 to #b84848 range) and mustard velvet (#887848).
+     Sampled via _audit/extract-palette.mjs across 14 representative shots. */
+  --v2-bg:            #fefcf3;   /* clean warm-white — barely tinted, not beige */
+  --v2-ink:           #4a1818;   /* deep oxblood — wall in shadow, not black */
+  --v2-ink-soft:      #7e2828;   /* lifted red — wall in indirect light */
+  --v2-mute:          #a89084;   /* warm beige-mute, pulled from photo neutrals */
+  --v2-line:          #ebdac4;   /* warm hairline, matches sandy cream */
+  --v2-accent-honey:  #b8884a;   /* mustard velvet from the chairs — sparing use */
   --v2-container-px:  clamp(1.25rem, 6vw, 6rem);
 
   /* Lane End Farm palette — kept for legacy refs, warmed to match v2 */
@@ -310,30 +314,19 @@ html.lenis, html.lenis body { height: auto; }
   to   { transform: rotate(360deg); }
 }
 
-/* UnifiedStory mobile fallback: on viewports < 768px, the chapter labels
-   collapse to a single centred column instead of absolute-% positions.
-   DESIGN.md mandate. */
-@media (max-width: 767px) {
-  .st-c1, .st-c2, .st-c3 {
-    display: flex !important;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding-inline: 1.25rem;
-    gap: 1.5rem;
-  }
-  .st-c1 > *, .st-c2 > *, .st-c3 > * {
-    position: relative !important;
-    left: auto !important;
-    top: auto !important;
-    right: auto !important;
-    transform: none !important;
-    white-space: normal !important;
-    max-width: 100% !important;
-  }
-  /* hide the SVG line drawings on mobile — they reference 1280×800 viewBox coords */
-  .st-c1 svg, .st-c2 svg, .st-c3 svg { display: none !important; }
+/* FloatingBookButton — subtle attention pulse every 3.6s. Disabled on
+   hover/active and for users who prefer reduced motion. Moved here from
+   the component's <style jsx> because styled-jsx isn't bundled in Next 16
+   by default and the keyframe silently never rendered. */
+@keyframes fbb-pulse {
+  0%, 100% { transform: scale(1); }
+  50%      { transform: scale(1.035); }
+}
+.fbb-pulse { animation: fbb-pulse 3.6s ease-in-out infinite; }
+.fbb-pulse:hover,
+.fbb-pulse:active { animation: none; }
+@media (prefers-reduced-motion: reduce) {
+  .fbb-pulse { animation: none; }
 }
 
 /* Reduced motion */

@@ -47,11 +47,12 @@ export function InlineBookCTA({
         className="font-display"
         style={{
           fontSize: "clamp(2rem, 4.5vw, 4rem)",
-          lineHeight: 0.98,
+          lineHeight: 1.04,
           letterSpacing: "-0.03em",
           fontWeight: 400,
           margin: 0,
-          maxWidth: "26ch",
+          maxWidth: "34ch",
+          textWrap: "balance",
         }}
       >
         {headline}
@@ -59,14 +60,14 @@ export function InlineBookCTA({
       {sub && (
         <p
           style={{
-            marginTop: "0.5rem",
             fontFamily: "var(--font-cormorant)",
             fontStyle: "italic",
             fontWeight: 300,
             fontSize: "clamp(1.25rem, 2vw, 1.8rem)",
             letterSpacing: "-0.02em",
-            opacity: 0.85,
-            margin: "0.5rem 0 0",
+            opacity: 0.78,
+            margin: "1rem 0 0",
+            maxWidth: "40ch",
           }}
         >
           {sub}

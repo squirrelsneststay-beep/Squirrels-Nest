@@ -1,19 +1,29 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { AIRBNB_URL, EXTERNAL_LINK_PROPS } from "@/lib/site";
 
+if (typeof window !== "undefined") {
+  gsap.registerPlugin(ScrollTrigger);
+}
+
 /**
- * Persistent "Book Now" CTA, always visible top-right of the viewport.
+ * Persistent "Book Now" CTA, top-right of the viewport on every page.
  *
- * BLENDS with the section beneath it: when scrolled over a section marked
- * `data-section-tone="dark"`, the pill flips to a CREAM fill on transparent
- * border so it stays legible on dark photographic backgrounds. Over light
- * sections, the pill is plum-fill on cream — same affordance, inverted.
+ * Blends with the section beneath it: when the button sits over a section
+ * marked `data-section-tone="dark"`, it flips to a CREAM-on-transparent
+ * variant so it stays legible on dark photographic backgrounds. Over light
+ * sections, it's plum-on-cream.
  *
- * Decoupled from the Nav (which fades to opacity 0 over dark sections so
- * it doesn't pollute pinned photographic moments). This button is the
- * exception: it stays visible everywhere because conversion matters.
+ * Decoupled from <Nav>, which fades to opacity 0 over pinned dark moments;
+ * this button stays visible everywhere because conversion matters more than
+ * compositional purity.
+ *
+ * Tone-detection is driven by scroll + resize + ScrollTrigger's "refresh"
+ * event (which fires whenever a pinned timeline re-lays-out). No setInterval
+ * poll — that was a 4 Hz forced reflow on mobile and a battery cost.
  */
 export function FloatingBookButton() {
   const [overDark, setOverDark] = useState(false);
@@ -21,7 +31,6 @@ export function FloatingBookButton() {
   useEffect(() => {
     if (typeof window === "undefined") return;
 
-    // Match where the button visually lives (~ top: 1.25rem + height ≈ 80px)
     const probeY = 80;
     const check = () => {
       const sections = document.querySelectorAll<HTMLElement>(
@@ -40,19 +49,16 @@ export function FloatingBookButton() {
     check();
     window.addEventListener("scroll", check, { passive: true });
     window.addEventListener("resize", check);
-    // Pinned GSAP sections re-layout — re-check periodically so the colour
-    // stays in sync even when the user is mid-pin and the visible section
-    // changes without a scroll event.
-    const id = window.setInterval(check, 250);
+    ScrollTrigger.addEventListener("refresh", check);
+    ScrollTrigger.addEventListener("refreshInit", check);
     return () => {
       window.removeEventListener("scroll", check);
       window.removeEventListener("resize", check);
-      window.clearInterval(id);
+      ScrollTrigger.removeEventListener("refresh", check);
+      ScrollTrigger.removeEventListener("refreshInit", check);
     };
   }, []);
 
-  // Two visual modes — one for each underlying tone.
-  // Both rely on the same `.sv-pill` class for shape + transitions.
   const darkMode = {
     background: "transparent",
     color: "var(--v2-bg)",
@@ -68,14 +74,13 @@ export function FloatingBookButton() {
     <a
       href={AIRBNB_URL}
       {...EXTERNAL_LINK_PROPS}
+      aria-label="Book on Airbnb"
       className="sv-pill fbb-pulse"
       style={{
         position: "fixed",
         top: "1.25rem",
         right: "clamp(1rem, 2.5vw, 2.5rem)",
         zIndex: 60,
-        // LOUDER: bigger height + bolder type + tighter letter-spacing
-        // so it reads as a real CTA, not a decorative pill.
         height: "52px",
         padding: "0 1.8rem",
         fontSize: "0.95rem",
@@ -92,19 +97,6 @@ export function FloatingBookButton() {
       <span>Book</span>
       <span className="sv-pill-rule" aria-hidden style={{ width: "1.75rem" }} />
       <span>now</span>
-      <style jsx>{`
-        /* Subtle attention pulse — 3% scale + opacity nudge every 3.6s.
-           Easy to spot, not distracting. */
-        @keyframes fbb-pulse {
-          0%, 100% { transform: scale(1); }
-          50%      { transform: scale(1.035); }
-        }
-        .fbb-pulse { animation: fbb-pulse 3.6s ease-in-out infinite; }
-        .fbb-pulse:hover, .fbb-pulse:active { animation: none; }
-        @media (prefers-reduced-motion: reduce) {
-          .fbb-pulse { animation: none; }
-        }
-      `}</style>
     </a>
   );
 }

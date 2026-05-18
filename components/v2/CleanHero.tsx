@@ -73,28 +73,27 @@ export function CleanHero() {
         delay: 0.2,
       });
 
-      // SPLITTEXT on the tagline — each line splits into chars, animated
-      // with mask-up reveal. Better than a single y/opacity tween.
+      // SPLITTEXT on the tagline — faster reveal (was feeling sluggish)
       const taglineEl = root.querySelector<HTMLElement>(".ch-tagline-block");
       if (taglineEl) {
         const split = new SplitText(taglineEl, { type: "lines, chars", linesClass: "ch-tag-line-clip" });
         gsap.from(split.chars, {
           yPercent: 110,
           opacity: 0,
-          duration: 1.2,
-          ease: "power4.out",
-          stagger: { each: 0.012, from: "start" },
-          delay: 0.55,
+          duration: 0.7,
+          ease: "power3.out",
+          stagger: { each: 0.008, from: "start" },
+          delay: 0.25,
         });
       }
 
-      // Massive bottom wordmark — slides up + char stagger via SplitText
+      // Bottom wordmark — quicker slide-up
       gsap.from(".ch-mark-row", {
-        y: 120,
+        y: 80,
         opacity: 0,
-        duration: 1.4,
-        ease: "power4.out",
-        delay: 0.5,
+        duration: 0.9,
+        ease: "power3.out",
+        delay: 0.2,
       });
       const markEl = root.querySelector<HTMLElement>(".ch-mark");
       if (markEl) {
@@ -102,10 +101,10 @@ export function CleanHero() {
         gsap.from(markSplit.chars, {
           yPercent: 110,
           opacity: 0,
-          duration: 1.3,
-          ease: "power4.out",
-          stagger: { each: 0.025, from: "random" },
-          delay: 0.65,
+          duration: 0.8,
+          ease: "power3.out",
+          stagger: { each: 0.018, from: "start" },
+          delay: 0.32,
         });
       }
     }, rootRef);
@@ -165,11 +164,11 @@ export function CleanHero() {
       {/* Top CTA intentionally removed — the global <FloatingBookButton>
           in layout.tsx is the sole Book CTA across the whole site. */}
 
-      {/* MID — short tagline left-aligned, generous space (SplitText animated) */}
+      {/* MID — tagline broken across short lines for visual rhythm */}
       <div
         className="absolute z-10"
         style={{
-          top: "32%",
+          top: "30%",
           left: "clamp(1.5rem, 3vw, 3.5rem)",
           right: "clamp(1.5rem, 3vw, 3.5rem)",
           maxWidth: "44rem",
@@ -180,24 +179,25 @@ export function CleanHero() {
           style={{
             fontFamily: "var(--font-italiana)",
             fontWeight: 400,
-            fontSize: "clamp(1.6rem, 2.6vw, 2.6rem)",
+            fontSize: "clamp(1.8rem, 2.8vw, 2.9rem)",
             color: "var(--v2-bg)",
             letterSpacing: "-0.02em",
-            lineHeight: 1.15,
+            lineHeight: 1.18,
           }}
         >
-          <span style={{ fontStyle: "italic", display: "block" }}>A one-room lodge and a shepherd&apos;s hut.</span>
-          <span style={{ display: "block", opacity: 0.92 }}>On a working farm in West Berkshire.</span>
+          <span style={{ fontStyle: "italic", display: "block" }}>A lodge.</span>
+          <span style={{ fontStyle: "italic", display: "block" }}>A shepherd&apos;s hut.</span>
+          <span style={{ display: "block", opacity: 0.88, marginTop: "0.35rem" }}>On a working farm.</span>
         </div>
       </div>
 
-      {/* GIANT BOTTOM WORDMARK — overflows slightly, letter-by-letter reveal */}
+      {/* GIANT BOTTOM WORDMARK — sits just above the bottom edge */}
       <div
         className="ch-mark-row absolute z-10"
         style={{
           left: 0,
           right: 0,
-          bottom: "-1vw",
+          bottom: "clamp(1rem, 2.5vh, 2.5rem)",
           padding: "0 clamp(0.5rem, 1.5vw, 1.5rem)",
           textAlign: "center",
           overflow: "hidden",

@@ -72,7 +72,7 @@ app/page.tsx
 └── 7. Final CTA          — "Stay a while." + "Book on Airbnb ↗"
 ```
 
-Footer (in `app/layout.tsx`): "Stay a while" + "Find us" (Squirrels' Nest / The English countryside / hello@squirrelsnest.co.uk) + "Visit" (Home / Contact / Book on Airbnb / Instagram).
+Footer (in `app/layout.tsx`): "Stay a while" + "Find us" (Squirrels' Nest / The English countryside / hello@squirrelsneststay.co.uk) + "Visit" (Home / Contact / Book on Airbnb / Instagram).
 
 ## 6. Components inventory
 
