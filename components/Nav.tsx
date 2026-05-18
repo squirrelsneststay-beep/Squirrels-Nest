@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
 import { LiveTimeBadge } from "@/components/v2/LiveTimeBadge";
+import { AIRBNB_URL, EXTERNAL_LINK_PROPS } from "@/lib/site";
 
 /**
  * Site nav. Three states:
@@ -101,7 +102,7 @@ export function Nav() {
         >
           <Link href="/" className="hover:opacity-60 transition-opacity">Home</Link>
           <Link href="/contact" className="hover:opacity-60 transition-opacity">Contact</Link>
-          <a href="#book" className="sv-pill is-inverse">
+          <a href={AIRBNB_URL} {...EXTERNAL_LINK_PROPS} className="sv-pill is-inverse">
             <span>Book</span>
             <span className="sv-pill-rule" aria-hidden />
             <span>on Airbnb</span>

@@ -3,6 +3,7 @@
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { AIRBNB_URL, INSTAGRAM_URL, EXTERNAL_LINK_PROPS } from "@/lib/site";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
@@ -137,8 +138,8 @@ export function BigFooter() {
               <ul style={{ listStyle: "none", padding: 0, margin: 0, fontFamily: "var(--font-geist)", fontSize: "1rem" }}>
                 <li className="bf-link" style={{ paddingBlock: "0.35rem" }}><a href="/" className="hover:opacity-70 transition-opacity">Home</a></li>
                 <li className="bf-link" style={{ paddingBlock: "0.35rem" }}><a href="/contact" className="hover:opacity-70 transition-opacity">Contact</a></li>
-                <li className="bf-link" style={{ paddingBlock: "0.35rem" }}><a href="#book" className="hover:opacity-70 transition-opacity">Book on Airbnb</a></li>
-                <li className="bf-link" style={{ paddingBlock: "0.35rem" }}><a href="#" className="hover:opacity-70 transition-opacity">Instagram</a></li>
+                <li className="bf-link" style={{ paddingBlock: "0.35rem" }}><a href={AIRBNB_URL} {...EXTERNAL_LINK_PROPS} className="hover:opacity-70 transition-opacity">Book on Airbnb</a></li>
+                <li className="bf-link" style={{ paddingBlock: "0.35rem" }}><a href={INSTAGRAM_URL} {...EXTERNAL_LINK_PROPS} className="hover:opacity-70 transition-opacity">Instagram</a></li>
               </ul>
             </div>
             <div>
@@ -146,10 +147,12 @@ export function BigFooter() {
                 Practical
               </p>
               <ul style={{ listStyle: "none", padding: 0, margin: 0, fontFamily: "var(--font-geist)", fontSize: "1rem" }}>
-                <li className="bf-link" style={{ paddingBlock: "0.35rem" }}>Sleeps two</li>
-                <li className="bf-link" style={{ paddingBlock: "0.35rem" }}>Pet friendly</li>
-                <li className="bf-link" style={{ paddingBlock: "0.35rem" }}>No on-site Wi-Fi</li>
-                <li className="bf-link" style={{ paddingBlock: "0.35rem" }}>Min. two nights</li>
+                <li className="bf-link" style={{ paddingBlock: "0.35rem" }}>Lodge sleeps two</li>
+                <li className="bf-link" style={{ paddingBlock: "0.35rem" }}>Shepherd&apos;s hut sleeps two more</li>
+                <li className="bf-link" style={{ paddingBlock: "0.35rem" }}>Garden, porch, coffee machine</li>
+                <li className="bf-link" style={{ paddingBlock: "0.35rem" }}>Wi-Fi included</li>
+                <li className="bf-link" style={{ paddingBlock: "0.35rem" }}>West Berkshire, on a working farm</li>
+                <li className="bf-link" style={{ paddingBlock: "0.35rem" }}>Furniture for sale</li>
               </ul>
             </div>
           </div>

@@ -164,9 +164,9 @@ export function UnifiedStory() {
       <div className="st-pin relative min-h-[100dvh] w-full overflow-hidden" style={{ background: "var(--v2-ink)" }}>
         {/* Four sharp photos that crossfade independently */}
         {[
-          { src: "/images/zoe-09.jpg", overlay: 0.32 },
-          { src: "/images/zoe-02.jpg", overlay: 0.38 },
-          { src: "/images/zoe-13.jpg", overlay: 0.50 },
+          { src: "/images/squirrels-nest/sq-07.jpg", overlay: 0.32 },
+          { src: "/images/squirrels-nest/sq-10.jpg", overlay: 0.38 },
+          { src: "/images/squirrels-nest/sq-14.jpg", overlay: 0.50 },
           { src: "/images/squirrels-nest/sq-18.jpg", overlay: 0.35 },
         ].map((p, i) => (
           <div key={i} className="st-layer absolute inset-0" style={{ willChange: "opacity" }}>
@@ -185,25 +185,25 @@ export function UnifiedStory() {
         {/* Eyebrow */}
         <div className="absolute top-0 inset-x-0 z-30 pt-8">
           <div className="lef-container flex items-center justify-between">
-            <span className="sv-eyebrow is-light">A short story</span>
-            <span className="sv-eyebrow is-light">From the lane to lights out</span>
+            <span className="sv-eyebrow is-light">Squirrels&apos; Nest</span>
+            <span className="sv-eyebrow is-light">West Berkshire, on a working farm</span>
           </div>
         </div>
 
         <div className="st-fade-all absolute inset-0 z-20">
-          {/* ───────── CHAPTER 1 (LOCKED) ───────── */}
+          {/* ───────── CHAPTER 1 — What it is ───────── */}
           <div className="st-ch1-fadeout">
             <span
               className="st-lane absolute"
               style={{ left: "12%", top: "33%", transform: "translate(0, -50%)", fontFamily: "var(--font-geist)", fontSize: "1.5rem", fontWeight: 400, color: "var(--v2-bg)", letterSpacing: "-0.01em", whiteSpace: "nowrap", textShadow: "0 1px 12px rgba(0,0,0,0.55)" }}
             >
-              From the lane
+              One lodge.
             </span>
             <span
               className="st-kettle absolute"
               style={{ left: "44%", top: "33%", transform: "translate(0, -50%)", fontFamily: "var(--font-geist)", fontSize: "1.5rem", fontWeight: 400, color: "var(--v2-bg)", letterSpacing: "-0.01em", whiteSpace: "nowrap", textShadow: "0 1px 12px rgba(0,0,0,0.55)" }}
             >
-              the kettle on
+              One shepherd&apos;s hut.
             </span>
             <svg
               className="absolute inset-0 pointer-events-none"
@@ -222,26 +222,26 @@ export function UnifiedStory() {
             style={{ left: "58%", top: "52%", maxWidth: "26rem", fontFamily: "var(--font-geist)", color: "var(--v2-bg)", textShadow: "0 1px 12px rgba(0,0,0,0.55)" }}
           >
             <p style={{ fontSize: "1.5rem", fontWeight: 400, letterSpacing: "-0.01em", margin: 0 }}>
-              all the way to bed.
+              Sleeps four, between them.
             </p>
             <p style={{ fontFamily: "var(--font-cormorant)", fontStyle: "italic", fontSize: "1.7rem", fontWeight: 300, opacity: 0.92, marginTop: "0.4rem" }}>
-              and the door clicks shut.
+              On a farm in West Berkshire.
             </p>
           </div>
 
-          {/* ───────── CHAPTER 2 ───────── */}
+          {/* ───────── CHAPTER 2 — How it was made ───────── */}
           <div className="st-ch2-fadeout">
             <span
               className="st-without absolute"
               style={{ left: "20%", top: "30%", transform: "translate(0, -50%)", fontFamily: "var(--font-cormorant)", fontStyle: "italic", fontSize: "2.1rem", fontWeight: 300, color: "var(--v2-bg)", letterSpacing: "-0.02em", textShadow: "0 1px 12px rgba(0,0,0,0.55)" }}
             >
-              Without
+              Two years
             </span>
             <ul
               className="absolute"
-              style={{ left: "32%", top: "30%", transform: "translate(0, -25%)", listStyle: "none", padding: 0, margin: 0, fontFamily: "var(--font-geist)", color: "var(--v2-bg)", textShadow: "0 1px 12px rgba(0,0,0,0.55)" }}
+              style={{ left: "34%", top: "30%", transform: "translate(0, -25%)", listStyle: "none", padding: 0, margin: 0, fontFamily: "var(--font-geist)", color: "var(--v2-bg)", textShadow: "0 1px 12px rgba(0,0,0,0.55)" }}
             >
-              {["traffic", "signal", "neighbours", "schedules", "or rushing"].map((w) => (
+              {["of stripping.", "of stitching.", "of upholstery.", "of paint.", "mostly by Zoe."].map((w) => (
                 <li
                   key={w}
                   className="st-list-item"
@@ -253,8 +253,7 @@ export function UnifiedStory() {
             </ul>
           </div>
 
-          {/* ───────── CHAPTER 3 (NEW) ───────── */}
-          {/* Lead "We're hoping for a stay where you find" — mid-right like savor's "We're talking about a future where there's" */}
+          {/* ───────── CHAPTER 3 — The for-sale reveal ───────── */}
           <p
             className="st-ch3-lead absolute"
             style={{
@@ -272,7 +271,7 @@ export function UnifiedStory() {
               textShadow: "0 1px 12px rgba(0,0,0,0.55)",
             }}
           >
-            We&apos;re hoping for a stay where you find
+            Stay the night. Then,
           </p>
 
           {/* Dashed curve descending from lead down-left toward the "more" stack */}
@@ -306,7 +305,7 @@ export function UnifiedStory() {
             }}
           >
             <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
-              {["more", "more", "more", "more", "& more"].map((w, i) => (
+              {["the chairs.", "the screens.", "the lamps.", "the tap.", "& more."].map((w, i) => (
                 <li
                   key={i}
                   className="st-more-item"
@@ -331,11 +330,11 @@ export function UnifiedStory() {
           >
             <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
               {[
-                "good food in the kitchen",
-                "quiet on the lane",
-                "long walks before breakfast",
-                "time you'd forgotten",
-                "room for nothing at all.",
+                "you'll sit in",
+                "Zoe upholstered by hand",
+                "she stitched the shades for",
+                "in the kitchen,",
+                "all of it for sale before you leave.",
               ].map((w, i) => (
                 <li
                   key={i}

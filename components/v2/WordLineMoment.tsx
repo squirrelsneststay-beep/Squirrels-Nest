@@ -114,7 +114,7 @@ export function WordLineMoment() {
             maxWidth: "36ch",
           }}
         >
-          Lane End Farm — a converted cabin set against open English fields and quiet skies.
+          Squirrels&apos; Nest — a converted cabin set against open English fields and quiet skies.
         </p>
       </div>
     </section>

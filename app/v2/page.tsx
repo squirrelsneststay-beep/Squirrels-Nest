@@ -1,6 +1,7 @@
 import { PinnedStack } from "@/components/v2/PinnedStack";
 import { SnakeGallery } from "@/components/v2/SnakeGallery";
 import { WordLineMoment } from "@/components/v2/WordLineMoment";
+import { AIRBNB_URL, EXTERNAL_LINK_PROPS } from "@/lib/site";
 
 export default function V2Page() {
   return (
@@ -10,7 +11,7 @@ export default function V2Page() {
       <section className="relative flex items-center justify-center" style={{ minHeight: "100vh" }}>
         <div className="v2-container text-center">
           <span className="font-mono-eyebrow block mb-12" style={{ color: "var(--v2-mute)" }}>
-            Lane End Farm — A converted cabin
+            Squirrels&apos; Nest — A converted cabin
           </span>
           <h1
             className="font-display mx-auto"
@@ -40,7 +41,8 @@ export default function V2Page() {
 
           <div className="mt-16 flex items-center justify-center gap-3">
             <a
-              href="#"
+              href={AIRBNB_URL}
+              {...EXTERNAL_LINK_PROPS}
               className="inline-flex items-center px-6 py-3 rounded-full transition-colors"
               style={{
                 background: "var(--v2-ink)",
@@ -94,7 +96,8 @@ export default function V2Page() {
             Stay a while.
           </h2>
           <a
-            href="#"
+            href={AIRBNB_URL}
+            {...EXTERNAL_LINK_PROPS}
             className="inline-flex items-center px-7 py-3.5 rounded-full"
             style={{
               background: "var(--v2-ink)",

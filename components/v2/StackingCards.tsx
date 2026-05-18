@@ -18,53 +18,56 @@ if (typeof window !== "undefined") {
  * Each card: large number, big serif title, body, room photo.
  */
 
+// Card copy is intentionally factual + photo-grounded. Every line describes
+// what's actually in the corresponding photograph. No invented anecdotes,
+// no place-of-origin claims that haven't been confirmed.
 const cards = [
   {
     n: "01",
-    title: "Hand-finished beds",
-    body: "White linen, weighted quilts, a window that opens onto fields.",
+    title: "The Bedroom",
+    body: "Red headboard. White linen. A quilted bedspread Zoe stitched herself.",
     photo: "/images/squirrels-nest/sq-12.jpg",
   },
   {
     n: "02",
-    title: "Wood-fired warmth",
-    body: "A cast-iron stove built into the chimney breast. Logs by the door.",
+    title: "The Walls",
+    body: "Chandelier on a deep-red plaster wall. Painted detail. Soft light from above.",
     photo: "/images/squirrels-nest/sq-30.jpg",
   },
   {
     n: "03",
-    title: "A kitchen for slow meals",
-    body: "Espresso machine, kettle, brass tap. Stock the fridge from the farm.",
+    title: "The Kitchen",
+    body: "Brass tap, kettle, espresso machine. Red-checked curtain under the worktop.",
     photo: "/images/squirrels-nest/sq-35.jpg",
   },
   {
     n: "04",
-    title: "Yellow velvet, quiet rooms",
-    body: "Two soft chairs, a bookshelf, a record player. No television.",
+    title: "The Sitting Room",
+    body: "Two yellow velvet chairs Zoe upholstered. Green walls. A low table between them.",
     photo: "/images/squirrels-nest/sq-18.jpg",
   },
   {
     n: "05",
-    title: "Soft light, hand-finished",
-    body: "Painted screens, lamps with cloth shades, brass fittings throughout.",
+    title: "The Lights",
+    body: "Lamps with cloth shades. Soft fittings throughout. Nothing overhead at night.",
     photo: "/images/squirrels-nest/sq-42.jpg",
   },
   {
     n: "06",
-    title: "Painted screens, red walls",
-    body: "Velvet folding screens, hand-painted detailing, layered antique mirrors.",
+    title: "The Screens",
+    body: "Velvet folding screen. Antique mirror. A quiet corner of the room.",
     photo: "/images/squirrels-nest/sq-28.jpg",
   },
   {
     n: "07",
-    title: "Found details everywhere",
-    body: "Brass fittings sourced from Suffolk scrapyards, fittings stripped and re-finished.",
+    title: "The Brass",
+    body: "Brass tap and fittings. Worn-in finish. Stripped and re-fitted by hand.",
     photo: "/images/squirrels-nest/sq-22.jpg",
   },
   {
     n: "08",
-    title: "Open onto the lane",
-    body: "Bistro chairs, an outdoor table under the wall lamp. Breakfast in the open.",
+    title: "The Outside",
+    body: "Bistro chairs, a small table. Breakfast in the open if the weather holds.",
     photo: "/images/squirrels-nest/sq-08.jpg",
   },
 ];

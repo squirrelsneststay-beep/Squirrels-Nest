@@ -3,6 +3,7 @@
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { AIRBNB_URL, EXTERNAL_LINK_PROPS } from "@/lib/site";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
@@ -197,7 +198,7 @@ export function ReservationCard() {
             </div>
           </div>
 
-          <a href="#book" className="sv-pill is-inverse" style={{ marginTop: "2.5rem" }}>
+          <a href={AIRBNB_URL} {...EXTERNAL_LINK_PROPS} className="sv-pill is-inverse" style={{ marginTop: "2.5rem" }}>
             <span>Book</span>
             <span className="sv-pill-rule" aria-hidden />
             <span>on Airbnb</span>

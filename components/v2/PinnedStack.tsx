@@ -15,10 +15,10 @@ type Slide = {
 };
 
 const slides: Slide[] = [
-  { caption: "The lane.",     image: "/images/squirrels-nest/sq-01.jpg", alt: "The lane at Lane End Farm" },
-  { caption: "The garden.",   image: "/images/squirrels-nest/sq-05.jpg", alt: "The garden at Lane End Farm" },
-  { caption: "The hearth.",   image: "/images/squirrels-nest/sq-25.jpg", alt: "The hearth at Lane End Farm" },
-  { caption: "The field.",    image: "/images/squirrels-nest/sq-10.jpg", alt: "The field at Lane End Farm" },
+  { caption: "The lane.",     image: "/images/squirrels-nest/sq-01.jpg", alt: "The lane at Squirrels' Nest" },
+  { caption: "The garden.",   image: "/images/squirrels-nest/sq-05.jpg", alt: "The garden at Squirrels' Nest" },
+  { caption: "The hearth.",   image: "/images/squirrels-nest/sq-25.jpg", alt: "The hearth at Squirrels' Nest" },
+  { caption: "The field.",    image: "/images/squirrels-nest/sq-10.jpg", alt: "The field at Squirrels' Nest" },
 ];
 
 /**

@@ -1,24 +1,28 @@
 import type { NextConfig } from "next";
 
 /**
- * Security headers — defends against common web vulns (clickjacking, MIME
- * sniffing, XSS reflection, leaky referrers). CSP is intentionally permissive
- * enough to allow Google Fonts + Next.js dev/HMR. Tighten before production
- * if anything beyond static fonts gets added.
+ * Security headers — defends against clickjacking, MIME sniffing, XSS
+ * reflection, leaky referrers. CSP is split prod vs dev: dev keeps
+ * 'unsafe-eval' so Turbopack/HMR work; prod drops it so injected script
+ * strings cannot execute even if XSS slips through.
  */
+const isProd = process.env.NODE_ENV === "production";
+
+const scriptSrc = isProd
+  ? "script-src 'self' 'unsafe-inline'"
+  : "script-src 'self' 'unsafe-inline' 'unsafe-eval'";
+
 const securityHeaders = [
   { key: "X-Frame-Options", value: "DENY" },
   { key: "X-Content-Type-Options", value: "nosniff" },
   { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
-  { key: "Permissions-Policy", value: "camera=(), microphone=(), geolocation=(), browsing-topics=()" },
+  { key: "Permissions-Policy", value: "camera=(), microphone=(), geolocation=(), browsing-topics=(), interest-cohort=()" },
   { key: "Strict-Transport-Security", value: "max-age=31536000; includeSubDomains" },
   {
-    // CSP — tightened: next/font/google self-hosts fonts at build time, so
-    // we don't need to allow fonts.googleapis.com or fonts.gstatic.com at all.
     key: "Content-Security-Policy",
     value: [
       "default-src 'self'",
-      "script-src 'self' 'unsafe-inline' 'unsafe-eval'",
+      scriptSrc,
       "style-src 'self' 'unsafe-inline'",
       "font-src 'self' data:",
       "img-src 'self' data: blob:",
