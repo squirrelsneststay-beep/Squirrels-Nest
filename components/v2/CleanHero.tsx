@@ -94,7 +94,19 @@ export function CleanHero() {
       ref={rootRef}
       data-section-tone="dark"
       className="relative"
-      style={{ minHeight: "100dvh", background: "var(--v2-ink)", overflow: "hidden" }}
+      style={{
+        minHeight: "100dvh",
+        height: "100dvh",
+        background: "var(--v2-ink)",
+        overflow: "hidden",
+        // Hotellia-style "curtain": hero sticks to top of viewport as the
+        // user scrolls, then the next section literally slides UP over it.
+        // Achieved via position: sticky + z-index ordering (next section
+        // has higher z-index + solid bg).
+        position: "sticky",
+        top: 0,
+        zIndex: 1,
+      }}
       data-cleanhero
     >
       {/* Full-bleed sharp photo */}

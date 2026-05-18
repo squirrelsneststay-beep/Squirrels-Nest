@@ -17,12 +17,17 @@ export default function HomePage() {
   return (
     <div className="v2-root" style={{ background: "var(--v2-bg)", color: "var(--v2-ink)" }}>
       <CleanHero />
+      {/* Everything below the hero sits at z-index 2+ with a solid bg, so
+          natural scroll makes them slide UP and COVER the sticky hero. The
+          hero stays fixed while the next section "draws a curtain" over it. */}
+      <div style={{ position: "relative", zIndex: 2, background: "var(--v2-bg)" }}>
       <EditorialWelcome />
       <UnifiedStory />
       <StackingCards />
       <InspiredBy />
       <ExpandingGallery />
       <ReservationCard />
+      </div>
     </div>
   );
 }
