@@ -105,8 +105,9 @@ export function StackingCards() {
         },
       });
 
-      // Each subsequent card slides up from below and stacks. Previous card
-      // recedes (scale down + small upward offset + dimmed).
+      // Each subsequent card slides up from below + gently displaces the
+      // previous one upward (no brightness manipulation — that was reading
+      // as a black flash). Cards stay full brightness, just translate.
       for (let i = 1; i < cardEls.length; i++) {
         const at = (i - 1) / (cardEls.length - 1);
         for (let j = 0; j < i; j++) {
@@ -114,10 +115,9 @@ export function StackingCards() {
           tl.to(
             cardEls[j],
             {
-              scale: 1 - depth * 0.04,
-              y: -depth * 24,
-              filter: `brightness(${1 - depth * 0.1})`,
-              duration: 0.18,
+              scale: 1 - depth * 0.025,
+              y: -depth * 18,
+              duration: 0.22,
               ease: "power2.out",
             },
             at
@@ -125,7 +125,7 @@ export function StackingCards() {
         }
         tl.to(
           cardEls[i],
-          { y: 0, duration: 0.20, ease: "power2.out" },
+          { y: 0, duration: 0.24, ease: "power2.out" },
           at
         );
       }
@@ -199,7 +199,9 @@ export function StackingCards() {
                 marginInline: "auto",
                 background: "var(--v2-bg)",
                 borderRadius: "4px",
-                boxShadow: "0 40px 80px -30px rgba(55,8,8,0.20), 0 0 0 1px var(--v2-line)",
+                // Hairline ring only — no dark plum shadow. Stacked cards
+                // were compounding shadow into a "black between cards" look.
+                boxShadow: "0 0 0 1px var(--v2-line)",
                 padding: "clamp(1.5rem, 3vw, 2.5rem)",
                 willChange: "transform, filter",
                 height: "clamp(20rem, 56vh, 28rem)",

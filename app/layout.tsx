@@ -1,16 +1,20 @@
 import type { Metadata } from "next";
-import { Instrument_Serif, Cormorant_Garamond, Geist, Geist_Mono } from "next/font/google";
+import { Libre_Baskerville, Cormorant_Garamond, Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { SmoothScroll } from "@/components/SmoothScroll";
 import { Nav } from "@/components/Nav";
 import { BigFooter } from "@/components/v2/BigFooter";
 import { ScrollProgress } from "@/components/v2/ScrollProgress";
 
-const instrumentSerif = Instrument_Serif({
+// Display serif — Libre Baskerville. The face Hotellia.framer.website uses
+// for its big headlines ("Total escape", "ROOMS", "OFFERS"). Classic
+// transitional serif with strong contrast, generous proportions.
+// Variable name kept as --font-italiana for backward compat.
+const libreBaskerville = Libre_Baskerville({
   variable: "--font-italiana",
   subsets: ["latin"],
   display: "swap",
-  weight: ["400"],
+  weight: ["400", "700"],
   style: ["normal", "italic"],
 });
 
@@ -77,7 +81,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${instrumentSerif.variable} ${cormorant.variable} ${geist.variable} ${geistMono.variable} antialiased`}
+      className={`${libreBaskerville.variable} ${cormorant.variable} ${geist.variable} ${geistMono.variable} antialiased`}
     >
       <body>
         <ScrollProgress />

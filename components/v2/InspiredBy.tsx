@@ -129,7 +129,16 @@ export function InspiredBy() {
   }, []);
 
   return (
-    <section ref={rootRef} className="relative" style={{ background: "var(--v2-bg)" }}>
+    <section
+      ref={rootRef}
+      className="relative"
+      style={{
+        background: "var(--v2-bg)",
+        // Lead-in / lead-out padding so the pinned content doesn't butt up
+        // hard against neighbouring sections. Gives a soft cream blend.
+        paddingBlock: "8vh",
+      }}
+    >
       <div
         className="ib-pin relative min-h-[100dvh] w-full overflow-hidden flex items-center justify-center"
         style={{ background: "var(--v2-bg)" }}
