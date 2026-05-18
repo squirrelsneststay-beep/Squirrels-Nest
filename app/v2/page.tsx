@@ -1,7 +1,15 @@
+import type { Metadata } from "next";
 import { PinnedStack } from "@/components/v2/PinnedStack";
 import { SnakeGallery } from "@/components/v2/SnakeGallery";
 import { WordLineMoment } from "@/components/v2/WordLineMoment";
 import { AIRBNB_URL, EXTERNAL_LINK_PROPS } from "@/lib/site";
+
+// `/v2` is an internal design-exploration route. Block it from indexing so
+// it can't compete with `/` in search results or dilute SEO. Robots.ts also
+// disallows the path at the crawler level for double-belt-and-braces.
+export const metadata: Metadata = {
+  robots: { index: false, follow: false },
+};
 
 export default function V2Page() {
   return (

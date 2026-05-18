@@ -3,7 +3,7 @@
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { AIRBNB_URL, INSTAGRAM_URL, EXTERNAL_LINK_PROPS } from "@/lib/site";
+import { AIRBNB_URL, INSTAGRAM_URL, EXTERNAL_LINK_PROPS, BRAND } from "@/lib/site";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
@@ -113,7 +113,7 @@ export function BigFooter() {
               the list.
             </p>
             <a
-              href="mailto:zoe@squirrelsneststay.co.uk"
+              href={`mailto:${BRAND.email}`}
               className="bf-link inline-block"
               style={{
                 marginTop: "1.5rem",
@@ -126,7 +126,7 @@ export function BigFooter() {
                 textDecorationThickness: "1px",
               }}
             >
-              zoe@squirrelsneststay.co.uk
+              {BRAND.email}
             </a>
           </div>
 
@@ -270,7 +270,7 @@ export function BigFooter() {
           paddingInline: "clamp(1.5rem, 3vw, 3.5rem)",
         }}
       >
-        <span>© 2026 Squirrels&apos; Nest</span>
+        <span>© {new Date().getFullYear()} {BRAND.name}</span>
         <span>Built slowly, in the countryside</span>
       </div>
     </footer>

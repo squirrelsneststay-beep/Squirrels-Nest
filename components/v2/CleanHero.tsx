@@ -1,9 +1,23 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { gsap } from "gsap";
 import { SplitText } from "gsap/SplitText";
+
+// Hero slideshow: auto-advances every 4 seconds.
+// Photos chosen to give a varied tour of the lodge — exterior, sitting
+// room, kitchen, bedroom, brass detail, chandelier. All from Zoe's real
+// photography (sq-XX confirmed accurate).
+const HERO_PHOTOS = [
+  { src: "/images/squirrels-nest/sq-18.jpg", alt: "Sitting room with yellow velvet chairs" },
+  { src: "/images/squirrels-nest/sq-12.jpg", alt: "Bedroom with red headboard" },
+  { src: "/images/squirrels-nest/sq-30.jpg", alt: "Chandelier on a deep-red plaster wall" },
+  { src: "/images/squirrels-nest/sq-35.jpg", alt: "Kitchen with brass tap" },
+  { src: "/images/squirrels-nest/sq-08.jpg", alt: "Lodge exterior" },
+  { src: "/images/squirrels-nest/sq-42.jpg", alt: "Lamps and flowers" },
+];
+const SLIDESHOW_INTERVAL_MS = 4000;
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(SplitText);
@@ -20,6 +34,18 @@ if (typeof window !== "undefined") {
  */
 export function CleanHero() {
   const rootRef = useRef<HTMLDivElement>(null);
+  const [slideIdx, setSlideIdx] = useState(0);
+
+  // Auto-advance slideshow every 4s. Skips if prefers-reduced-motion (the
+  // user has explicitly asked for fewer auto-changing things).
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const id = window.setInterval(() => {
+      setSlideIdx((i) => (i + 1) % HERO_PHOTOS.length);
+    }, SLIDESHOW_INTERVAL_MS);
+    return () => window.clearInterval(id);
+  }, []);
 
   useEffect(() => {
     if (typeof window === "undefined") return;
@@ -103,20 +129,35 @@ export function CleanHero() {
       }}
       data-cleanhero
     >
-      {/* Full-bleed sharp photo — this is the LCP image, so use next/image
-          with `priority` to preload + serve AVIF/WebP from Vercel's image
-          optimizer. GSAP scale animates the wrapper div, which still scales
-          the rendered <img> proportionally. */}
+      {/* Full-bleed slideshow — stacked photo layers, only the active one
+          at opacity 1. Crossfades via 1.2s CSS opacity transition. First
+          photo is LCP-priority + eager, the rest preload lazily so the
+          page paints fast then warms the cache as the user reads. */}
       <div className="absolute inset-0" style={{ overflow: "hidden" }}>
         <div className="ch-photo-inner absolute inset-0" style={{ willChange: "transform" }}>
-          <Image
-            src="/images/squirrels-nest/sq-18.jpg"
-            alt="Squirrels' Nest, sitting room with yellow velvet chairs"
-            fill
-            priority
-            sizes="100vw"
-            style={{ objectFit: "cover" }}
-          />
+          {HERO_PHOTOS.map((p, i) => (
+            <div
+              key={p.src}
+              aria-hidden={i !== slideIdx}
+              style={{
+                position: "absolute",
+                inset: 0,
+                opacity: i === slideIdx ? 1 : 0,
+                transition: "opacity 1200ms var(--ease-out)",
+                willChange: "opacity",
+              }}
+            >
+              <Image
+                src={p.src}
+                alt={i === 0 ? `${p.alt} — Squirrels' Nest` : ""}
+                fill
+                priority={i === 0}
+                loading={i === 0 ? "eager" : "lazy"}
+                sizes="100vw"
+                style={{ objectFit: "cover" }}
+              />
+            </div>
+          ))}
         </div>
         {/* gradient overlay intentionally removed — photo speaks for itself */}
       </div>

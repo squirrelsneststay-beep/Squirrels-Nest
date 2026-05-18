@@ -12,8 +12,9 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: "*",
         allow: "/",
-        // Block paths that should never be indexed if you add them later
-        disallow: ["/api/", "/_next/", "/admin/"],
+        // `/v2` is an internal design-exploration route — never publish.
+        // /api, /_next, /admin reserved for future use.
+        disallow: ["/v2", "/v2/", "/api/", "/_next/", "/admin/"],
       },
     ],
     sitemap: `${SITE_URL}/sitemap.xml`,
