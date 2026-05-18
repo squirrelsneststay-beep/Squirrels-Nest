@@ -146,7 +146,7 @@ export function BigFooter() {
                 Practical
               </p>
               <ul style={{ listStyle: "none", padding: 0, margin: 0, fontFamily: "var(--font-geist)", fontSize: "1rem" }}>
-                <li className="bf-link" style={{ paddingBlock: "0.35rem" }}>Two bedrooms · sleeps four</li>
+                <li className="bf-link" style={{ paddingBlock: "0.35rem" }}>Sleeps two</li>
                 <li className="bf-link" style={{ paddingBlock: "0.35rem" }}>Pet friendly</li>
                 <li className="bf-link" style={{ paddingBlock: "0.35rem" }}>No on-site Wi-Fi</li>
                 <li className="bf-link" style={{ paddingBlock: "0.35rem" }}>Min. two nights</li>

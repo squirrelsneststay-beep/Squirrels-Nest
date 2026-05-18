@@ -56,7 +56,7 @@ export const metadata: Metadata = {
     url: SITE_URL,
     siteName: "Squirrels' Nest",
     title: "Squirrels' Nest. A converted cabin in the English countryside.",
-    description: "Wood-fired, hand-finished. Two bedrooms, sleeps four. A quiet weekend down the lane.",
+    description: "Wood-fired, hand-finished. Sleeps two. A quiet weekend down the lane.",
     images: [
       {
         url: "/images/squirrels-nest/sq-12.jpg",
