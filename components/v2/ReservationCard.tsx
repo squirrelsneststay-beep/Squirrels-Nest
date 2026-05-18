@@ -115,7 +115,9 @@ export function ReservationCard() {
             willChange: "transform, opacity",
           }}
         >
-          {/* Decorative star — slow infinite rotation, like a quiet breath. Delight. */}
+          {/* Decorative star — slow infinite rotation, like a quiet breath. Delight.
+              Keyframe lives in globals.css (styled-jsx is not bundled in Next 16 by
+              default and was rendering nothing here). */}
           <div
             aria-hidden
             style={{
@@ -130,15 +132,6 @@ export function ReservationCard() {
               <path d="M12 2 L13.5 10.5 L22 12 L13.5 13.5 L12 22 L10.5 13.5 L2 12 L10.5 10.5 Z" />
             </svg>
           </div>
-          <style jsx>{`
-            @keyframes rc-star-spin {
-              from { transform: rotate(0deg); }
-              to { transform: rotate(360deg); }
-            }
-            @media (prefers-reduced-motion: reduce) {
-              [aria-hidden] { animation: none !important; }
-            }
-          `}</style>
 
           <h3
             className="font-display"

@@ -39,17 +39,18 @@ export function SnakeGallery() {
     if (prefersReducedMotion) return;
 
     const ctx = gsap.context(() => {
-      const trackWidth = track.scrollWidth;
-      const viewportWidth = window.innerWidth;
-      const distance = trackWidth - viewportWidth;
+      // Recompute distance from live measurements on every ScrollTrigger
+      // refresh — `invalidateOnRefresh` re-evaluates function values, so the
+      // gallery stays correct after window resize or orientation change.
+      const distance = () => track.scrollWidth - window.innerWidth;
 
       gsap.to(track, {
-        x: -distance,
+        x: () => -distance(),
         ease: "none",
         scrollTrigger: {
           trigger: root,
           start: "top top",
-          end: () => `+=${distance}`,
+          end: () => `+=${distance()}`,
           pin: ".sg-pin",
           scrub: 1,
           anticipatePin: 1,

@@ -38,15 +38,19 @@ export function LiveTimeBadge() {
     setTime(formatTime(new Date()));
   }, []);
 
-  // Tick the clock every 30s. When the displayed time CHANGES, scramble.
+  // Tick the clock every 30s. Use functional setState so the interval is
+  // created ONCE on mount instead of being torn down and re-created on
+  // every tick — old code's `[time]` dep made this drift 30s with each tick.
   useEffect(() => {
     if (typeof window === "undefined") return;
     const id = window.setInterval(() => {
-      const next = formatTime(new Date());
-      if (next !== time) setTime(next);
+      setTime((prev) => {
+        const next = formatTime(new Date());
+        return next !== prev ? next : prev;
+      });
     }, 30 * 1000);
     return () => clearInterval(id);
-  }, [time]);
+  }, []);
 
   // Animate scramble whenever `time` changes
   useEffect(() => {
@@ -136,12 +140,6 @@ export function LiveTimeBadge() {
       >
         · {MOODS[moodIdx]}
       </span>
-      <style jsx>{`
-        @keyframes live-pulse {
-          0%, 100% { opacity: 0.5; transform: scale(1); }
-          50% { opacity: 1; transform: scale(1.35); }
-        }
-      `}</style>
     </span>
   );
 }

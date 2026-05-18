@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import Image from "next/image";
 import { gsap } from "gsap";
 import { SplitText } from "gsap/SplitText";
 import { AIRBNB_URL, EXTERNAL_LINK_PROPS } from "@/lib/site";
@@ -103,14 +104,19 @@ export function CleanHero() {
       }}
       data-cleanhero
     >
-      {/* Full-bleed sharp photo */}
+      {/* Full-bleed sharp photo — this is the LCP image, so use next/image
+          with `priority` to preload + serve AVIF/WebP from Vercel's image
+          optimizer. GSAP scale animates the wrapper div, which still scales
+          the rendered <img> proportionally. */}
       <div className="absolute inset-0" style={{ overflow: "hidden" }}>
         <div className="ch-photo-inner absolute inset-0" style={{ willChange: "transform" }}>
-          <img
+          <Image
             src="/images/squirrels-nest/sq-18.jpg"
             alt="Squirrels' Nest, sitting room with yellow velvet chairs"
-            loading="eager"
-            style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+            fill
+            priority
+            sizes="100vw"
+            style={{ objectFit: "cover" }}
           />
         </div>
         {/* gradient overlay intentionally removed — photo speaks for itself */}

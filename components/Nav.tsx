@@ -2,9 +2,15 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { cn } from "@/lib/utils";
 import { LiveTimeBadge } from "@/components/v2/LiveTimeBadge";
 import { AIRBNB_URL, EXTERNAL_LINK_PROPS } from "@/lib/site";
+
+if (typeof window !== "undefined") {
+  gsap.registerPlugin(ScrollTrigger);
+}
 
 /**
  * Site nav. Three states:
@@ -25,7 +31,10 @@ export function Nav() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // Detect when the nav's top strip overlaps a "dark" section
+  // Detect when the nav's top strip overlaps a "dark" section. Driven by
+  // scroll/resize plus ScrollTrigger's `refresh` event (fires whenever a
+  // pinned timeline re-lays-out). Replaces the previous 4 Hz setInterval
+  // poll, which was a continuous forced reflow + battery cost on mobile.
   useEffect(() => {
     if (typeof window === "undefined") return;
     const navHeight = 80;
@@ -44,11 +53,13 @@ export function Nav() {
     check();
     window.addEventListener("scroll", check, { passive: true });
     window.addEventListener("resize", check);
-    const id = window.setInterval(check, 250); // catch GSAP-pin re-layouts
+    ScrollTrigger.addEventListener("refresh", check);
+    ScrollTrigger.addEventListener("refreshInit", check);
     return () => {
       window.removeEventListener("scroll", check);
       window.removeEventListener("resize", check);
-      window.clearInterval(id);
+      ScrollTrigger.removeEventListener("refresh", check);
+      ScrollTrigger.removeEventListener("refreshInit", check);
     };
   }, []);
 

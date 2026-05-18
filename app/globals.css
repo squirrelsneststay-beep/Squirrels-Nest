@@ -297,6 +297,19 @@ html.lenis, html.lenis body { height: auto; }
   .ib-final-frame { animation: none; }
 }
 
+/* LiveTimeBadge — pulsing live indicator dot. Migrated out of styled-jsx
+   because styled-jsx is no longer bundled in Next 16 by default. */
+@keyframes live-pulse {
+  0%, 100% { opacity: 0.5; transform: scale(1); }
+  50%      { opacity: 1;   transform: scale(1.35); }
+}
+
+/* ReservationCard — slow rotating star. Same reason as live-pulse. */
+@keyframes rc-star-spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
 /* UnifiedStory mobile fallback: on viewports < 768px, the chapter labels
    collapse to a single centred column instead of absolute-% positions.
    DESIGN.md mandate. */

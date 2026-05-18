@@ -87,14 +87,11 @@ export function StackingCards() {
     const ctx = gsap.context(() => {
       const cardEls = gsap.utils.toArray<HTMLElement>(".sc-card");
 
-      // Initial state — all cards CENTERED (top:50% + translate-50%), only first visible.
-      // Subsequent cards offset BELOW by translating Y in percentage of viewport.
+      // Initial scale + stacking order. Y is driven entirely by the tweens
+      // below — using function values + invalidateOnRefresh so window
+      // dimensions stay fresh on resize / orientation change.
       cardEls.forEach((c, i) => {
-        gsap.set(c, {
-          y: i === 0 ? 0 : window.innerHeight,
-          scale: 1,
-          zIndex: i + 1,
-        });
+        gsap.set(c, { scale: 1, zIndex: i + 1 });
       });
 
       const tl = gsap.timeline({
@@ -105,6 +102,7 @@ export function StackingCards() {
           pin: ".sc-pin",
           scrub: 1,
           anticipatePin: 1,
+          invalidateOnRefresh: true,
         },
       });
 
@@ -126,8 +124,9 @@ export function StackingCards() {
             at
           );
         }
-        tl.to(
+        tl.fromTo(
           cardEls[i],
+          { y: () => window.innerHeight },
           { y: 0, duration: 0.24, ease: "power2.out" },
           at
         );
