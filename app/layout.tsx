@@ -6,6 +6,7 @@ import { Nav } from "@/components/Nav";
 import { BigFooter } from "@/components/v2/BigFooter";
 import { ScrollProgress } from "@/components/v2/ScrollProgress";
 import { FloatingBookButton } from "@/components/v2/FloatingBookButton";
+import { SITE_URL, BRAND } from "@/lib/site";
 
 // Display serif — Libre Baskerville. The face Hotellia.framer.website uses
 // for its big headlines ("Total escape", "ROOMS", "OFFERS"). Classic
@@ -39,37 +40,35 @@ const geistMono = Geist_Mono({
   display: "swap",
 });
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://squirrelsneststay.co.uk";
-
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: "Squirrels' Nest. A converted cabin in the English countryside.",
-    template: "%s | Squirrels' Nest",
+    default: `${BRAND.name}. A converted cabin in the English countryside.`,
+    template: `%s | ${BRAND.name}`,
   },
   description:
-    "A slow, considered stay. Squirrels' Nest is a converted cabin on a working farm. Wood-fired, hand-finished, set against open fields and quiet skies.",
-  keywords: ["airbnb", "cabin", "english countryside", "weekend escape", "rural retreat", "self-catering"],
+    `A slow, considered stay. ${BRAND.name} is a one-room lodge and a shepherd's hut on a working farm in ${BRAND.location}. Hand-finished by Zoe over two years.`,
+  keywords: ["airbnb", "cabin", "english countryside", "west berkshire", "weekend escape", "rural retreat", "self-catering"],
   authors: [{ name: "Zoe" }],
   openGraph: {
     type: "website",
     locale: "en_GB",
     url: SITE_URL,
-    siteName: "Squirrels' Nest",
-    title: "Squirrels' Nest. A converted cabin in the English countryside.",
-    description: "A one-room lodge and a shepherd's hut on a working farm in West Berkshire. Sleeps two each, four together. Two years of hand-finishing by Zoe. Everything inside is for sale.",
+    siteName: BRAND.name,
+    title: `${BRAND.name}. A converted cabin in the English countryside.`,
+    description: `A one-room lodge and a shepherd's hut on a working farm in ${BRAND.location}. Sleeps two each, four together. Two years of hand-finishing by Zoe. Everything inside is for sale.`,
     images: [
       {
         url: "/images/squirrels-nest/sq-12.jpg",
         width: 1280,
         height: 800,
-        alt: "Squirrels' Nest, the red headboard bedroom",
+        alt: `${BRAND.name}, the red headboard bedroom`,
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Squirrels' Nest",
+    title: BRAND.name,
     description: "A converted cabin in the English countryside.",
     images: ["/images/squirrels-nest/sq-12.jpg"],
   },

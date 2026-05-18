@@ -4,7 +4,6 @@ import { useEffect, useRef } from "react";
 import Image from "next/image";
 import { gsap } from "gsap";
 import { SplitText } from "gsap/SplitText";
-import { AIRBNB_URL, EXTERNAL_LINK_PROPS } from "@/lib/site";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(SplitText);
@@ -122,19 +121,8 @@ export function CleanHero() {
         {/* gradient overlay intentionally removed — photo speaks for itself */}
       </div>
 
-      {/* Top CTA pill only — banner tag removed */}
-      <div className="absolute top-0 inset-x-0 z-30 pt-7">
-        <div
-          className="mx-auto flex items-start justify-end"
-          style={{ maxWidth: "108rem", paddingInline: "clamp(1.5rem, 3vw, 3.5rem)" }}
-        >
-          <a href={AIRBNB_URL} {...EXTERNAL_LINK_PROPS} className="ch-meta sv-pill" style={{ background: "transparent", color: "var(--v2-bg)", borderColor: "rgba(255,249,235,0.4)" }}>
-            <span>Reserve</span>
-            <span className="sv-pill-rule" aria-hidden />
-            <span>a stay</span>
-          </a>
-        </div>
-      </div>
+      {/* Top CTA intentionally removed — the global <FloatingBookButton>
+          in layout.tsx is the sole Book CTA across the whole site. */}
 
       {/* MID — short tagline left-aligned, generous space (SplitText animated) */}
       <div
