@@ -9,20 +9,25 @@ if (typeof window !== "undefined") {
 }
 
 /**
- * InspiredBy — continuous shrink + flick.
+ * InspiredBy — TWO-stage scroll:
  *
- * Pinned section. ONE container that holds all photos starts full-bleed
- * (100% viewport). As you scroll, the container continuously SHRINKS down
- * to a small framed centre photo. WHILE shrinking, the photos inside the
- * container flick through each other VERY FAST (twice the previous speed).
+ *   Stage 1 (approach, NOT pinned):
+ *     start: "top bottom" → end: "top top"
+ *     As the user scrolls INTO the section, the frame already starts
+ *     shrinking from 100vw/100vh down to a mid-size. No pin yet —
+ *     just natural scroll driving the size.
  *
- * At the end of the pin, the container is at its final small size in the
- * middle of the page. Then "Inspired by" and "the English countryside"
- * headings fade in around it.
+ *   Stage 2 (pinned final):
+ *     start: "top top" → end: "+=350%"
+ *     Pin engages when section reaches top. Frame continues shrinking
+ *     to its final small portrait. Rapid photo flicks happen across
+ *     this window. At the end, "Inspired by" and "the English
+ *     countryside" fade in around the small framed photo.
+ *
+ *   The two stages are SEAMLESS — the frame is already mid-shrink when
+ *   the pin takes over, so there's no "click" at pin engagement.
  */
 
-// Big variety pool — uses 30 of the 58 available photos for the rapid flick.
-// Skips sq-01 (chicken — user is sick of chickens) and sq-38 (shower).
 const flickPhotos = [
   "/images/squirrels-nest/sq-08.jpg",
   "/images/zoe-09.jpg",
@@ -83,20 +88,37 @@ export function InspiredBy() {
       layers.forEach((l, i) => gsap.set(l, { opacity: i === 0 ? 1 : 0 }));
       gsap.set([headLeft, headRight], { opacity: 0, y: 30 });
 
+      // ───────── STAGE 1: APPROACH SHRINK (no pin) ─────────
+      // As the user scrolls INTO the section (top of section enters bottom
+      // of viewport → top of section reaches top of viewport), the frame
+      // shrinks from full-bleed to mid-size. No pin during this phase, so
+      // the user sees normal scroll with the frame already shrinking.
+      gsap.to(frame, {
+        width: "60vw",
+        height: "70vh",
+        borderRadius: "2px",
+        ease: "none",
+        scrollTrigger: {
+          trigger: root,
+          start: "top bottom",
+          end: "top top",
+          scrub: 0.6,
+        },
+      });
+
+      // ───────── STAGE 2: PINNED FINAL (continued shrink + flicks + reveal) ─────────
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: root,
           start: "top top",
-          end: "+=600%",
+          end: "+=350%",
           pin: ".ib-pin",
           scrub: 0.8,
           anticipatePin: 1,
         },
       });
 
-      // === CONTINUOUS SHRINK ===
-      // Frame size shrinks from full-bleed to a small portrait throughout
-      // the SAME scroll range as the flicks.
+      // Continue shrink from where stage 1 left off (60vw / 70vh) to final small
       tl.to(
         frame,
         {
@@ -104,15 +126,13 @@ export function InspiredBy() {
           height: "22rem",
           borderRadius: "3px",
           ease: "power2.inOut",
-          duration: 0.85,
+          duration: 0.80,
         },
         0
       );
 
-      // === RAPID FLICKS ===
-      // Photos crossfade across the SAME scroll window (0 → 0.85).
-      // Each flick is very short (duration 0.03) so they feel FAST.
-      const flickWindow = 0.85;
+      // RAPID FLICKS across the same window
+      const flickWindow = 0.80;
       const step = flickWindow / (layers.length - 1);
       for (let i = 1; i < layers.length; i++) {
         const at = step * (i - 1);
@@ -120,9 +140,9 @@ export function InspiredBy() {
         tl.to(layers[i], { opacity: 1, duration: 0.025, ease: "none" }, at);
       }
 
-      // === HEADINGS appear at the end, around the small framed photo ===
-      tl.to(headLeft, { opacity: 1, y: 0, ease: "power3.out", duration: 0.10 }, 0.86);
-      tl.to(headRight, { opacity: 1, y: 0, ease: "power3.out", duration: 0.10 }, 0.92);
+      // Headings reveal at the end
+      tl.to(headLeft, { opacity: 1, y: 0, ease: "power3.out", duration: 0.10 }, 0.82);
+      tl.to(headRight, { opacity: 1, y: 0, ease: "power3.out", duration: 0.10 }, 0.88);
     }, rootRef);
 
     return () => ctx.revert();
@@ -134,14 +154,19 @@ export function InspiredBy() {
       className="relative"
       style={{
         background: "var(--v2-bg)",
-        // Lead-in / lead-out padding so the pinned content doesn't butt up
-        // hard against neighbouring sections. Gives a soft cream blend.
-        paddingBlock: "8vh",
+        // NO paddingBlock — was creating the cream "white bar at top" the
+        // user noticed during scroll-in. Pin handles its own framing.
       }}
     >
       <div
-        className="ib-pin relative min-h-[100dvh] w-full overflow-hidden flex items-center justify-center"
-        style={{ background: "var(--v2-bg)" }}
+        className="ib-pin relative w-full overflow-hidden flex items-center justify-center"
+        style={{
+          background: "var(--v2-bg)",
+          // Dead-centre vertical centering. Equal flex centering means the
+          // frame always sits in the visual middle of the viewport while
+          // pinned, both axes.
+          height: "100dvh",
+        }}
       >
         {/* Headings — appear at end, around the shrunk frame */}
         <h2
@@ -185,7 +210,8 @@ export function InspiredBy() {
           the English countryside.
         </h2>
 
-        {/* The shrinking frame — starts full viewport, ends small portrait centre */}
+        {/* The shrinking frame — starts full viewport, ends small portrait centre.
+            flex parent guarantees dead-centre positioning. */}
         <div
           className="ib-frame relative"
           style={{
