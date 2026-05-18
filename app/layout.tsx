@@ -5,6 +5,7 @@ import { SmoothScroll } from "@/components/SmoothScroll";
 import { Nav } from "@/components/Nav";
 import { BigFooter } from "@/components/v2/BigFooter";
 import { ScrollProgress } from "@/components/v2/ScrollProgress";
+import { FloatingBookButton } from "@/components/v2/FloatingBookButton";
 
 // Display serif — Libre Baskerville. The face Hotellia.framer.website uses
 // for its big headlines ("Total escape", "ROOMS", "OFFERS"). Classic
@@ -38,7 +39,7 @@ const geistMono = Geist_Mono({
   display: "swap",
 });
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://squirrelsnest.co.uk";
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://squirrelsneststay.co.uk";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -85,6 +86,7 @@ export default function RootLayout({
     >
       <body>
         <ScrollProgress />
+        <FloatingBookButton />
         <SmoothScroll>
           <Nav />
           <main>{children}</main>

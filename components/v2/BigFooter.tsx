@@ -113,7 +113,7 @@ export function BigFooter() {
               the list.
             </p>
             <a
-              href="mailto:hello@squirrelsnest.co.uk"
+              href="mailto:zoe@squirrelsneststay.co.uk"
               className="bf-link inline-block"
               style={{
                 marginTop: "1.5rem",
@@ -126,7 +126,7 @@ export function BigFooter() {
                 textDecorationThickness: "1px",
               }}
             >
-              Hello@squirrelsnest.co.uk
+              zoe@squirrelsneststay.co.uk
             </a>
           </div>
 
@@ -151,6 +151,8 @@ export function BigFooter() {
                 <li className="bf-link" style={{ paddingBlock: "0.35rem" }}>Shepherd&apos;s hut sleeps two more</li>
                 <li className="bf-link" style={{ paddingBlock: "0.35rem" }}>Garden, porch, coffee machine</li>
                 <li className="bf-link" style={{ paddingBlock: "0.35rem" }}>Wi-Fi included</li>
+                <li className="bf-link" style={{ paddingBlock: "0.35rem" }}>Pet friendly</li>
+                <li className="bf-link" style={{ paddingBlock: "0.35rem" }}>No minimum stay</li>
                 <li className="bf-link" style={{ paddingBlock: "0.35rem" }}>West Berkshire, on a working farm</li>
                 <li className="bf-link" style={{ paddingBlock: "0.35rem" }}>Furniture for sale</li>
               </ul>

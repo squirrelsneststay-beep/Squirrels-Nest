@@ -9,9 +9,13 @@
 
 export const BRAND = {
   name: "Squirrels' Nest",
-  email: "hello@squirrelsnest.co.uk",
-  location: "the English countryside",
+  email: "zoe@squirrelsneststay.co.uk",
+  domain: "squirrelsneststay.co.uk",
+  location: "West Berkshire",
 } as const;
+
+export const SITE_URL =
+  process.env.NEXT_PUBLIC_SITE_URL || `https://${BRAND.domain}`;
 
 export const AIRBNB_URL =
   process.env.NEXT_PUBLIC_AIRBNB_URL || "https://www.airbnb.co.uk";

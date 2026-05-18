@@ -4,7 +4,7 @@ import type { MetadataRoute } from "next";
  * robots.txt — allow indexing once the site is live + named.
  * Update SITE_URL to your production domain before deploying.
  */
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://squirrelsnest.co.uk";
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://squirrelsneststay.co.uk";
 
 export default function robots(): MetadataRoute.Robots {
   return {

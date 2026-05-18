@@ -6,7 +6,6 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { cn } from "@/lib/utils";
 import { LiveTimeBadge } from "@/components/v2/LiveTimeBadge";
-import { AIRBNB_URL, EXTERNAL_LINK_PROPS } from "@/lib/site";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
@@ -113,11 +112,9 @@ export function Nav() {
         >
           <Link href="/" className="hover:opacity-60 transition-opacity">Home</Link>
           <Link href="/contact" className="hover:opacity-60 transition-opacity">Contact</Link>
-          <a href={AIRBNB_URL} {...EXTERNAL_LINK_PROPS} className="sv-pill is-inverse">
-            <span>Book</span>
-            <span className="sv-pill-rule" aria-hidden />
-            <span>on Airbnb</span>
-          </a>
+          {/* Book CTA lives in <FloatingBookButton> (mounted in layout.tsx)
+              so it remains visible even when this nav is hidden over dark
+              pinned sections. */}
         </nav>
       </div>
     </header>

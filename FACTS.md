@@ -39,6 +39,13 @@ Last updated: 2026-05-18.
 - **Zoe** owns/operates it
 - Zoe **hand-upholstered a lot of it herself**
 
+### Booking
+- Listed on **Airbnb** (confirmed live listing)
+- **Pet friendly** — yes
+- **No minimum stay** — no min nights
+- Real domain: **squirrelsneststay.co.uk**
+- Real email: **zoe@squirrelsneststay.co.uk**
+
 ### Photography
 - All `public/images/squirrels-nest/sq-XX.jpg` images are real, accurate
   photos of the cabin/lodge
@@ -54,12 +61,9 @@ Last updated: 2026-05-18.
 
 ## NOT confirmed (do NOT use until owner confirms)
 
-- Pet friendly?
 - Wood-fired stove? **CONFIRMED ABSENT** — do not mention
-- Min nights?
-- Real Airbnb listing URL?
-- Real domain (`squirrelsnest.co.uk` is invented as placeholder)
-- Real email (`hello@squirrelsnest.co.uk` is invented as placeholder)
+- Real Airbnb listing URL — confirmed listing exists, exact URL still
+  needed (set via `NEXT_PUBLIC_AIRBNB_URL` env var)
 - Real Instagram handle?
 - Specific furniture origin stories (where chairs came from, where tap
   was sourced, etc) — all previously invented
