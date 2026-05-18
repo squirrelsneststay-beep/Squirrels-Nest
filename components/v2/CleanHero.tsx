@@ -113,8 +113,8 @@ export function CleanHero() {
       <div className="absolute inset-0" style={{ overflow: "hidden" }}>
         <div className="ch-photo-inner absolute inset-0" style={{ willChange: "transform" }}>
           <img
-            src="/images/squirrels-nest/sq-12.jpg"
-            alt="Squirrels' Nest, bedroom with red headboard"
+            src="/images/squirrels-nest/sq-18.jpg"
+            alt="Squirrels' Nest, sitting room with yellow velvet chairs"
             loading="eager"
             style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
           />
@@ -180,7 +180,9 @@ export function CleanHero() {
           aria-label="Squirrels' Nest"
           style={{
             color: "var(--v2-bg)",
-            fontSize: "clamp(5rem, 18vw, 21rem)",
+            // Brought down from 18vw -> 12vw so the wordmark fits within
+            // the viewport at all widths (was overflowing right edge).
+            fontSize: "clamp(3.5rem, 12vw, 14rem)",
             lineHeight: 0.84,
             letterSpacing: "-0.045em",
             fontWeight: 400,
