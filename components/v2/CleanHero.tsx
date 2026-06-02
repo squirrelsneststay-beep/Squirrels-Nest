@@ -148,7 +148,7 @@ export function CleanHero() {
             >
               <Image
                 src={p.src}
-                alt={i === 0 ? `${p.alt} — Squirrels' Nest` : ""}
+                alt={`${p.alt} — Squirrels' Nest`}
                 fill
                 priority={i === 0}
                 loading={i === 0 ? "eager" : "lazy"}

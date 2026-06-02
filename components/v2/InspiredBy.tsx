@@ -229,7 +229,7 @@ export function InspiredBy() {
             >
               <Image
                 src={src}
-                alt=""
+                alt={i === 0 ? "Interiors and corners of Squirrels' Nest" : ""}
                 fill
                 sizes="(max-width: 768px) 80vw, 24rem"
                 priority={i < 2}

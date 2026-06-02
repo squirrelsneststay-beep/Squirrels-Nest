@@ -133,11 +133,7 @@ export default function PrivacyPage() {
           <p>
             If we ever add anything — analytics, an iframe widget, an embedded
             booking calendar — we&apos;ll update this page and note the
-            change. Last updated: {new Date().toLocaleDateString("en-GB", {
-              year: "numeric",
-              month: "long",
-              day: "numeric",
-            })}.
+            change. Last updated: 2 June 2026.
           </p>
         </Section>
       </div>

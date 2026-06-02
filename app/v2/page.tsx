@@ -79,7 +79,9 @@ export default function V2Page() {
       </section>
 
       {/* Word — line — word moment */}
-      <WordLineMoment />
+      <div id="tour" style={{ scrollMarginTop: "6rem" }}>
+        <WordLineMoment />
+      </div>
 
       {/* DEMO 1 — Scroll-pinned image stack */}
       <PinnedStack />

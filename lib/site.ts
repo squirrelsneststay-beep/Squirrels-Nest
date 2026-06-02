@@ -20,8 +20,14 @@ export const SITE_URL =
 export const AIRBNB_URL =
   process.env.NEXT_PUBLIC_AIRBNB_URL || "https://www.airbnb.co.uk";
 
-export const INSTAGRAM_URL =
-  process.env.NEXT_PUBLIC_INSTAGRAM_URL || "https://www.instagram.com/";
+// Only expose the Instagram link when a real profile URL is configured. The
+// bare instagram.com homepage is treated as "unset" (null) so the footer never
+// ships a link that dumps visitors on a login wall.
+const rawInstagram = process.env.NEXT_PUBLIC_INSTAGRAM_URL?.trim();
+export const INSTAGRAM_URL: string | null =
+  rawInstagram && rawInstagram !== "https://www.instagram.com/"
+    ? rawInstagram
+    : null;
 
 /**
  * Standard attributes for any link opening an external destination in a new

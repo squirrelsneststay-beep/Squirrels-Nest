@@ -139,7 +139,9 @@ export function BigFooter() {
                 <li className="bf-link" style={{ paddingBlock: "0.35rem" }}><a href="/" className="hover:opacity-70 transition-opacity">Home</a></li>
                 <li className="bf-link" style={{ paddingBlock: "0.35rem" }}><a href="/contact" className="hover:opacity-70 transition-opacity">Contact</a></li>
                 <li className="bf-link" style={{ paddingBlock: "0.35rem" }}><a href={AIRBNB_URL} {...EXTERNAL_LINK_PROPS} className="hover:opacity-70 transition-opacity">Book on Airbnb</a></li>
-                <li className="bf-link" style={{ paddingBlock: "0.35rem" }}><a href={INSTAGRAM_URL} {...EXTERNAL_LINK_PROPS} className="hover:opacity-70 transition-opacity">Instagram</a></li>
+                {INSTAGRAM_URL && (
+                  <li className="bf-link" style={{ paddingBlock: "0.35rem" }}><a href={INSTAGRAM_URL} {...EXTERNAL_LINK_PROPS} className="hover:opacity-70 transition-opacity">Instagram</a></li>
+                )}
               </ul>
             </div>
             <div>

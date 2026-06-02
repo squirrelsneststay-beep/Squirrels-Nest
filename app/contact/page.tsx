@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { ScrollReveal } from "@/components/ScrollReveal";
-import { PlaceholderImage } from "@/components/PlaceholderImage";
 import { ContactForm } from "./ContactForm";
 import { BRAND, AIRBNB_URL, EXTERNAL_LINK_PROPS } from "@/lib/site";
 
@@ -55,7 +55,18 @@ export default function ContactPage() {
             <ContactForm />
 
             <aside className="md:col-span-4 md:col-start-9 space-y-12">
-              <PlaceholderImage label="The lane" tone="moss" aspect="4 / 5" />
+              <div
+                className="relative w-full overflow-hidden"
+                style={{ aspectRatio: "4 / 5", borderRadius: "3px", background: "var(--lef-line, #e5e1d7)" }}
+              >
+                <Image
+                  src="/images/squirrels-nest/sq-08.jpg"
+                  alt="The cabin at Squirrels' Nest, with its bistro table outside"
+                  fill
+                  sizes="(max-width: 768px) 100vw, 33vw"
+                  style={{ objectFit: "cover" }}
+                />
+              </div>
 
               <div>
                 <p className="font-mono-eyebrow mb-3" style={{ color: "var(--lef-bark)" }}>

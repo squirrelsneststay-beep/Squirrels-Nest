@@ -73,9 +73,10 @@ export function ReservationCard() {
   return (
     <section
       ref={rootRef}
+      id="reserve"
       data-section-tone="dark"
       className="relative"
-      style={{ minHeight: "100dvh", overflow: "hidden", paddingBlock: "12vh" }}
+      style={{ minHeight: "100dvh", overflow: "hidden", paddingBlock: "12vh", scrollMarginTop: "6rem" }}
     >
       {/* Moody full-bleed photo */}
       <div className="absolute inset-0" style={{ background: "var(--v2-ink)" }}>
