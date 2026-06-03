@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import { CleanHero } from "@/components/v2/CleanHero";
 import { EditorialWelcome } from "@/components/v2/EditorialWelcome";
 import { InsideTheNest } from "@/components/v2/InsideTheNest";
+import { ShepherdsHut } from "@/components/v2/ShepherdsHut";
 import { EveryDetail } from "@/components/v2/EveryDetail";
 import { InspiredBy } from "@/components/v2/InspiredBy";
 import { ExpandingGallery } from "@/components/v2/ExpandingGallery";
@@ -34,6 +35,10 @@ export default function HomePage() {
       {/* Synced-scroll moments list — large photo, scroll syncs which
           item is active and which photo is shown. */}
       <EveryDetail />
+
+      {/* The separate shepherd's hut — a quiet second moment, kept apart from
+          the hut card in the rooms grid so the mention is spread out. */}
+      <ShepherdsHut />
 
       <InspiredBy />
       <ExpandingGallery />

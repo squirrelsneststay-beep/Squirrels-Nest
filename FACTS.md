@@ -5,7 +5,7 @@ If something isn't on this list, it MUST be confirmed by the owner before
 being written into copy. No invented anecdotes, no assumed details, no
 guessed locations.
 
-Last updated: 2026-05-18.
+Last updated: 2026-06-03.
 
 ---
 
@@ -24,6 +24,9 @@ Last updated: 2026-05-18.
   - Sleeps 2
 - **One shepherd's hut** (separate, external)
   - Sleeps 2 more
+  - **2 single beds**
+  - A few steps from the lodge, across the garden
+  - Part of the same accommodation / same booking
 - **Total combined capacity: 4 people across the two structures**
 
 ### Amenities (confirmed present)
