@@ -339,3 +339,26 @@ html.lenis, html.lenis body { height: auto; }
   }
   .reveal, .reveal-fast, .reveal-still { opacity: 1; transform: none; }
 }
+
+/* ───────── Mobile: stack the "Look Inside the Nest" room cards so copy
+   isn't squeezed into 2–3 words per line on narrow screens. The desktop
+   12-column staggered layout (>720px) is completely untouched. ───── */
+@media (max-width: 720px) {
+  .itn-card {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 1.25rem !important;
+  }
+  .itn-card > div {
+    grid-column: auto !important;
+    grid-row: auto !important;
+    padding-top: 0 !important;
+    padding-left: 0 !important;
+  }
+  /* Wide-band (kitchen) inner drop-cap + copy row → stack */
+  .itn-card > div[style*="grid-template-columns"] {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 1rem !important;
+  }
+}

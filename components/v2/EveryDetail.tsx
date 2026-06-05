@@ -24,12 +24,12 @@ type Moment = {
 };
 
 const MOMENTS: Moment[] = [
-  { label: "Coffee on the porch", photo: "/images/squirrels-nest/sq-08.jpg" },
-  { label: "A long bath",          photo: "/images/squirrels-nest/sq-22.jpg" },
-  { label: "The velvet chair",     photo: "/images/squirrels-nest/sq-18.jpg" },
-  { label: "Wine at sunset",       photo: "/images/squirrels-nest/sq-42.jpg" },
-  { label: "Kitchen at dawn",      photo: "/images/squirrels-nest/sq-35.jpg" },
-  { label: "Sleep, soft",          photo: "/images/squirrels-nest/sq-12.jpg" },
+  { label: "Coffee in the courtyard", photo: "/images/squirrels-nest/sq-08.jpg" },
+  { label: "Woodland from the window", photo: "/images/squirrels-nest/sq-37.jpg" },
+  { label: "A fully stocked kitchen",  photo: "/images/squirrels-nest/sq-35.jpg" },
+  { label: "Cosy evenings, TV on",     photo: "/images/squirrels-nest/sq-18.jpg" },
+  { label: "The super king, made up",  photo: "/images/squirrels-nest/sq-12.jpg" },
+  { label: "Dinner under the stars",   photo: "/images/squirrels-nest/sq-42.jpg" },
 ];
 
 export function EveryDetail() {
@@ -127,7 +127,7 @@ export function EveryDetail() {
             margin: "1.5rem auto 0",
           }}
         >
-          Small moments the lodge gives away to anyone who pays attention.
+          Central heating, Wi-Fi, a TV for the evenings. Every comfort, already thought of.
         </p>
       </div>
 

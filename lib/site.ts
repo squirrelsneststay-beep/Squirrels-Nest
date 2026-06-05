@@ -11,7 +11,7 @@ export const BRAND = {
   name: "Squirrels' Nest",
   email: "zoe@squirrelsneststay.co.uk",
   domain: "squirrelsneststay.co.uk",
-  location: "West Berkshire",
+  location: "Berkshire",
 } as const;
 
 export const SITE_URL =

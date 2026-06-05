@@ -20,15 +20,17 @@ export function SmoothScroll({ children }: { children: React.ReactNode }) {
     ).matches;
     if (prefersReducedMotion) return;
 
-    // Tuned for snappier scroll feel — old values (lerp 0.085, duration 1.4)
-    // gave a laggy feel where text would appear to lag behind the wheel.
+    // Premium glide. A time-based duration + easeOutExpo (no `lerp`) gives a
+    // smooth, weighted settle on every wheel tick instead of the slightly
+    // stepped feel a raw lerp produces. wheelMultiplier 1.0 keeps each tick
+    // from over-shooting. This is the savor.it / Bellevoire scroll character.
     const lenis = new Lenis({
-      lerp: 0.11,
-      duration: 1.0,
+      duration: 1.1,
+      easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // easeOutExpo
       smoothWheel: true,
-      wheelMultiplier: 1.05,
+      wheelMultiplier: 1.0,
       touchMultiplier: 1.5,
-      easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      gestureOrientation: "vertical",
     });
     lenisRef.current = lenis;
 

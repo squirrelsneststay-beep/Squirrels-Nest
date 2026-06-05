@@ -43,20 +43,20 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: `${BRAND.name}. A converted cabin in the English countryside.`,
+    default: `${BRAND.name}. A one-bedroom country retreat in ${BRAND.location}.`,
     template: `%s | ${BRAND.name}`,
   },
   description:
-    `A slow, considered stay. ${BRAND.name} is a one-room lodge and a shepherd's hut on a working farm in ${BRAND.location}. Hand-finished by Zoe over two years.`,
-  keywords: ["airbnb", "cabin", "english countryside", "west berkshire", "weekend escape", "rural retreat", "self-catering"],
+    `A boutique one-bedroom retreat in the heart of ${BRAND.location}. Woodland views, a private courtyard, a luxurious super king bed, and an optional shepherd's hut — set in the peaceful grounds of a country house.`,
+  keywords: ["airbnb", "berkshire", "country retreat", "boutique stay", "shepherd's hut", "courtyard", "woodland", "weekend escape", "self-catering"],
   authors: [{ name: "Zoe" }],
   openGraph: {
     type: "website",
     locale: "en_GB",
     url: SITE_URL,
     siteName: BRAND.name,
-    title: `${BRAND.name}. A converted cabin in the English countryside.`,
-    description: `A one-room lodge and a shepherd's hut on a working farm in ${BRAND.location}. Sleeps two each, four together. Two years of hand-finishing by Zoe. Everything inside is for sale.`,
+    title: `${BRAND.name}. A one-bedroom country retreat in ${BRAND.location}.`,
+    description: `A boutique one-bedroom retreat in the Berkshire countryside — super king bed, fully equipped kitchen, walk-in shower, private courtyard. An optional shepherd's hut sleeps two more.`,
     images: [
       {
         url: "/images/squirrels-nest/sq-12.jpg",
@@ -69,7 +69,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: BRAND.name,
-    description: "A converted cabin in the English countryside.",
+    description: "A one-bedroom boutique retreat in the Berkshire countryside.",
     images: ["/images/squirrels-nest/sq-12.jpg"],
   },
   robots: { index: true, follow: true },

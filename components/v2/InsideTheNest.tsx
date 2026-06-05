@@ -68,31 +68,31 @@ type Card = SpreadRight | TallTriptych | WideBand | SpreadLeft;
 const ROOMS: Card[] = [
   {
     variant: "spread-right",
-    name: "The Sitting Room",
-    body: "Two yellow velvet chairs Zoe upholstered by hand. Green walls. A low table between them. The kind of room that holds you for an extra hour without asking.",
-    photoMain: "/images/squirrels-nest/sq-18.jpg",
-    photoDetail: "/images/squirrels-nest/sq-15.jpg",
+    name: "The Bedroom",
+    body: "Open-plan and calm, with a luxurious super king-size bed at its heart and the living space wrapped around it. Soft light, woodland in the window, and nowhere you need to be.",
+    photoMain: "/images/squirrels-nest/sq-12.jpg",
+    photoDetail: "/images/squirrels-nest/sq-32.jpg",
   },
   {
     variant: "tall-triptych",
-    name: "The Bedroom",
-    body: "A red headboard. White linen, soft. A star-pattern quilt Zoe stitched on the floor of this very room. The curtain holds the morning back as long as you'd like.",
-    photoTall: "/images/squirrels-nest/sq-30.jpg",
-    photoSquare: "/images/squirrels-nest/sq-12.jpg",
+    name: "The Shower Room",
+    body: "A spacious shower room with a modern walk-in shower. Brass fittings, white tile, and hot water whenever you want it.",
+    photoTall: "/images/squirrels-nest/sq-38.jpg",
+    photoSquare: "/images/squirrels-nest/sq-39.jpg",
   },
   {
     variant: "wide-band",
     name: "The Kitchen",
     initial: "K",
-    body: "Brass tap, brass kettle. An espresso machine on the counter. A red-checked curtain under the worktop. Small, complete, ready whenever you are.",
+    body: "Fully equipped and ready whenever you are. Brass tap, espresso machine, and everything you need to cook in — or just make the morning coffee.",
     photoWide: "/images/squirrels-nest/sq-35.jpg",
   },
   {
     variant: "spread-left",
-    name: "The Shepherd's Hut",
-    body: "Across the garden, separate from the lodge — sleeps two more. For the friends you brought. Or for sending them home at the end of the night.",
+    name: "The Courtyard",
+    body: "Step out to a private, enclosed courtyard with seating of its own. Morning coffee, dinner outside, or a quiet glass under the stars.",
     photoMain: "/images/squirrels-nest/sq-08.jpg",
-    photoDetail: "/images/squirrels-nest/sq-42.jpg",
+    photoDetail: "/images/squirrels-nest/sq-37.jpg",
   },
 ];
 

@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import Image from "next/image";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -98,12 +99,13 @@ export function EditorialWelcome() {
             background: "var(--v2-ink)",
           }}
         >
-          <div className="ew-photo-inner absolute inset-0" style={{ willChange: "transform" }}>
-            <img
+          <div className="ew-photo-inner absolute" style={{ inset: "-14% 0", willChange: "transform" }}>
+            <Image
               src="/images/squirrels-nest/sq-15.jpg"
-              alt="Inside Squirrels' Nest"
-              loading="lazy"
-              style={{ width: "100%", height: "120%", objectFit: "cover", display: "block" }}
+              alt="Inside Squirrels' Nest, in the grounds of a Berkshire country house"
+              fill
+              sizes="(max-width: 768px) 100vw, 55vw"
+              style={{ objectFit: "cover" }}
             />
           </div>
           {/* small bottom-left caption inside photo */}
@@ -121,7 +123,7 @@ export function EditorialWelcome() {
               opacity: 0.85,
             }}
           >
-            Plate I. The Cabin at Dusk
+            Plate I. In the grounds
           </span>
         </div>
 
@@ -173,7 +175,7 @@ export function EditorialWelcome() {
             }}
           >
             <span className="ew-line block overflow-hidden">
-              <span className="block">Two slow years</span>
+              <span className="block">Set in the grounds</span>
             </span>
             <span className="ew-line block overflow-hidden">
               <span
@@ -183,12 +185,27 @@ export function EditorialWelcome() {
                   color: "color-mix(in srgb, var(--v2-ink) 70%, transparent)",
                 }}
               >
-                of stripping it back.
+                of a country house.
               </span>
             </span>
           </h2>
 
-          {/* Body / CTA / bottom meta intentionally removed — just the headline now. */}
+          <p
+            className="ew-body"
+            style={{
+              marginTop: "2rem",
+              maxWidth: "30rem",
+              fontFamily: "var(--font-geist)",
+              fontSize: "1.0625rem",
+              lineHeight: 1.6,
+              color: "var(--v2-ink-soft)",
+            }}
+          >
+            Welcome to Squirrel&apos;s Nest — a one-bedroom boutique retreat in the
+            heart of Berkshire. Wake to stunning woodland views and the gentle
+            sounds of the country: horses, chickens, ducks, and the odd friendly
+            cat or dog about the grounds.
+          </p>
         </div>
       </div>
     </section>

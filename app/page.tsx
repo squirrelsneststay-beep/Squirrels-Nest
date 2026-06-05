@@ -27,8 +27,8 @@ export default function HomePage() {
 
       {/* First inline CTA — between the rooms grid and the moments list. */}
       <InlineBookCTA
-        headline="Book a night. Stay a week. No minimum."
-        sub="The lodge is on Airbnb."
+        headline="A romantic escape, or a quiet one."
+        sub="Book direct on Airbnb."
         ctaLabel={["Book", "now"]}
       />
 
@@ -48,8 +48,8 @@ export default function HomePage() {
           follows it. */}
       <InlineBookCTA
         tone="dark"
-        headline="Want to see them in person?"
-        sub="Sleep the night, take a piece home."
+        headline="Escape to the countryside."
+        sub="A stay as relaxing as it is memorable."
         ctaLabel={["Book", "a stay"]}
       />
 

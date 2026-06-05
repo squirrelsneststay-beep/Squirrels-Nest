@@ -109,8 +109,8 @@ export function BigFooter() {
                 lineHeight: 1.55,
               }}
             >
-              Booking opens for next season in February. Drop a note and we&apos;ll keep you on
-              the list.
+              A one-bedroom boutique retreat in the Berkshire countryside.
+              Woodland views, a private courtyard, and an optional hut for two more.
             </p>
             <a
               href={`mailto:${BRAND.email}`}
@@ -149,14 +149,14 @@ export function BigFooter() {
                 Practical
               </p>
               <ul style={{ listStyle: "none", padding: 0, margin: 0, fontFamily: "var(--font-geist)", fontSize: "1rem" }}>
-                <li className="bf-link" style={{ paddingBlock: "0.35rem" }}>Lodge sleeps two</li>
-                <li className="bf-link" style={{ paddingBlock: "0.35rem" }}>Shepherd&apos;s hut sleeps two more</li>
-                <li className="bf-link" style={{ paddingBlock: "0.35rem" }}>Garden, porch, coffee machine</li>
-                <li className="bf-link" style={{ paddingBlock: "0.35rem" }}>Wi-Fi included</li>
-                <li className="bf-link" style={{ paddingBlock: "0.35rem" }}>Pet friendly</li>
-                <li className="bf-link" style={{ paddingBlock: "0.35rem" }}>No minimum stay</li>
-                <li className="bf-link" style={{ paddingBlock: "0.35rem" }}>West Berkshire, on a working farm</li>
-                <li className="bf-link" style={{ paddingBlock: "0.35rem" }}>Furniture for sale</li>
+                <li className="bf-link" style={{ paddingBlock: "0.35rem" }}>Sleeps two, plus two in the hut</li>
+                <li className="bf-link" style={{ paddingBlock: "0.35rem" }}>Luxurious super king bed</li>
+                <li className="bf-link" style={{ paddingBlock: "0.35rem" }}>Open-plan, fully equipped kitchen</li>
+                <li className="bf-link" style={{ paddingBlock: "0.35rem" }}>Large walk-in shower room</li>
+                <li className="bf-link" style={{ paddingBlock: "0.35rem" }}>Private enclosed courtyard</li>
+                <li className="bf-link" style={{ paddingBlock: "0.35rem" }}>WiFi, TV &amp; central heating</li>
+                <li className="bf-link" style={{ paddingBlock: "0.35rem" }}>Private parking</li>
+                <li className="bf-link" style={{ paddingBlock: "0.35rem" }}>Woodland views, in Berkshire</li>
               </ul>
             </div>
           </div>
@@ -272,7 +272,7 @@ export function BigFooter() {
           paddingInline: "clamp(1.5rem, 3vw, 3.5rem)",
         }}
       >
-        <span>© {new Date().getFullYear()} {BRAND.name}</span>
+        <span>© 2026 {BRAND.name}</span>
         <span>Built slowly, in the countryside</span>
       </div>
     </footer>

@@ -19,9 +19,9 @@ if (typeof window !== "undefined") {
  */
 
 const photos = [
-  { src: "/images/squirrels-nest/sq-08.jpg", caption: "the cabin" },
+  { src: "/images/squirrels-nest/sq-08.jpg", caption: "the courtyard" },
   { src: "/images/squirrels-nest/sq-15.jpg", caption: "the chair" },
-  { src: "/images/squirrels-nest/sq-18.jpg", caption: "the sitting room" },
+  { src: "/images/squirrels-nest/sq-18.jpg", caption: "the living space" },
   { src: "/images/squirrels-nest/sq-22.jpg", caption: "the brass tap" },
   { src: "/images/squirrels-nest/sq-25.jpg", caption: "a detail" },
   { src: "/images/squirrels-nest/sq-12.jpg", caption: "the bedroom" },

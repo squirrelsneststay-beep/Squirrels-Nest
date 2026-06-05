@@ -185,9 +185,9 @@ export function CleanHero() {
             lineHeight: 1.18,
           }}
         >
-          <span style={{ fontStyle: "italic", display: "block" }}>A lodge.</span>
-          <span style={{ fontStyle: "italic", display: "block" }}>A shepherd&apos;s hut.</span>
-          <span style={{ display: "block", opacity: 0.88, marginTop: "0.35rem" }}>On a working farm.</span>
+          <span style={{ fontStyle: "italic", display: "block" }}>A one-bedroom retreat.</span>
+          <span style={{ fontStyle: "italic", display: "block" }}>In the heart of Berkshire.</span>
+          <span style={{ display: "block", opacity: 0.88, marginTop: "0.35rem" }}>Woodland all around.</span>
         </div>
       </div>
 

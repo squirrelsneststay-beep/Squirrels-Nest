@@ -40,9 +40,9 @@ export default function ContactPage() {
                 className="mt-10 max-w-xl"
                 style={{ fontSize: "var(--fs-18)", color: "var(--lef-charcoal)", lineHeight: 1.6 }}
               >
-                For availability, the booking moment lives on Airbnb. For
-                everything else — longer stays, group bookings, the farm itself,
-                whether your dog will get on with our sheep — write to us here.
+                For dates and availability, booking lives on Airbnb. For
+                anything else — longer stays, the shepherd&apos;s hut, or bringing
+                the whole group — just write to us here.
               </p>
             </div>
           </ScrollReveal>

@@ -94,7 +94,7 @@ export function ShepherdsHut() {
             maxWidth: "20ch",
           }}
         >
-          And a second small room, just across the garden.
+          And a shepherd&apos;s hut, just across the grounds.
         </h2>
 
         <p
@@ -109,10 +109,9 @@ export function ShepherdsHut() {
             color: "var(--v2-ink-soft)",
           }}
         >
-          A few steps from the lodge sits a shepherd&apos;s hut. Two single beds
-          inside, its own door, the same quiet. It&apos;s part of the same stay —
-          so four of you can come. The friends you brought. The children.
-          Whoever likes their own four walls.
+          For a little more room, a charming shepherd&apos;s hut sits on the
+          grounds — optional, and all your own. It sleeps two more: perfect for
+          friends, or family travelling with you. Its own door, the same quiet.
         </p>
 
         <p
