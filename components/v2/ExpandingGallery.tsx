@@ -26,7 +26,7 @@ const photos = [
   { src: "/images/squirrels-nest/sq-25.jpg", caption: "a detail" },
   { src: "/images/squirrels-nest/sq-12.jpg", caption: "the bedroom" },
   { src: "/images/squirrels-nest/sq-32.jpg", caption: "the pillow" },
-  { src: "/images/squirrels-nest/sq-35.jpg", caption: "the kitchen" },
+  { src: "/images/squirrels-nest/sq-37.jpg", caption: "the kitchen window" },
   { src: "/images/squirrels-nest/sq-30.jpg", caption: "the chandelier" },
   { src: "/images/squirrels-nest/sq-42.jpg", caption: "the lamps" },
 ];

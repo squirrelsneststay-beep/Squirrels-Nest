@@ -43,7 +43,7 @@ const flickPhotos = [
   "/images/squirrels-nest/sq-30.jpg",
   "/images/squirrels-nest/sq-31.jpg",
   "/images/squirrels-nest/sq-32.jpg",
-  "/images/squirrels-nest/sq-35.jpg",
+  "/images/squirrels-nest/sq-22.jpg",
   "/images/squirrels-nest/sq-34.jpg",
   "/images/squirrels-nest/sq-06.jpg",
   "/images/squirrels-nest/sq-25.jpg",

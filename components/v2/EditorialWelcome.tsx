@@ -201,7 +201,7 @@ export function EditorialWelcome() {
               color: "var(--v2-ink-soft)",
             }}
           >
-            Welcome to Squirrel&apos;s Nest — a charming one-bedroom boutique retreat
+            Welcome to Squirrels&apos; Nest — a charming one-bedroom boutique retreat
             in the heart of Berkshire, set within the peaceful grounds of a
             beautiful country house. Wake to stunning woodland views and the
             gentle sounds of nature: horses, chickens, ducks, and friendly cats

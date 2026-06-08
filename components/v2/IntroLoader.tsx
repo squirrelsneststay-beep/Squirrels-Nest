@@ -8,7 +8,7 @@ import { gsap } from "gsap";
  * gold rule draws under it, then the curtain lifts to reveal the page. Brief,
  * scroll-locked while it plays, skipped entirely for reduced-motion.
  */
-const MARK = "Squirrel's Nest";
+const MARK = "Squirrels' Nest";
 
 export function IntroLoader() {
   const [done, setDone] = useState(false);

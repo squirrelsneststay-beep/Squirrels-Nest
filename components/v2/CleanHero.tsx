@@ -13,7 +13,7 @@ const HERO_PHOTOS = [
   { src: "/images/squirrels-nest/sq-18.jpg", alt: "Sitting room with yellow velvet chairs" },
   { src: "/images/squirrels-nest/sq-12.jpg", alt: "Bedroom with red headboard" },
   { src: "/images/squirrels-nest/sq-30.jpg", alt: "Chandelier on a deep-red plaster wall" },
-  { src: "/images/squirrels-nest/sq-35.jpg", alt: "Kitchen with brass tap" },
+  { src: "/images/squirrels-nest/sq-37.jpg", alt: "Kitchen sink beneath the window" },
   { src: "/images/squirrels-nest/sq-08.jpg", alt: "Lodge exterior" },
   { src: "/images/squirrels-nest/sq-42.jpg", alt: "Lamps and flowers" },
 ];
@@ -63,15 +63,6 @@ export function CleanHero() {
         { scale: 1.0, duration: 2.0, ease: "power3.out" }
       );
       if (prefersReducedMotion) return;
-
-      gsap.from(".ch-meta", {
-        opacity: 0,
-        y: 12,
-        duration: 1,
-        ease: "power3.out",
-        stagger: 0.08,
-        delay: 0.2,
-      });
 
       // SPLITTEXT on the tagline — faster reveal (was feeling sluggish)
       const taglineEl = root.querySelector<HTMLElement>(".ch-tagline-block");

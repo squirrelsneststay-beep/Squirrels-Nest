@@ -140,7 +140,7 @@ export function ForSale() {
               color: "color-mix(in srgb, var(--v2-bg) 82%, transparent)",
             }}
           >
-            Squirrel&apos;s Nest is also Zoe&apos;s showroom. Much of what fills it is her
+            Squirrels&apos; Nest is also Zoe&apos;s showroom. Much of what fills it is her
             own: the hand-upholstered chairs, the painted lamps, the folding
             screens, the little finds picked up along the way. Nothing is roped
             off, and nothing is precious for the sake of it.
@@ -161,7 +161,7 @@ export function ForSale() {
           </p>
           <span className="fs-reveal" style={{ display: "inline-flex", alignItems: "center", gap: "0.4rem", marginTop: "2rem" }}>
             <a
-              href={`mailto:${BRAND.email}?subject=Squirrel's Nest — a piece I'd love to buy`}
+              href={`mailto:${BRAND.email}?subject=Squirrels' Nest — a piece I'd love to buy`}
               style={{
                 fontFamily: "var(--font-geist)",
                 fontSize: "0.95rem",
