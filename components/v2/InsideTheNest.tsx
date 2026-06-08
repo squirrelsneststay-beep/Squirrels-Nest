@@ -4,6 +4,7 @@ import { useEffect, useRef } from "react";
 import Image from "next/image";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { AIRBNB_URL, EXTERNAL_LINK_PROPS } from "@/lib/site";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
@@ -62,7 +63,8 @@ const ROOMS: Room[] = [
 function BookLink() {
   return (
     <a
-      href="#reserve"
+      href={AIRBNB_URL}
+      {...EXTERNAL_LINK_PROPS}
       style={{
         display: "inline-block",
         marginTop: "1.25rem",
