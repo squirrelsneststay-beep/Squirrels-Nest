@@ -68,7 +68,7 @@ export function FloatingBookButton() {
   // Over white sections: solid yellow pill with dark-green text.
   const lightMode = {
     background: "var(--v2-accent)",
-    color: "#103d2e",
+    color: "#0c2a1e",
     borderColor: "var(--v2-accent)",
   };
 

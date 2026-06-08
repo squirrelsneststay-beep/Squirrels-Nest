@@ -9,7 +9,7 @@
      Nothing else. The greys are neutral tints of black (secondary text +
      hairlines), not a second colour. */
   --v2-bg:            #ffffff;   /* pure white */
-  --v2-ink:           #103d2e;   /* near-black — text + dark sections */
+  --v2-ink:           #0c2a1e;   /* near-black — text + dark sections */
   --v2-ink-soft:      #3a5d4e;   /* deep green-grey — secondary text */
   --v2-mute:          #7d978a;   /* muted green-grey — small labels */
   --v2-line:          #e2e8e4;   /* faint green-grey hairline on white */
@@ -23,13 +23,13 @@
   --lef-cream-soft:   #f5f5f5;
   --lef-stone:        #e2e2e2;
   --lef-moss:         #ffd400;   /* accent → mustard/gold */
-  --lef-forest:       #103d2e;   /* near-black headings */
+  --lef-forest:       #0c2a1e;   /* near-black headings */
   --lef-charcoal:     #2f4a40;   /* green-grey body text */
   --lef-bark:         #6a8377;   /* green-grey labels */
   --lef-rust:         #ffd400;   /* → mustard/gold */
 
   --background: #ffffff;
-  --foreground: #103d2e;
+  --foreground: #0c2a1e;
 
   --grid-max:       144rem;
   --grid-cols:      12;
@@ -71,9 +71,9 @@
    here-away.com uses one Neue Montreal. Map the old display / accent / body
    variables onto it so every component flips without edits. */
 :root {
-  --font-geist:     var(--font-switzer);  /* body — neutral grotesque, readable */
-  --font-italiana:  var(--font-syne);     /* display / headings — Syne */
-  --font-cormorant: var(--font-syne);     /* accent lines — Syne */
+  --font-geist:     var(--font-switzer);    /* body — neutral grotesque, readable */
+  --font-italiana:  var(--font-fraunces);   /* display / headings — Fraunces serif */
+  --font-cormorant: var(--font-fraunces);   /* accent lines — Fraunces italic */
 }
 
 /* ───────── Dark mode — inverts the palette (light ↔ dark). Photos are not
@@ -154,17 +154,18 @@ html.lenis, html.lenis body { height: auto; }
 
 /* Display — Instrument Serif. Editorial, high-contrast. Only weight 400. */
 .font-display {
-  font-family: var(--font-italiana), "Helvetica Neue", Arial, sans-serif;
-  font-weight: 600;
-  letter-spacing: -0.02em;
-  line-height: 0.98;
+  font-family: var(--font-italiana), Georgia, "Times New Roman", serif;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  line-height: 1.0;
+  font-optical-sizing: auto;
   font-feature-settings: "liga" 1, "kern" 1;
 }
 .font-display-italic {
-  font-family: var(--font-cormorant), "Helvetica Neue", Arial, sans-serif;
+  font-family: var(--font-cormorant), Georgia, serif;
   font-weight: 400;
-  font-style: normal;
-  letter-spacing: -0.01em;
+  font-style: italic;
+  letter-spacing: -0.005em;
 }
 .font-mono-eyebrow {
   font-family: var(--font-geist), -apple-system, BlinkMacSystemFont, "Inter", sans-serif;
@@ -198,7 +199,7 @@ html.lenis, html.lenis body { height: auto; }
 }
 .lef-pill-sm:active { transform: scale(0.97); }
 .lef-pill-sm:focus-visible {
-  outline: 2px solid #103d2e;
+  outline: 2px solid #0c2a1e;
   outline-offset: 2px;
 }
 
@@ -228,7 +229,7 @@ html.lenis, html.lenis body { height: auto; }
 .sv-pill:active { transform: scale(0.97); }
 .sv-pill.is-inverse {
   background: var(--v2-accent);
-  color: #103d2e;
+  color: #0c2a1e;
   border-color: var(--v2-accent);
 }
 @media (hover: hover) and (pointer: fine) {
@@ -271,7 +272,7 @@ html.lenis, html.lenis body { height: auto; }
 .lef-pill:hover { opacity: 0.92; }
 .lef-pill:active { transform: scale(0.97); }
 .lef-pill:focus-visible {
-  outline: 2px solid #103d2e;
+  outline: 2px solid #0c2a1e;
   outline-offset: 2px;
 }
 /* Word-reveal helper */
@@ -306,11 +307,11 @@ html.lenis, html.lenis body { height: auto; }
 .reveal-still { opacity: 0; }
 
 /* Selection */
-::selection { background: var(--v2-accent); color: #103d2e; }
+::selection { background: var(--v2-accent); color: #0c2a1e; }
 
 /* Focus ring */
 :where(a, button, input, textarea, select):focus-visible {
-  outline: 2px solid #103d2e;
+  outline: 2px solid #0c2a1e;
   outline-offset: 3px;
   border-radius: 2px;
 }
@@ -321,7 +322,7 @@ html.lenis, html.lenis body { height: auto; }
 :where(a, button, [role="button"], [tabindex]:not([tabindex="-1"]))
   :focus-visible,
 :focus-visible {
-  outline: 2px solid #103d2e;
+  outline: 2px solid #0c2a1e;
   outline-offset: 2px;
   border-radius: 3px;
 }

@@ -88,7 +88,7 @@ export function InlineBookCTA({
           ...(isDark
             ? {
                 background: "var(--v2-accent)",
-                color: "#103d2e",
+                color: "#0c2a1e",
                 borderColor: "var(--v2-accent)",
               }
             : {}),

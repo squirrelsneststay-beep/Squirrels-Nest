@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist_Mono, Syne } from "next/font/google";
+import { Geist_Mono, Fraunces } from "next/font/google";
 import localFont from "next/font/local";
 import "./globals.css";
 import { SmoothScroll } from "@/components/SmoothScroll";
@@ -24,12 +24,15 @@ const switzer = localFont({
   ],
 });
 
-// Display / headings — Syne (chosen): distinctive, contemporary, design-forward.
-const syne = Syne({
-  variable: "--font-syne",
+// Display / headings — Fraunces: a warm, high-contrast variable serif with
+// optical sizing. Reads as quiet luxury (country-house hotel), and its italics
+// pair beautifully with the hand-drawn accents.
+const fraunces = Fraunces({
+  variable: "--font-fraunces",
   subsets: ["latin"],
   display: "swap",
-  weight: ["400", "500", "600", "700", "800"],
+  weight: ["400", "500", "600", "700"],
+  style: ["normal", "italic"],
 });
 
 const geistMono = Geist_Mono({
@@ -79,7 +82,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${switzer.variable} ${syne.variable} ${geistMono.variable} antialiased`}
+      className={`${switzer.variable} ${fraunces.variable} ${geistMono.variable} antialiased`}
     >
       <body>
         <script

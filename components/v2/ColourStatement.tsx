@@ -56,7 +56,7 @@ export function ColourStatement() {
       ref={rootRef}
       style={{
         background: "var(--v2-accent)",
-        color: "#103d2e",
+        color: "#0c2a1e",
         paddingBlock: "clamp(6rem, 16vh, 13rem)",
         paddingInline: "clamp(1.5rem, 5vw, 5rem)",
         overflow: "hidden",
@@ -92,7 +92,7 @@ export function ColourStatement() {
           </span>
           <span className="block" style={{ overflow: "visible" }}>
             <span className="cs-line block">
-              for <CircledWord color="#103d2e">sale</CircledWord>.
+              for <CircledWord color="#0c2a1e">sale</CircledWord>.
             </span>
           </span>
         </h2>
