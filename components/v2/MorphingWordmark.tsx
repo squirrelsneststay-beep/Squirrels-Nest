@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import { usePathname } from "next/navigation";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -25,11 +26,17 @@ if (typeof window !== "undefined") {
  */
 export function MorphingWordmark() {
   const ref = useRef<HTMLSpanElement>(null);
+  // Re-run on every client navigation. This component lives in the root layout,
+  // so it does NOT remount between pages — without pathname in the deps it would
+  // stay hidden forever after visiting a page that has no hero (e.g. /contact).
+  const pathname = usePathname();
 
   useEffect(() => {
     if (typeof window === "undefined") return;
     const el = ref.current;
     if (!el) return;
+    // Reset visibility up-front so returning to the home page re-shows it.
+    el.style.display = "";
     const navLogo = document.getElementById("nav-logo");
     const startAnchor = document.getElementById("hero-mark-anchor");
 
@@ -47,6 +54,11 @@ export function MorphingWordmark() {
       navLogo.style.opacity = "1";
       return;
     }
+
+    // On the home page the overlay IS the visible logo, so keep the static nav
+    // logo as an invisible spacer (it may have been shown on a prior page).
+    navLogo.style.opacity = "0";
+    let unmounted = false;
 
     const readInk = () =>
       getComputedStyle(document.documentElement)
@@ -112,7 +124,7 @@ export function MorphingWordmark() {
 
     let ready = false;
     const run = () => {
-      if (ready) return;
+      if (ready || unmounted) return; // guard: fonts.ready can resolve post-unmount
       ready = true;
       setup();
       ScrollTrigger.refresh();
@@ -131,14 +143,17 @@ export function MorphingWordmark() {
     obs.observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
 
     return () => {
+      unmounted = true;
       window.clearTimeout(fallback);
       window.removeEventListener("resize", onResize);
       window.removeEventListener("scroll", applyVisibility);
       obs.disconnect();
       tween?.scrollTrigger?.kill();
       tween?.kill();
+      // Restore the static nav logo so it shows correctly on a page without a hero.
+      if (navLogo) navLogo.style.opacity = "1";
     };
-  }, []);
+  }, [pathname]);
 
   return (
     <span

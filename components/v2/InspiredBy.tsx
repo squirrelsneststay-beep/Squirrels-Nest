@@ -237,7 +237,7 @@ export function InspiredBy() {
                 alt={i === 0 ? "Interiors and corners of Squirrels' Nest" : ""}
                 fill
                 sizes="(max-width: 768px) 80vw, 24rem"
-                priority={i < 2}
+                loading="lazy"
                 style={{ objectFit: "cover" }}
               />
             </div>

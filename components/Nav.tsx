@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -24,13 +25,17 @@ export function Nav() {
   const [scrolled, setScrolled] = useState(false);
   const [overDark, setOverDark] = useState(false);
   const [inHero, setInHero] = useState(true);
+  const pathname = usePathname();
 
   useEffect(() => {
     const onScroll = () => {
       setScrolled(window.scrollY > 60);
-      // First viewport is the fixed hero — keep the nav hidden there so the
-      // hero + flying wordmark stay clean, then reveal it as the wordmark lands.
-      setInHero(window.scrollY < window.innerHeight * 0.9);
+      // Only the home page has the fixed hero. On pages WITHOUT one
+      // (/contact, /privacy, …) the nav must show normally — otherwise it would
+      // be hidden at the top of every page. Gate the "in hero" state on the
+      // hero actually being present.
+      const heroPresent = !!document.querySelector("[data-hero]");
+      setInHero(heroPresent && window.scrollY < window.innerHeight * 0.9);
     };
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
@@ -39,7 +44,7 @@ export function Nav() {
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", onScroll);
     };
-  }, []);
+  }, [pathname]);
 
   // Detect when the nav's top strip overlaps a "dark" section. Driven by
   // scroll/resize plus ScrollTrigger's `refresh` event (fires whenever a
@@ -75,7 +80,7 @@ export function Nav() {
       ScrollTrigger.removeEventListener("refresh", check);
       ScrollTrigger.removeEventListener("refreshInit", check);
     };
-  }, []);
+  }, [pathname]);
 
   // Hidden over the hero (inHero) and over lower dark sections (overDark).
   const hidden = inHero || overDark;

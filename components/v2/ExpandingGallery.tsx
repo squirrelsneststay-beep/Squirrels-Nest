@@ -160,7 +160,7 @@ export function ExpandingGallery() {
               alt={p.caption}
               fill
               sizes="(max-width: 768px) 50vw, 20vw"
-              priority={i < 2}
+              loading="lazy"
               className="object-cover object-center"
               style={{ transition: "transform 800ms cubic-bezier(0.22, 1, 0.36, 1)" }}
             />

@@ -16,6 +16,16 @@ export function IntroLoader() {
 
   useEffect(() => {
     if (typeof window === "undefined") return;
+    // Play once per browser session — don't make returning/refreshing visitors
+    // sit through the ~2.3s curtain every time.
+    let seen = false;
+    try { seen = sessionStorage.getItem("sn-intro-seen") === "1"; } catch {}
+    if (seen) {
+      setDone(true);
+      return;
+    }
+    try { sessionStorage.setItem("sn-intro-seen", "1"); } catch {}
+
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const root = rootRef.current;
     const prevOverflow = document.body.style.overflow;

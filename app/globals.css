@@ -11,7 +11,7 @@
   --v2-bg:            #ffffff;   /* pure white */
   --v2-ink:           #08351c;   /* near-black — text + dark sections */
   --v2-ink-soft:      #3a5d4e;   /* deep green-grey — secondary text */
-  --v2-mute:          #7d978a;   /* muted green-grey — small labels */
+  --v2-mute:          #5e7a6d;   /* muted green-grey — small labels (AA on white) */
   --v2-line:          #e2e8e4;   /* faint green-grey hairline on white */
   --v2-accent:        #ffd400;   /* mustard / gold — the single accent */
   --v2-accent-honey:  #ffd400;   /* alias kept for older references */
@@ -25,7 +25,7 @@
   --lef-moss:         #ffd400;   /* accent → mustard/gold */
   --lef-forest:       #08351c;   /* near-black headings */
   --lef-charcoal:     #2f4a40;   /* green-grey body text */
-  --lef-bark:         #6a8377;   /* green-grey labels */
+  --lef-bark:         #3a5d4e;   /* green-grey labels (AA on white) */
   --lef-rust:         #ffd400;   /* → mustard/gold */
 
   --background: #ffffff;
