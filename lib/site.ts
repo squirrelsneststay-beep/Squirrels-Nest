@@ -20,8 +20,13 @@ export const BRAND = {
 export const SITE_URL =
   process.env.NEXT_PUBLIC_SITE_URL || `https://${BRAND.domain}`;
 
+// The live Airbnb listing. Booking always happens on Airbnb, so every "Book"
+// CTA points here. Kept as the default (not just an env var) so it works on
+// every deploy; NEXT_PUBLIC_AIRBNB_URL can still override it if the listing
+// ever changes. Clean room URL only — no share/session/date params.
 export const AIRBNB_URL =
-  process.env.NEXT_PUBLIC_AIRBNB_URL || "https://www.airbnb.co.uk";
+  process.env.NEXT_PUBLIC_AIRBNB_URL ||
+  "https://www.airbnb.co.uk/rooms/1703768527913896679";
 
 // Only expose the Instagram link when a real profile URL is configured. The
 // bare instagram.com homepage is treated as "unset" (null) so the footer never
