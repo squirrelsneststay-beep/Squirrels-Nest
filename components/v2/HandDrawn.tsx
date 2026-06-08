@@ -84,7 +84,7 @@ export function HandUnderline({
 /** A rough circle looped around a word. */
 export function CircledWord({
   children,
-  color = "#0c2a1e",
+  color = "#08351c",
   strokeWidth = 3,
 }: {
   children: React.ReactNode;

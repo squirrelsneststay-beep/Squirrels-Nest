@@ -3,7 +3,6 @@
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { gsap } from "gsap";
-import { SplitText } from "gsap/SplitText";
 
 // Hero slideshow: auto-advances every 4 seconds.
 // Photos chosen to give a varied tour of the lodge — exterior, sitting
@@ -18,10 +17,6 @@ const HERO_PHOTOS = [
   { src: "/images/squirrels-nest/sq-42.jpg", alt: "Lamps and flowers" },
 ];
 const SLIDESHOW_INTERVAL_MS = 4000;
-
-if (typeof window !== "undefined") {
-  gsap.registerPlugin(SplitText);
-}
 
 /**
  * Hero — Bellevoire-style. Full-bleed sharp moody photo. Small support
@@ -64,46 +59,21 @@ export function CleanHero() {
       );
       if (prefersReducedMotion) return;
 
-      // SPLITTEXT on the tagline — faster reveal (was feeling sluggish)
-      const taglineEl = root.querySelector<HTMLElement>(".ch-tagline-block");
-      if (taglineEl) {
-        const split = new SplitText(taglineEl, { type: "lines, chars", linesClass: "ch-tag-line-clip" });
-        gsap.from(split.chars, {
-          yPercent: 110,
-          opacity: 0,
-          duration: 0.7,
-          ease: "power3.out",
-          stagger: { each: 0.008, from: "start" },
-          delay: 0.25,
-        });
-      }
-
-      // Bottom wordmark — quicker slide-up
-      gsap.from(".ch-mark-row", {
-        y: 80,
+      // Small eyebrow fades up. The giant wordmark is rendered by the
+      // MorphingWordmark overlay so it can fly to the nav on scroll; here we
+      // only keep an invisible anchor (.ch-mark-anchor) to measure its start.
+      gsap.from(".ch-eyebrow", {
         opacity: 0,
-        duration: 0.9,
+        y: 14,
+        duration: 1.1,
         ease: "power3.out",
-        delay: 0.2,
+        delay: 0.35,
       });
-      const markEl = root.querySelector<HTMLElement>(".ch-mark");
-      if (markEl) {
-        const markSplit = new SplitText(markEl, { type: "chars", charsClass: "ch-mark-char" });
-        gsap.from(markSplit.chars, {
-          yPercent: 110,
-          opacity: 0,
-          duration: 0.8,
-          ease: "power3.out",
-          stagger: { each: 0.018, from: "start" },
-          delay: 0.32,
-        });
-      }
     }, rootRef);
 
     return () => ctx.revert();
   }, []);
 
-  // Split wordmark into letters for a letter-by-letter rise
   const mark = "Squirrels' Nest";
 
   return (
@@ -118,6 +88,7 @@ export function CleanHero() {
         overflow: "hidden",
       }}
       data-cleanhero
+      data-hero
     >
       {/* Full-bleed slideshow — stacked photo layers, only the active one
           at opacity 1. Crossfades via 1.2s CSS opacity transition. First
@@ -155,53 +126,50 @@ export function CleanHero() {
       {/* Top CTA intentionally removed — the global <FloatingBookButton>
           in layout.tsx is the sole Book CTA across the whole site. */}
 
-      {/* MID — tagline broken across short lines for visual rhythm */}
+      {/* Real page heading for SEO / screen readers — visually hidden, since
+          the visible wordmark is the decorative MorphingWordmark overlay. */}
+      <h1 className="sr-only">
+        Squirrels&apos; Nest — a one-bedroom boutique retreat in the Berkshire countryside
+      </h1>
+
+      {/* EYEBROW — a small, plain location line, top-left */}
       <div
-        className="absolute z-10"
+        className="ch-eyebrow absolute z-10"
         style={{
-          top: "30%",
+          top: "clamp(7rem, 16vh, 11rem)",
           left: "clamp(1.5rem, 3vw, 3.5rem)",
-          right: "clamp(1.5rem, 3vw, 3.5rem)",
-          maxWidth: "44rem",
+          fontFamily: "var(--font-geist)",
+          fontSize: "0.72rem",
+          letterSpacing: "0.28em",
+          textTransform: "uppercase",
+          color: "var(--v2-bg)",
+          opacity: 0.92,
+          textShadow: "0 1px 6px rgba(0,0,0,0.35)",
         }}
       >
-        <div
-          className="ch-tagline-block"
-          style={{
-            fontFamily: "var(--font-italiana)",
-            fontWeight: 400,
-            fontSize: "clamp(1.8rem, 2.8vw, 2.9rem)",
-            color: "var(--v2-bg)",
-            letterSpacing: "-0.02em",
-            lineHeight: 1.18,
-          }}
-        >
-          <span style={{ fontStyle: "italic", display: "block" }}>A one-bedroom retreat.</span>
-          <span style={{ fontStyle: "italic", display: "block" }}>In the heart of Berkshire.</span>
-          <span style={{ display: "block", opacity: 0.88, marginTop: "0.35rem" }}>Woodland all around.</span>
-        </div>
+        Berkshire · England
       </div>
 
-      {/* GIANT BOTTOM WORDMARK — sits just above the bottom edge */}
+      {/* BOTTOM WORDMARK ANCHOR — invisible. The visible, flying wordmark is
+          <MorphingWordmark>; this span only fixes its START position + size. */}
       <div
-        className="ch-mark-row absolute z-10"
+        className="absolute z-10"
         style={{
           left: 0,
           right: 0,
           bottom: "clamp(1rem, 2.5vh, 2.5rem)",
           padding: "0 clamp(0.5rem, 1.5vw, 1.5rem)",
           textAlign: "center",
-          overflow: "hidden",
           pointerEvents: "none",
         }}
       >
-        <h1
-          className="ch-mark font-display"
-          aria-label="Squirrels' Nest"
+        <span
+          id="hero-mark-anchor"
+          aria-hidden
+          className="font-display"
           style={{
-            color: "var(--v2-bg)",
-            // Brought down from 18vw -> 12vw so the wordmark fits within
-            // the viewport at all widths (was overflowing right edge).
+            display: "inline-block",
+            visibility: "hidden",
             fontSize: "clamp(3.5rem, 12vw, 14rem)",
             lineHeight: 0.84,
             letterSpacing: "-0.045em",
@@ -211,7 +179,7 @@ export function CleanHero() {
           }}
         >
           {mark}
-        </h1>
+        </span>
       </div>
     </section>
   );

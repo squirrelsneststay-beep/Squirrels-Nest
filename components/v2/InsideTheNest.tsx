@@ -84,7 +84,7 @@ function BookLink() {
 
 function RoomBlock({ room, flip }: { room: Room; flip: boolean }) {
   return (
-    <article className="itn-room">
+    <article className="itn-room" data-flip={flip ? "1" : "0"}>
       {/* Header */}
       <div
         style={{
@@ -172,34 +172,51 @@ export function InsideTheNest() {
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
     const ctx = gsap.context(() => {
-      gsap.from(".itn-title-line", {
-        y: 40,
-        opacity: 0,
-        duration: 1.2,
-        ease: "power3.out",
-        stagger: 0.15,
-        scrollTrigger: { trigger: root, start: "top 80%", once: true },
+      // Title lines slide in from alternating sides for a livelier entrance.
+      gsap.utils.toArray<HTMLElement>(".itn-title-line > span").forEach((line, i) => {
+        gsap.from(line, {
+          yPercent: 115,
+          xPercent: i === 0 ? -8 : 8,
+          opacity: 0,
+          duration: 1.2,
+          ease: "power4.out",
+          delay: i * 0.12,
+          scrollTrigger: { trigger: root, start: "top 82%", once: true },
+        });
       });
 
+      // Each room's photos rise + scale in, dealt out from the heading side
+      // (left-aligned rooms deal L→R, flipped rooms deal R→L) with a touch of
+      // rotation so it feels hand-placed rather than gridded.
       gsap.utils.toArray<HTMLElement>(".itn-room").forEach((room) => {
         const frames = room.querySelectorAll<HTMLElement>(".itn-frame");
+        const flipped = room.getAttribute("data-flip") === "1";
         gsap.from(frames, {
-          y: 40,
-          opacity: 0,
-          duration: 1.0,
+          yPercent: 16,
+          autoAlpha: 0,
+          scale: 0.9,
+          rotation: flipped ? 1.5 : -1.5,
+          transformOrigin: "center bottom",
+          duration: 1.15,
           ease: "power3.out",
-          stagger: 0.07,
-          scrollTrigger: { trigger: room, start: "top 78%", once: true },
+          stagger: { each: 0.11, from: flipped ? "end" : "start" },
+          scrollTrigger: { trigger: room, start: "top 80%", once: true },
         });
       });
 
       if (reduced) return;
+      // Title drifts up gently as the section scrolls (subtle depth).
+      gsap.to(".itn-title", {
+        yPercent: -14,
+        ease: "none",
+        scrollTrigger: { trigger: root, start: "top bottom", end: "top top", scrub: 1 },
+      });
       gsap.utils.toArray<HTMLElement>(".itn-img-inner").forEach((inner) => {
         gsap.fromTo(
           inner,
-          { yPercent: 7 },
+          { yPercent: 8 },
           {
-            yPercent: -7,
+            yPercent: -8,
             ease: "none",
             scrollTrigger: { trigger: inner, start: "top bottom", end: "bottom top", scrub: 1 },
           }
@@ -216,7 +233,7 @@ export function InsideTheNest() {
       style={{ background: "var(--v2-bg)", paddingBlock: "clamp(6rem, 14vh, 12rem)" }}
     >
       <h2
-        className="font-display mx-auto text-center"
+        className="itn-title font-display mx-auto text-center"
         style={{
           maxWidth: "80rem",
           paddingInline: "clamp(1.5rem, 4vw, 4rem)",

@@ -194,19 +194,34 @@ export function EditorialWelcome() {
             className="ew-body"
             style={{
               marginTop: "2rem",
-              maxWidth: "30rem",
+              maxWidth: "32rem",
               fontFamily: "var(--font-geist)",
               fontSize: "1.0625rem",
-              lineHeight: 1.6,
+              lineHeight: 1.65,
               color: "var(--v2-ink-soft)",
             }}
           >
-            Welcome to Squirrels&apos; Nest — a charming one-bedroom boutique retreat
-            in the heart of Berkshire, set within the peaceful grounds of a
-            beautiful country house. Wake to stunning woodland views and the
-            gentle sounds of nature: horses, chickens, ducks, and friendly cats
-            and dogs about the grounds. A blend of comfort, style and
-            countryside charm.
+            Squirrels&apos; Nest is a one-bedroom cabin of its own, tucked into the
+            private grounds of a country house in the Berkshire countryside.
+            It&apos;s just the one space — a super king bed, a little kitchen, a
+            walk-in shower and your own courtyard — so the whole place is yours
+            for as long as you stay.
+          </p>
+          <p
+            className="ew-body"
+            style={{
+              marginTop: "1.25rem",
+              maxWidth: "32rem",
+              fontFamily: "var(--font-geist)",
+              fontSize: "1.0625rem",
+              lineHeight: 1.65,
+              color: "var(--v2-ink-soft)",
+            }}
+          >
+            Outside the door there&apos;s woodland on every side, and the easy
+            sounds of the place: horses over the fence, chickens and ducks, a
+            friendly cat or dog wandering past. Quiet, comfortable, and full of
+            character — somewhere to slow right down for a night or two.
           </p>
         </div>
       </div>

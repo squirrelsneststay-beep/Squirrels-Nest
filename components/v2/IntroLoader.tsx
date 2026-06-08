@@ -57,7 +57,7 @@ export function IntroLoader() {
         position: "fixed",
         inset: 0,
         zIndex: 200,
-        background: "#0c2a1e",
+        background: "#08351c",
         display: "flex",
         alignItems: "center",
         justifyContent: "center",

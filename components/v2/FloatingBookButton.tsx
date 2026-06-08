@@ -33,15 +33,21 @@ export function FloatingBookButton() {
 
     const probeY = 80;
     const check = () => {
+      // Over the hero (first viewport) keep the gold-outline variant on the
+      // photo. Exclude the pinned [data-hero] (fixed at top forever) from the
+      // rect scan and gate the hero zone on scroll position instead.
+      const inHeroZone = window.scrollY < window.innerHeight * 0.9;
       const sections = document.querySelectorAll<HTMLElement>(
-        "[data-section-tone='dark']"
+        "[data-section-tone='dark']:not([data-hero])"
       );
-      let touchingDark = false;
-      for (const s of Array.from(sections)) {
-        const r = s.getBoundingClientRect();
-        if (r.top < probeY && r.bottom > 0) {
-          touchingDark = true;
-          break;
+      let touchingDark = inHeroZone;
+      if (!touchingDark) {
+        for (const s of Array.from(sections)) {
+          const r = s.getBoundingClientRect();
+          if (r.top < probeY && r.bottom > 0) {
+            touchingDark = true;
+            break;
+          }
         }
       }
       setOverDark(touchingDark);
@@ -68,7 +74,7 @@ export function FloatingBookButton() {
   // Over white sections: solid yellow pill with dark-green text.
   const lightMode = {
     background: "var(--v2-accent)",
-    color: "#0c2a1e",
+    color: "#08351c",
     borderColor: "var(--v2-accent)",
   };
 

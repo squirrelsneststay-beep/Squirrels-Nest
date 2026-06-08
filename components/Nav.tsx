@@ -23,12 +23,22 @@ if (typeof window !== "undefined") {
 export function Nav() {
   const [scrolled, setScrolled] = useState(false);
   const [overDark, setOverDark] = useState(false);
+  const [inHero, setInHero] = useState(true);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 60);
+    const onScroll = () => {
+      setScrolled(window.scrollY > 60);
+      // First viewport is the fixed hero — keep the nav hidden there so the
+      // hero + flying wordmark stay clean, then reveal it as the wordmark lands.
+      setInHero(window.scrollY < window.innerHeight * 0.9);
+    };
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    window.addEventListener("resize", onScroll);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+    };
   }, []);
 
   // Detect when the nav's top strip overlaps a "dark" section. Driven by
@@ -39,7 +49,11 @@ export function Nav() {
     if (typeof window === "undefined") return;
     const navHeight = 80;
     const check = () => {
-      const sections = document.querySelectorAll<HTMLElement>("[data-section-tone='dark']");
+      // Exclude the pinned hero ([data-hero]) — it is fixed at the top forever,
+      // so it must not count as "a dark section under the nav".
+      const sections = document.querySelectorAll<HTMLElement>(
+        "[data-section-tone='dark']:not([data-hero])"
+      );
       let touchingDark = false;
       for (const s of Array.from(sections)) {
         const r = s.getBoundingClientRect();
@@ -63,14 +77,13 @@ export function Nav() {
     };
   }, []);
 
-  const mode = overDark ? "dark" : scrolled ? "cream" : "transparent";
+  // Hidden over the hero (inHero) and over lower dark sections (overDark).
+  const hidden = inHero || overDark;
+  const mode = hidden ? "dark" : scrolled ? "cream" : "transparent";
 
   return (
     <header
-      className={cn(
-        "fixed inset-x-0 top-0 z-50 transition-all duration-500",
-        mode === "cream" ? "py-3" : "py-5"
-      )}
+      className="fixed inset-x-0 top-0 z-50 py-4"
       style={{
         background:
           mode === "cream"
@@ -78,32 +91,17 @@ export function Nav() {
             : "transparent",
         backdropFilter: mode === "cream" ? "blur(8px)" : "none",
         WebkitBackdropFilter: mode === "cream" ? "blur(8px)" : "none",
-        opacity: mode === "dark" ? 0 : 1,
-        pointerEvents: mode === "dark" ? "none" : "auto",
-        transition: "opacity 300ms ease, background 300ms ease, padding 300ms ease",
+        opacity: hidden ? 0 : 1,
+        pointerEvents: hidden ? "none" : "auto",
+        transition: "opacity 300ms ease, background 300ms ease",
       }}
     >
       <div className="lef-container flex items-center justify-between">
-        <Link
-          href="/"
-          className="font-display"
-          style={{
-            color: "var(--v2-ink)",
-            fontSize: "1.15rem",
-            letterSpacing: "-0.02em",
-            fontWeight: 400,
-            fontStyle: "italic",
-          }}
-        >
-          squirrels&apos; nest
-        </Link>
-
-        <div className="hidden md:block">
-          <LiveTimeBadge />
-        </div>
-
+        {/* LEFT CLUSTER — logo (the landing spot for the flying hero wordmark),
+            then the page links. The logo starts invisible; MorphingWordmark
+            fades it in as the hero wordmark finishes flying up to it. */}
         <nav
-          className="flex items-center gap-8"
+          className="flex items-center gap-7"
           style={{
             fontFamily: "var(--font-geist)",
             fontSize: "0.875rem",
@@ -111,13 +109,35 @@ export function Nav() {
             letterSpacing: "-0.005em",
           }}
         >
+          <Link
+            href="/"
+            id="nav-logo"
+            aria-label="Squirrels' Nest — home"
+            className="font-display"
+            style={{
+              color: "var(--v2-ink)",
+              fontSize: "1.15rem",
+              letterSpacing: "-0.02em",
+              fontWeight: 500,
+              opacity: 0,
+              marginRight: "0.5rem",
+            }}
+          >
+            Squirrels&apos; Nest
+          </Link>
           <Link href="/" className="hover:opacity-60 transition-opacity">Home</Link>
           <Link href="/contact" className="hover:opacity-60 transition-opacity">Contact</Link>
           <ThemeToggle />
-          {/* Book CTA lives in <FloatingBookButton> (mounted in layout.tsx)
-              so it remains visible even when this nav is hidden over dark
-              pinned sections. */}
         </nav>
+
+        <div className="hidden md:block">
+          <LiveTimeBadge />
+        </div>
+
+        {/* RIGHT — intentionally empty. The Book CTA is <FloatingBookButton>
+            (mounted in layout.tsx), fixed top-right, so it stays visible even
+            when this nav fades out over dark pinned sections. */}
+        <span aria-hidden style={{ width: "1px" }} />
       </div>
     </header>
   );

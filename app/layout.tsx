@@ -8,6 +8,7 @@ import { BigFooter } from "@/components/v2/BigFooter";
 import { ScrollProgress } from "@/components/v2/ScrollProgress";
 import { FloatingBookButton } from "@/components/v2/FloatingBookButton";
 import { IntroLoader } from "@/components/v2/IntroLoader";
+import { MorphingWordmark } from "@/components/v2/MorphingWordmark";
 import { SITE_URL, BRAND } from "@/lib/site";
 
 // One neutral grotesque for the whole site — the way here-away.com uses a
@@ -97,6 +98,7 @@ export default function RootLayout({
         <FloatingBookButton />
         <SmoothScroll>
           <Nav />
+          <MorphingWordmark />
           <main>{children}</main>
           <BigFooter />
         </SmoothScroll>
