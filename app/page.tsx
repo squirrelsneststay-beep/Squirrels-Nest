@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import { CleanHero } from "@/components/v2/CleanHero";
 import { EditorialWelcome } from "@/components/v2/EditorialWelcome";
 import { InsideTheNest } from "@/components/v2/InsideTheNest";
+import { TheSpace } from "@/components/v2/TheSpace";
 import { ShepherdsHut } from "@/components/v2/ShepherdsHut";
 import { InspiredBy } from "@/components/v2/InspiredBy";
 import { ColourStatement } from "@/components/v2/ColourStatement";
@@ -40,6 +41,7 @@ export default function HomePage() {
       >
         <EditorialWelcome />
         <InsideTheNest />
+        <TheSpace />
 
         <InlineBookCTA
           headline="A romantic escape, or a quiet one."
