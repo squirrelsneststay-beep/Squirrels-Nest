@@ -76,6 +76,31 @@
   --font-cormorant: var(--font-syne);     /* accent lines — Syne */
 }
 
+/* ───────── Dark mode — inverts the palette (light ↔ dark). Photos are not
+   token-coloured, so they're untouched. Yellow accent stays. ───────── */
+html[data-theme="dark"] {
+  color-scheme: dark;
+  --v2-bg:            #0f231a;   /* deep green-black */
+  --v2-ink:           #f3f0e6;   /* warm off-white — text + the inverted blocks */
+  --v2-ink-soft:      #b9c6bd;   /* light green-grey — secondary text */
+  --v2-mute:          #84958b;   /* muted green-grey */
+  --v2-line:          #294035;   /* dark hairline */
+  --v2-accent:        #ffd400;   /* yellow stays */
+  --v2-accent-honey:  #ffd400;
+
+  --lef-cream:        #0f231a;
+  --lef-cream-soft:   #16302410;
+  --lef-stone:        #294035;
+  --lef-moss:         #ffd400;
+  --lef-forest:       #f3f0e6;
+  --lef-charcoal:     #c6d1c9;
+  --lef-bark:         #9aa9a0;
+  --lef-rust:         #ffd400;
+
+  --background:       #0f231a;
+  --foreground:       #f3f0e6;
+}
+
 
 /* Fluid type — linear interp between 600px and 2304px viewports */
 :root {

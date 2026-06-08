@@ -82,6 +82,12 @@ export default function RootLayout({
       className={`${switzer.variable} ${syne.variable} ${geistMono.variable} antialiased`}
     >
       <body>
+        <script
+          dangerouslySetInnerHTML={{
+            __html:
+              "(function(){try{if(localStorage.getItem('sn-theme')==='dark')document.documentElement.setAttribute('data-theme','dark');}catch(e){}})();",
+          }}
+        />
         <ScrollProgress />
         <FloatingBookButton />
         <SmoothScroll>

@@ -43,10 +43,9 @@ const ROOMS: Room[] = [
     name: "The Kitchen",
     body: "Coffee machine, kettle, a little oven and a proper sink. Everything you need to cook in, or just make the morning coffee.",
     photos: [
-      { src: "/images/squirrels-nest/sq-35.jpg", alt: "The kitchen — coffee machine, oven and kettle", w: "min(30rem, 90vw)", aspect: "3 / 2" },
-      { src: "/images/squirrels-nest/sq-37.jpg", alt: "The kitchen sink under the window", w: "min(18rem, 42vw)", aspect: "3 / 4" },
-      { src: "/images/squirrels-nest/sq-24.jpg", alt: "Looking through to the kitchen", w: "min(18rem, 42vw)", aspect: "3 / 4" },
-      { src: "/images/squirrels-nest/sq-29.jpg", alt: "The sink and draining board", w: "min(22rem, 60vw)", aspect: "4 / 5" },
+      { src: "/images/squirrels-nest/sq-37.jpg", alt: "The kitchen sink under the window", w: "min(24rem, 66vw)", aspect: "3 / 4" },
+      { src: "/images/squirrels-nest/sq-24.jpg", alt: "Looking through to the kitchen", w: "min(20rem, 50vw)", aspect: "3 / 4" },
+      { src: "/images/squirrels-nest/sq-29.jpg", alt: "The sink and draining board", w: "min(24rem, 66vw)", aspect: "4 / 5" },
     ],
   },
   {

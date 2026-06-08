@@ -6,6 +6,7 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { cn } from "@/lib/utils";
 import { LiveTimeBadge } from "@/components/v2/LiveTimeBadge";
+import { ThemeToggle } from "@/components/v2/ThemeToggle";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
@@ -112,6 +113,7 @@ export function Nav() {
         >
           <Link href="/" className="hover:opacity-60 transition-opacity">Home</Link>
           <Link href="/contact" className="hover:opacity-60 transition-opacity">Contact</Link>
+          <ThemeToggle />
           {/* Book CTA lives in <FloatingBookButton> (mounted in layout.tsx)
               so it remains visible even when this nav is hidden over dark
               pinned sections. */}

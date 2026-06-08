@@ -59,9 +59,9 @@ export default function HomePage() {
       <div style={{ position: "relative", zIndex: 1, background: "var(--v2-bg)" }}>
         <Scenery />
         <ColourStatement />
+        <ForSale />
         <InspiredBy />
         <ExpandingGallery />
-        <ForSale />
         <ReservationCard />
       </div>
     </div>

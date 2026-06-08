@@ -3,6 +3,7 @@
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { CircledWord } from "@/components/v2/CircledWord";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
@@ -55,7 +56,7 @@ export function ColourStatement() {
       ref={rootRef}
       style={{
         background: "var(--v2-accent)",
-        color: "var(--v2-ink)",
+        color: "#103d2e",
         paddingBlock: "clamp(6rem, 16vh, 13rem)",
         paddingInline: "clamp(1.5rem, 5vw, 5rem)",
         overflow: "hidden",
@@ -74,7 +75,7 @@ export function ColourStatement() {
             opacity: 0.7,
           }}
         >
-          The setting
+          Take it home
         </p>
         <h2
           className="cs-head font-display"
@@ -87,10 +88,12 @@ export function ColourStatement() {
           }}
         >
           <span className="block overflow-hidden">
-            <span className="cs-line block">Woodland on</span>
+            <span className="cs-line block">Everything is</span>
           </span>
-          <span className="block overflow-hidden">
-            <span className="cs-line block">every side.</span>
+          <span className="block" style={{ overflow: "visible" }}>
+            <span className="cs-line block">
+              for <CircledWord color="#103d2e">sale</CircledWord>.
+            </span>
           </span>
         </h2>
         <p
@@ -104,7 +107,7 @@ export function ColourStatement() {
             fontWeight: 500,
           }}
         >
-          Horses, chickens, ducks — and the odd friendly cat or dog about the grounds.
+          The chairs, the lamps, the screens, the finds. Most of it can be yours.
         </p>
       </div>
     </section>

@@ -71,35 +71,50 @@ export function ForSale() {
               margin: 0,
             }}
           >
-            Take it home
+            Zoe&apos;s collection
           </p>
           <h2
             className="fs-reveal font-display"
             style={{
               marginTop: "1.25rem",
-              fontSize: "clamp(2.2rem, 5vw, 4.2rem)",
+              fontSize: "clamp(2rem, 4.4vw, 3.6rem)",
               lineHeight: 0.98,
               letterSpacing: "-0.025em",
               fontWeight: 600,
               maxWidth: "16ch",
             }}
           >
-            Everything you see is for sale.
+            A showroom you can sleep in.
           </h2>
           <p
             className="fs-reveal"
             style={{
               marginTop: "1.75rem",
-              maxWidth: "34rem",
+              maxWidth: "36rem",
               fontFamily: "var(--font-geist)",
               fontSize: "1.0625rem",
               lineHeight: 1.6,
               color: "color-mix(in srgb, var(--v2-bg) 82%, transparent)",
             }}
           >
-            Much of what fills Squirrel&apos;s Nest is Zoe&apos;s own — the chairs, the
-            lamps, the screens, the finds. Stay the night, and if a piece catches
-            your eye, take it home.
+            Squirrel&apos;s Nest is also Zoe&apos;s showroom. Much of what fills it is her
+            own: the hand-upholstered chairs, the painted lamps, the folding
+            screens, the little finds picked up along the way. Nothing is roped
+            off, and nothing is precious for the sake of it.
+          </p>
+          <p
+            className="fs-reveal"
+            style={{
+              marginTop: "1.1rem",
+              maxWidth: "36rem",
+              fontFamily: "var(--font-geist)",
+              fontSize: "1.0625rem",
+              lineHeight: 1.6,
+              color: "color-mix(in srgb, var(--v2-bg) 82%, transparent)",
+            }}
+          >
+            Stay the night, live with the pieces, and if something catches your
+            eye, it can come home with you. Just ask, and Zoe will sort the rest.
           </p>
           <a
             href={`mailto:${BRAND.email}?subject=Squirrel's Nest — a piece I'd love to buy`}
