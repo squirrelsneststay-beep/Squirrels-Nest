@@ -94,7 +94,7 @@ export function ReservationCard() {
           className="absolute inset-0"
           style={{
             background:
-              "linear-gradient(180deg, rgba(40,8,8,0.30) 0%, rgba(40,8,8,0.55) 70%, rgba(40,8,8,0.78) 100%)",
+              "linear-gradient(180deg, rgba(0,0,0,0.30) 0%, rgba(0,0,0,0.55) 70%, rgba(0,0,0,0.74) 100%)",
           }}
         />
       </div>

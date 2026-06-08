@@ -86,9 +86,9 @@ export function InlineBookCTA({
           letterSpacing: "0.02em",
           ...(isDark
             ? {
-                background: "var(--v2-bg)",
-                color: "var(--v2-ink)",
-                borderColor: "var(--v2-bg)",
+                background: "var(--v2-accent)",
+                color: "#0e0e0e",
+                borderColor: "var(--v2-accent)",
               }
             : {}),
         }}

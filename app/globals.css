@@ -5,26 +5,31 @@
      tones are warm cream/beige (#e8d8c8 family) with rich red painted-
      plaster walls (#5c1a14 to #b84848 range) and mustard velvet (#887848).
      Sampled via _audit/extract-palette.mjs across 14 representative shots. */
-  --v2-bg:            #fefcf3;   /* clean warm-white — barely tinted, not beige */
-  --v2-ink:           #4a1818;   /* deep oxblood — wall in shadow, not black */
-  --v2-ink-soft:      #7e2828;   /* lifted red — wall in indirect light */
-  --v2-mute:          #a89084;   /* warm beige-mute, pulled from photo neutrals */
-  --v2-line:          #ebdac4;   /* warm hairline, matches sandy cream */
-  --v2-accent-honey:  #b8884a;   /* mustard velvet from the chairs — sparing use */
+  /* Palette — pure WHITE, contrasty near-BLACK, ONE accent: mustard/GOLD.
+     Nothing else. The greys are neutral tints of black (secondary text +
+     hairlines), not a second colour. */
+  --v2-bg:            #ffffff;   /* pure white */
+  --v2-ink:           #0e0e0e;   /* near-black — text + dark sections */
+  --v2-ink-soft:      #444444;   /* neutral grey — secondary text */
+  --v2-mute:          #8a8a8a;   /* neutral grey — muted small labels */
+  --v2-line:          #e6e6e6;   /* light grey hairline on white */
+  --v2-accent:        #c9a227;   /* mustard / gold — the single accent */
+  --v2-accent-honey:  #c9a227;   /* alias kept for older references */
   --v2-container-px:  clamp(1.25rem, 6vw, 6rem);
 
-  /* Lane End Farm palette — kept for legacy refs, warmed to match v2 */
-  --lef-cream:        #fff9eb;
-  --lef-cream-soft:   #f7eed7;
-  --lef-stone:        #d8c8b8;
-  --lef-moss:         #4f6b54;
-  --lef-forest:       #1f2a24;
-  --lef-charcoal:     #370808;
-  --lef-bark:         #4a3a2c;
-  --lef-rust:         #b86b3e;
+  /* Legacy aliases (contact/privacy pages) — remapped onto the same
+     white / black / gold system so nothing reverts to cream or green. */
+  --lef-cream:        #ffffff;
+  --lef-cream-soft:   #f5f5f5;
+  --lef-stone:        #e2e2e2;
+  --lef-moss:         #c9a227;   /* accent → mustard/gold */
+  --lef-forest:       #0e0e0e;   /* near-black headings */
+  --lef-charcoal:     #333333;   /* grey body text */
+  --lef-bark:         #6a6a6a;   /* grey labels */
+  --lef-rust:         #c9a227;   /* → mustard/gold */
 
-  --background: var(--lef-cream);
-  --foreground: var(--lef-charcoal);
+  --background: #ffffff;
+  --foreground: #0e0e0e;
 
   --grid-max:       144rem;
   --grid-cols:      12;
@@ -114,17 +119,17 @@ html.lenis, html.lenis body { height: auto; }
 
 /* Display — Instrument Serif. Editorial, high-contrast. Only weight 400. */
 .font-display {
-  font-family: var(--font-italiana), Georgia, "Times New Roman", serif;
-  font-weight: 400;
-  letter-spacing: -0.025em;
-  line-height: 0.95;
+  font-family: var(--font-italiana), "Helvetica Neue", Arial, sans-serif;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 0.98;
   font-feature-settings: "liga" 1, "kern" 1;
 }
 .font-display-italic {
-  font-family: var(--font-cormorant), Georgia, "Times New Roman", serif;
-  font-weight: 300;
-  font-style: italic;
-  letter-spacing: -0.02em;
+  font-family: var(--font-cormorant), "Helvetica Neue", Arial, sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  letter-spacing: -0.01em;
 }
 .font-mono-eyebrow {
   font-family: var(--font-geist), -apple-system, BlinkMacSystemFont, "Inter", sans-serif;
@@ -158,7 +163,7 @@ html.lenis, html.lenis body { height: auto; }
 }
 .lef-pill-sm:active { transform: scale(0.97); }
 .lef-pill-sm:focus-visible {
-  outline: 2px solid #4f6b54;
+  outline: 2px solid #0e0e0e;
   outline-offset: 2px;
 }
 
@@ -187,12 +192,12 @@ html.lenis, html.lenis body { height: auto; }
 }
 .sv-pill:active { transform: scale(0.97); }
 .sv-pill.is-inverse {
-  background: var(--v2-ink);
-  color: var(--v2-bg);
-  border-color: var(--v2-ink);
+  background: var(--v2-accent);
+  color: #0e0e0e;
+  border-color: var(--v2-accent);
 }
 @media (hover: hover) and (pointer: fine) {
-  .sv-pill.is-inverse:hover { background: color-mix(in srgb, var(--v2-ink) 90%, var(--v2-bg)); }
+  .sv-pill.is-inverse:hover { background: color-mix(in srgb, var(--v2-accent) 86%, #000); }
 }
 .sv-pill .sv-pill-rule {
   width: 1.5rem;
@@ -231,7 +236,7 @@ html.lenis, html.lenis body { height: auto; }
 .lef-pill:hover { opacity: 0.92; }
 .lef-pill:active { transform: scale(0.97); }
 .lef-pill:focus-visible {
-  outline: 2px solid #4f6b54;
+  outline: 2px solid #0e0e0e;
   outline-offset: 2px;
 }
 /* Word-reveal helper */
@@ -266,11 +271,11 @@ html.lenis, html.lenis body { height: auto; }
 .reveal-still { opacity: 0; }
 
 /* Selection */
-::selection { background: var(--lef-moss); color: var(--lef-cream); }
+::selection { background: var(--v2-accent); color: #0e0e0e; }
 
 /* Focus ring */
 :where(a, button, input, textarea, select):focus-visible {
-  outline: 2px solid var(--lef-moss);
+  outline: 2px solid #0e0e0e;
   outline-offset: 3px;
   border-radius: 2px;
 }
@@ -281,7 +286,7 @@ html.lenis, html.lenis body { height: auto; }
 :where(a, button, [role="button"], [tabindex]:not([tabindex="-1"]))
   :focus-visible,
 :focus-visible {
-  outline: 2px solid var(--v2-accent, #4f6b54);
+  outline: 2px solid #0e0e0e;
   outline-offset: 2px;
   border-radius: 3px;
 }

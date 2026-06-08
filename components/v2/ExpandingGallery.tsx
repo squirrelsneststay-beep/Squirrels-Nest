@@ -170,7 +170,7 @@ export function ExpandingGallery() {
               className="absolute inset-x-0 bottom-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
               style={{
                 background:
-                  "linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(40,8,8,0.55) 100%)",
+                  "linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.55) 100%)",
                 paddingInline: "1.25rem",
                 paddingBottom: "1rem",
                 paddingTop: "3rem",

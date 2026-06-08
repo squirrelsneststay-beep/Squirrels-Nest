@@ -59,15 +59,17 @@ export function FloatingBookButton() {
     };
   }, []);
 
+  // Over dark (near-black) sections: gold outline on transparent.
   const darkMode = {
     background: "transparent",
-    color: "var(--v2-bg)",
-    borderColor: "rgba(255, 249, 235, 0.55)",
+    color: "var(--v2-accent)",
+    borderColor: "var(--v2-accent)",
   };
+  // Over white sections: solid gold pill with near-black text.
   const lightMode = {
-    background: "var(--v2-ink)",
-    color: "var(--v2-bg)",
-    borderColor: "var(--v2-ink)",
+    background: "var(--v2-accent)",
+    color: "#0e0e0e",
+    borderColor: "var(--v2-accent)",
   };
 
   return (

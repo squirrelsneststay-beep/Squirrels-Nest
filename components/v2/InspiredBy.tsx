@@ -217,7 +217,7 @@ export function InspiredBy() {
           className="ib-frame relative"
           style={{
             overflow: "hidden",
-            boxShadow: "0 40px 80px -30px rgba(55,8,8,0.30)",
+            boxShadow: "0 40px 80px -30px rgba(0,0,0,0.28)",
             willChange: "width, height, border-radius",
           }}
         >

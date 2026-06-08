@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Libre_Baskerville, Cormorant_Garamond, Geist, Geist_Mono } from "next/font/google";
+import { Space_Grotesk, Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { SmoothScroll } from "@/components/SmoothScroll";
 import { Nav } from "@/components/Nav";
@@ -8,24 +8,24 @@ import { ScrollProgress } from "@/components/v2/ScrollProgress";
 import { FloatingBookButton } from "@/components/v2/FloatingBookButton";
 import { SITE_URL, BRAND } from "@/lib/site";
 
-// Display serif — Libre Baskerville. The face Hotellia.framer.website uses
-// for its big headlines ("Total escape", "ROOMS", "OFFERS"). Classic
-// transitional serif with strong contrast, generous proportions.
-// Variable name kept as --font-italiana for backward compat.
-const libreBaskerville = Libre_Baskerville({
+// Display / headings — a modern grotesque, in the spirit of the PP Neue
+// Montreal that here-away.com uses. Space Grotesk is the free, OFL stand-in,
+// used big for the main things. Variable name kept as --font-italiana so every
+// existing `.font-display` heading + inline reference flips automatically.
+const spaceGrotesk = Space_Grotesk({
   variable: "--font-italiana",
   subsets: ["latin"],
   display: "swap",
-  weight: ["400", "700"],
-  style: ["normal", "italic"],
+  weight: ["400", "500", "600", "700"],
 });
 
-const cormorant = Cormorant_Garamond({
+// The old serif-italic accent lines now reuse the same grotesque (kept on the
+// --font-cormorant variable so they update without touching every component).
+const spaceGroteskAccent = Space_Grotesk({
   variable: "--font-cormorant",
   subsets: ["latin"],
   display: "swap",
-  weight: ["300", "400", "500"],
-  style: ["normal", "italic"],
+  weight: ["400", "500"],
 });
 
 const geist = Geist({
@@ -81,7 +81,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${libreBaskerville.variable} ${cormorant.variable} ${geist.variable} ${geistMono.variable} antialiased`}
+      className={`${spaceGrotesk.variable} ${spaceGroteskAccent.variable} ${geist.variable} ${geistMono.variable} antialiased`}
     >
       <body>
         <ScrollProgress />
