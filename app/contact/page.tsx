@@ -2,11 +2,19 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import { ScrollReveal } from "@/components/ScrollReveal";
 import { ContactForm } from "./ContactForm";
-import { BRAND, AIRBNB_URL, EXTERNAL_LINK_PROPS, emailComposeUrl } from "@/lib/site";
+import { BRAND, AIRBNB_URL, EXTERNAL_LINK_PROPS, emailComposeUrl, SITE_URL } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: `Contact — ${BRAND.name}`,
-  description: `Get in touch with ${BRAND.name} — questions, longer stays, special requests.`,
+  title: "Contact & Enquiries",
+  description: `Get in touch with ${BRAND.name}, a luxury two-bedroom cabin retreat in the Berkshire countryside. Questions, longer stays and special requests — or book direct on Airbnb.`,
+  alternates: { canonical: "/contact" },
+  openGraph: {
+    title: `Contact ${BRAND.name} — Luxury Cabin Retreat in ${BRAND.location}`,
+    description: `Questions, longer stays or special requests for ${BRAND.name}, a luxury cabin retreat in the Berkshire countryside.`,
+    url: `${SITE_URL}/contact`,
+    type: "website",
+    locale: "en_GB",
+  },
 };
 
 export default function ContactPage() {

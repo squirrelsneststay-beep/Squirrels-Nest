@@ -157,7 +157,7 @@ export function ExpandingGallery() {
           >
             <Image
               src={p.src}
-              alt={p.caption}
+              alt={`${p.caption} — Squirrels' Nest, a luxury cabin retreat in Berkshire`}
               fill
               sizes="(max-width: 768px) 50vw, 20vw"
               loading="lazy"

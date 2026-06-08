@@ -4,7 +4,7 @@ import { SITE_URL } from "@/lib/site";
 // Fixed publish date instead of `new Date()`. A live timestamp told crawlers
 // every page changed on every request, wasting crawl budget. Bump this when
 // content materially changes.
-const LAST_MODIFIED = "2026-06-02";
+const LAST_MODIFIED = "2026-06-08";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   return [

@@ -110,7 +110,7 @@ export function CleanHero() {
             >
               <Image
                 src={p.src}
-                alt={`${p.alt} — Squirrels' Nest`}
+                alt={`${p.alt} — Squirrels' Nest, a luxury cabin retreat in the Berkshire countryside`}
                 fill
                 priority={i === 0}
                 loading={i === 0 ? "eager" : "lazy"}
@@ -129,7 +129,8 @@ export function CleanHero() {
       {/* Real page heading for SEO / screen readers — visually hidden, since
           the visible wordmark is the decorative MorphingWordmark overlay. */}
       <h1 className="sr-only">
-        Squirrels&apos; Nest — a one-bedroom boutique retreat in the Berkshire countryside
+        Squirrels&apos; Nest — a luxury two-bedroom cabin retreat in the Berkshire
+        countryside, sleeping four, near the Hampshire border and the North Wessex Downs
       </h1>
 
       {/* EYEBROW — a small, plain location line, top-left */}

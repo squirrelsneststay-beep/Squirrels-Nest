@@ -9,6 +9,7 @@ import { ScrollProgress } from "@/components/v2/ScrollProgress";
 import { FloatingBookButton } from "@/components/v2/FloatingBookButton";
 import { IntroLoader } from "@/components/v2/IntroLoader";
 import { MorphingWordmark } from "@/components/v2/MorphingWordmark";
+import { StructuredData } from "@/components/seo/StructuredData";
 import { SITE_URL, BRAND } from "@/lib/site";
 
 // One neutral grotesque for the whole site — the way here-away.com uses a
@@ -46,36 +47,60 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: `${BRAND.name}. A one-bedroom country retreat in ${BRAND.location}.`,
+    default: `${BRAND.name} | Luxury 2-Bedroom Cabin Retreat in ${BRAND.location}`,
     template: `%s | ${BRAND.name}`,
   },
   description:
-    `A boutique one-bedroom retreat in the heart of ${BRAND.location}. Woodland views, a private courtyard, a luxurious super king bed, and an optional shepherd's hut — set in the peaceful grounds of a country house.`,
-  keywords: ["airbnb", "berkshire", "country retreat", "boutique stay", "shepherd's hut", "courtyard", "woodland", "weekend escape", "self-catering"],
+    `A luxury two-bedroom cabin retreat in the Berkshire countryside, sleeping four. Super king bed, a private shepherd's hut, enclosed courtyard and woodland views — on the edge of the North Wessex Downs, near the Hampshire border. Book direct on Airbnb.`,
+  applicationName: BRAND.name,
+  keywords: [
+    "luxury cabin Berkshire",
+    "cabin retreat Berkshire",
+    "shepherd's hut Berkshire",
+    "boutique Airbnb Berkshire",
+    "countryside retreat Berkshire",
+    "romantic getaway Berkshire",
+    "two bedroom cabin sleeps four",
+    "self-catering cabin Berkshire",
+    "weekend break Berkshire countryside",
+    "cabin near Newbury",
+    "North Wessex Downs stay",
+    "Hampshire border cabin retreat",
+    "country house stay Berkshire",
+    "Squirrels' Nest",
+  ],
   authors: [{ name: "Zoe" }],
+  creator: BRAND.name,
+  publisher: BRAND.name,
+  category: "travel",
+  alternates: { canonical: "/" },
   openGraph: {
     type: "website",
     locale: "en_GB",
     url: SITE_URL,
     siteName: BRAND.name,
-    title: `${BRAND.name}. A one-bedroom country retreat in ${BRAND.location}.`,
-    description: `A boutique one-bedroom retreat in the Berkshire countryside — super king bed, fully equipped kitchen, walk-in shower, private courtyard. An optional shepherd's hut sleeps two more.`,
+    title: `${BRAND.name} — Luxury 2-Bedroom Cabin Retreat in ${BRAND.location}`,
+    description: `A luxury two-bedroom cabin retreat in the Berkshire countryside, sleeping four — super king bed, private shepherd's hut, enclosed courtyard and woodland views. Near the Hampshire border and the North Wessex Downs.`,
     images: [
       {
         url: "/images/squirrels-nest/sq-12.jpg",
         width: 1280,
         height: 800,
-        alt: `${BRAND.name}, the red headboard bedroom`,
+        alt: `The super king bedroom at ${BRAND.name}, a luxury cabin retreat in the Berkshire countryside`,
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: BRAND.name,
-    description: "A one-bedroom boutique retreat in the Berkshire countryside.",
+    title: `${BRAND.name} — Luxury Cabin Retreat in ${BRAND.location}`,
+    description: "A luxury two-bedroom cabin retreat in the Berkshire countryside, sleeping four. Super king, shepherd's hut, private courtyard, woodland views.",
     images: ["/images/squirrels-nest/sq-12.jpg"],
   },
-  robots: { index: true, follow: true },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1 },
+  },
 };
 
 export default function RootLayout({
@@ -87,6 +112,7 @@ export default function RootLayout({
       className={`${switzer.variable} ${fraunces.variable} ${geistMono.variable} antialiased`}
     >
       <body>
+        <StructuredData />
         <script
           dangerouslySetInnerHTML={{
             __html:

@@ -5,6 +5,7 @@ import { BRAND, EXTERNAL_LINK_PROPS, emailComposeUrl } from "@/lib/site";
 export const metadata: Metadata = {
   title: "Privacy",
   description: `How ${BRAND.name} handles the small amount of personal data the contact form collects.`,
+  alternates: { canonical: "/privacy" },
   robots: { index: true, follow: true },
 };
 
