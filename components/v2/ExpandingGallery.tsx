@@ -164,29 +164,6 @@ export function ExpandingGallery() {
               className="object-cover object-center"
               style={{ transition: "transform 800ms cubic-bezier(0.22, 1, 0.36, 1)" }}
             />
-            {/* Caption — visible on hover, sits in bottom-left */}
-            <div
-              aria-hidden
-              className="absolute inset-x-0 bottom-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-              style={{
-                background:
-                  "linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.55) 100%)",
-                paddingInline: "1.25rem",
-                paddingBottom: "1rem",
-                paddingTop: "3rem",
-              }}
-            >
-              <span
-                style={{
-                  fontFamily: "var(--font-geist)",
-                  fontSize: "0.85rem",
-                  color: "var(--v2-bg)",
-                  letterSpacing: "-0.005em",
-                }}
-              >
-                {p.caption}
-              </span>
-            </div>
           </div>
         ))}
       </div>

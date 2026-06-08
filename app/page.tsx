@@ -5,7 +5,6 @@ import { CleanHero } from "@/components/v2/CleanHero";
 import { EditorialWelcome } from "@/components/v2/EditorialWelcome";
 import { InsideTheNest } from "@/components/v2/InsideTheNest";
 import { ShepherdsHut } from "@/components/v2/ShepherdsHut";
-import { EveryDetail } from "@/components/v2/EveryDetail";
 import { InspiredBy } from "@/components/v2/InspiredBy";
 import { ExpandingGallery } from "@/components/v2/ExpandingGallery";
 import { ReservationCard } from "@/components/v2/ReservationCard";
@@ -17,43 +16,46 @@ export default function HomePage() {
   }, []);
 
   return (
-    <div className="v2-root" style={{ background: "var(--v2-bg)", color: "var(--v2-ink)" }}>
+    // Dark-green base so the rounded fold reveals green behind it as the
+    // content panel lifts over the hero (Framer-style page overlap).
+    <div className="v2-root" style={{ background: "var(--v2-ink)", color: "var(--v2-ink)" }}>
       <CleanHero />
-      <EditorialWelcome />
 
-      {/* Replaces the old pinned dark monologue. Editorial room-by-room
-          grid with alternating photo placement. */}
-      <InsideTheNest />
+      {/* TOP FOLD — the editorial sections sit in a rounded white panel that
+          lifts UP and over the bottom of the hero (negative margin + rounded
+          top + upward shadow). overflow:hidden is safe here because none of
+          these sections use a ScrollTrigger pin. */}
+      <div
+        style={{
+          position: "relative",
+          zIndex: 1,
+          marginTop: "calc(-1 * clamp(1rem, 3vw, 2.25rem))",
+          background: "var(--v2-bg)",
+          borderTopLeftRadius: "clamp(1rem, 3vw, 2.5rem)",
+          borderTopRightRadius: "clamp(1rem, 3vw, 2.5rem)",
+          boxShadow: "0 -34px 70px -34px rgba(16, 61, 46, 0.45)",
+          overflow: "hidden",
+        }}
+      >
+        <EditorialWelcome />
+        <InsideTheNest />
 
-      {/* First inline CTA — between the rooms grid and the moments list. */}
-      <InlineBookCTA
-        headline="A romantic escape, or a quiet one."
-        sub="Book direct on Airbnb."
-        ctaLabel={["Book", "now"]}
-      />
+        <InlineBookCTA
+          headline="A romantic escape, or a quiet one."
+          sub="Book direct on Airbnb."
+          ctaLabel={["Book", "now"]}
+        />
 
-      {/* Synced-scroll moments list — large photo, scroll syncs which
-          item is active and which photo is shown. */}
-      <EveryDetail />
+        <ShepherdsHut />
+      </div>
 
-      {/* The separate shepherd's hut — a quiet second moment, kept apart from
-          the hut card in the rooms grid so the mention is spread out. */}
-      <ShepherdsHut />
-
-      <InspiredBy />
-      <ExpandingGallery />
-
-      {/* Second inline CTA — after the gallery, before the reservation
-          card. Dark tone to mirror the moody reservation section that
-          follows it. */}
-      <InlineBookCTA
-        tone="dark"
-        headline="Escape to the countryside."
-        sub="A stay as relaxing as it is memorable."
-        ctaLabel={["Book", "a stay"]}
-      />
-
-      <ReservationCard />
+      {/* Lower half — kept OUT of the overflow:hidden wrapper so InspiredBy's
+          pinned scroll animation works correctly. */}
+      <div style={{ position: "relative", zIndex: 1, background: "var(--v2-bg)" }}>
+        <InspiredBy />
+        <ExpandingGallery />
+        <ReservationCard />
+      </div>
     </div>
   );
 }

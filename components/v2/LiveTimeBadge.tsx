@@ -1,102 +1,90 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-import { gsap } from "gsap";
-import { ScrambleTextPlugin } from "gsap/ScrambleTextPlugin";
-
-if (typeof window !== "undefined") {
-  gsap.registerPlugin(ScrambleTextPlugin);
-}
+import { useEffect, useState } from "react";
 
 /**
- * Small badge in the nav showing live time at the cabin + a rotating mood.
- * Uses GSAP ScrambleTextPlugin so when the time tick changes or the mood
- * line swaps, the new text scrambles through random letters before settling.
+ * Small badge in the nav: live time at the cabin + today's sunset time.
+ * Sunset is computed client-side for the cabin's location (Berkshire), so it's
+ * always correct for the current day. No external API — pure maths.
  */
 
-const MOODS = [
-  "rain on the corrugated roof",
-  "kettle just clicked off",
-  "kitchen window's open",
-  "logs on, fire's catching",
-  "sheep on the far field",
-  "stars out tonight",
-];
+// Squirrel's Nest — Berkshire, England (approx).
+const LAT = 51.45;
+const LNG = -1.07;
 
 function formatTime(d: Date) {
   return d.toLocaleTimeString("en-GB", { hour: "2-digit", minute: "2-digit", hour12: false });
 }
 
+/**
+ * Sunset for a given date/lat/lng, returned as a Date (UTC instant), using the
+ * standard "Almanac for Computers" sunrise/sunset algorithm. Formatting with
+ * toLocaleTimeString then renders it in the viewer's timezone (BST/GMT for UK).
+ */
+function sunsetFor(date: Date): Date | null {
+  const D2R = Math.PI / 180;
+  const R2D = 180 / Math.PI;
+  const zenith = 90.833; // official sunset
+
+  const start = Date.UTC(date.getUTCFullYear(), 0, 0);
+  const today = Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate());
+  const N = Math.floor((today - start) / 86400000);
+
+  const lngHour = LNG / 15;
+  const t = N + (18 - lngHour) / 24; // 18 = setting
+
+  const M = 0.9856 * t - 3.289;
+  let L = M + 1.916 * Math.sin(M * D2R) + 0.02 * Math.sin(2 * M * D2R) + 282.634;
+  L = ((L % 360) + 360) % 360;
+
+  let RA = R2D * Math.atan(0.91764 * Math.tan(L * D2R));
+  RA = ((RA % 360) + 360) % 360;
+  RA = RA + (Math.floor(L / 90) * 90 - Math.floor(RA / 90) * 90);
+  RA = RA / 15;
+
+  const sinDec = 0.39782 * Math.sin(L * D2R);
+  const cosDec = Math.cos(Math.asin(sinDec));
+
+  const cosH = (Math.cos(zenith * D2R) - sinDec * Math.sin(LAT * D2R)) / (cosDec * Math.cos(LAT * D2R));
+  if (cosH > 1 || cosH < -1) return null; // sun never sets / never rises
+
+  const H = (R2D * Math.acos(cosH)) / 15;
+  const T = H + RA - 0.06571 * t - 6.622;
+  let UT = ((T - lngHour) % 24 + 24) % 24;
+
+  const hour = Math.floor(UT);
+  const minute = Math.round((UT - hour) * 60);
+  return new Date(Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate(), hour, minute));
+}
+
 export function LiveTimeBadge() {
   const [time, setTime] = useState<string>("");
-  const [moodIdx, setMoodIdx] = useState(0);
-  const timeRef = useRef<HTMLSpanElement>(null);
-  const moodRef = useRef<HTMLSpanElement>(null);
+  const [sunset, setSunset] = useState<string>("");
 
-  // Initial mount — set time once
   useEffect(() => {
-    setTime(formatTime(new Date()));
+    const now = new Date();
+    setTime(formatTime(now));
+    const s = sunsetFor(now);
+    if (s) setSunset(formatTime(s));
   }, []);
 
-  // Tick the clock every 30s. Use functional setState so the interval is
-  // created ONCE on mount instead of being torn down and re-created on
-  // every tick — old code's `[time]` dep made this drift 30s with each tick.
+  // Tick the clock every 30s; refresh sunset if the day rolls over.
   useEffect(() => {
     if (typeof window === "undefined") return;
     const id = window.setInterval(() => {
+      const now = new Date();
       setTime((prev) => {
-        const next = formatTime(new Date());
+        const next = formatTime(now);
+        return next !== prev ? next : prev;
+      });
+      const s = sunsetFor(now);
+      if (s) setSunset((prev) => {
+        const next = formatTime(s);
         return next !== prev ? next : prev;
       });
     }, 30 * 1000);
     return () => clearInterval(id);
   }, []);
-
-  // Animate scramble whenever `time` changes
-  useEffect(() => {
-    if (!timeRef.current || !time) return;
-    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (reduced) {
-      timeRef.current.textContent = time;
-      return;
-    }
-    gsap.to(timeRef.current, {
-      duration: 0.7,
-      scrambleText: {
-        text: time,
-        chars: "0123456789",
-        revealDelay: 0.05,
-        speed: 0.5,
-      },
-    });
-  }, [time]);
-
-  // Cycle mood every 10s — gives the eye time to read each line before scramble
-  useEffect(() => {
-    if (typeof window === "undefined") return;
-    const id = window.setInterval(() => {
-      setMoodIdx((i) => (i + 1) % MOODS.length);
-    }, 10 * 1000);
-    return () => clearInterval(id);
-  }, []);
-
-  useEffect(() => {
-    if (!moodRef.current) return;
-    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (reduced) {
-      moodRef.current.textContent = `· ${MOODS[moodIdx]}`;
-      return;
-    }
-    gsap.to(moodRef.current, {
-      duration: 1.0,
-      scrambleText: {
-        text: `· ${MOODS[moodIdx]}`,
-        chars: "lowerCase",
-        revealDelay: 0.1,
-        speed: 0.45,
-      },
-    });
-  }, [moodIdx]);
 
   if (!time) return null;
 
@@ -119,27 +107,17 @@ export function LiveTimeBadge() {
           width: "0.45rem",
           height: "0.45rem",
           borderRadius: "50%",
-          background: "var(--v2-ink)",
+          background: "var(--v2-accent)",
           animation: "live-pulse 2.4s ease-in-out infinite",
           display: "inline-block",
         }}
       />
-      <span>
-        At the cabin · <span ref={timeRef}>{time}</span>
-      </span>
-      <span
-        ref={moodRef}
-        style={{
-          opacity: 0.7,
-          fontStyle: "italic",
-          textTransform: "none",
-          letterSpacing: "0.01em",
-          fontFamily: "var(--font-cormorant)",
-          fontSize: "0.85rem",
-        }}
-      >
-        · {MOODS[moodIdx]}
-      </span>
+      <span>At the cabin · {time}</span>
+      {sunset && (
+        <span style={{ opacity: 0.85, letterSpacing: "0.12em" }}>
+          · sunset {sunset}
+        </span>
+      )}
     </span>
   );
 }

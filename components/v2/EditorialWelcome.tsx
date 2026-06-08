@@ -101,8 +101,8 @@ export function EditorialWelcome() {
         >
           <div className="ew-photo-inner absolute" style={{ inset: "-14% 0", willChange: "transform" }}>
             <Image
-              src="/images/squirrels-nest/sq-15.jpg"
-              alt="Inside Squirrels' Nest, in the grounds of a Berkshire country house"
+              src="/images/squirrels-nest/sq-17.jpg"
+              alt="The open-plan room at Squirrels' Nest — bed, chairs and the wider space"
               fill
               sizes="(max-width: 768px) 100vw, 55vw"
               style={{ objectFit: "cover" }}

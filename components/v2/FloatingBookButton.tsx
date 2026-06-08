@@ -65,10 +65,10 @@ export function FloatingBookButton() {
     color: "var(--v2-accent)",
     borderColor: "var(--v2-accent)",
   };
-  // Over white sections: solid gold pill with near-black text.
+  // Over white sections: solid yellow pill with dark-green text.
   const lightMode = {
     background: "var(--v2-accent)",
-    color: "#0e0e0e",
+    color: "#103d2e",
     borderColor: "var(--v2-accent)",
   };
 

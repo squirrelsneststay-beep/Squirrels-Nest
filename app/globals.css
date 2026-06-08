@@ -9,12 +9,12 @@
      Nothing else. The greys are neutral tints of black (secondary text +
      hairlines), not a second colour. */
   --v2-bg:            #ffffff;   /* pure white */
-  --v2-ink:           #0e0e0e;   /* near-black — text + dark sections */
-  --v2-ink-soft:      #444444;   /* neutral grey — secondary text */
-  --v2-mute:          #8a8a8a;   /* neutral grey — muted small labels */
-  --v2-line:          #e6e6e6;   /* light grey hairline on white */
-  --v2-accent:        #c9a227;   /* mustard / gold — the single accent */
-  --v2-accent-honey:  #c9a227;   /* alias kept for older references */
+  --v2-ink:           #103d2e;   /* near-black — text + dark sections */
+  --v2-ink-soft:      #3a5d4e;   /* deep green-grey — secondary text */
+  --v2-mute:          #7d978a;   /* muted green-grey — small labels */
+  --v2-line:          #e2e8e4;   /* faint green-grey hairline on white */
+  --v2-accent:        #ffd400;   /* mustard / gold — the single accent */
+  --v2-accent-honey:  #ffd400;   /* alias kept for older references */
   --v2-container-px:  clamp(1.25rem, 6vw, 6rem);
 
   /* Legacy aliases (contact/privacy pages) — remapped onto the same
@@ -22,14 +22,14 @@
   --lef-cream:        #ffffff;
   --lef-cream-soft:   #f5f5f5;
   --lef-stone:        #e2e2e2;
-  --lef-moss:         #c9a227;   /* accent → mustard/gold */
-  --lef-forest:       #0e0e0e;   /* near-black headings */
-  --lef-charcoal:     #333333;   /* grey body text */
-  --lef-bark:         #6a6a6a;   /* grey labels */
-  --lef-rust:         #c9a227;   /* → mustard/gold */
+  --lef-moss:         #ffd400;   /* accent → mustard/gold */
+  --lef-forest:       #103d2e;   /* near-black headings */
+  --lef-charcoal:     #2f4a40;   /* green-grey body text */
+  --lef-bark:         #6a8377;   /* green-grey labels */
+  --lef-rust:         #ffd400;   /* → mustard/gold */
 
   --background: #ffffff;
-  --foreground: #0e0e0e;
+  --foreground: #103d2e;
 
   --grid-max:       144rem;
   --grid-cols:      12;
@@ -65,6 +65,15 @@
   --font-italic:        var(--font-cormorant);
   --font-sans:          var(--font-geist);
   --font-mono:          var(--font-geist-mono);
+}
+
+/* One typeface everywhere (Switzer — a free PP Neue Montreal stand-in), the way
+   here-away.com uses one Neue Montreal. Map the old display / accent / body
+   variables onto it so every component flips without edits. */
+:root {
+  --font-geist:     var(--font-switzer);
+  --font-italiana:  var(--font-switzer);
+  --font-cormorant: var(--font-switzer);
 }
 
 /* Fluid type — linear interp between 600px and 2304px viewports */
@@ -163,7 +172,7 @@ html.lenis, html.lenis body { height: auto; }
 }
 .lef-pill-sm:active { transform: scale(0.97); }
 .lef-pill-sm:focus-visible {
-  outline: 2px solid #0e0e0e;
+  outline: 2px solid #103d2e;
   outline-offset: 2px;
 }
 
@@ -193,7 +202,7 @@ html.lenis, html.lenis body { height: auto; }
 .sv-pill:active { transform: scale(0.97); }
 .sv-pill.is-inverse {
   background: var(--v2-accent);
-  color: #0e0e0e;
+  color: #103d2e;
   border-color: var(--v2-accent);
 }
 @media (hover: hover) and (pointer: fine) {
@@ -236,7 +245,7 @@ html.lenis, html.lenis body { height: auto; }
 .lef-pill:hover { opacity: 0.92; }
 .lef-pill:active { transform: scale(0.97); }
 .lef-pill:focus-visible {
-  outline: 2px solid #0e0e0e;
+  outline: 2px solid #103d2e;
   outline-offset: 2px;
 }
 /* Word-reveal helper */
@@ -271,11 +280,11 @@ html.lenis, html.lenis body { height: auto; }
 .reveal-still { opacity: 0; }
 
 /* Selection */
-::selection { background: var(--v2-accent); color: #0e0e0e; }
+::selection { background: var(--v2-accent); color: #103d2e; }
 
 /* Focus ring */
 :where(a, button, input, textarea, select):focus-visible {
-  outline: 2px solid #0e0e0e;
+  outline: 2px solid #103d2e;
   outline-offset: 3px;
   border-radius: 2px;
 }
@@ -286,7 +295,7 @@ html.lenis, html.lenis body { height: auto; }
 :where(a, button, [role="button"], [tabindex]:not([tabindex="-1"]))
   :focus-visible,
 :focus-visible {
-  outline: 2px solid #0e0e0e;
+  outline: 2px solid #103d2e;
   outline-offset: 2px;
   border-radius: 3px;
 }

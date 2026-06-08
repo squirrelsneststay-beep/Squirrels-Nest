@@ -23,8 +23,8 @@ if (typeof window !== "undefined") {
  * `public/images/shepherds-hut/` and swap the two constants below. See that
  * folder's README.md.
  */
-const HUT_PHOTO_MAIN = "/images/squirrels-nest/sq-34.jpg"; // PLACEHOLDER — replace with real hut photo
-const HUT_PHOTO_DETAIL = "/images/squirrels-nest/sq-37.jpg"; // PLACEHOLDER — replace with real hut photo
+const HUT_PHOTO_MAIN = "/images/shepherds-hut/hut-1.jpg"; // the striped hut exterior
+const HUT_PHOTO_DETAIL = "/images/shepherds-hut/hut-3.jpg"; // twin beds through the open door
 
 export function ShepherdsHut() {
   const rootRef = useRef<HTMLDivElement>(null);
@@ -155,7 +155,7 @@ export function ShepherdsHut() {
         >
           <Image
             src={HUT_PHOTO_MAIN}
-            alt="A quiet bedroom corner at Squirrels' Nest"
+            alt="The red-and-white striped shepherd's hut at Squirrels' Nest"
             fill
             sizes="(max-width: 768px) 70vw, 26rem"
             style={{ objectFit: "cover" }}
@@ -173,7 +173,7 @@ export function ShepherdsHut() {
         >
           <Image
             src={HUT_PHOTO_DETAIL}
-            alt="Light through the trees at Squirrels' Nest"
+            alt="Inside the shepherd's hut — twin beds with striped linen"
             fill
             sizes="(max-width: 768px) 50vw, 18rem"
             style={{ objectFit: "cover" }}

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { Space_Grotesk, Geist, Geist_Mono } from "next/font/google";
+import { Geist_Mono } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 import { SmoothScroll } from "@/components/SmoothScroll";
 import { Nav } from "@/components/Nav";
@@ -8,30 +9,19 @@ import { ScrollProgress } from "@/components/v2/ScrollProgress";
 import { FloatingBookButton } from "@/components/v2/FloatingBookButton";
 import { SITE_URL, BRAND } from "@/lib/site";
 
-// Display / headings — a modern grotesque, in the spirit of the PP Neue
-// Montreal that here-away.com uses. Space Grotesk is the free, OFL stand-in,
-// used big for the main things. Variable name kept as --font-italiana so every
-// existing `.font-display` heading + inline reference flips automatically.
-const spaceGrotesk = Space_Grotesk({
-  variable: "--font-italiana",
-  subsets: ["latin"],
+// One neutral grotesque for the whole site — the way here-away.com uses a
+// single PP Neue Montreal. Switzer (Fontshare, free for commercial use) is the
+// close, self-hosted stand-in. Exposed on --font-switzer; globals.css maps the
+// display / accent / body variables onto it so every component picks it up.
+const switzer = localFont({
+  variable: "--font-switzer",
   display: "swap",
-  weight: ["400", "500", "600", "700"],
-});
-
-// The old serif-italic accent lines now reuse the same grotesque (kept on the
-// --font-cormorant variable so they update without touching every component).
-const spaceGroteskAccent = Space_Grotesk({
-  variable: "--font-cormorant",
-  subsets: ["latin"],
-  display: "swap",
-  weight: ["400", "500"],
-});
-
-const geist = Geist({
-  variable: "--font-geist",
-  subsets: ["latin"],
-  display: "swap",
+  src: [
+    { path: "../public/fonts/switzer/switzer-400.woff2", weight: "400", style: "normal" },
+    { path: "../public/fonts/switzer/switzer-500.woff2", weight: "500", style: "normal" },
+    { path: "../public/fonts/switzer/switzer-600.woff2", weight: "600", style: "normal" },
+    { path: "../public/fonts/switzer/switzer-700.woff2", weight: "700", style: "normal" },
+  ],
 });
 
 const geistMono = Geist_Mono({
@@ -81,7 +71,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${spaceGrotesk.variable} ${spaceGroteskAccent.variable} ${geist.variable} ${geistMono.variable} antialiased`}
+      className={`${switzer.variable} ${geistMono.variable} antialiased`}
     >
       <body>
         <ScrollProgress />

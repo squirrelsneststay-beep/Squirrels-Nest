@@ -70,8 +70,8 @@ const ROOMS: Card[] = [
     variant: "spread-right",
     name: "The Bedroom",
     body: "Open-plan and calm, with a luxurious super king-size bed at its heart and the living space wrapped around it. Soft light, woodland in the window, and nowhere you need to be.",
-    photoMain: "/images/squirrels-nest/sq-12.jpg",
-    photoDetail: "/images/squirrels-nest/sq-32.jpg",
+    photoMain: "/images/squirrels-nest/sq-29.jpg",
+    photoDetail: "/images/squirrels-nest/sq-12.jpg",
   },
   {
     variant: "tall-triptych",
