@@ -83,7 +83,7 @@ export function BigFooter() {
                 maxWidth: "26ch",
               }}
             >
-              Stay a while<span style={{ color: "var(--v2-accent)" }}>.</span>
+              Stay a while.
             </p>
             <p
               style={{
@@ -142,7 +142,7 @@ export function BigFooter() {
                 <li className="bf-link" style={{ paddingBlock: "0.35rem" }}>Open-plan, fully equipped kitchen</li>
                 <li className="bf-link" style={{ paddingBlock: "0.35rem" }}>Large walk-in shower room</li>
                 <li className="bf-link" style={{ paddingBlock: "0.35rem" }}>Private enclosed courtyard</li>
-                <li className="bf-link" style={{ paddingBlock: "0.35rem" }}>WiFi, TV &amp; central heating</li>
+                <li className="bf-link" style={{ paddingBlock: "0.35rem" }}>WiFi &amp; central heating</li>
                 <li className="bf-link" style={{ paddingBlock: "0.35rem" }}>Private parking</li>
                 <li className="bf-link" style={{ paddingBlock: "0.35rem" }}>Woodland views, in Berkshire</li>
               </ul>

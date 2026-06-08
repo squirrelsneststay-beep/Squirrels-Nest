@@ -210,7 +210,7 @@ export function InspiredBy() {
         >
           the{" "}
           <span style={{ color: "var(--v2-ink)" }}>English</span>{" "}
-          countryside<span style={{ color: "var(--v2-accent)" }}>.</span>
+          countryside.
         </h2>
 
         {/* The shrinking frame — starts full viewport, ends small portrait centre.

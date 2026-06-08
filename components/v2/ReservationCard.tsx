@@ -163,38 +163,20 @@ export function ReservationCard() {
             at Squirrels&apos; Nest.
           </p>
 
-          <div
+          <p
             style={{
-              marginTop: "2rem",
-              display: "grid",
-              gridTemplateColumns: "1fr 1fr",
-              gap: "1rem",
+              marginTop: "1.5rem",
               fontFamily: "var(--font-geist)",
-              fontSize: "0.85rem",
+              fontSize: "1rem",
+              lineHeight: 1.55,
               color: "var(--v2-ink-soft)",
-              letterSpacing: "-0.005em",
-              textAlign: "left",
+              maxWidth: "30rem",
             }}
           >
-            <div>
-              <span style={{ fontSize: "0.7rem", color: "var(--v2-mute)", letterSpacing: "0.05em", textTransform: "uppercase", display: "block" }}>
-                Check in
-              </span>
-              <span style={{ fontSize: "1rem", display: "block", paddingTop: "0.5rem", borderBottom: "1px solid var(--v2-line)", paddingBottom: "0.5rem" }}>
-                Choose a date
-              </span>
-            </div>
-            <div>
-              <span style={{ fontSize: "0.7rem", color: "var(--v2-mute)", letterSpacing: "0.05em", textTransform: "uppercase", display: "block" }}>
-                Check out
-              </span>
-              <span style={{ fontSize: "1rem", display: "block", paddingTop: "0.5rem", borderBottom: "1px solid var(--v2-line)", paddingBottom: "0.5rem" }}>
-                Choose a date
-              </span>
-            </div>
-          </div>
+            Live dates, availability and secure booking are all handled on Airbnb.
+          </p>
 
-          <a href={AIRBNB_URL} {...EXTERNAL_LINK_PROPS} className="sv-pill is-inverse" style={{ marginTop: "2.5rem" }}>
+          <a href={AIRBNB_URL} {...EXTERNAL_LINK_PROPS} className="sv-pill is-inverse" style={{ marginTop: "2rem" }}>
             <span>Book</span>
             <span className="sv-pill-rule" aria-hidden />
             <span>on Airbnb</span>

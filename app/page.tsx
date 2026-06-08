@@ -9,7 +9,6 @@ import { ShepherdsHut } from "@/components/v2/ShepherdsHut";
 import { InspiredBy } from "@/components/v2/InspiredBy";
 import { Scenery } from "@/components/v2/Scenery";
 import { ExpandingGallery } from "@/components/v2/ExpandingGallery";
-import { ForSale } from "@/components/v2/ForSale";
 import { ReservationCard } from "@/components/v2/ReservationCard";
 import { InlineBookCTA } from "@/components/v2/InlineBookCTA";
 
@@ -70,7 +69,6 @@ export default function HomePage() {
           pinned scroll animation works correctly. */}
       <div style={{ position: "relative", zIndex: 2, background: "var(--v2-bg)" }}>
         <Scenery />
-        <ForSale />
         <InspiredBy />
         <ExpandingGallery />
         <ReservationCard />

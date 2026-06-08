@@ -95,7 +95,7 @@ export function Scenery() {
             maxWidth: "18ch",
           }}
         >
-          Woodland, garden, and a few friendly faces<span style={{ color: "var(--v2-accent)" }}>.</span>
+          Woodland, garden, and a few friendly faces.
         </h2>
       </div>
 

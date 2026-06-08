@@ -3,7 +3,6 @@
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { HandUnderline } from "@/components/v2/HandDrawn";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
@@ -16,7 +15,7 @@ const HIGHLIGHTS = [
   "Woodland views",
   "Fully equipped kitchen",
   "Large walk-in shower room",
-  "WiFi, TV & central heating",
+  "WiFi & central heating",
   "On-site animals including horses, chickens, ducks, cats & dogs",
   "Private parking",
 ];
@@ -105,9 +104,7 @@ export function TheSpace() {
               maxWidth: "16ch",
             }}
           >
-            Every detail, curated for{" "}
-            <HandUnderline>comfort</HandUnderline>
-            <span style={{ color: "var(--v2-accent)" }}>.</span>
+            Every detail, curated for comfort.
           </h2>
           <p
             className="ts-reveal"
@@ -124,8 +121,8 @@ export function TheSpace() {
             featuring a luxurious super king-size bed, a fully equipped kitchen,
             and a spacious shower room with a modern walk-in shower. Whether
             you&apos;re planning a romantic getaway or a quiet retreat, every detail
-            has been curated for comfort — central heating, WiFi, and a TV for
-            cosy evenings in.
+            has been curated for comfort — central heating and WiFi for cosy
+            evenings in.
           </p>
           <p
             className="ts-reveal"
@@ -198,7 +195,7 @@ export function TheSpace() {
                     width: "0.55rem",
                     height: "0.55rem",
                     borderRadius: "2px",
-                    background: "var(--v2-accent)",
+                    background: "var(--v2-ink)",
                     transform: "translateY(0.1rem)",
                   }}
                 />

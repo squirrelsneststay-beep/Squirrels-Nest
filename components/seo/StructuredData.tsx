@@ -58,7 +58,6 @@ const lodging = {
     "Large walk-in shower room",
     "Private enclosed courtyard",
     "Central heating",
-    "Television",
     "Super king bed",
     "Optional shepherd's hut (sleeps 2)",
     "Woodland views",

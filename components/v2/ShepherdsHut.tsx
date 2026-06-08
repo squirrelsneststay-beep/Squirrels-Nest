@@ -102,7 +102,7 @@ export function ShepherdsHut() {
             maxWidth: "20ch",
           }}
         >
-          And a shepherd&apos;s hut, just across the grounds<span style={{ color: "var(--v2-accent)" }}>.</span>
+          And a shepherd&apos;s hut, just across the grounds.
         </h2>
 
         <p

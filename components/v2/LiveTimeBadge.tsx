@@ -107,7 +107,7 @@ export function LiveTimeBadge() {
           width: "0.45rem",
           height: "0.45rem",
           borderRadius: "50%",
-          background: "var(--v2-accent)",
+          background: "var(--v2-ink)",
           animation: "live-pulse 2.4s ease-in-out infinite",
           display: "inline-block",
         }}

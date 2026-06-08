@@ -76,7 +76,7 @@ function BookLink() {
         textDecoration: "underline",
         textUnderlineOffset: "4px",
         textDecorationThickness: "2px",
-        textDecorationColor: "var(--v2-accent)",
+        textDecorationColor: "var(--v2-ink)",
       }}
     >
       Book a stay
@@ -252,7 +252,7 @@ export function InsideTheNest() {
         </span>
         <span className="itn-title-line block overflow-hidden">
           <span className="block" style={{ color: "var(--v2-ink-soft)" }}>
-            the Nest<span style={{ color: "var(--v2-accent)" }}>.</span>
+            the Nest.
           </span>
         </span>
       </h2>
