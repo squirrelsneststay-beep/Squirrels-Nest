@@ -9,15 +9,19 @@ if (typeof window !== "undefined") {
 }
 
 /**
- * MorphingWordmark — the single visible "Squirrels' Nest" wordmark.
+ * MorphingWordmark — the single visible "Squirrels' Nest" wordmark + logo.
  *
- * It starts GIANT, centred at the bottom of the hero (measured from the
- * invisible #hero-mark-anchor), then as you scroll the first viewport it
- * flies up + shrinks + recolours to land exactly on the nav logo
- * (#nav-logo), which fades in underneath as the flight completes.
+ * It is rendered at FULL hero size (so the glyphs are razor-sharp) and, as you
+ * scroll the first viewport, it flies up + scales DOWN + recolours to land on
+ * the nav-logo slot. Scaling a large, crisply-rasterised wordmark DOWN keeps it
+ * sharp at every size — the opposite (rendering small and scaling up) is what
+ * made it blurry.
  *
- * Decorative + aria-hidden: the real <h1> lives (sr-only) in the hero, and
- * #nav-logo is the keyboard-focusable home link.
+ * #hero-mark-anchor (in the hero) fixes the START rect/size; #nav-logo (an
+ * invisible spacer in the nav) fixes the END rect. The overlay then IS the
+ * landed logo, so there is no size/letter-spacing mismatch to hand off.
+ * Decorative + aria-hidden: the real <h1> is sr-only in the hero, and #nav-logo
+ * is the focusable home link underneath.
  */
 export function MorphingWordmark() {
   const ref = useRef<HTMLSpanElement>(null);
@@ -29,7 +33,7 @@ export function MorphingWordmark() {
     const navLogo = document.getElementById("nav-logo");
     const startAnchor = document.getElementById("hero-mark-anchor");
 
-    // No hero on this page (e.g. /contact) — hide the flying wordmark and let
+    // No hero on this page (e.g. /contact): hide the flying wordmark and let
     // the static nav logo show normally.
     if (!navLogo || !startAnchor) {
       el.style.display = "none";
@@ -49,34 +53,52 @@ export function MorphingWordmark() {
         .getPropertyValue("--v2-ink")
         .trim() || "#08351c";
 
+    // Hide the landed logo over lower dark sections (mirrors the nav fade), but
+    // never over the hero itself (that is where the big wordmark lives).
+    const overLowerDark = () => {
+      if (window.scrollY < window.innerHeight * 0.9) return false;
+      const sections = document.querySelectorAll<HTMLElement>(
+        "[data-section-tone='dark']:not([data-hero])"
+      );
+      for (const s of Array.from(sections)) {
+        const r = s.getBoundingClientRect();
+        if (r.top < 80 && r.bottom > 0) return true;
+      }
+      return false;
+    };
+
     let tween: gsap.core.Tween | null = null;
+
+    const applyVisibility = () => {
+      el.style.opacity = overLowerDark() ? "0" : "1";
+    };
 
     const setup = () => {
       tween?.scrollTrigger?.kill();
       tween?.kill();
 
-      // Measure with the overlay in its resting (end) state.
+      // Measure with the overlay at its natural (start/big) state.
       gsap.set(el, { clearProps: "x,y,scale" });
-      const endR = navLogo.getBoundingClientRect();
       const startR = startAnchor.getBoundingClientRect();
-      if (!endR.height || !startR.height) return;
+      const endR = navLogo.getBoundingClientRect();
+      if (!startR.height || !endR.height) return;
 
-      el.style.left = `${endR.left}px`;
-      el.style.top = `${endR.top}px`;
+      // Anchor the overlay onto the hero wordmark position at scale 1 (big).
+      el.style.left = `${startR.left}px`;
+      el.style.top = `${startR.top}px`;
 
-      const scale = startR.height / endR.height;
-      const dx = startR.left - endR.left;
-      const dy = startR.top - endR.top;
+      const endScale = endR.height / startR.height; // < 1 → scaling DOWN, crisp
+      const dx = endR.left - startR.left;
+      const dy = endR.top - startR.top;
       const ink = readInk();
 
-      // Rest at the start (big, centred-bottom, white) until scroll drives it.
-      gsap.set(el, { x: dx, y: dy, scale, color: "#ffffff", transformOrigin: "left top" });
-      el.style.opacity = "1";
+      gsap.set(el, { x: 0, y: 0, scale: 1, color: "#ffffff", transformOrigin: "left top" });
+      applyVisibility();
 
       tween = gsap.to(el, {
-        x: 0,
-        y: 0,
-        scale: 1,
+        x: dx,
+        y: dy,
+        scale: endScale,
         color: ink,
         ease: "none",
         scrollTrigger: {
@@ -84,16 +106,10 @@ export function MorphingWordmark() {
           end: () => window.innerHeight,
           scrub: 0.4,
           invalidateOnRefresh: true,
-          onUpdate: (self) => {
-            const p = self.progress;
-            el.style.opacity = String(1 - Math.max(0, (p - 0.92) / 0.08));
-            navLogo.style.opacity = String(Math.max(0, (p - 0.9) / 0.1));
-          },
         },
       });
     };
 
-    // Fonts must be ready or the measured heights are wrong.
     let ready = false;
     const run = () => {
       if (ready) return;
@@ -104,19 +120,20 @@ export function MorphingWordmark() {
     if (document.fonts?.ready) {
       document.fonts.ready.then(run);
     }
-    // Fallback in case fonts.ready never resolves.
-    const t = window.setTimeout(run, 600);
+    const fallback = window.setTimeout(run, 600);
 
     const onResize = () => setup();
     window.addEventListener("resize", onResize);
+    window.addEventListener("scroll", applyVisibility, { passive: true });
 
-    // Re-resolve the ink colour when the theme flips.
+    // Re-resolve ink + re-evaluate when the theme flips.
     const obs = new MutationObserver(() => setup());
     obs.observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
 
     return () => {
-      window.clearTimeout(t);
+      window.clearTimeout(fallback);
       window.removeEventListener("resize", onResize);
+      window.removeEventListener("scroll", applyVisibility);
       obs.disconnect();
       tween?.scrollTrigger?.kill();
       tween?.kill();
@@ -136,13 +153,15 @@ export function MorphingWordmark() {
         margin: 0,
         whiteSpace: "nowrap",
         pointerEvents: "none",
-        fontSize: "1.15rem",
-        fontWeight: 500,
-        letterSpacing: "-0.02em",
-        lineHeight: 1,
+        // Rendered at full hero size — scaled DOWN to the nav, so it stays crisp.
+        fontSize: "clamp(3.5rem, 12vw, 14rem)",
+        lineHeight: 0.84,
+        letterSpacing: "-0.045em",
+        fontWeight: 400,
         color: "#ffffff",
         opacity: 0,
         willChange: "transform",
+        WebkitFontSmoothing: "antialiased",
       }}
     >
       Squirrels&apos; Nest

@@ -1,83 +1,15 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { AIRBNB_URL, EXTERNAL_LINK_PROPS } from "@/lib/site";
 
-if (typeof window !== "undefined") {
-  gsap.registerPlugin(ScrollTrigger);
-}
-
 /**
- * Persistent "Book Now" CTA, top-right of the viewport on every page.
- *
- * Blends with the section beneath it: when the button sits over a section
- * marked `data-section-tone="dark"`, it flips to a CREAM-on-transparent
- * variant so it stays legible on dark photographic backgrounds. Over light
- * sections, it's plum-on-cream.
- *
- * Decoupled from <Nav>, which fades to opacity 0 over pinned dark moments;
- * this button stays visible everywhere because conversion matters more than
- * compositional purity.
- *
- * Tone-detection is driven by scroll + resize + ScrollTrigger's "refresh"
- * event (which fires whenever a pinned timeline re-lays-out). No setInterval
- * poll — that was a 4 Hz forced reflow on mobile and a battery cost.
+ * Persistent "Book now" CTA — a SOLID yellow pill, fixed top-right on every
+ * page. Always the same solid treatment (no transparent/outline variant), so
+ * it reads as one consistent, high-contrast call to action everywhere. Sits
+ * above the nav so it stays visible even where the nav fades over dark
+ * pinned sections.
  */
 export function FloatingBookButton() {
-  const [overDark, setOverDark] = useState(false);
-
-  useEffect(() => {
-    if (typeof window === "undefined") return;
-
-    const probeY = 80;
-    const check = () => {
-      // Over the hero (first viewport) keep the gold-outline variant on the
-      // photo. Exclude the pinned [data-hero] (fixed at top forever) from the
-      // rect scan and gate the hero zone on scroll position instead.
-      const inHeroZone = window.scrollY < window.innerHeight * 0.9;
-      const sections = document.querySelectorAll<HTMLElement>(
-        "[data-section-tone='dark']:not([data-hero])"
-      );
-      let touchingDark = inHeroZone;
-      if (!touchingDark) {
-        for (const s of Array.from(sections)) {
-          const r = s.getBoundingClientRect();
-          if (r.top < probeY && r.bottom > 0) {
-            touchingDark = true;
-            break;
-          }
-        }
-      }
-      setOverDark(touchingDark);
-    };
-    check();
-    window.addEventListener("scroll", check, { passive: true });
-    window.addEventListener("resize", check);
-    ScrollTrigger.addEventListener("refresh", check);
-    ScrollTrigger.addEventListener("refreshInit", check);
-    return () => {
-      window.removeEventListener("scroll", check);
-      window.removeEventListener("resize", check);
-      ScrollTrigger.removeEventListener("refresh", check);
-      ScrollTrigger.removeEventListener("refreshInit", check);
-    };
-  }, []);
-
-  // Over dark (near-black) sections: gold outline on transparent.
-  const darkMode = {
-    background: "transparent",
-    color: "var(--v2-accent)",
-    borderColor: "var(--v2-accent)",
-  };
-  // Over white sections: solid yellow pill with dark-green text.
-  const lightMode = {
-    background: "var(--v2-accent)",
-    color: "#08351c",
-    borderColor: "var(--v2-accent)",
-  };
-
   return (
     <a
       href={AIRBNB_URL}
@@ -93,14 +25,12 @@ export function FloatingBookButton() {
         height: "52px",
         padding: "0 1.8rem",
         fontSize: "0.95rem",
-        fontWeight: 500,
+        fontWeight: 600,
         letterSpacing: "0.02em",
-        transition:
-          "background-color 320ms var(--ease-out)," +
-          " color 320ms var(--ease-out)," +
-          " border-color 320ms var(--ease-out)," +
-          " transform var(--dur-press) var(--ease-out)",
-        ...(overDark ? darkMode : lightMode),
+        background: "var(--v2-accent)",
+        color: "#08351c",
+        borderColor: "var(--v2-accent)",
+        transition: "transform var(--dur-press) var(--ease-out)",
       }}
     >
       <span>Book</span>

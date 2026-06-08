@@ -8,26 +8,24 @@ import type { NextConfig } from "next";
  */
 const isProd = process.env.NODE_ENV === "production";
 
-// SHA-256 of the ONLY first-party inline <script> on the site: the no-flash
-// dark-mode setter in app/layout.tsx. It is a static string literal with zero
-// dynamic/user input. Pinning its hash means that if 'unsafe-inline' is ever
-// removed from script-src, this script still executes — defense-in-depth.
-// If you edit that inline script, recompute with:
-//   printf "%s" "<exact script body>" | openssl dgst -sha256 -binary | openssl base64 -A
-const THEME_SCRIPT_HASH = "'sha256-iyDVUPGUp52ekZfarJmnVPnBl6kH1Cq6B/1zTX/0JAg='";
-
-// script-src tradeoff (documented):
+// script-src policy (documented tradeoff):
 // This is a STATICALLY prerendered App Router site. Next.js/React stream the
-// page as ~7 inline `self.__next_f.push(...)` scripts whose contents are
-// page- and content-specific, so they change on every page and every copy
-// edit — they cannot be hash-pinned, and a nonce-based policy would force
-// every page into dynamic rendering (no CDN caching, higher cost) per the
-// Next.js CSP guide. So 'unsafe-inline' is required for those framework
-// scripts. We still ship the theme-script hash alongside it for forward
-// compatibility. In dev, Turbopack/React HMR also need 'unsafe-eval'.
+// page as several inline `self.__next_f.push(...)` hydration scripts whose
+// contents are page- and content-specific, so they change on every page and
+// every copy edit — they cannot be hash-pinned, and a nonce-based policy would
+// force every page into dynamic rendering (no CDN caching, higher cost) per the
+// Next.js CSP guide. So 'unsafe-inline' is required for those framework scripts
+// (and for the one static no-flash theme setter in app/layout.tsx).
+//
+// CRITICAL: do NOT add a script hash/nonce here. Per the CSP spec, as soon as a
+// hash or nonce appears in script-src, 'unsafe-inline' is IGNORED — which would
+// block every un-hashed framework hydration script and break the site (the
+// `self.__next_r` invariant + dead interactivity). Hash + 'unsafe-inline' is not
+// "defense in depth"; it silently disables 'unsafe-inline'. In dev,
+// Turbopack/React HMR also need 'unsafe-eval'.
 const scriptSrc = isProd
-  ? `script-src 'self' 'unsafe-inline' ${THEME_SCRIPT_HASH}`
-  : `script-src 'self' 'unsafe-inline' 'unsafe-eval' ${THEME_SCRIPT_HASH}`;
+  ? `script-src 'self' 'unsafe-inline'`
+  : `script-src 'self' 'unsafe-inline' 'unsafe-eval'`;
 
 const cspDirectives = [
   "default-src 'self'",
