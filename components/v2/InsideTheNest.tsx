@@ -233,7 +233,7 @@ export function InsideTheNest() {
         </span>
         <span className="itn-title-line block overflow-hidden">
           <span className="block" style={{ color: "var(--v2-ink-soft)" }}>
-            the Nest.
+            the Nest<span style={{ color: "var(--v2-accent)" }}>.</span>
           </span>
         </span>
       </h2>

@@ -97,7 +97,7 @@ export function BigFooter() {
                 maxWidth: "26ch",
               }}
             >
-              Stay a while.
+              Stay a while<span style={{ color: "var(--v2-accent)" }}>.</span>
             </p>
             <p
               style={{

@@ -3,6 +3,7 @@
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { HandUnderline } from "@/components/v2/HandDrawn";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
@@ -104,7 +105,9 @@ export function TheSpace() {
               maxWidth: "16ch",
             }}
           >
-            Every detail, curated for comfort.
+            Every detail, curated for{" "}
+            <HandUnderline>comfort</HandUnderline>
+            <span style={{ color: "var(--v2-accent)" }}>.</span>
           </h2>
           <p
             className="ts-reveal"

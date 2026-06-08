@@ -4,6 +4,7 @@ import { useEffect, useRef } from "react";
 import Image from "next/image";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { HandUnderline } from "@/components/v2/HandDrawn";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
@@ -208,7 +209,11 @@ export function InspiredBy() {
             willChange: "opacity, transform",
           }}
         >
-          the English countryside.
+          the{" "}
+          <HandUnderline color="var(--v2-accent)" strokeWidth={5}>
+            <span style={{ color: "var(--v2-accent)" }}>English</span>
+          </HandUnderline>{" "}
+          countryside<span style={{ color: "var(--v2-accent)" }}>.</span>
         </h2>
 
         {/* The shrinking frame — starts full viewport, ends small portrait centre.

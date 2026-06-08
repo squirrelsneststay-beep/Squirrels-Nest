@@ -185,7 +185,7 @@ export function EditorialWelcome() {
                   color: "color-mix(in srgb, var(--v2-ink) 70%, transparent)",
                 }}
               >
-                of a country house.
+                of a country house<span style={{ color: "var(--v2-accent)" }}>.</span>
               </span>
             </span>
           </h2>
