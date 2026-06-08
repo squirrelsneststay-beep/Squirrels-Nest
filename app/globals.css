@@ -101,6 +101,21 @@ html[data-theme="dark"] {
   --foreground:       #f3f0e6;
 }
 
+/* Premium: a slow, subtle image zoom on hover across the photo galleries.
+   Targets the <img> only, so it never fights the GSAP parallax on the wrapper. */
+@media (hover: hover) and (pointer: fine) {
+  .itn-frame img,
+  .sc-shot img,
+  .fs-piece img {
+    transition: transform 900ms var(--ease-soft);
+  }
+  .itn-frame:hover img,
+  .sc-shot:hover img,
+  .fs-piece:hover img {
+    transform: scale(1.045);
+  }
+}
+
 
 /* Fluid type — linear interp between 600px and 2304px viewports */
 :root {
