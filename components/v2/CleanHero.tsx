@@ -129,8 +129,8 @@ export function CleanHero() {
       {/* Real page heading for SEO / screen readers — visually hidden, since
           the visible wordmark is the decorative MorphingWordmark overlay. */}
       <h1 className="sr-only">
-        Squirrels&apos; Nest — a luxury two-bedroom cabin retreat in the Berkshire
-        countryside, sleeping four, near the Hampshire border and the North Wessex Downs
+        Squirrels&apos; Nest — a charming one-bedroom country boutique retreat in the
+        heart of Berkshire, near the Hampshire border and the North Wessex Downs
       </h1>
 
       {/* EYEBROW — a small, plain location line, top-left */}

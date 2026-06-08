@@ -201,11 +201,10 @@ export function EditorialWelcome() {
               color: "var(--v2-ink-soft)",
             }}
           >
-            Squirrels&apos; Nest is a cabin of its own, tucked into the private
-            grounds of a country house in the Berkshire countryside. It sleeps
-            four across two bedrooms — a super king in the cabin, two singles in
-            the shepherd&apos;s hut — with a little kitchen, a walk-in shower and
-            your own courtyard, all yours for as long as you stay.
+            Welcome to Squirrels&apos; Nest, a charming one-bedroom country boutique
+            retreat nestled in the heart of Berkshire. Set within the peaceful
+            grounds of a beautiful country house, this unique escape offers the
+            perfect blend of comfort, style, and countryside charm.
           </p>
           <p
             className="ew-body"
@@ -218,10 +217,9 @@ export function EditorialWelcome() {
               color: "var(--v2-ink-soft)",
             }}
           >
-            Outside the door there&apos;s woodland on every side, and the easy
-            sounds of the place: horses over the fence, chickens and ducks, a
-            friendly cat or dog wandering past. Quiet, comfortable, and full of
-            character — somewhere to slow right down for a night or two.
+            Wake up to stunning woodland views and the gentle sounds of nature,
+            with horses, chickens, ducks, and friendly cats and dogs adding to
+            the idyllic setting.
           </p>
         </div>
       </div>

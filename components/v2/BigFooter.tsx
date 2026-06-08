@@ -95,9 +95,9 @@ export function BigFooter() {
                 lineHeight: 1.55,
               }}
             >
-              A two-bedroom boutique retreat in the Berkshire countryside, sleeping
-              four. Woodland views, a private courtyard, and a shepherd&apos;s hut
-              across the garden.
+              A charming one-bedroom country boutique retreat in the heart of
+              Berkshire — woodland views, a private courtyard, and an optional
+              shepherd&apos;s hut on site.
             </p>
             <a
               href={emailComposeUrl()}
@@ -137,8 +137,8 @@ export function BigFooter() {
                 Practical
               </p>
               <ul style={{ listStyle: "none", padding: 0, margin: 0, fontFamily: "var(--font-geist)", fontSize: "1rem" }}>
-                <li className="bf-link" style={{ paddingBlock: "0.35rem" }}>Sleeps four · two bedrooms</li>
-                <li className="bf-link" style={{ paddingBlock: "0.35rem" }}>Three beds: one super king, two singles</li>
+                <li className="bf-link" style={{ paddingBlock: "0.35rem" }}>Boutique 1-bedroom retreat</li>
+                <li className="bf-link" style={{ paddingBlock: "0.35rem" }}>Super king bed · optional hut (sleeps 2)</li>
                 <li className="bf-link" style={{ paddingBlock: "0.35rem" }}>Open-plan, fully equipped kitchen</li>
                 <li className="bf-link" style={{ paddingBlock: "0.35rem" }}>Large walk-in shower room</li>
                 <li className="bf-link" style={{ paddingBlock: "0.35rem" }}>Private enclosed courtyard</li>

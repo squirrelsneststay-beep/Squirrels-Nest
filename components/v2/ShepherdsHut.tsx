@@ -12,8 +12,8 @@ if (typeof window !== "undefined") {
 /**
  * ShepherdsHut — a quiet second moment, separate from the lodge rooms.
  *
- * The lodge sleeps two; a separate shepherd's hut across the garden sleeps two
- * more (two single beds), so the whole stay sleeps four. Confirmed facts only
+ * The one-bedroom retreat sleeps two; an OPTIONAL shepherd's hut across the
+ * garden provides extra accommodation for two more guests. Confirmed facts only
  * — see FACTS.md. Centred, two contained photos of varied size: deliberately a
  * different composition from the InsideTheNest room grid (section variety).
  *
@@ -117,9 +117,9 @@ export function ShepherdsHut() {
             color: "var(--v2-ink-soft)",
           }}
         >
-          The second bedroom is a charming shepherd&apos;s hut across the grounds,
-          with two single beds and its own door. Perfect for children, friends or
-          family travelling with you — a little space of their own, the same quiet.
+          For additional flexibility, a charming shepherd&apos;s hut is also
+          available on site, providing extra accommodation for two guests —
+          perfect for friends or family travelling together.
         </p>
 
         <p
@@ -133,7 +133,7 @@ export function ShepherdsHut() {
             letterSpacing: "-0.01em",
           }}
         >
-          Two bedrooms, three beds. Sleeps four, in all.
+          An optional hut on site. Extra room for two.
         </p>
       </div>
 

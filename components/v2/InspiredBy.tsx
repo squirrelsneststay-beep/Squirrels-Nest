@@ -4,7 +4,6 @@ import { useEffect, useRef } from "react";
 import Image from "next/image";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { HandUnderline } from "@/components/v2/HandDrawn";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
@@ -210,9 +209,7 @@ export function InspiredBy() {
           }}
         >
           the{" "}
-          <HandUnderline color="var(--v2-accent)" strokeWidth={5}>
-            <span style={{ color: "var(--v2-accent)" }}>English</span>
-          </HandUnderline>{" "}
+          <span style={{ color: "var(--v2-ink)" }}>English</span>{" "}
           countryside<span style={{ color: "var(--v2-accent)" }}>.</span>
         </h2>
 

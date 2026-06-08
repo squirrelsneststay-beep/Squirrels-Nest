@@ -10,14 +10,14 @@ if (typeof window !== "undefined") {
 }
 
 const HIGHLIGHTS = [
-  "Sleeps four — two bedrooms, three beds",
-  "A super king in the cabin, two singles in the hut",
+  "Boutique 1-bedroom retreat with super king bed",
+  "Optional shepherd's hut (sleeps 2)",
   "Private enclosed courtyard with seating",
-  "Stunning woodland views",
+  "Woodland views",
   "Fully equipped kitchen",
   "Large walk-in shower room",
   "WiFi, TV & central heating",
-  "On-site animals — horses, chickens, ducks, cats & dogs",
+  "On-site animals including horses, chickens, ducks, cats & dogs",
   "Private parking",
 ];
 
@@ -120,9 +120,12 @@ export function TheSpace() {
               color: "var(--v2-ink-soft)",
             }}
           >
-            Whether you&apos;re planning a romantic getaway or a quiet retreat, every
-            detail has been curated for comfort — central heating, WiFi, and a TV
-            for cosy evenings in.
+            Inside, the space is thoughtfully designed with an open-plan layout
+            featuring a luxurious super king-size bed, a fully equipped kitchen,
+            and a spacious shower room with a modern walk-in shower. Whether
+            you&apos;re planning a romantic getaway or a quiet retreat, every detail
+            has been curated for comfort — central heating, WiFi, and a TV for
+            cosy evenings in.
           </p>
           <p
             className="ts-reveal"

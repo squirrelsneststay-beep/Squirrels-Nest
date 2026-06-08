@@ -44,11 +44,11 @@ export function ReservationCard() {
     const ctx = gsap.context(() => {
       gsap.fromTo(
         ".rc-card",
-        { y: 120, opacity: 0, rotate: 3 },
+        { y: 120, opacity: 0, rotate: 0 },
         {
           y: 0,
           opacity: 1,
-          rotate: -1.2,
+          rotate: 0,
           duration: 1.4,
           ease: "power3.out",
           scrollTrigger: { trigger: root, start: "top 65%", once: true },

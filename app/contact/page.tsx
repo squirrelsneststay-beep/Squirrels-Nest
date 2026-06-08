@@ -6,7 +6,7 @@ import { BRAND, AIRBNB_URL, EXTERNAL_LINK_PROPS, emailComposeUrl, SITE_URL } fro
 
 export const metadata: Metadata = {
   title: "Contact & Enquiries",
-  description: `Get in touch with ${BRAND.name}, a luxury two-bedroom cabin retreat in the Berkshire countryside. Questions, longer stays and special requests — or book direct on Airbnb.`,
+  description: `Get in touch with ${BRAND.name}, a charming one-bedroom country boutique retreat in the heart of Berkshire. Questions, longer stays and special requests — or book direct on Airbnb.`,
   alternates: { canonical: "/contact" },
   openGraph: {
     title: `Contact ${BRAND.name} — Luxury Cabin Retreat in ${BRAND.location}`,

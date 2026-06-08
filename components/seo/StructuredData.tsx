@@ -24,7 +24,7 @@ const lodging = {
   "@id": `${SITE_URL}/#lodging`,
   name: BRAND.name,
   description:
-    "A luxury two-bedroom self-catering cabin retreat in the Berkshire countryside, sleeping four. A super king bed in the cabin and two singles in a private shepherd's hut, with a fully equipped kitchen, walk-in shower, enclosed courtyard and woodland views — on the edge of the North Wessex Downs, near the Hampshire border.",
+    "A charming one-bedroom country boutique self-catering retreat in the heart of Berkshire, set in the peaceful grounds of a country house. An open-plan layout with a luxurious super king-size bed, a fully equipped kitchen, a walk-in shower and a private enclosed courtyard — plus an optional shepherd's hut sleeping two. Near the North Wessex Downs and the Hampshire border.",
   url: SITE_URL,
   image: [
     `${SITE_URL}/images/squirrels-nest/sq-12.jpg`,
@@ -34,7 +34,7 @@ const lodging = {
   email: BRAND.email,
   priceRange: "££",
   currenciesAccepted: "GBP",
-  numberOfRooms: 2,
+  numberOfRooms: 1,
   petsAllowed: false,
   smokingAllowed: false,
   address: {
@@ -60,7 +60,7 @@ const lodging = {
     "Central heating",
     "Television",
     "Super king bed",
-    "Private shepherd's hut",
+    "Optional shepherd's hut (sleeps 2)",
     "Woodland views",
   ].map((name) => ({
     "@type": "LocationFeatureSpecification",

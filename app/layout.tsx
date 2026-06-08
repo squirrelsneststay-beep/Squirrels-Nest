@@ -47,26 +47,26 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: `${BRAND.name} | Luxury 2-Bedroom Cabin Retreat in ${BRAND.location}`,
+    default: `${BRAND.name} | Boutique One-Bedroom Country Retreat in ${BRAND.location}`,
     template: `%s | ${BRAND.name}`,
   },
   description:
-    `A luxury two-bedroom cabin retreat in the Berkshire countryside, sleeping four. Super king bed, a private shepherd's hut, enclosed courtyard and woodland views — on the edge of the North Wessex Downs, near the Hampshire border. Book direct on Airbnb.`,
+    `A charming one-bedroom country boutique retreat in the heart of Berkshire, set in the peaceful grounds of a country house. Super king bed, walk-in shower, private courtyard, woodland views and an optional shepherd's hut — near the North Wessex Downs and the Hampshire border. Book direct on Airbnb.`,
   applicationName: BRAND.name,
   keywords: [
-    "luxury cabin Berkshire",
+    "one-bedroom retreat Berkshire",
+    "boutique retreat Berkshire",
     "cabin retreat Berkshire",
     "shepherd's hut Berkshire",
-    "boutique Airbnb Berkshire",
-    "countryside retreat Berkshire",
+    "country house stay Berkshire",
     "romantic getaway Berkshire",
-    "two bedroom cabin sleeps four",
-    "self-catering cabin Berkshire",
+    "countryside retreat Berkshire",
+    "self-catering Berkshire",
     "weekend break Berkshire countryside",
+    "boutique Airbnb Berkshire",
     "cabin near Newbury",
     "North Wessex Downs stay",
-    "Hampshire border cabin retreat",
-    "country house stay Berkshire",
+    "Hampshire border retreat",
     "Squirrels' Nest",
   ],
   authors: [{ name: "Zoe" }],
@@ -79,8 +79,8 @@ export const metadata: Metadata = {
     locale: "en_GB",
     url: SITE_URL,
     siteName: BRAND.name,
-    title: `${BRAND.name} — Luxury 2-Bedroom Cabin Retreat in ${BRAND.location}`,
-    description: `A luxury two-bedroom cabin retreat in the Berkshire countryside, sleeping four — super king bed, private shepherd's hut, enclosed courtyard and woodland views. Near the Hampshire border and the North Wessex Downs.`,
+    title: `${BRAND.name} — Boutique One-Bedroom Country Retreat in ${BRAND.location}`,
+    description: `A charming one-bedroom country boutique retreat in the heart of Berkshire — super king bed, walk-in shower, private courtyard, woodland views and an optional shepherd's hut. Near the Hampshire border and the North Wessex Downs.`,
     images: [
       {
         url: "/images/squirrels-nest/sq-12.jpg",
@@ -92,8 +92,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: `${BRAND.name} — Luxury Cabin Retreat in ${BRAND.location}`,
-    description: "A luxury two-bedroom cabin retreat in the Berkshire countryside, sleeping four. Super king, shepherd's hut, private courtyard, woodland views.",
+    title: `${BRAND.name} — Boutique One-Bedroom Retreat in ${BRAND.location}`,
+    description: "A charming one-bedroom country boutique retreat in the heart of Berkshire. Super king bed, walk-in shower, private courtyard, woodland views, optional shepherd's hut.",
     images: ["/images/squirrels-nest/sq-12.jpg"],
   },
   robots: {
