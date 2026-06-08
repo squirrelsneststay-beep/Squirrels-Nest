@@ -3,7 +3,7 @@
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { AIRBNB_URL, INSTAGRAM_URL, EXTERNAL_LINK_PROPS, BRAND } from "@/lib/site";
+import { AIRBNB_URL, INSTAGRAM_URL, EXTERNAL_LINK_PROPS, BRAND, emailComposeUrl } from "@/lib/site";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
@@ -37,20 +37,6 @@ export function BigFooter() {
         ease: "power3.out",
         stagger: 0.035,
         scrollTrigger: { trigger: root, start: "top 70%", once: true },
-      });
-      // Signature draws itself
-      const sigPaths = gsap.utils.toArray<SVGPathElement>(".bf-sig-path");
-      sigPaths.forEach((p) => {
-        const len = p.getTotalLength();
-        p.style.strokeDasharray = `${len}`;
-        p.style.strokeDashoffset = `${len}`;
-      });
-      gsap.to(".bf-sig-path", {
-        strokeDashoffset: 0,
-        duration: 2.4,
-        ease: "power2.out",
-        stagger: 0.18,
-        scrollTrigger: { trigger: ".bf-sig", start: "top 80%", once: true },
       });
       gsap.from(".bf-link, .bf-meta", {
         y: 14,
@@ -109,11 +95,13 @@ export function BigFooter() {
                 lineHeight: 1.55,
               }}
             >
-              A one-bedroom boutique retreat in the Berkshire countryside.
-              Woodland views, a private courtyard, and an optional hut for two more.
+              A two-bedroom boutique retreat in the Berkshire countryside, sleeping
+              four. Woodland views, a private courtyard, and a shepherd&apos;s hut
+              across the garden.
             </p>
             <a
-              href={`mailto:${BRAND.email}`}
+              href={emailComposeUrl()}
+              {...EXTERNAL_LINK_PROPS}
               className="bf-link inline-block"
               style={{
                 marginTop: "1.5rem",
@@ -149,8 +137,8 @@ export function BigFooter() {
                 Practical
               </p>
               <ul style={{ listStyle: "none", padding: 0, margin: 0, fontFamily: "var(--font-geist)", fontSize: "1rem" }}>
-                <li className="bf-link" style={{ paddingBlock: "0.35rem" }}>Sleeps two, plus two in the hut</li>
-                <li className="bf-link" style={{ paddingBlock: "0.35rem" }}>Luxurious super king bed</li>
+                <li className="bf-link" style={{ paddingBlock: "0.35rem" }}>Sleeps four · two bedrooms</li>
+                <li className="bf-link" style={{ paddingBlock: "0.35rem" }}>Three beds: one super king, two singles</li>
                 <li className="bf-link" style={{ paddingBlock: "0.35rem" }}>Open-plan, fully equipped kitchen</li>
                 <li className="bf-link" style={{ paddingBlock: "0.35rem" }}>Large walk-in shower room</li>
                 <li className="bf-link" style={{ paddingBlock: "0.35rem" }}>Private enclosed courtyard</li>
@@ -162,66 +150,6 @@ export function BigFooter() {
           </div>
         </div>
 
-        {/* Animated signature — Zoe's "name" drawing itself */}
-        <div className="bf-sig" style={{ marginTop: "3rem", marginBottom: "5rem", textAlign: "right" }}>
-          <span
-            style={{
-              fontFamily: "var(--font-geist)",
-              fontSize: "0.7rem",
-              letterSpacing: "0.18em",
-              textTransform: "uppercase",
-              opacity: 0.55,
-              display: "block",
-              marginBottom: "0.75rem",
-            }}
-          >
-            With love,
-          </span>
-          <svg
-            viewBox="0 0 320 80"
-            style={{ width: "min(18rem, 60vw)", height: "auto", color: "var(--v2-bg)" }}
-            aria-label="Zoe's signature"
-            role="img"
-          >
-            {/* Stylised handwriting — "Zoe" */}
-            <path
-              className="bf-sig-path"
-              d="M 30 25 C 55 25, 80 25, 110 25 C 105 35, 80 50, 55 65 C 65 65, 90 65, 115 60"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-            <path
-              className="bf-sig-path"
-              d="M 140 50 C 140 32, 160 28, 175 35 C 188 42, 188 60, 175 65 C 162 70, 140 64, 140 50 Z"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-            <path
-              className="bf-sig-path"
-              d="M 205 35 L 240 35 M 205 48 L 235 48 M 205 35 C 205 50, 210 62, 240 62"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-            <path
-              className="bf-sig-path"
-              d="M 250 68 C 260 70, 275 70, 290 65"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="1.5"
-              strokeLinecap="round"
-              strokeOpacity="0.6"
-            />
-          </svg>
-        </div>
       </div>
 
       {/* COLOSSAL wordmark — touches the very bottom of the page */}

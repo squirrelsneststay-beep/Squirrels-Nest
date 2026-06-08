@@ -10,8 +10,8 @@ if (typeof window !== "undefined") {
 }
 
 const HIGHLIGHTS = [
-  "Boutique one-bedroom retreat with a super king bed",
-  "Optional shepherd's hut, sleeps two more",
+  "Sleeps four — two bedrooms, three beds",
+  "A super king in the cabin, two singles in the hut",
   "Private enclosed courtyard with seating",
   "Stunning woodland views",
   "Fully equipped kitchen",

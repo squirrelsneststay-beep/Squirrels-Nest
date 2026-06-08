@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { BRAND } from "@/lib/site";
+import { BRAND, EXTERNAL_LINK_PROPS, emailComposeUrl } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Privacy",
@@ -100,7 +100,8 @@ export default function PrivacyPage() {
             You can ask to see, correct, or delete anything we have about you
             at any time. Email{" "}
             <a
-              href={`mailto:${BRAND.email}`}
+              href={emailComposeUrl()}
+              {...EXTERNAL_LINK_PROPS}
               style={{ color: "var(--lef-forest)", textDecoration: "underline", textUnderlineOffset: "2px" }}
             >
               {BRAND.email}

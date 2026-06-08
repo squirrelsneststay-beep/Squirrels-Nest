@@ -117,9 +117,9 @@ export function ShepherdsHut() {
             color: "var(--v2-ink-soft)",
           }}
         >
-          For a little more room, a charming shepherd&apos;s hut sits on the
-          grounds — optional, and all your own. It sleeps two more: perfect for
-          friends, or family travelling with you. Its own door, the same quiet.
+          The second bedroom is a charming shepherd&apos;s hut across the grounds,
+          with two single beds and its own door. Perfect for children, friends or
+          family travelling with you — a little space of their own, the same quiet.
         </p>
 
         <p
@@ -133,7 +133,7 @@ export function ShepherdsHut() {
             letterSpacing: "-0.01em",
           }}
         >
-          Lodge sleeps two. Hut sleeps two more. Four, in all.
+          Two bedrooms, three beds. Sleeps four, in all.
         </p>
       </div>
 

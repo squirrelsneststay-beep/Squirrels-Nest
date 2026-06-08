@@ -201,11 +201,11 @@ export function EditorialWelcome() {
               color: "var(--v2-ink-soft)",
             }}
           >
-            Squirrels&apos; Nest is a one-bedroom cabin of its own, tucked into the
-            private grounds of a country house in the Berkshire countryside.
-            It&apos;s just the one space — a super king bed, a little kitchen, a
-            walk-in shower and your own courtyard — so the whole place is yours
-            for as long as you stay.
+            Squirrels&apos; Nest is a cabin of its own, tucked into the private
+            grounds of a country house in the Berkshire countryside. It sleeps
+            four across two bedrooms — a super king in the cabin, two singles in
+            the shepherd&apos;s hut — with a little kitchen, a walk-in shower and
+            your own courtyard, all yours for as long as you stay.
           </p>
           <p
             className="ew-body"

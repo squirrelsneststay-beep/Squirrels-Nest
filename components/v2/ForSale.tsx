@@ -4,7 +4,7 @@ import { useEffect, useRef } from "react";
 import Image from "next/image";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { BRAND } from "@/lib/site";
+import { emailComposeUrl, EXTERNAL_LINK_PROPS } from "@/lib/site";
 import { HandArrow } from "@/components/v2/HandDrawn";
 
 if (typeof window !== "undefined") {
@@ -161,7 +161,8 @@ export function ForSale() {
           </p>
           <span className="fs-reveal" style={{ display: "inline-flex", alignItems: "center", gap: "0.4rem", marginTop: "2rem" }}>
             <a
-              href={`mailto:${BRAND.email}?subject=Squirrels' Nest — a piece I'd love to buy`}
+              href={emailComposeUrl("Squirrels' Nest — a piece I'd love to buy")}
+              {...EXTERNAL_LINK_PROPS}
               style={{
                 fontFamily: "var(--font-geist)",
                 fontSize: "0.95rem",

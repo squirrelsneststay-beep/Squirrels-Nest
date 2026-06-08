@@ -42,3 +42,16 @@ export const EXTERNAL_LINK_PROPS = {
   target: "_blank" as const,
   rel: "noopener noreferrer" as const,
 };
+
+/**
+ * A reliable "email us" link. A bare `mailto:` only works when the visitor has
+ * a desktop mail app configured — many don't (they use webmail), so the link
+ * appears to do nothing. Since the inbox is Gmail, we open Gmail's compose
+ * window in a new tab instead, pre-filled with the address (and optional
+ * subject). Pair with EXTERNAL_LINK_PROPS so it opens in a new tab.
+ */
+export function emailComposeUrl(subject?: string): string {
+  const params = new URLSearchParams({ view: "cm", fs: "1", to: BRAND.email });
+  if (subject) params.set("su", subject);
+  return `https://mail.google.com/mail/?${params.toString()}`;
+}

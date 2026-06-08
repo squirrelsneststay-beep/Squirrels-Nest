@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import { ScrollReveal } from "@/components/ScrollReveal";
 import { ContactForm } from "./ContactForm";
-import { BRAND, AIRBNB_URL, EXTERNAL_LINK_PROPS } from "@/lib/site";
+import { BRAND, AIRBNB_URL, EXTERNAL_LINK_PROPS, emailComposeUrl } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: `Contact — ${BRAND.name}`,
@@ -73,7 +73,8 @@ export default function ContactPage() {
                   Direct
                 </p>
                 <a
-                  href={`mailto:${BRAND.email}`}
+                  href={emailComposeUrl()}
+                  {...EXTERNAL_LINK_PROPS}
                   className="font-display block underline-offset-4 hover:underline"
                   style={{ fontSize: "var(--fs-28)", color: "var(--lef-forest)" }}
                 >
