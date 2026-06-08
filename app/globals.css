@@ -76,10 +76,6 @@
   --font-cormorant: var(--font-syne);     /* accent lines — Syne */
 }
 
-/* Custom cursor — hide the system cursor only while the custom ring is active
-   (the class is added by CustomCursor on desktop, non-reduced-motion only). */
-html.has-custom-cursor,
-html.has-custom-cursor * { cursor: none !important; }
 
 /* Fluid type — linear interp between 600px and 2304px viewports */
 :root {

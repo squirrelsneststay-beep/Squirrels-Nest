@@ -69,14 +69,14 @@ const ROOMS: Card[] = [
   {
     variant: "spread-right",
     name: "The Bedroom",
-    body: "Open-plan and calm, with a luxurious super king-size bed at its heart and the living space wrapped around it. Soft light, woodland in the window, and nowhere you need to be.",
-    photoMain: "/images/squirrels-nest/sq-29.jpg",
-    photoDetail: "/images/squirrels-nest/sq-12.jpg",
+    body: "Open-plan, with a super king-size bed. Plenty of room, soft light, and woodland in the window.",
+    photoMain: "/images/squirrels-nest/sq-12.jpg",
+    photoDetail: "/images/squirrels-nest/sq-30.jpg",
   },
   {
     variant: "tall-triptych",
     name: "The Shower Room",
-    body: "A spacious shower room with a modern walk-in shower. Brass fittings, white tile, and hot water whenever you want it.",
+    body: "A walk-in shower and a pedestal basin. Plenty of hot water, whenever you want it.",
     photoTall: "/images/squirrels-nest/sq-38.jpg",
     photoSquare: "/images/squirrels-nest/sq-39.jpg",
   },
@@ -84,15 +84,15 @@ const ROOMS: Card[] = [
     variant: "wide-band",
     name: "The Kitchen",
     initial: "K",
-    body: "Fully equipped and ready whenever you are. Brass tap, espresso machine, and everything you need to cook in — or just make the morning coffee.",
+    body: "Coffee machine, kettle, a little oven and a proper sink. Everything you need to cook in, or just make the morning coffee.",
     photoWide: "/images/squirrels-nest/sq-35.jpg",
   },
   {
     variant: "spread-left",
     name: "The Courtyard",
-    body: "Step out to a private, enclosed courtyard with seating of its own. Morning coffee, dinner outside, or a quiet glass under the stars.",
+    body: "Your own enclosed courtyard, with a table and chairs. For morning coffee, or dinner outside.",
     photoMain: "/images/squirrels-nest/sq-08.jpg",
-    photoDetail: "/images/squirrels-nest/sq-37.jpg",
+    photoDetail: "/images/squirrels-nest/sq-05.jpg",
   },
 ];
 
@@ -268,35 +268,8 @@ function CardWideBand({ r }: { r: WideBand }) {
           alignItems: "start",
         }}
       >
-        <div style={{ gridColumn: "2 / span 4", display: "flex", alignItems: "flex-start", gap: "1.5rem" }}>
-          <span
-            className="font-display"
-            style={{
-              fontSize: "clamp(5rem, 9vw, 9rem)",
-              lineHeight: 0.8,
-              letterSpacing: "-0.04em",
-              color: "color-mix(in srgb, var(--v2-ink) 88%, transparent)",
-              fontWeight: 400,
-              display: "block",
-              marginTop: "-0.4rem",
-            }}
-          >
-            {r.initial}
-          </span>
-          <div style={{ marginTop: "0.5rem" }}>
-            <Heading>{r.name}</Heading>
-            <span
-              style={{
-                fontFamily: "var(--font-cormorant)",
-                fontStyle: "italic",
-                fontSize: "1.1rem",
-                color: "var(--v2-mute)",
-                letterSpacing: "-0.01em",
-              }}
-            >
-              Plate III · brass, kettle, light
-            </span>
-          </div>
+        <div style={{ gridColumn: "2 / span 4" }}>
+          <Heading>{r.name}</Heading>
         </div>
         <div className="itn-card-copy" style={{ gridColumn: "7 / span 5" }}>
           <Body maxWidth="28rem">{r.body}</Body>
@@ -474,7 +447,7 @@ export function InsideTheNest() {
       <div
         className="mx-auto"
         style={{
-          maxWidth: "78rem",
+          maxWidth: "90rem",
           paddingInline: "clamp(1.5rem, 3vw, 3rem)",
           display: "flex",
           flexDirection: "column",

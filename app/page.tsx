@@ -7,8 +7,10 @@ import { InsideTheNest } from "@/components/v2/InsideTheNest";
 import { TheSpace } from "@/components/v2/TheSpace";
 import { ShepherdsHut } from "@/components/v2/ShepherdsHut";
 import { InspiredBy } from "@/components/v2/InspiredBy";
+import { Scenery } from "@/components/v2/Scenery";
 import { ColourStatement } from "@/components/v2/ColourStatement";
 import { ExpandingGallery } from "@/components/v2/ExpandingGallery";
+import { ForSale } from "@/components/v2/ForSale";
 import { ReservationCard } from "@/components/v2/ReservationCard";
 import { InlineBookCTA } from "@/components/v2/InlineBookCTA";
 
@@ -55,9 +57,11 @@ export default function HomePage() {
       {/* Lower half — kept OUT of the overflow:hidden wrapper so InspiredBy's
           pinned scroll animation works correctly. */}
       <div style={{ position: "relative", zIndex: 1, background: "var(--v2-bg)" }}>
+        <Scenery />
         <ColourStatement />
         <InspiredBy />
         <ExpandingGallery />
+        <ForSale />
         <ReservationCard />
       </div>
     </div>

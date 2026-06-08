@@ -28,7 +28,10 @@ const HUT_GALLERY = [
   { src: "/images/shepherds-hut/hut-1.jpg", alt: "The hut's painted door and porthole window", width: "min(17rem, 42vw)", aspect: "3 / 4" },
   { src: "/images/shepherds-hut/hut-3.jpg", alt: "Twin beds through the open door", width: "min(16rem, 42vw)", aspect: "3 / 4" },
   { src: "/images/shepherds-hut/hut-7.jpg", alt: "Inside the hut — twin beds with striped linen", width: "min(28rem, 88vw)", aspect: "3 / 2" },
-  { src: "/images/shepherds-hut/hut-9.jpg", alt: "A quiet corner of the shepherd's hut", width: "min(20rem, 60vw)", aspect: "1 / 1" },
+  { src: "/images/shepherds-hut/hut-2.jpg", alt: "The twin beds, made up", width: "min(17rem, 42vw)", aspect: "3 / 4" },
+  { src: "/images/shepherds-hut/hut-9.jpg", alt: "A quiet corner of the shepherd's hut", width: "min(18rem, 48vw)", aspect: "1 / 1" },
+  { src: "/images/shepherds-hut/hut-6.jpg", alt: "The shepherd's hut on the grounds", width: "min(26rem, 70vw)", aspect: "3 / 2" },
+  { src: "/images/shepherds-hut/hut-8.jpg", alt: "A detail of the shepherd's hut", width: "min(16rem, 44vw)", aspect: "3 / 4" },
 ];
 
 export function ShepherdsHut() {

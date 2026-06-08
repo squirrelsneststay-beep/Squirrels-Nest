@@ -7,7 +7,6 @@ import { Nav } from "@/components/Nav";
 import { BigFooter } from "@/components/v2/BigFooter";
 import { ScrollProgress } from "@/components/v2/ScrollProgress";
 import { FloatingBookButton } from "@/components/v2/FloatingBookButton";
-import { CustomCursor } from "@/components/v2/CustomCursor";
 import { SITE_URL, BRAND } from "@/lib/site";
 
 // One neutral grotesque for the whole site — the way here-away.com uses a
@@ -83,7 +82,6 @@ export default function RootLayout({
       className={`${switzer.variable} ${syne.variable} ${geistMono.variable} antialiased`}
     >
       <body>
-        <CustomCursor />
         <ScrollProgress />
         <FloatingBookButton />
         <SmoothScroll>
