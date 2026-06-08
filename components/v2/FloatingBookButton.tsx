@@ -77,6 +77,7 @@ export function FloatingBookButton() {
       href={AIRBNB_URL}
       {...EXTERNAL_LINK_PROPS}
       aria-label="Book on Airbnb"
+      data-magnetic
       className="sv-pill fbb-pulse"
       style={{
         position: "fixed",

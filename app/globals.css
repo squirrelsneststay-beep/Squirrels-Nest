@@ -71,10 +71,15 @@
    here-away.com uses one Neue Montreal. Map the old display / accent / body
    variables onto it so every component flips without edits. */
 :root {
-  --font-geist:     var(--font-switzer);
-  --font-italiana:  var(--font-switzer);
-  --font-cormorant: var(--font-switzer);
+  --font-geist:     var(--font-switzer);  /* body — neutral grotesque, readable */
+  --font-italiana:  var(--font-syne);     /* display / headings — Syne */
+  --font-cormorant: var(--font-syne);     /* accent lines — Syne */
 }
+
+/* Custom cursor — hide the system cursor only while the custom ring is active
+   (the class is added by CustomCursor on desktop, non-reduced-motion only). */
+html.has-custom-cursor,
+html.has-custom-cursor * { cursor: none !important; }
 
 /* Fluid type — linear interp between 600px and 2304px viewports */
 :root {
@@ -129,7 +134,7 @@ html.lenis, html.lenis body { height: auto; }
 /* Display — Instrument Serif. Editorial, high-contrast. Only weight 400. */
 .font-display {
   font-family: var(--font-italiana), "Helvetica Neue", Arial, sans-serif;
-  font-weight: 500;
+  font-weight: 600;
   letter-spacing: -0.02em;
   line-height: 0.98;
   font-feature-settings: "liga" 1, "kern" 1;

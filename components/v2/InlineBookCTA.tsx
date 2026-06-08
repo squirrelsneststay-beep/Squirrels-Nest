@@ -76,6 +76,7 @@ export function InlineBookCTA({
       <a
         href={AIRBNB_URL}
         {...EXTERNAL_LINK_PROPS}
+        data-magnetic
         className={`sv-pill ${isDark ? "" : "is-inverse"}`}
         style={{
           marginTop: "2.5rem",

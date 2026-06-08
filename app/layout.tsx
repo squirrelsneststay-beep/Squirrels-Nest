@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist_Mono } from "next/font/google";
+import { Geist_Mono, Syne } from "next/font/google";
 import localFont from "next/font/local";
 import "./globals.css";
 import { SmoothScroll } from "@/components/SmoothScroll";
@@ -7,6 +7,7 @@ import { Nav } from "@/components/Nav";
 import { BigFooter } from "@/components/v2/BigFooter";
 import { ScrollProgress } from "@/components/v2/ScrollProgress";
 import { FloatingBookButton } from "@/components/v2/FloatingBookButton";
+import { CustomCursor } from "@/components/v2/CustomCursor";
 import { SITE_URL, BRAND } from "@/lib/site";
 
 // One neutral grotesque for the whole site — the way here-away.com uses a
@@ -22,6 +23,14 @@ const switzer = localFont({
     { path: "../public/fonts/switzer/switzer-600.woff2", weight: "600", style: "normal" },
     { path: "../public/fonts/switzer/switzer-700.woff2", weight: "700", style: "normal" },
   ],
+});
+
+// Display / headings — Syne (chosen): distinctive, contemporary, design-forward.
+const syne = Syne({
+  variable: "--font-syne",
+  subsets: ["latin"],
+  display: "swap",
+  weight: ["400", "500", "600", "700", "800"],
 });
 
 const geistMono = Geist_Mono({
@@ -71,9 +80,10 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${switzer.variable} ${geistMono.variable} antialiased`}
+      className={`${switzer.variable} ${syne.variable} ${geistMono.variable} antialiased`}
     >
       <body>
+        <CustomCursor />
         <ScrollProgress />
         <FloatingBookButton />
         <SmoothScroll>
