@@ -23,8 +23,13 @@ if (typeof window !== "undefined") {
  * `public/images/shepherds-hut/` and swap the two constants below. See that
  * folder's README.md.
  */
-const HUT_PHOTO_MAIN = "/images/shepherds-hut/hut-1.jpg"; // the striped hut exterior
-const HUT_PHOTO_DETAIL = "/images/shepherds-hut/hut-3.jpg"; // twin beds through the open door
+const HUT_GALLERY = [
+  { src: "/images/shepherds-hut/hut-5.jpg", alt: "The red-and-white striped shepherd's hut on the grounds", width: "min(32rem, 88vw)", aspect: "3 / 2" },
+  { src: "/images/shepherds-hut/hut-1.jpg", alt: "The hut's painted door and porthole window", width: "min(17rem, 42vw)", aspect: "3 / 4" },
+  { src: "/images/shepherds-hut/hut-3.jpg", alt: "Twin beds through the open door", width: "min(16rem, 42vw)", aspect: "3 / 4" },
+  { src: "/images/shepherds-hut/hut-7.jpg", alt: "Inside the hut — twin beds with striped linen", width: "min(28rem, 88vw)", aspect: "3 / 2" },
+  { src: "/images/shepherds-hut/hut-9.jpg", alt: "A quiet corner of the shepherd's hut", width: "min(20rem, 60vw)", aspect: "1 / 1" },
+];
 
 export function ShepherdsHut() {
   const rootRef = useRef<HTMLDivElement>(null);
@@ -129,56 +134,42 @@ export function ShepherdsHut() {
         </p>
       </div>
 
-      {/* Two contained photos, varied size, centred — not full-bleed. */}
+      {/* The hut, in full — a staggered set of photos that reveal as you reach it. */}
       <div
-        className="sh-reveal mx-auto"
+        className="mx-auto"
         style={{
           marginTop: "clamp(3rem, 7vh, 5rem)",
-          maxWidth: "62rem",
+          maxWidth: "74rem",
           paddingInline: "clamp(1.5rem, 4vw, 3rem)",
           display: "flex",
+          flexWrap: "wrap",
           justifyContent: "center",
           alignItems: "flex-end",
-          gap: "clamp(1rem, 2.5vw, 2rem)",
-          flexWrap: "wrap",
+          gap: "clamp(0.85rem, 1.8vw, 1.5rem)",
         }}
       >
-        <div
-          style={{
-            position: "relative",
-            width: "min(26rem, 70vw)",
-            aspectRatio: "4 / 5",
-            borderRadius: "3px",
-            overflow: "hidden",
-            background: "var(--v2-line)",
-          }}
-        >
-          <Image
-            src={HUT_PHOTO_MAIN}
-            alt="The red-and-white striped shepherd's hut at Squirrels' Nest"
-            fill
-            sizes="(max-width: 768px) 70vw, 26rem"
-            style={{ objectFit: "cover" }}
-          />
-        </div>
-        <div
-          style={{
-            position: "relative",
-            width: "min(18rem, 50vw)",
-            aspectRatio: "3 / 4",
-            borderRadius: "3px",
-            overflow: "hidden",
-            background: "var(--v2-line)",
-          }}
-        >
-          <Image
-            src={HUT_PHOTO_DETAIL}
-            alt="Inside the shepherd's hut — twin beds with striped linen"
-            fill
-            sizes="(max-width: 768px) 50vw, 18rem"
-            style={{ objectFit: "cover" }}
-          />
-        </div>
+        {HUT_GALLERY.map((ph) => (
+          <div
+            key={ph.src}
+            className="sh-reveal"
+            style={{
+              position: "relative",
+              width: ph.width,
+              aspectRatio: ph.aspect,
+              borderRadius: "3px",
+              overflow: "hidden",
+              background: "var(--v2-line)",
+            }}
+          >
+            <Image
+              src={ph.src}
+              alt={ph.alt}
+              fill
+              sizes="(max-width: 768px) 88vw, 30rem"
+              style={{ objectFit: "cover" }}
+            />
+          </div>
+        ))}
       </div>
     </section>
   );
