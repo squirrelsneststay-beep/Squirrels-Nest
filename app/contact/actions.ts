@@ -21,7 +21,16 @@ const FROM_EMAIL = process.env.CONTACT_FROM_EMAIL || "onboarding@resend.dev";
 const IP_LIMIT = { max: 3, windowMs: 10 * 60 * 1000 }; // 3 per 10 min per IP
 const GLOBAL_LIMIT = { max: 40, windowMs: 60 * 60 * 1000 }; // 40 per hour total
 
-const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+// Pragmatic email shape check. Not RFC-exhaustive on purpose — it rejects the
+// obviously-malformed (spaces, missing @, missing dot/TLD) and requires a
+// 2+ char TLD. The value is only ever used as a structured `replyTo` field in
+// the Resend JSON payload (never raw SMTP), so this is sufficient: its job is
+// to keep junk out of the reply-to, not to guarantee deliverability.
+const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+// RFC 5321 caps an email address at 254 chars. Reject anything longer up front
+// so we never feed a truncated (and therefore ambiguous/invalid) address to
+// Resend's reply-to.
+const EMAIL_MAX = 254;
 
 /**
  * Trim, length-cap, and (for single-line fields) collapse newlines. Newline
@@ -63,12 +72,17 @@ export async function submitContact(
   if (!consume("contact:global", GLOBAL_LIMIT).allowed) return tooMany;
 
   const name = safeString(formData.get("name"), 200, true);
-  const email = safeString(formData.get("email"), 320, true);
+  // Cap one char over the RFC limit so an exactly-254 address still passes but
+  // anything longer gets caught by the explicit length check below (rather than
+  // being silently truncated into a malformed value).
+  const email = safeString(formData.get("email"), EMAIL_MAX + 1, true);
   const dates = safeString(formData.get("dates"), 200, true);
   const message = safeString(formData.get("message"), 5000);
 
   if (!name) return { ok: false, error: "Please tell us your name." };
-  if (!email || !EMAIL_RE.test(email)) return { ok: false, error: "That email address doesn't look right." };
+  if (!email || email.length > EMAIL_MAX || !EMAIL_RE.test(email)) {
+    return { ok: false, error: "That email address doesn't look right." };
+  }
   if (!message) return { ok: false, error: "Please add a short message." };
 
   if (!RESEND_API_KEY) {
@@ -108,7 +122,9 @@ export async function submitContact(
       ].filter(Boolean).join("\n"),
     });
     if (error) {
-      console.error("[contact] Resend returned error:", error);
+      // Log only Resend's name/message — never the whole object — so internal
+      // details never bloat the logs. The client always gets the generic copy.
+      console.error(`[contact] Resend returned error: ${error.name} — ${error.message}`);
       return { ok: false, error: `Something went wrong. Please email ${BRAND.email} directly.` };
     }
     return { ok: true };

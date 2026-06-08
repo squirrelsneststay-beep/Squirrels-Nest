@@ -8,20 +8,52 @@ import type { NextConfig } from "next";
  */
 const isProd = process.env.NODE_ENV === "production";
 
+// SHA-256 of the ONLY first-party inline <script> on the site: the no-flash
+// dark-mode setter in app/layout.tsx. It is a static string literal with zero
+// dynamic/user input. Pinning its hash means that if 'unsafe-inline' is ever
+// removed from script-src, this script still executes — defense-in-depth.
+// If you edit that inline script, recompute with:
+//   printf "%s" "<exact script body>" | openssl dgst -sha256 -binary | openssl base64 -A
+const THEME_SCRIPT_HASH = "'sha256-iyDVUPGUp52ekZfarJmnVPnBl6kH1Cq6B/1zTX/0JAg='";
+
+// script-src tradeoff (documented):
+// This is a STATICALLY prerendered App Router site. Next.js/React stream the
+// page as ~7 inline `self.__next_f.push(...)` scripts whose contents are
+// page- and content-specific, so they change on every page and every copy
+// edit — they cannot be hash-pinned, and a nonce-based policy would force
+// every page into dynamic rendering (no CDN caching, higher cost) per the
+// Next.js CSP guide. So 'unsafe-inline' is required for those framework
+// scripts. We still ship the theme-script hash alongside it for forward
+// compatibility. In dev, Turbopack/React HMR also need 'unsafe-eval'.
 const scriptSrc = isProd
-  ? "script-src 'self' 'unsafe-inline'"
-  : "script-src 'self' 'unsafe-inline' 'unsafe-eval'";
+  ? `script-src 'self' 'unsafe-inline' ${THEME_SCRIPT_HASH}`
+  : `script-src 'self' 'unsafe-inline' 'unsafe-eval' ${THEME_SCRIPT_HASH}`;
 
 const cspDirectives = [
   "default-src 'self'",
   scriptSrc,
+  // styled-jsx + inline style={{…}} + GSAP-set styles all emit inline styles;
+  // there is no hash/nonce path that survives static rendering, so
+  // 'unsafe-inline' for STYLES is an accepted tradeoff (style-based attacks
+  // are far lower impact than script injection, which we constrain above).
   "style-src 'self' 'unsafe-inline'",
-  "font-src 'self' data:",
-  "img-src 'self' data: blob:",
-  "media-src 'self' blob:",
-  "worker-src 'self' blob:",
+  // Fonts are self-hosted woff2 from /_next/static — 'self' covers them.
+  // No data: font URIs exist in the codebase, so it is omitted (least-priv).
+  "font-src 'self'",
+  // next/image serves optimised images same-origin from /_next/image.
+  // data: kept for small inline SVG/icons; no blob: image usage exists.
+  "img-src 'self' data:",
+  // No <audio>/<video>, Worker, or blob: usage anywhere in app code or in
+  // GSAP/Lenis — lock both down to 'self'.
+  "media-src 'self'",
+  "worker-src 'self'",
   "connect-src 'self'",
+  // No <object>/<embed>/<applet> — kill the legacy plugin vector outright.
+  "object-src 'none'",
+  // This site is never embedded and embeds no third-party frames.
+  "frame-src 'none'",
   "frame-ancestors 'none'",
+  "manifest-src 'self'",
   "base-uri 'self'",
   "form-action 'self'",
 ];
@@ -37,7 +69,10 @@ const securityHeaders = [
   { key: "X-DNS-Prefetch-Control", value: "off" },
   { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
   { key: "Permissions-Policy", value: "camera=(), microphone=(), geolocation=(), browsing-topics=(), interest-cohort=(), payment=(), usb=(), magnetometer=(), accelerometer=(), gyroscope=()" },
-  { key: "Strict-Transport-Security", value: "max-age=31536000; includeSubDomains" },
+  // 2-year max-age + preload, ready for HSTS preload-list submission once the
+  // custom domain is live on Vercel (Vercel terminates TLS for us). Only submit
+  // to hstspreload.org AFTER every subdomain is confirmed HTTPS-only.
+  { key: "Strict-Transport-Security", value: "max-age=63072000; includeSubDomains; preload" },
   {
     key: "Content-Security-Policy",
     value: cspDirectives.join("; "),
@@ -45,6 +80,15 @@ const securityHeaders = [
 ];
 
 const nextConfig: NextConfig = {
+  // Pin the workspace/file-tracing root to THIS project. A stray
+  // package-lock.json in the home directory made Next.js infer the wrong root,
+  // which can over-include files in the serverless output trace on Vercel.
+  // `turbopack.root` silences the build-time warning; `outputFileTracingRoot`
+  // fixes the production server / Vercel output tracer. Both point here.
+  turbopack: {
+    root: __dirname,
+  },
+  outputFileTracingRoot: __dirname,
   // NOTE: this is the Next.js `headers()` CONFIG hook, which returns route
   // header definitions. It is NOT `headers()` from `next/headers` (which
   // reads incoming request headers and became async in Next 15+). The two
