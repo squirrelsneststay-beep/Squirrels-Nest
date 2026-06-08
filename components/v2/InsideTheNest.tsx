@@ -10,130 +10,55 @@ if (typeof window !== "undefined") {
 }
 
 /**
- * InsideTheNest — four rooms, four genuinely different layouts.
- *
- *  Card 1 (Sitting Room) — SPREAD-RIGHT
- *      heading + body + link top-left, small detail bottom-left,
- *      BIG square photo on the right spanning both rows.
- *
- *  Card 2 (Bedroom) — TALL TRIPTYCH
- *      tall portrait photo on the FAR-LEFT, copy in the middle column,
- *      SQUARE photo on the right with a top offset so the three blocks
- *      stagger like a cinematic still strip.
- *
- *  Card 3 (Kitchen) — WIDE BAND + DROP CAP
- *      ultra-wide cinematic photo across the top spanning the whole card
- *      width, then a centred two-column row below: an oversized "K" drop
- *      cap + heading on the left, body + book link on the right.
- *
- *  Card 4 (Shepherd's Hut) — MIRRORED SPREAD WITH OFFSET
- *      BIG portrait photo on the left, copy + link on the right with a
- *      generous top offset, small landscape detail at far-right bottom,
- *      breaking the visual symmetry of card 1.
- *
- * Every photo has a subtle in-frame parallax (yPercent +8 → -8 as the
- * card crosses the viewport) so the imagery isn't static when you scroll.
+ * InsideTheNest — four rooms, each its own little gallery of 3–4 photos.
+ * Photos are grouped strictly by room (no strays): bedroom = beds, shower room
+ * = bathroom, kitchen = kitchen, courtyard = outside. Heading alternates side
+ * for rhythm; photos reveal + parallax on scroll.
  */
 
-type SpreadRight = {
-  variant: "spread-right";
-  name: string;
-  body: string;
-  photoMain: string;
-  photoDetail: string;
-};
-type TallTriptych = {
-  variant: "tall-triptych";
-  name: string;
-  body: string;
-  photoTall: string;
-  photoSquare: string;
-};
-type WideBand = {
-  variant: "wide-band";
-  name: string;
-  initial: string;
-  body: string;
-  photoWide: string;
-};
-type SpreadLeft = {
-  variant: "spread-left";
-  name: string;
-  body: string;
-  photoMain: string;
-  photoDetail: string;
-};
-type Card = SpreadRight | TallTriptych | WideBand | SpreadLeft;
+type Shot = { src: string; alt: string; w: string; aspect: string };
+type Room = { name: string; body: string; photos: Shot[] };
 
-const ROOMS: Card[] = [
+const ROOMS: Room[] = [
   {
-    variant: "spread-right",
     name: "The Bedroom",
     body: "Open-plan, with a super king-size bed. Plenty of room, soft light, and woodland in the window.",
-    photoMain: "/images/squirrels-nest/sq-12.jpg",
-    photoDetail: "/images/squirrels-nest/sq-30.jpg",
+    photos: [
+      { src: "/images/squirrels-nest/sq-12.jpg", alt: "The super king bed with its red headboard", w: "min(34rem, 92vw)", aspect: "3 / 2" },
+      { src: "/images/squirrels-nest/sq-33.jpg", alt: "The bedroom in green, bed made up", w: "min(20rem, 46vw)", aspect: "3 / 4" },
+      { src: "/images/squirrels-nest/sq-40.jpg", alt: "The bed and bedside lamp", w: "min(22rem, 46vw)", aspect: "1 / 1" },
+      { src: "/images/squirrels-nest/sq-30.jpg", alt: "Painted lamp and mirror detail", w: "min(17rem, 38vw)", aspect: "3 / 4" },
+    ],
   },
   {
-    variant: "tall-triptych",
     name: "The Shower Room",
     body: "A walk-in shower and a pedestal basin. Plenty of hot water, whenever you want it.",
-    photoTall: "/images/squirrels-nest/sq-38.jpg",
-    photoSquare: "/images/squirrels-nest/sq-39.jpg",
+    photos: [
+      { src: "/images/squirrels-nest/sq-38.jpg", alt: "The walk-in shower", w: "min(22rem, 60vw)", aspect: "3 / 4" },
+      { src: "/images/squirrels-nest/sq-39.jpg", alt: "The pedestal basin under the green window", w: "min(22rem, 60vw)", aspect: "3 / 4" },
+      { src: "/images/squirrels-nest/sq-20.jpg", alt: "Brass taps and a fresh flower", w: "min(26rem, 86vw)", aspect: "3 / 2" },
+    ],
   },
   {
-    variant: "wide-band",
     name: "The Kitchen",
-    initial: "K",
     body: "Coffee machine, kettle, a little oven and a proper sink. Everything you need to cook in, or just make the morning coffee.",
-    photoWide: "/images/squirrels-nest/sq-35.jpg",
+    photos: [
+      { src: "/images/squirrels-nest/sq-35.jpg", alt: "The kitchen — coffee machine, oven and kettle", w: "min(30rem, 90vw)", aspect: "3 / 2" },
+      { src: "/images/squirrels-nest/sq-37.jpg", alt: "The kitchen sink under the window", w: "min(18rem, 42vw)", aspect: "3 / 4" },
+      { src: "/images/squirrels-nest/sq-24.jpg", alt: "Looking through to the kitchen", w: "min(18rem, 42vw)", aspect: "3 / 4" },
+      { src: "/images/squirrels-nest/sq-29.jpg", alt: "The sink and draining board", w: "min(22rem, 60vw)", aspect: "4 / 5" },
+    ],
   },
   {
-    variant: "spread-left",
     name: "The Courtyard",
     body: "Your own enclosed courtyard, with a table and chairs. For morning coffee, or dinner outside.",
-    photoMain: "/images/squirrels-nest/sq-08.jpg",
-    photoDetail: "/images/squirrels-nest/sq-05.jpg",
+    photos: [
+      { src: "/images/squirrels-nest/sq-08.jpg", alt: "The private courtyard with its bistro table", w: "min(26rem, 70vw)", aspect: "4 / 5" },
+      { src: "/images/squirrels-nest/sq-04.jpg", alt: "The timber-clad cabin from outside", w: "min(28rem, 86vw)", aspect: "3 / 2" },
+      { src: "/images/squirrels-nest/sq-06.jpg", alt: "The room from the courtyard, a dog in the doorway", w: "min(20rem, 56vw)", aspect: "3 / 4" },
+    ],
   },
 ];
-
-/* ───────────────── Shared sub-components ───────────────── */
-
-function Heading({ children }: { children: React.ReactNode }) {
-  return (
-    <h3
-      className="font-display"
-      style={{
-        fontSize: "clamp(1.6rem, 2.8vw, 2.4rem)",
-        lineHeight: 1.05,
-        letterSpacing: "-0.025em",
-        color: "var(--v2-ink)",
-        fontWeight: 400,
-        margin: 0,
-        marginBottom: "1.25rem",
-      }}
-    >
-      {children}
-    </h3>
-  );
-}
-
-function Body({ children, maxWidth = "22rem" }: { children: React.ReactNode; maxWidth?: string }) {
-  return (
-    <p
-      style={{
-        fontFamily: "var(--font-geist)",
-        fontSize: "0.95rem",
-        lineHeight: 1.55,
-        letterSpacing: "-0.005em",
-        color: "var(--v2-ink-soft)",
-        margin: 0,
-        maxWidth,
-      }}
-    >
-      {children}
-    </p>
-  );
-}
 
 function BookLink() {
   return (
@@ -141,15 +66,16 @@ function BookLink() {
       href="#reserve"
       style={{
         display: "inline-block",
-        marginTop: "1.5rem",
+        marginTop: "1.25rem",
         fontFamily: "var(--font-geist)",
-        fontSize: "0.875rem",
+        fontSize: "0.9rem",
         fontWeight: 600,
         letterSpacing: "-0.005em",
         color: "var(--v2-ink)",
         textDecoration: "underline",
         textUnderlineOffset: "4px",
-        textDecorationThickness: "1px",
+        textDecorationThickness: "2px",
+        textDecorationColor: "var(--v2-accent)",
       }}
     >
       Book a stay
@@ -157,164 +83,85 @@ function BookLink() {
   );
 }
 
-function Frame({
-  src,
-  alt,
-  aspect,
-  priority = false,
-  sizes = "(max-width: 768px) 100vw, 50vw",
-}: {
-  src: string;
-  alt: string;
-  aspect: string;
-  priority?: boolean;
-  sizes?: string;
-}) {
+function RoomBlock({ room, flip }: { room: Room; flip: boolean }) {
   return (
-    <div
-      className="itn-frame relative"
-      style={{
-        aspectRatio: aspect,
-        borderRadius: "3px",
-        overflow: "hidden",
-        background: "var(--v2-line)",
-      }}
-    >
-      <div
-        className="itn-img-inner absolute"
-        style={{ inset: "-9% 0", willChange: "transform" }}
-      >
-        <Image src={src} alt={alt} fill sizes={sizes} priority={priority} style={{ objectFit: "cover" }} />
-      </div>
-    </div>
-  );
-}
-
-/* ───────────────── Per-variant renderers ───────────────── */
-
-function CardSpreadRight({ r, eager }: { r: SpreadRight; eager: boolean }) {
-  return (
-    <article
-      className="itn-card"
-      style={{
-        display: "grid",
-        gridTemplateColumns: "repeat(12, 1fr)",
-        gridTemplateRows: "auto auto",
-        columnGap: "clamp(1rem, 2vw, 2rem)",
-        rowGap: "clamp(2rem, 4vh, 4rem)",
-        alignItems: "start",
-      }}
-    >
-      <div className="itn-card-copy" style={{ gridColumn: "1 / span 4", gridRow: "1", paddingTop: "0.5rem", paddingLeft: "0.5rem" }}>
-        <Heading>{r.name}</Heading>
-        <Body>{r.body}</Body>
-        <BookLink />
-      </div>
-      <div style={{ gridColumn: "2 / span 3", gridRow: "2" }}>
-        <Frame src={r.photoDetail} alt={`${r.name} — detail`} aspect="1.3 / 1" />
-      </div>
-      <div style={{ gridColumn: "7 / span 6", gridRow: "1 / span 2" }}>
-        <Frame src={r.photoMain} alt={r.name} aspect="1.35 / 1" priority={eager} sizes="(max-width: 768px) 100vw, 50vw" />
-      </div>
-    </article>
-  );
-}
-
-function CardTallTriptych({ r }: { r: TallTriptych }) {
-  return (
-    <article
-      className="itn-card"
-      style={{
-        display: "grid",
-        gridTemplateColumns: "repeat(12, 1fr)",
-        columnGap: "clamp(1rem, 2.5vw, 2.5rem)",
-        alignItems: "start",
-      }}
-    >
-      {/* tall portrait left — full card height */}
-      <div style={{ gridColumn: "1 / span 3", gridRow: "1", paddingTop: "2rem" }}>
-        <Frame src={r.photoTall} alt={`${r.name} — wall`} aspect="3 / 4" />
-      </div>
-      {/* copy middle column, vertically centred-ish */}
-      <div
-        className="itn-card-copy"
-        style={{ gridColumn: "5 / span 3", gridRow: "1", paddingTop: "5rem" }}
-      >
-        <Heading>{r.name}</Heading>
-        <Body maxWidth="18rem">{r.body}</Body>
-        <BookLink />
-      </div>
-      {/* square photo right, offset DOWN so the three columns stagger */}
-      <div style={{ gridColumn: "9 / span 4", gridRow: "1", paddingTop: "8rem" }}>
-        <Frame src={r.photoSquare} alt={r.name} aspect="1.15 / 1" />
-      </div>
-    </article>
-  );
-}
-
-function CardWideBand({ r }: { r: WideBand }) {
-  return (
-    <article className="itn-card" style={{ display: "flex", flexDirection: "column", gap: "clamp(2.5rem, 5vh, 4rem)" }}>
-      {/* Ultra-wide cinematic photo across the top — wider so it reads as
-          a band, not a square */}
-      <Frame src={r.photoWide} alt={r.name} aspect="2.8 / 1" sizes="100vw" />
-      {/* Drop-cap + heading + body in a centred two-column row */}
+    <article className="itn-room">
+      {/* Header */}
       <div
         style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(12, 1fr)",
-          columnGap: "clamp(1.5rem, 3vw, 3rem)",
-          paddingInline: "clamp(0.5rem, 2vw, 2rem)",
-          alignItems: "start",
+          display: "flex",
+          flexWrap: "wrap",
+          gap: "1.5rem 3rem",
+          alignItems: "flex-end",
+          justifyContent: flip ? "flex-end" : "flex-start",
+          textAlign: flip ? "right" : "left",
+          marginBottom: "clamp(1.75rem, 4vh, 2.75rem)",
         }}
       >
-        <div style={{ gridColumn: "2 / span 4" }}>
-          <Heading>{r.name}</Heading>
-        </div>
-        <div className="itn-card-copy" style={{ gridColumn: "7 / span 5" }}>
-          <Body maxWidth="28rem">{r.body}</Body>
+        <div style={{ maxWidth: "34rem", marginLeft: flip ? "auto" : 0 }}>
+          <h3
+            className="font-display"
+            style={{
+              fontSize: "clamp(1.8rem, 3.4vw, 2.9rem)",
+              lineHeight: 1.0,
+              letterSpacing: "-0.025em",
+              color: "var(--v2-ink)",
+              fontWeight: 600,
+              margin: 0,
+            }}
+          >
+            {room.name}
+          </h3>
+          <p
+            style={{
+              marginTop: "1rem",
+              fontFamily: "var(--font-geist)",
+              fontSize: "1.0625rem",
+              lineHeight: 1.55,
+              color: "var(--v2-ink-soft)",
+              maxWidth: "32rem",
+              marginLeft: flip ? "auto" : 0,
+            }}
+          >
+            {room.body}
+          </p>
           <BookLink />
         </div>
       </div>
-    </article>
-  );
-}
 
-function CardSpreadLeft({ r }: { r: SpreadLeft }) {
-  return (
-    <article
-      className="itn-card"
-      style={{
-        display: "grid",
-        gridTemplateColumns: "repeat(12, 1fr)",
-        gridTemplateRows: "auto auto",
-        columnGap: "clamp(1rem, 2vw, 2rem)",
-        rowGap: "clamp(2rem, 4vh, 4rem)",
-        alignItems: "start",
-      }}
-    >
-      {/* BIG main on the LEFT this time */}
-      <div style={{ gridColumn: "1 / span 6", gridRow: "1 / span 2" }}>
-        <Frame src={r.photoMain} alt={r.name} aspect="1.35 / 1" sizes="(max-width: 768px) 100vw, 50vw" />
-      </div>
-      {/* copy top-right, offset DOWN noticeably so it doesn't mirror card 1 */}
+      {/* 3–4 photos, varied sizes */}
       <div
-        className="itn-card-copy"
-        style={{ gridColumn: "9 / span 4", gridRow: "1", paddingTop: "5rem" }}
+        style={{
+          display: "flex",
+          flexWrap: "wrap",
+          gap: "clamp(0.85rem, 1.6vw, 1.4rem)",
+          justifyContent: "center",
+          alignItems: "flex-end",
+          flexDirection: flip ? "row-reverse" : "row",
+        }}
       >
-        <Heading>{r.name}</Heading>
-        <Body>{r.body}</Body>
-        <BookLink />
-      </div>
-      {/* small detail bottom-right */}
-      <div style={{ gridColumn: "9 / span 3", gridRow: "2" }}>
-        <Frame src={r.photoDetail} alt={`${r.name} — detail`} aspect="1.3 / 1" />
+        {room.photos.map((p) => (
+          <div
+            key={p.src}
+            className="itn-frame"
+            style={{
+              position: "relative",
+              width: p.w,
+              aspectRatio: p.aspect,
+              borderRadius: "3px",
+              overflow: "hidden",
+              background: "var(--v2-line)",
+            }}
+          >
+            <div className="itn-img-inner absolute" style={{ inset: "-7% 0", willChange: "transform" }}>
+              <Image src={p.src} alt={p.alt} fill sizes="(max-width: 768px) 90vw, 34rem" style={{ objectFit: "cover" }} />
+            </div>
+          </div>
+        ))}
       </div>
     </article>
   );
 }
-
-/* ───────────────── Main component ───────────────── */
 
 export function InsideTheNest() {
   const rootRef = useRef<HTMLDivElement>(null);
@@ -323,9 +170,7 @@ export function InsideTheNest() {
     if (typeof window === "undefined") return;
     const root = rootRef.current;
     if (!root) return;
-    const prefersReducedMotion = window.matchMedia(
-      "(prefers-reduced-motion: reduce)"
-    ).matches;
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
     const ctx = gsap.context(() => {
       gsap.from(".itn-title-line", {
@@ -336,71 +181,30 @@ export function InsideTheNest() {
         stagger: 0.15,
         scrollTrigger: { trigger: root, start: "top 80%", once: true },
       });
-      gsap.utils.toArray<HTMLElement>(".itn-card").forEach((card) => {
-        const copy = card.querySelector(".itn-card-copy");
-        if (copy) {
-          gsap.from(copy, {
-            y: 32,
-            opacity: 0,
-            duration: 1.0,
-            ease: "power3.out",
-            scrollTrigger: { trigger: card, start: "top 78%", once: true },
-          });
-        }
+
+      gsap.utils.toArray<HTMLElement>(".itn-room").forEach((room) => {
+        const frames = room.querySelectorAll<HTMLElement>(".itn-frame");
+        gsap.from(frames, {
+          y: 40,
+          opacity: 0,
+          duration: 1.0,
+          ease: "power3.out",
+          stagger: 0.07,
+          scrollTrigger: { trigger: room, start: "top 78%", once: true },
+        });
       });
 
-      if (prefersReducedMotion) {
-        // Snap photos to visible state for users who prefer reduced motion
-        gsap.set(".itn-frame", { opacity: 1, y: 0 });
-        return;
-      }
-
-      // Scroll-driven photo fade. Each photo starts fully invisible + nudged
-      // down, then opacity + y scrub up to fully visible as the card crosses
-      // from the bottom of the viewport to roughly the middle. This ties the
-      // appearance to scroll velocity — slow scroll, slow fade; fast scroll,
-      // fast fade — and matches the user's "as you scroll, they fade in".
-      gsap.utils.toArray<HTMLElement>(".itn-card").forEach((card) => {
-        const photos = card.querySelectorAll<HTMLElement>(".itn-frame");
-        if (!photos.length) return;
+      if (reduced) return;
+      gsap.utils.toArray<HTMLElement>(".itn-img-inner").forEach((inner) => {
         gsap.fromTo(
-          photos,
-          { opacity: 0, y: 40 },
+          inner,
+          { yPercent: 7 },
           {
-            opacity: 1,
-            y: 0,
-            ease: "power2.out",
-            stagger: 0.04,
-            scrollTrigger: {
-              trigger: card,
-              start: "top bottom",
-              end: "top 55%",
-              scrub: 0.8,
-            },
+            yPercent: -7,
+            ease: "none",
+            scrollTrigger: { trigger: inner, start: "top bottom", end: "bottom top", scrub: 1 },
           }
         );
-      });
-
-      // In-frame parallax — runs in parallel with the fade. Targets the
-      // inner wrapper (different element from .itn-frame) so the two tweens
-      // don't fight over the same transform.
-      gsap.utils.toArray<HTMLElement>(".itn-card").forEach((card) => {
-        card.querySelectorAll<HTMLElement>(".itn-img-inner").forEach((inner) => {
-          gsap.fromTo(
-            inner,
-            { yPercent: 8 },
-            {
-              yPercent: -8,
-              ease: "none",
-              scrollTrigger: {
-                trigger: card,
-                start: "top bottom",
-                end: "bottom top",
-                scrub: 1.0,
-              },
-            }
-          );
-        });
       });
     }, rootRef);
     return () => ctx.revert();
@@ -410,10 +214,7 @@ export function InsideTheNest() {
     <section
       ref={rootRef}
       className="relative"
-      style={{
-        background: "var(--v2-bg)",
-        paddingBlock: "clamp(6rem, 14vh, 12rem)",
-      }}
+      style={{ background: "var(--v2-bg)", paddingBlock: "clamp(6rem, 14vh, 12rem)" }}
     >
       <h2
         className="font-display mx-auto text-center"
@@ -424,21 +225,15 @@ export function InsideTheNest() {
           lineHeight: 0.95,
           letterSpacing: "-0.025em",
           color: "var(--v2-ink)",
-          fontWeight: 400,
-          margin: "0 auto clamp(4rem, 10vh, 8rem)",
+          fontWeight: 600,
+          margin: "0 auto clamp(4rem, 10vh, 7rem)",
         }}
       >
         <span className="itn-title-line block overflow-hidden">
           <span className="block">Look Inside</span>
         </span>
         <span className="itn-title-line block overflow-hidden">
-          <span
-            className="block"
-            style={{
-              fontStyle: "italic",
-              color: "color-mix(in srgb, var(--v2-ink) 70%, transparent)",
-            }}
-          >
+          <span className="block" style={{ color: "var(--v2-ink-soft)" }}>
             the Nest.
           </span>
         </span>
@@ -447,25 +242,16 @@ export function InsideTheNest() {
       <div
         className="mx-auto"
         style={{
-          maxWidth: "90rem",
+          maxWidth: "92rem",
           paddingInline: "clamp(1.5rem, 3vw, 3rem)",
           display: "flex",
           flexDirection: "column",
-          gap: "clamp(5rem, 12vh, 10rem)",
+          gap: "clamp(5rem, 13vh, 10rem)",
         }}
       >
-        {ROOMS.map((r, i) => {
-          switch (r.variant) {
-            case "spread-right":
-              return <CardSpreadRight key={r.name} r={r} eager={i === 0} />;
-            case "tall-triptych":
-              return <CardTallTriptych key={r.name} r={r} />;
-            case "wide-band":
-              return <CardWideBand key={r.name} r={r} />;
-            case "spread-left":
-              return <CardSpreadLeft key={r.name} r={r} />;
-          }
-        })}
+        {ROOMS.map((room, i) => (
+          <RoomBlock key={room.name} room={room} flip={i % 2 === 1} />
+        ))}
       </div>
     </section>
   );

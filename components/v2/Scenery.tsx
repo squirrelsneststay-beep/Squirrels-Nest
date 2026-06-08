@@ -12,10 +12,9 @@ if (typeof window !== "undefined") {
 // Wider scenery / outdoor shots — the grounds, the animals, the garden.
 const GROUNDS = [
   { src: "/images/squirrels-nest/sq-03.jpg", alt: "Wisteria climbing the timber-clad country house", w: "min(40rem, 92vw)", aspect: "3 / 2" },
-  { src: "/images/squirrels-nest/sq-01.jpg", alt: "The garden, with hens among the hedgerows", w: "min(26rem, 60vw)", aspect: "3 / 2" },
-  { src: "/images/squirrels-nest/sq-06.jpg", alt: "A dog resting in the doorway, looking in", w: "min(20rem, 44vw)", aspect: "3 / 4" },
-  { src: "/images/squirrels-nest/sq-05.jpg", alt: "Two ducks crossing the gravel path", w: "min(28rem, 64vw)", aspect: "3 / 2" },
-  { src: "/images/squirrels-nest/sq-08.jpg", alt: "The private courtyard, with its bistro table", w: "min(22rem, 56vw)", aspect: "4 / 5" },
+  { src: "/images/squirrels-nest/sq-01.jpg", alt: "The garden, with hens among the hedgerows", w: "min(24rem, 56vw)", aspect: "3 / 2" },
+  { src: "/images/squirrels-nest/sq-02.jpg", alt: "A path winding through the planting", w: "min(20rem, 48vw)", aspect: "3 / 4" },
+  { src: "/images/squirrels-nest/sq-05.jpg", alt: "Two ducks crossing the gravel path", w: "min(26rem, 64vw)", aspect: "3 / 2" },
 ];
 
 /**
