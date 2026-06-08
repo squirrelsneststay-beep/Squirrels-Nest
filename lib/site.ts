@@ -9,7 +9,10 @@
 
 export const BRAND = {
   name: "Squirrels' Nest",
-  email: "zoe@squirrelsneststay.co.uk",
+  // Public contact + where contact-form enquiries are delivered. The form is
+  // SENT from a verified address on the domain (CONTACT_FROM_EMAIL), but lands
+  // in this Gmail inbox.
+  email: "squirrelsneststay@gmail.com",
   domain: "squirrelsneststay.co.uk",
   location: "Berkshire",
 } as const;
