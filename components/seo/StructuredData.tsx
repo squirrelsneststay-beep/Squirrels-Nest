@@ -87,8 +87,11 @@ export function StructuredData() {
   return (
     <script
       type="application/ld+json"
-      // JSON.stringify output is safe to inline; no user input is involved.
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(graph) }}
+      // Escape `<` so a value containing "</script>" (e.g. via a future env
+      // var) can never break out of the data block and execute.
+      dangerouslySetInnerHTML={{
+        __html: JSON.stringify(graph).replace(/</g, "\\u003c"),
+      }}
     />
   );
 }

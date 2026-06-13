@@ -141,7 +141,7 @@ Footer (in `app/layout.tsx`): "Stay a while" + "Find us" (Squirrels' Nest / The 
 - `plugin:vercel`, `plugin:linear`, `plugin:posthog`, etc. — all need auth
 
 ### Skills installed
-- `ui-ux-pro-max` (CLI Python tool at `/Users/georgewoodhead/.claude/plugins/cache/ui-ux-pro-max-skill/`)
+- `ui-ux-pro-max` (CLI Python tool, installed via Claude Code plugin cache)
 - `emil-design-eng` (Emil Kowalski's design eng philosophy)
 - `impeccable` (Paul Bakaus's frontend design skill)
 - `design-taste-frontend` (Leonxlnx's high-agency frontend skill)

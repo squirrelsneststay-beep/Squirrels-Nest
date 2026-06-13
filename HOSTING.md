@@ -83,7 +83,7 @@ If the site ever exceeds these, Pro is £20/month per developer. Cabin Airbnb tr
 
 1. **Push the site to GitHub.**
    ```bash
-   cd "/Users/georgewoodhead/Web Dev AIOS/Sites/zoe-lane-end-farm/site"
+   cd <path-to-site-folder>
    gh repo create squirrels-nest --private --source=. --push
    ```
    (Or create via github.com UI and `git remote add origin <url>` then `git push -u origin main`.)

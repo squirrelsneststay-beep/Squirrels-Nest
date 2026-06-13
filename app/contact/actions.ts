@@ -59,10 +59,14 @@ export async function submitContact(
     return { ok: true };
   }
 
-  // Rate limit by caller IP, plus a global backstop.
+  // Rate limit by caller IP, plus a global backstop. Prefer x-real-ip (set
+  // authoritatively by Vercel) over x-forwarded-for, whose leftmost entry is
+  // client-spoofable behind any appending proxy (e.g. Cloudflare in front).
   const hdrs = await headers();
   const ip =
-    (hdrs.get("x-forwarded-for") ?? "").split(",")[0].trim() || "unknown";
+    hdrs.get("x-real-ip")?.trim() ||
+    (hdrs.get("x-forwarded-for") ?? "").split(",")[0].trim() ||
+    "unknown";
 
   const tooMany: ContactResult = {
     ok: false,
@@ -99,7 +103,7 @@ export async function submitContact(
   // receives it. Better to tell them to email directly than to fake success.
   if (isProd && FROM_EMAIL.endsWith("@resend.dev")) {
     console.error(
-      "[contact] CONTACT_FROM_EMAIL is the Resend sandbox sender in production. Set CONTACT_FROM_EMAIL to a verified address on squirrelsneststay.co.uk. Refusing to send to avoid silent delivery failure."
+      "[contact] CONTACT_FROM_EMAIL is the Resend sandbox sender in production. Set CONTACT_FROM_EMAIL to a verified address on squirrelsneststay.com. Refusing to send to avoid silent delivery failure."
     );
     return {
       ok: false,

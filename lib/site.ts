@@ -13,7 +13,10 @@ export const BRAND = {
   // SENT from a verified address on the domain (CONTACT_FROM_EMAIL), but lands
   // in this Gmail inbox.
   email: "squirrelsneststay@gmail.com",
-  domain: "squirrelsneststay.co.uk",
+  // The registered, live production domain. squirrelsneststay.co.uk is NOT
+  // registered — referencing it as canonical hands SEO authority to a domain
+  // anyone could buy and phish with.
+  domain: "squirrelsneststay.com",
   location: "Berkshire",
 } as const;
 
