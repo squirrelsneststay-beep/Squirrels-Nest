@@ -11,6 +11,10 @@ import { Scenery } from "@/components/v2/Scenery";
 import { ExpandingGallery } from "@/components/v2/ExpandingGallery";
 import { ReservationCard } from "@/components/v2/ReservationCard";
 import { InlineBookCTA } from "@/components/v2/InlineBookCTA";
+import { HostNote } from "@/components/v2/HostNote";
+import { FindingUs } from "@/components/v2/FindingUs";
+import { GuestWords } from "@/components/v2/GuestWords";
+import { FaqSection } from "@/components/v2/FaqSection";
 
 export default function HomePage() {
   useEffect(() => {
@@ -69,8 +73,16 @@ export default function HomePage() {
           pinned scroll animation works correctly. */}
       <div style={{ position: "relative", zIndex: 2, background: "var(--v2-bg)" }}>
         <Scenery />
+        {/* The four sections below are GATED on lib/owner-facts.ts — each
+            renders nothing until its facts are confirmed by Zoe, so this
+            order ships dark and lights up section by section. Trust
+            sequence: place → host → guest proof → objections → the ask. */}
+        <FindingUs />
+        <HostNote />
         <InspiredBy />
         <ExpandingGallery />
+        <GuestWords />
+        <FaqSection />
         <ReservationCard />
       </div>
     </div>

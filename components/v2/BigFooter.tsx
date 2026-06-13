@@ -163,7 +163,7 @@ export function BigFooter() {
         }}
       >
         <h2
-          className="font-display"
+          className="font-display bf-mark"
           aria-hidden
           style={{
             fontSize: "clamp(5rem, 22vw, 26rem)",
@@ -186,7 +186,7 @@ export function BigFooter() {
 
       {/* tiny bottom rule + copyright */}
       <div
-        className="bf-meta"
+        className="bf-meta bf-bottom-row"
         style={{
           borderTop: "1px solid color-mix(in srgb, var(--v2-bg) 18%, transparent)",
           paddingBlock: "1.25rem",

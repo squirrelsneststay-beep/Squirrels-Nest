@@ -5,6 +5,7 @@ import Image from "next/image";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { AIRBNB_URL, EXTERNAL_LINK_PROPS } from "@/lib/site";
+import { FROM_PRICE_GBP } from "@/lib/owner-facts";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
@@ -175,6 +176,21 @@ export function ReservationCard() {
           >
             Live dates, availability and secure booking are all handled on Airbnb.
           </p>
+
+          {/* Price signal — gated on the owner-confirmed from-price. People
+              comparing tabs won't click through "just to see". */}
+          {FROM_PRICE_GBP !== null && (
+            <p
+              style={{
+                marginTop: "0.75rem",
+                fontFamily: "var(--font-geist)",
+                fontSize: "0.9rem",
+                color: "var(--v2-ink-soft)",
+              }}
+            >
+              From £{FROM_PRICE_GBP} a night.
+            </p>
+          )}
 
           <a href={AIRBNB_URL} {...EXTERNAL_LINK_PROPS} className="sv-pill is-inverse" style={{ marginTop: "2rem" }}>
             <span>Book</span>

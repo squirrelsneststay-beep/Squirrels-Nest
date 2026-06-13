@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { notFound } from "next/navigation";
 import { PinnedStack } from "@/components/v2/PinnedStack";
 import { SnakeGallery } from "@/components/v2/SnakeGallery";
 import { WordLineMoment } from "@/components/v2/WordLineMoment";
@@ -12,6 +13,12 @@ export const metadata: Metadata = {
 };
 
 export default function V2Page() {
+  // Dev-only: a stale design draft must not be publicly reachable on the
+  // production domain, noindex or not — anyone with the URL could share it
+  // as if it were the real site.
+  if (process.env.NODE_ENV === "production") {
+    notFound();
+  }
   return (
     <div className="v2-root" style={{ background: "var(--v2-bg)", color: "var(--v2-ink)", minHeight: "100vh" }}>
 

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -33,6 +33,18 @@ const photos = [
 
 export function ExpandingGallery() {
   const rootRef = useRef<HTMLDivElement>(null);
+  // Which tile is expanded. Hover on pointer devices, tap on touch (tap
+  // again to collapse), Enter/Space on keyboard — the old mouseenter-only
+  // version was inert on the phones most guests browse on.
+  const [active, setActive] = useState<number | null>(null);
+  // Touch browsers fire a synthetic mouseenter before click, which would
+  // set-then-toggle-off in one tap. Gate each input path on device
+  // capability: hover handles hover devices, click handles the rest
+  // (keyboard "clicks" arrive with detail === 0 and always toggle).
+  const hoverable = useRef(false);
+  useEffect(() => {
+    hoverable.current = window.matchMedia("(hover: hover)").matches;
+  }, []);
 
   useEffect(() => {
     if (typeof window === "undefined") return;
@@ -122,11 +134,13 @@ export function ExpandingGallery() {
             lineHeight: 1.6,
           }}
         >
-          Hover any photo to see it in full.
+          Tap or hover any photo to see it in full.
         </p>
       </div>
 
-      {/* The expanding row */}
+      {/* The expanding row. On mobile the 10 tiles exceed the viewport, so
+          the row scrolls horizontally (the old clipped version hid all but
+          the first four photos on a phone). */}
       <div
         className="eg-row mx-auto flex items-stretch"
         style={{
@@ -137,22 +151,30 @@ export function ExpandingGallery() {
         }}
       >
         {photos.map((p, i) => (
-          <div
+          <button
             key={i}
-            className="eg-tile relative group flex-grow rounded-md overflow-hidden h-full"
+            type="button"
+            aria-label={`View photo: ${p.caption}`}
+            aria-expanded={active === i}
+            data-active={active === i}
+            className="eg-tile relative group rounded-md overflow-hidden h-full"
             style={{
-              flexBasis: 0,
-              minWidth: "5.5rem",
-              willChange: "flex-grow",
-              transition: "flex-grow 500ms cubic-bezier(0.22, 1, 0.36, 1)",
               cursor: "pointer",
+              border: "none",
+              padding: 0,
+              background: "transparent",
             }}
             data-cursor="grow"
-            onMouseEnter={(e) => {
-              (e.currentTarget as HTMLDivElement).style.flexGrow = "5";
+            onMouseEnter={() => {
+              if (hoverable.current) setActive(i);
             }}
-            onMouseLeave={(e) => {
-              (e.currentTarget as HTMLDivElement).style.flexGrow = "1";
+            onMouseLeave={() => {
+              if (hoverable.current) setActive(null);
+            }}
+            onClick={(e) => {
+              if (e.detail === 0 || !hoverable.current) {
+                setActive(active === i ? null : i);
+              }
             }}
           >
             <Image
@@ -164,7 +186,7 @@ export function ExpandingGallery() {
               className="object-cover object-center"
               style={{ transition: "transform 800ms cubic-bezier(0.22, 1, 0.36, 1)" }}
             />
-          </div>
+          </button>
         ))}
       </div>
     </section>

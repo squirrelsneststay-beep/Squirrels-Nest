@@ -35,7 +35,10 @@ const lodging = {
   priceRange: "££",
   currenciesAccepted: "GBP",
   numberOfRooms: 1,
-  petsAllowed: false,
+  // petsAllowed deliberately omitted: the policy is unverified either way
+  // (FACTS.md), and the page copy sells on-site dogs and cats — asserting
+  // `false` to Google while implying the opposite on-page misleads both.
+  // Add it back (true or false) once Zoe confirms.
   smokingAllowed: false,
   address: {
     "@type": "PostalAddress",
