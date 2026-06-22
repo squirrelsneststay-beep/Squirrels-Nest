@@ -9,12 +9,12 @@ if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
 }
 
-// Wider scenery / outdoor shots — the grounds, the animals, the garden.
+// Wider scenery / outdoor shots — the grounds and the garden.
 const GROUNDS = [
   { src: "/images/squirrels-nest/sq-03.jpg", alt: "Wisteria climbing the timber-clad country house", w: "min(40rem, 92vw)", aspect: "3 / 2" },
-  { src: "/images/squirrels-nest/sq-01.jpg", alt: "The garden, with hens among the hedgerows", w: "min(24rem, 56vw)", aspect: "3 / 2" },
+  { src: "/images/squirrels-nest/sq-01.jpg", alt: "The garden and its hedgerows", w: "min(24rem, 56vw)", aspect: "3 / 2" },
   { src: "/images/squirrels-nest/sq-02.jpg", alt: "A path winding through the planting", w: "min(20rem, 48vw)", aspect: "3 / 4" },
-  { src: "/images/squirrels-nest/sq-05.jpg", alt: "Two ducks crossing the gravel path", w: "min(26rem, 64vw)", aspect: "3 / 2" },
+  { src: "/images/squirrels-nest/sq-05.jpg", alt: "The gravel path through the grounds", w: "min(26rem, 64vw)", aspect: "3 / 2" },
 ];
 
 /**

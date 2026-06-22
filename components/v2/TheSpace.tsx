@@ -16,7 +16,6 @@ const HIGHLIGHTS = [
   "Fully equipped kitchen",
   "Large walk-in shower room",
   "WiFi & central heating",
-  "On-site animals including horses, chickens, ducks, cats & dogs",
   "Private parking",
 ];
 
@@ -117,12 +116,11 @@ export function TheSpace() {
               color: "var(--v2-ink-soft)",
             }}
           >
-            Inside, the space is thoughtfully designed with an open-plan layout
-            featuring a luxurious super king-size bed, a fully equipped kitchen,
-            and a spacious shower room with a modern walk-in shower. Whether
-            you&apos;re planning a romantic getaway or a quiet retreat, every detail
-            has been curated for comfort — central heating and WiFi for cosy
-            evenings in.
+            Inside, the space is thoughtfully designed, featuring a luxurious
+            super king-size bed, a fully equipped kitchen, and a spacious shower
+            room with a modern walk-in shower. Whether you&apos;re planning a
+            romantic getaway or a quiet retreat, every detail has been curated
+            for comfort.
           </p>
           <p
             className="ts-reveal"

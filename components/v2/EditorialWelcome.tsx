@@ -102,7 +102,7 @@ export function EditorialWelcome() {
           <div className="ew-photo-inner absolute" style={{ inset: "-14% 0", willChange: "transform" }}>
             <Image
               src="/images/squirrels-nest/sq-17.jpg"
-              alt="The open-plan room at Squirrels' Nest — bed, chairs and the wider space"
+              alt="The room at Squirrels' Nest — bed, chairs and the wider space"
               fill
               sizes="(max-width: 768px) 100vw, 55vw"
               style={{ objectFit: "cover" }}
@@ -205,21 +205,6 @@ export function EditorialWelcome() {
             retreat nestled in the heart of Berkshire. Set within the peaceful
             grounds of a beautiful country house, this unique escape offers the
             perfect blend of comfort, style, and countryside charm.
-          </p>
-          <p
-            className="ew-body"
-            style={{
-              marginTop: "1.25rem",
-              maxWidth: "32rem",
-              fontFamily: "var(--font-geist)",
-              fontSize: "1.0625rem",
-              lineHeight: 1.65,
-              color: "var(--v2-ink-soft)",
-            }}
-          >
-            Wake up to stunning woodland views and the gentle sounds of nature,
-            with horses, chickens, ducks, and friendly cats and dogs adding to
-            the idyllic setting.
           </p>
         </div>
       </div>

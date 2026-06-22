@@ -18,12 +18,12 @@ if (typeof window !== "undefined") {
  */
 
 type Shot = { src: string; alt: string; w: string; aspect: string };
-type Room = { name: string; body: string; photos: Shot[] };
+type Room = { name: string; body?: string; photos: Shot[] };
 
 const ROOMS: Room[] = [
   {
     name: "The Bedroom",
-    body: "Open-plan, with a super king-size bed. Plenty of room, soft light, and woodland in the window.",
+    body: "A beautiful super king-sized bed.",
     photos: [
       { src: "/images/squirrels-nest/sq-12.jpg", alt: "The super king bed with its red headboard", w: "min(34rem, 92vw)", aspect: "3 / 2" },
       { src: "/images/squirrels-nest/sq-33.jpg", alt: "The bedroom in green, bed made up", w: "min(20rem, 46vw)", aspect: "3 / 4" },
@@ -33,7 +33,6 @@ const ROOMS: Room[] = [
   },
   {
     name: "The Shower Room",
-    body: "A walk-in shower and a pedestal basin. Plenty of hot water, whenever you want it.",
     photos: [
       { src: "/images/squirrels-nest/sq-38.jpg", alt: "The walk-in shower", w: "min(22rem, 60vw)", aspect: "3 / 4" },
       { src: "/images/squirrels-nest/sq-39.jpg", alt: "The pedestal basin under the green window", w: "min(22rem, 60vw)", aspect: "3 / 4" },
@@ -42,7 +41,7 @@ const ROOMS: Room[] = [
   },
   {
     name: "The Kitchen",
-    body: "Coffee machine, kettle, a little oven and a proper sink. Everything you need to cook in, or just make the morning coffee.",
+    body: "Fully equipped with small oven, hob, coffee machine and fridge freezer.",
     photos: [
       { src: "/images/squirrels-nest/sq-37.jpg", alt: "The kitchen sink under the window", w: "min(24rem, 66vw)", aspect: "3 / 4" },
       { src: "/images/squirrels-nest/sq-24.jpg", alt: "Looking through to the kitchen", w: "min(20rem, 50vw)", aspect: "3 / 4" },
@@ -113,19 +112,21 @@ function RoomBlock({ room, flip }: { room: Room; flip: boolean }) {
           >
             {room.name}
           </h3>
-          <p
-            style={{
-              marginTop: "1rem",
-              fontFamily: "var(--font-geist)",
-              fontSize: "1.0625rem",
-              lineHeight: 1.55,
-              color: "var(--v2-ink-soft)",
-              maxWidth: "32rem",
-              marginLeft: flip ? "auto" : 0,
-            }}
-          >
-            {room.body}
-          </p>
+          {room.body && (
+            <p
+              style={{
+                marginTop: "1rem",
+                fontFamily: "var(--font-geist)",
+                fontSize: "1.0625rem",
+                lineHeight: 1.55,
+                color: "var(--v2-ink-soft)",
+                maxWidth: "32rem",
+                marginLeft: flip ? "auto" : 0,
+              }}
+            >
+              {room.body}
+            </p>
+          )}
           <BookLink />
         </div>
       </div>
