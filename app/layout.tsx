@@ -134,7 +134,7 @@ export default function RootLayout({
         <script
           dangerouslySetInnerHTML={{
             __html:
-              "(function(){try{if(localStorage.getItem('sn-theme')==='dark')document.documentElement.setAttribute('data-theme','dark');}catch(e){}})();",
+              "(function(){try{if(localStorage.getItem('sn-theme')!=='light')document.documentElement.setAttribute('data-theme','dark');}catch(e){document.documentElement.setAttribute('data-theme','dark');}})();",
           }}
         />
         <IntroLoader />

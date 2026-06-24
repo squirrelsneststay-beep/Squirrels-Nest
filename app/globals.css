@@ -101,6 +101,17 @@ html[data-theme="dark"] {
   --foreground:       #f3f0e6;
 }
 
+/* Footer is PINNED to the light-mode palette (dark-green block + cream text +
+   the giant wordmark) regardless of the active theme — the client loves it
+   exactly as it is, so it must never invert. Re-declaring the two core tokens
+   on the footer makes every var() inside it resolve to the original colours. */
+.bf-pin {
+  --v2-bg: oklch(0.968 0.005 155);
+  --v2-ink: #08351c;
+  --v2-ink-soft: #3a5d4e;
+  --v2-line: #e5e1d7;
+}
+
 /* Premium: a slow, subtle image zoom on hover across the photo galleries.
    Targets the <img> only, so it never fights the GSAP parallax on the wrapper. */
 @media (hover: hover) and (pointer: fine) {

@@ -151,7 +151,7 @@ export function CleanHero() {
           left: "clamp(1.5rem, 3vw, 3.5rem)",
           right: "clamp(1.5rem, 3vw, 3.5rem)",
           bottom: "clamp(2.25rem, 7vh, 5rem)",
-          color: "var(--v2-bg)",
+          color: "#f3f0e6",
         }}
       >
         <p
@@ -195,9 +195,9 @@ export function CleanHero() {
             fontFamily: "var(--font-geist)",
             fontSize: "0.82rem",
             letterSpacing: "0.04em",
-            color: "var(--v2-bg)",
+            color: "#f3f0e6",
             textDecoration: "none",
-            borderBottom: "1px solid color-mix(in srgb, var(--v2-bg) 55%, transparent)",
+            borderBottom: "1px solid color-mix(in srgb, #f3f0e6 55%, transparent)",
             paddingBottom: "0.2rem",
             textShadow: "0 1px 8px rgba(0,0,0,0.4)",
           }}

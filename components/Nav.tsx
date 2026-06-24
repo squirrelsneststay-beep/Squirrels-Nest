@@ -60,7 +60,7 @@ export function Nav() {
     };
   }, [pathname]);
 
-  const ink = light ? "var(--v2-bg)" : "var(--v2-ink)";
+  const ink = light ? "#f3f0e6" : "var(--v2-ink)";
   const showBar = scrolled && !light;
 
   return (
