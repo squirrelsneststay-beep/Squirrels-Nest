@@ -24,7 +24,8 @@ const lodging = {
   "@id": `${SITE_URL}/#lodging`,
   name: BRAND.name,
   description:
-    "A charming one-bedroom country boutique self-catering retreat in the heart of Berkshire, set in the peaceful grounds of a country house. A luxurious super king-size bed, a fully equipped kitchen, a walk-in shower and a private enclosed courtyard — plus an optional shepherd's hut sleeping two. Near the North Wessex Downs and the Hampshire border.",
+    "A cosy one-bedroom boutique cabin retreat in the Berkshire countryside, on the Hampshire border near the North Wessex Downs. A romantic countryside getaway with a luxurious super king-size bed, a fully equipped kitchen, a walk-in shower and a private enclosed courtyard — plus an optional shepherd's hut sleeping two.",
+  slogan: "A cosy cabin getaway in the Berkshire countryside",
   url: SITE_URL,
   image: [
     `${SITE_URL}/images/squirrels-nest/sq-12.jpg`,
@@ -45,6 +46,11 @@ const lodging = {
     addressRegion: "Berkshire",
     addressCountry: "GB",
   },
+  areaServed: [
+    { "@type": "AdministrativeArea", name: "Berkshire" },
+    { "@type": "AdministrativeArea", name: "Hampshire" },
+    { "@type": "Place", name: "North Wessex Downs" },
+  ],
   geo: {
     "@type": "GeoCoordinates",
     latitude: 51.45,

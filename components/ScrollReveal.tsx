@@ -47,7 +47,7 @@ export function ScrollReveal({
     const tween = gsap.to(targets, {
       opacity: 1,
       y: 0,
-      duration: 1.1,
+      duration: 1.5,
       ease: "expo.out",
       delay,
       stagger,

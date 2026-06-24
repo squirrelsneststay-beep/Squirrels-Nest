@@ -459,6 +459,50 @@ html.lenis, html.lenis body { height: auto; }
   .fu-cols { grid-template-columns: 1fr !important; }
 }
 
+/* ───────── Film-grain overlay (.sn-grain). Fixed, non-interactive, very low
+   opacity, soft-light blend so it textures both the cream and the dark-green
+   surfaces. z-index sits below the nav (50) and Book pill (60) so it never
+   touches the controls — just the content. ─────────────────────────────── */
+.sn-grain {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  pointer-events: none;
+  opacity: 0.05;
+  mix-blend-mode: soft-light;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 220px 220px;
+}
+
+/* ───────── Gallery masonry (.gal-grid) + glide reveal (.gal-item). The slow,
+   long fade-up IS the luxury — each frame settles rather than snaps. ─────── */
+.gal-grid {
+  column-count: 1;
+  column-gap: clamp(0.6rem, 1.5vw, 1rem);
+}
+@media (min-width: 640px) {
+  .gal-grid { column-count: 2; }
+}
+@media (min-width: 1024px) {
+  .gal-grid { column-count: 3; }
+}
+.gal-item {
+  break-inside: avoid;
+  margin-bottom: clamp(0.6rem, 1.5vw, 1rem);
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 1.2s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
+}
+.gal-item.is-in {
+  opacity: 1;
+  transform: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .gal-item { opacity: 1; transform: none; transition: none; }
+}
+
 /* Footer wordmark: at 22vw on a phone, "squirrels' nest" clips mid-letter
    ("squirrels'n"). 11.5vw lets the full mark fit at 375px. !important is
    required to beat the component's inline font-size. The bottom row gets

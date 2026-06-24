@@ -130,19 +130,17 @@ export function Nav() {
           >
             Squirrels&apos; Nest
           </Link>
-          <Link href="/" className="hover:opacity-60 transition-opacity">Home</Link>
+          <Link href="/gallery" className="hover:opacity-60 transition-opacity">Gallery</Link>
           <Link href="/contact" className="hover:opacity-60 transition-opacity">Contact</Link>
           <ThemeToggle />
         </nav>
 
-        <div className="hidden md:block">
+        {/* RIGHT — the live "at the cabin" badge, sat just left of the fixed
+            Book pill (FloatingBookButton in layout.tsx, top-right). The right
+            margin reserves space so the badge clears the pill on desktop. */}
+        <div className="hidden md:block" style={{ marginRight: "11.5rem" }}>
           <LiveTimeBadge />
         </div>
-
-        {/* RIGHT — intentionally empty. The Book CTA is <FloatingBookButton>
-            (mounted in layout.tsx), fixed top-right, so it stays visible even
-            when this nav fades out over dark pinned sections. */}
-        <span aria-hidden style={{ width: "1px" }} />
       </div>
     </header>
   );

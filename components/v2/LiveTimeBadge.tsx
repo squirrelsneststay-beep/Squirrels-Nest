@@ -88,36 +88,27 @@ export function LiveTimeBadge() {
 
   if (!time) return null;
 
+  // Stacked, right-aligned, two balanced lines — "At the cabin · [time]" above
+  // "Sunset [time]". No pulsing dot; quiet and symmetrical so it sits cleanly
+  // just left of the Book pill.
   return (
     <span
       style={{
         display: "inline-flex",
-        alignItems: "center",
-        gap: "0.65rem",
+        flexDirection: "column",
+        alignItems: "flex-end",
+        gap: "0.3rem",
         fontFamily: "var(--font-geist)",
-        fontSize: "0.7rem",
+        fontSize: "0.66rem",
+        lineHeight: 1,
         letterSpacing: "0.16em",
         textTransform: "uppercase",
         color: "var(--v2-ink-soft)",
+        textAlign: "right",
       }}
     >
-      <span
-        aria-hidden
-        style={{
-          width: "0.45rem",
-          height: "0.45rem",
-          borderRadius: "50%",
-          background: "var(--v2-ink)",
-          animation: "live-pulse 2.4s ease-in-out infinite",
-          display: "inline-block",
-        }}
-      />
       <span>At the cabin · {time}</span>
-      {sunset && (
-        <span style={{ opacity: 0.85, letterSpacing: "0.12em" }}>
-          · sunset {sunset}
-        </span>
-      )}
+      {sunset && <span style={{ opacity: 0.7 }}>Sunset {sunset}</span>}
     </span>
   );
 }

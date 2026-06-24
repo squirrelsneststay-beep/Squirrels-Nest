@@ -10,6 +10,7 @@ import { FloatingBookButton } from "@/components/v2/FloatingBookButton";
 import { IntroLoader } from "@/components/v2/IntroLoader";
 import { MorphingWordmark } from "@/components/v2/MorphingWordmark";
 import { StructuredData } from "@/components/seo/StructuredData";
+import { Grain } from "@/components/v2/Grain";
 import { SITE_URL, BRAND } from "@/lib/site";
 
 // One neutral grotesque for the whole site — the way here-away.com uses a
@@ -47,26 +48,43 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: `${BRAND.name} | Boutique One-Bedroom Country Retreat in ${BRAND.location}`,
+    default: `${BRAND.name} | Cosy Cabin Retreat in the Berkshire Countryside`,
     template: `%s | ${BRAND.name}`,
   },
   description:
-    `A charming one-bedroom country boutique retreat in the heart of Berkshire, set in the peaceful grounds of a country house. Super king bed, walk-in shower, private courtyard, woodland views and an optional shepherd's hut — near the North Wessex Downs and the Hampshire border. Book direct on Airbnb.`,
+    `Squirrels' Nest is a cosy one-bedroom boutique cabin retreat in the Berkshire countryside, on the Hampshire border near the North Wessex Downs. A romantic countryside getaway with a super king bed, walk-in shower, private courtyard, woodland views and an optional shepherd's hut. Book your cabin getaway direct on Airbnb.`,
   applicationName: BRAND.name,
   keywords: [
+    // Broad intent — what guests actually search
+    "cosy cabin",
+    "cosy cabins",
+    "cabin getaway",
+    "cabin getaways in the countryside",
+    "countryside cabin getaway",
+    "cosy cabin getaway",
+    "countryside retreat",
+    "rural retreat",
+    "romantic cabin getaway",
+    "weekend cabin break",
+    "boutique cabin",
+    // Location-qualified
+    "cosy cabin Berkshire",
+    "cabin getaway Berkshire",
+    "countryside retreat Berkshire",
+    "cosy cabin Hampshire",
+    "cabin getaway Hampshire",
+    "countryside retreat Hampshire",
+    "cabin near Newbury",
+    "cabin near Reading",
+    "North Wessex Downs stay",
+    "Berkshire Hampshire border retreat",
+    // Property-specific
     "one-bedroom retreat Berkshire",
     "boutique retreat Berkshire",
-    "cabin retreat Berkshire",
     "shepherd's hut Berkshire",
-    "country house stay Berkshire",
     "romantic getaway Berkshire",
-    "countryside retreat Berkshire",
     "self-catering Berkshire",
-    "weekend break Berkshire countryside",
     "boutique Airbnb Berkshire",
-    "cabin near Newbury",
-    "North Wessex Downs stay",
-    "Hampshire border retreat",
     "Squirrels' Nest",
   ],
   authors: [{ name: "Zoe" }],
@@ -79,8 +97,8 @@ export const metadata: Metadata = {
     locale: "en_GB",
     url: SITE_URL,
     siteName: BRAND.name,
-    title: `${BRAND.name} — Boutique One-Bedroom Country Retreat in ${BRAND.location}`,
-    description: `A charming one-bedroom country boutique retreat in the heart of Berkshire — super king bed, walk-in shower, private courtyard, woodland views and an optional shepherd's hut. Near the Hampshire border and the North Wessex Downs.`,
+    title: `${BRAND.name} — Cosy Cabin Retreat in the Berkshire Countryside`,
+    description: `A cosy one-bedroom boutique cabin getaway in the Berkshire countryside, on the Hampshire border. Super king bed, walk-in shower, private courtyard, woodland views and an optional shepherd's hut.`,
     images: [
       {
         url: "/images/squirrels-nest/sq-12.jpg",
@@ -92,8 +110,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: `${BRAND.name} — Boutique One-Bedroom Retreat in ${BRAND.location}`,
-    description: "A charming one-bedroom country boutique retreat in the heart of Berkshire. Super king bed, walk-in shower, private courtyard, woodland views, optional shepherd's hut.",
+    title: `${BRAND.name} — Cosy Cabin Retreat in the Berkshire Countryside`,
+    description: "A cosy one-bedroom boutique cabin getaway in the Berkshire countryside, on the Hampshire border. Super king bed, private courtyard, woodland views, optional shepherd's hut.",
     images: ["/images/squirrels-nest/sq-12.jpg"],
   },
   robots: {
@@ -128,6 +146,7 @@ export default function RootLayout({
           <main>{children}</main>
           <BigFooter />
         </SmoothScroll>
+        <Grain />
       </body>
     </html>
   );
