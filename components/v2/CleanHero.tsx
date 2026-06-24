@@ -51,12 +51,6 @@ export function CleanHero() {
     ).matches;
 
     const ctx = gsap.context(() => {
-      // Photo subtly scales in for fluidity
-      gsap.fromTo(
-        ".ch-photo-inner",
-        { scale: 1.10 },
-        { scale: 1.0, duration: 2.0, ease: "power3.out" }
-      );
       if (prefersReducedMotion) return;
 
       // Hero statement rises in, staggered — eyebrow, headline, then CTA.
@@ -93,7 +87,7 @@ export function CleanHero() {
           photo is LCP-priority + eager, the rest preload lazily so the
           page paints fast then warms the cache as the user reads. */}
       <div className="absolute inset-0" style={{ overflow: "hidden" }}>
-        <div className="ch-photo-inner absolute inset-0" style={{ willChange: "transform" }}>
+        <div className="ch-photo-inner kenburns absolute inset-0" style={{ willChange: "transform" }}>
           {HERO_PHOTOS.map((p, i) => (
             <div
               key={p.src}
