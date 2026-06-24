@@ -59,22 +59,20 @@ export function CleanHero() {
       );
       if (prefersReducedMotion) return;
 
-      // Small eyebrow fades up. The giant wordmark is rendered by the
-      // MorphingWordmark overlay so it can fly to the nav on scroll; here we
-      // only keep an invisible anchor (.ch-mark-anchor) to measure its start.
-      gsap.from(".ch-eyebrow", {
+      // Hero statement rises in, staggered — eyebrow, headline, then CTA.
+      gsap.from(".ch-reveal", {
         opacity: 0,
-        y: 14,
-        duration: 1.1,
-        ease: "power3.out",
-        delay: 0.35,
+        y: 26,
+        duration: 1.4,
+        ease: "power4.out",
+        delay: 0.45,
+        stagger: 0.14,
       });
     }, rootRef);
 
     return () => ctx.revert();
   }, []);
 
-  const mark = "Squirrels' Nest";
 
   return (
     <section
@@ -144,54 +142,68 @@ export function CleanHero() {
         heart of Berkshire, near the Hampshire border and the North Wessex Downs
       </h1>
 
-      {/* EYEBROW — a small, plain location line, top-left */}
-      <div
-        className="ch-eyebrow absolute z-10"
-        style={{
-          top: "clamp(7rem, 16vh, 11rem)",
-          left: "clamp(1.5rem, 3vw, 3.5rem)",
-          fontFamily: "var(--font-geist)",
-          fontSize: "0.72rem",
-          letterSpacing: "0.28em",
-          textTransform: "uppercase",
-          color: "var(--v2-bg)",
-          opacity: 0.92,
-          textShadow: "0 1px 6px rgba(0,0,0,0.35)",
-        }}
-      >
-        Berkshire · England
-      </div>
-
-      {/* BOTTOM WORDMARK ANCHOR — invisible. The visible, flying wordmark is
-          <MorphingWordmark>; this span only fixes its START position + size. */}
+      {/* HERO STATEMENT — bottom-left editorial block, in cream over the
+          moody photo. The big line is the first thing that says what this
+          place feels like; the nav top-left carries the brand. */}
       <div
         className="absolute z-10"
         style={{
-          left: 0,
-          right: 0,
-          bottom: "clamp(1rem, 2.5vh, 2.5rem)",
-          padding: "0 clamp(0.5rem, 1.5vw, 1.5rem)",
-          textAlign: "center",
-          pointerEvents: "none",
+          left: "clamp(1.5rem, 3vw, 3.5rem)",
+          right: "clamp(1.5rem, 3vw, 3.5rem)",
+          bottom: "clamp(2.25rem, 7vh, 5rem)",
+          color: "var(--v2-bg)",
         }}
       >
-        <span
-          id="hero-mark-anchor"
-          aria-hidden
-          className="font-display"
+        <p
+          className="ch-reveal"
           style={{
-            display: "inline-block",
-            visibility: "hidden",
-            fontSize: "clamp(3.5rem, 12vw, 14rem)",
-            lineHeight: 0.84,
-            letterSpacing: "-0.045em",
-            fontWeight: 400,
+            fontFamily: "var(--font-geist)",
+            fontSize: "0.72rem",
+            letterSpacing: "0.28em",
+            textTransform: "uppercase",
+            opacity: 0.92,
             margin: 0,
-            whiteSpace: "nowrap",
+            textShadow: "0 1px 8px rgba(0,0,0,0.4)",
           }}
         >
-          {mark}
-        </span>
+          Berkshire · England
+        </p>
+        <h2
+          className="ch-reveal font-display"
+          style={{
+            marginTop: "clamp(0.85rem, 1.6vh, 1.4rem)",
+            marginBottom: 0,
+            fontSize: "clamp(2.6rem, 7.5vw, 7rem)",
+            lineHeight: 0.96,
+            letterSpacing: "-0.03em",
+            fontWeight: 400,
+            maxWidth: "16ch",
+            textShadow: "0 2px 30px rgba(0,0,0,0.35)",
+          }}
+        >
+          Slow weekends in the{" "}
+          <span style={{ fontStyle: "italic" }}>Berkshire woods.</span>
+        </h2>
+        <a
+          href="/gallery"
+          className="ch-reveal"
+          style={{
+            display: "inline-flex",
+            alignItems: "center",
+            gap: "0.6rem",
+            marginTop: "clamp(1.25rem, 2.4vh, 2rem)",
+            fontFamily: "var(--font-geist)",
+            fontSize: "0.82rem",
+            letterSpacing: "0.04em",
+            color: "var(--v2-bg)",
+            textDecoration: "none",
+            borderBottom: "1px solid color-mix(in srgb, var(--v2-bg) 55%, transparent)",
+            paddingBottom: "0.2rem",
+            textShadow: "0 1px 8px rgba(0,0,0,0.4)",
+          }}
+        >
+          Explore the gallery <span aria-hidden>&rarr;</span>
+        </a>
       </div>
     </section>
   );

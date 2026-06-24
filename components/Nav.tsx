@@ -5,7 +5,6 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { cn } from "@/lib/utils";
 import { LiveTimeBadge } from "@/components/v2/LiveTimeBadge";
 import { ThemeToggle } from "@/components/v2/ThemeToggle";
 
@@ -14,134 +13,132 @@ if (typeof window !== "undefined") {
 }
 
 /**
- * Site nav. Three states:
- *  - "transparent" — top of page, no background
- *  - "cream"       — has scrolled, sits on cream content
- *  - "dark"        — currently over a section that has `data-section-tone="dark"`,
- *                    the nav fades to almost transparent so it doesn't pollute
- *                    pinned photographic moments.
+ * Persistent site nav — ALWAYS visible (logo + menu top-left). Over the dark
+ * hero and dark pinned sections the text is light (cream); over the cream
+ * content it's ink. A faint blurred cream bar fades in once you've scrolled
+ * off the hero so the menu stays legible on lighter photography.
  */
 export function Nav() {
   const [scrolled, setScrolled] = useState(false);
-  const [overDark, setOverDark] = useState(false);
-  const [inHero, setInHero] = useState(true);
+  const [light, setLight] = useState(true); // light text (over dark surfaces)
   const pathname = usePathname();
 
   useEffect(() => {
-    const onScroll = () => {
-      setScrolled(window.scrollY > 60);
-      // Only the home page has the fixed hero. On pages WITHOUT one
-      // (/contact, /privacy, …) the nav must show normally — otherwise it would
-      // be hidden at the top of every page. Gate the "in hero" state on the
-      // hero actually being present.
-      const heroPresent = !!document.querySelector("[data-hero]");
-      setInHero(heroPresent && window.scrollY < window.innerHeight * 0.9);
-    };
+    const onScroll = () => setScrolled(window.scrollY > 40);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", onScroll);
-    return () => {
-      window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("resize", onScroll);
-    };
-  }, [pathname]);
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
-  // Detect when the nav's top strip overlaps a "dark" section. Driven by
-  // scroll/resize plus ScrollTrigger's `refresh` event (fires whenever a
-  // pinned timeline re-lays-out). Replaces the previous 4 Hz setInterval
-  // poll, which was a continuous forced reflow + battery cost on mobile.
+  // Light text whenever the nav strip overlaps the hero or any dark section.
   useEffect(() => {
     if (typeof window === "undefined") return;
-    const navHeight = 80;
+    const navH = 76;
     const check = () => {
-      // Exclude the pinned hero ([data-hero]) — it is fixed at the top forever,
-      // so it must not count as "a dark section under the nav".
-      const sections = document.querySelectorAll<HTMLElement>(
-        "[data-section-tone='dark']:not([data-hero])"
-      );
-      let touchingDark = false;
-      for (const s of Array.from(sections)) {
-        const r = s.getBoundingClientRect();
-        if (r.top < navHeight && r.bottom > 0) {
-          touchingDark = true;
-          break;
+      const heroPresent = !!document.querySelector("[data-hero]");
+      const overHero = heroPresent && window.scrollY < window.innerHeight - navH;
+      let overDark = overHero;
+      if (!overDark) {
+        const darks = document.querySelectorAll<HTMLElement>(
+          "[data-section-tone='dark']:not([data-hero])"
+        );
+        for (const s of Array.from(darks)) {
+          const r = s.getBoundingClientRect();
+          if (r.top < navH && r.bottom > 0) { overDark = true; break; }
         }
       }
-      setOverDark(touchingDark);
+      setLight(overDark);
     };
     check();
     window.addEventListener("scroll", check, { passive: true });
     window.addEventListener("resize", check);
     ScrollTrigger.addEventListener("refresh", check);
-    ScrollTrigger.addEventListener("refreshInit", check);
     return () => {
       window.removeEventListener("scroll", check);
       window.removeEventListener("resize", check);
       ScrollTrigger.removeEventListener("refresh", check);
-      ScrollTrigger.removeEventListener("refreshInit", check);
     };
   }, [pathname]);
 
-  // Hidden over the hero (inHero) and over lower dark sections (overDark).
-  const hidden = inHero || overDark;
-  const mode = hidden ? "dark" : scrolled ? "cream" : "transparent";
+  const ink = light ? "var(--v2-bg)" : "var(--v2-ink)";
+  const showBar = scrolled && !light;
 
   return (
     <header
-      className="fixed inset-x-0 top-0 z-50 py-4"
+      className="fixed inset-x-0 top-0 z-50"
       style={{
-        background:
-          mode === "cream"
-            ? "color-mix(in srgb, var(--v2-bg) 85%, transparent)"
-            : "transparent",
-        backdropFilter: mode === "cream" ? "blur(8px)" : "none",
-        WebkitBackdropFilter: mode === "cream" ? "blur(8px)" : "none",
-        opacity: hidden ? 0 : 1,
-        pointerEvents: hidden ? "none" : "auto",
-        transition: "opacity 300ms ease, background 300ms ease",
+        paddingBlock: "1.1rem",
+        background: showBar
+          ? "color-mix(in srgb, var(--v2-bg) 82%, transparent)"
+          : "transparent",
+        backdropFilter: showBar ? "blur(10px)" : "none",
+        WebkitBackdropFilter: showBar ? "blur(10px)" : "none",
+        transition: "background 350ms ease, backdrop-filter 350ms ease",
       }}
     >
       <div className="lef-container flex items-center justify-between">
-        {/* LEFT CLUSTER — logo (the landing spot for the flying hero wordmark),
-            then the page links. The logo starts invisible; MorphingWordmark
-            fades it in as the hero wordmark finishes flying up to it. */}
+        {/* LEFT — brand + menu, always visible */}
         <nav
-          className="flex items-center gap-7"
-          style={{
-            fontFamily: "var(--font-geist)",
-            fontSize: "0.875rem",
-            color: "var(--v2-ink)",
-            letterSpacing: "-0.005em",
-          }}
+          className="flex items-baseline"
+          style={{ gap: "clamp(1.1rem, 2.2vw, 2.2rem)" }}
         >
           <Link
             href="/"
-            id="nav-logo"
             aria-label="Squirrels' Nest — home"
             className="font-display"
             style={{
-              color: "var(--v2-ink)",
-              fontSize: "1.15rem",
-              letterSpacing: "-0.02em",
-              fontWeight: 500,
-              opacity: 0,
-              marginRight: "0.5rem",
+              color: ink,
+              fontSize: "clamp(1.15rem, 1.5vw, 1.45rem)",
+              letterSpacing: "-0.01em",
+              fontWeight: 400,
+              lineHeight: 1,
+              textShadow: light ? "0 1px 10px rgba(0,0,0,0.32)" : "none",
+              transition: "color 300ms ease",
             }}
           >
             Squirrels&apos; Nest
           </Link>
-          <Link href="/gallery" className="hover:opacity-60 transition-opacity">Gallery</Link>
-          <Link href="/contact" className="hover:opacity-60 transition-opacity">Contact</Link>
-          <ThemeToggle />
+          <span style={{ display: "flex", gap: "clamp(0.9rem, 1.8vw, 1.7rem)" }}>
+            <NavLink href="/gallery" ink={ink} light={light}>Gallery</NavLink>
+            <NavLink href="/contact" ink={ink} light={light}>Contact</NavLink>
+            <ThemeToggle />
+          </span>
         </nav>
 
-        {/* RIGHT — the live "at the cabin" badge, sat just left of the fixed
-            Book pill (FloatingBookButton in layout.tsx, top-right). The right
-            margin reserves space so the badge clears the pill on desktop. */}
+        {/* RIGHT — live badge, sat just left of the fixed Book pill. */}
         <div className="hidden md:block" style={{ marginRight: "11.5rem" }}>
           <LiveTimeBadge />
         </div>
       </div>
     </header>
+  );
+}
+
+function NavLink({
+  href,
+  ink,
+  light,
+  children,
+}: {
+  href: string;
+  ink: string;
+  light: boolean;
+  children: React.ReactNode;
+}) {
+  return (
+    <Link
+      href={href}
+      className="hover:opacity-60 transition-opacity"
+      style={{
+        color: ink,
+        fontFamily: "var(--font-geist)",
+        fontSize: "0.8rem",
+        letterSpacing: "0.02em",
+        textShadow: light ? "0 1px 8px rgba(0,0,0,0.3)" : "none",
+        transition: "color 300ms ease, opacity 200ms ease",
+      }}
+    >
+      {children}
+    </Link>
   );
 }

@@ -8,7 +8,6 @@ import { BigFooter } from "@/components/v2/BigFooter";
 import { ScrollProgress } from "@/components/v2/ScrollProgress";
 import { FloatingBookButton } from "@/components/v2/FloatingBookButton";
 import { IntroLoader } from "@/components/v2/IntroLoader";
-import { MorphingWordmark } from "@/components/v2/MorphingWordmark";
 import { StructuredData } from "@/components/seo/StructuredData";
 import { Grain } from "@/components/v2/Grain";
 import { SITE_URL, BRAND } from "@/lib/site";
@@ -143,7 +142,6 @@ export default function RootLayout({
         <FloatingBookButton />
         <SmoothScroll>
           <Nav />
-          <MorphingWordmark />
           <main>{children}</main>
           <BigFooter />
         </SmoothScroll>
