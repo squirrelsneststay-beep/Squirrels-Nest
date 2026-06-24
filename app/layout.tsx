@@ -127,6 +127,8 @@ export default function RootLayout({
   return (
     <html
       lang="en"
+      data-theme="dark"
+      suppressHydrationWarning
       className={`${switzer.variable} ${instrumentSerif.variable} ${geistMono.variable} antialiased`}
     >
       <body>
@@ -134,7 +136,7 @@ export default function RootLayout({
         <script
           dangerouslySetInnerHTML={{
             __html:
-              "(function(){try{if(localStorage.getItem('sn-theme')!=='light')document.documentElement.setAttribute('data-theme','dark');}catch(e){document.documentElement.setAttribute('data-theme','dark');}})();",
+              "(function(){try{document.documentElement.setAttribute('data-theme','dark');}catch(e){}})();",
           }}
         />
         <IntroLoader />
