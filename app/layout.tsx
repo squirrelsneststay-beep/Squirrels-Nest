@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist_Mono, Fraunces } from "next/font/google";
+import { Geist_Mono, Instrument_Serif } from "next/font/google";
 import localFont from "next/font/local";
 import "./globals.css";
 import { SmoothScroll } from "@/components/SmoothScroll";
@@ -28,14 +28,15 @@ const switzer = localFont({
   ],
 });
 
-// Display / headings — Fraunces: a warm, high-contrast variable serif with
-// optical sizing. Reads as quiet luxury (country-house hotel), and its italics
-// pair beautifully with the hand-drawn accents.
-const fraunces = Fraunces({
-  variable: "--font-fraunces",
+// Display / headings — Instrument Serif: a modern, high-contrast editorial
+// serif. Used large and a touch tight it reads contemporary-luxury (fashion
+// editorial, modern boutique hotel) rather than traditional country-house.
+// Its italic is doing a lot of the personality work in the accent lines.
+const instrumentSerif = Instrument_Serif({
+  variable: "--font-instrument",
   subsets: ["latin"],
   display: "swap",
-  weight: ["400", "500", "600", "700"],
+  weight: "400",
   style: ["normal", "italic"],
 });
 
@@ -127,7 +128,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${switzer.variable} ${fraunces.variable} ${geistMono.variable} antialiased`}
+      className={`${switzer.variable} ${instrumentSerif.variable} ${geistMono.variable} antialiased`}
     >
       <body>
         <StructuredData />

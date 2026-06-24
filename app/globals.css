@@ -71,9 +71,9 @@
    here-away.com uses one Neue Montreal. Map the old display / accent / body
    variables onto it so every component flips without edits. */
 :root {
-  --font-geist:     var(--font-switzer);    /* body — neutral grotesque, readable */
-  --font-italiana:  var(--font-fraunces);   /* display / headings — Fraunces serif */
-  --font-cormorant: var(--font-fraunces);   /* accent lines — Fraunces italic */
+  --font-geist:     var(--font-switzer);      /* body — neutral grotesque, readable */
+  --font-italiana:  var(--font-instrument);   /* display / headings — Instrument Serif (modern editorial) */
+  --font-cormorant: var(--font-instrument);   /* accent lines — Instrument Serif italic */
 }
 
 /* ───────── Dark mode — inverts the palette (light ↔ dark). Photos are not

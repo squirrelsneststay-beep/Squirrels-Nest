@@ -120,7 +120,18 @@ export function CleanHero() {
             </div>
           ))}
         </div>
-        {/* gradient overlay intentionally removed — photo speaks for itself */}
+        {/* Cinematic scrim — a soft vignette top + bottom. Darkens just enough
+            for the thin editorial wordmark and eyebrow to read cleanly, and
+            gives the frame a moodier, more luxury weight. */}
+        <div
+          aria-hidden
+          className="absolute inset-0"
+          style={{
+            pointerEvents: "none",
+            background:
+              "linear-gradient(180deg, rgba(6,26,15,0.40) 0%, rgba(6,26,15,0.06) 22%, rgba(6,26,15,0) 50%, rgba(6,26,15,0.30) 78%, rgba(6,26,15,0.62) 100%)",
+          }}
+        />
       </div>
 
       {/* Top CTA intentionally removed — the global <FloatingBookButton>
