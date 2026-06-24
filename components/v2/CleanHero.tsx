@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { gsap } from "gsap";
+import { AIRBNB_URL, EXTERNAL_LINK_PROPS } from "@/lib/site";
 
 // Hero slideshow: auto-advances every 4 seconds.
 // Photos chosen to give a varied tour of the lodge — exterior, sitting
@@ -178,26 +179,42 @@ export function CleanHero() {
           Slow weekends in the{" "}
           <span style={{ fontStyle: "italic" }}>Berkshire woods.</span>
         </h2>
-        <a
-          href="/gallery"
+        <div
           className="ch-reveal"
           style={{
-            display: "inline-flex",
+            display: "flex",
             alignItems: "center",
-            gap: "0.6rem",
-            marginTop: "clamp(1.25rem, 2.4vh, 2rem)",
-            fontFamily: "var(--font-geist)",
-            fontSize: "0.82rem",
-            letterSpacing: "0.04em",
-            color: "#f3f0e6",
-            textDecoration: "none",
-            borderBottom: "1px solid color-mix(in srgb, #f3f0e6 55%, transparent)",
-            paddingBottom: "0.2rem",
-            textShadow: "0 1px 8px rgba(0,0,0,0.4)",
+            gap: "1.5rem",
+            marginTop: "clamp(1.5rem, 3vh, 2.4rem)",
+            flexWrap: "wrap",
           }}
         >
-          Explore the gallery <span aria-hidden>&rarr;</span>
-        </a>
+          <a
+            href={AIRBNB_URL}
+            {...EXTERNAL_LINK_PROPS}
+            className="sv-pill is-inverse"
+            style={{ boxShadow: "0 10px 30px -12px rgba(0,0,0,0.5)" }}
+          >
+            <span>Check availability</span>
+            <span className="sv-pill-rule" aria-hidden />
+            <span>Airbnb</span>
+          </a>
+          <a
+            href="/gallery"
+            style={{
+              fontFamily: "var(--font-geist)",
+              fontSize: "0.82rem",
+              letterSpacing: "0.04em",
+              color: "#f3f0e6",
+              textDecoration: "none",
+              borderBottom: "1px solid color-mix(in srgb, #f3f0e6 55%, transparent)",
+              paddingBottom: "0.2rem",
+              textShadow: "0 1px 8px rgba(0,0,0,0.4)",
+            }}
+          >
+            View the gallery <span aria-hidden>&rarr;</span>
+          </a>
+        </div>
       </div>
     </section>
   );
