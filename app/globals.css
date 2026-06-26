@@ -528,6 +528,10 @@ html.lenis, html.lenis body { height: auto; }
 @media (max-width: 560px) {
   .am-grid { grid-template-columns: 1fr !important; }
 }
+@media (max-width: 860px) {
+  .space-row { flex-direction: column !important; }
+  .space-row > div { flex: 1 1 auto !important; width: 100%; }
+}
 
 /* ───────── Reveal-on-scroll (.rv). A clip-path + lift + fade that makes
    every block "develop" into place like a print. IntersectionObserver adds

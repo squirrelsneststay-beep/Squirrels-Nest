@@ -12,7 +12,9 @@ const TEASER = [
   { src: "sq-12.jpg", alt: "The super king bed with its red headboard", tall: true },
   { src: "sq-08.jpg", alt: "The private courtyard with its bistro table", tall: false },
   { src: "sq-30.jpg", alt: "The chandelier against deep-red plaster", tall: true },
-  { src: "sq-37.jpg", alt: "The kitchen window", tall: false },
+  { src: "sq-18.jpg", alt: "The sitting room with yellow velvet chairs", tall: false },
+  { src: "sq-37.jpg", alt: "The kitchen window", tall: true },
+  { src: "sq-20.jpg", alt: "Brass taps and a fresh flower", tall: false },
 ];
 
 export function GalleryTeaser() {
@@ -75,7 +77,7 @@ export function GalleryTeaser() {
           className="gt-grid"
           style={{
             display: "grid",
-            gridTemplateColumns: "repeat(4, 1fr)",
+            gridTemplateColumns: "repeat(3, 1fr)",
             gap: "clamp(0.75rem, 1.5vw, 1.25rem)",
             alignItems: "start",
           }}
