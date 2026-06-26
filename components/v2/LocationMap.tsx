@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { Reveal } from "@/components/v2/Reveal";
 import { ScrollType } from "@/components/v2/ScrollType";
 import { LOCATION_LINE, TRAVEL_TIMES, STATION_LINE } from "@/lib/owner-facts";
@@ -65,8 +66,26 @@ export function LocationMap() {
             }}
           />
 
+          <Reveal delay={0.14}>
+            <Link
+              href="/the-area"
+              style={{
+                display: "inline-block",
+                marginTop: "1.75rem",
+                fontFamily: "var(--font-geist)",
+                fontSize: "1rem",
+                color: "var(--v2-ink)",
+                textDecoration: "none",
+                borderBottom: "1px solid color-mix(in srgb, var(--v2-ink) 40%, transparent)",
+                paddingBottom: "0.2rem",
+              }}
+            >
+              Things to do nearby &rarr;
+            </Link>
+          </Reveal>
+
           {(TRAVEL_TIMES.length > 0 || STATION_LINE) && (
-            <Reveal delay={0.16}>
+            <Reveal delay={0.18}>
               <ul
                 style={{
                   listStyle: "none",
