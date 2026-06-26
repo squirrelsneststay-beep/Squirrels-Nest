@@ -4,30 +4,24 @@ import Image from "next/image";
 import { Reveal } from "@/components/v2/Reveal";
 
 /**
- * The Space — a clean, premium room showcase. Each room is one large
- * photograph with the name and a single line beside it, alternating sides for
- * rhythm. No scattered/rotated photos, no tiny captions. Copy is Zoe's exact
- * wording (confirmed facts).
+ * The Space — a clean, premium room showcase. Each room is a tidy cluster of
+ * three photographs (one large + two stacked) with the name and a single line
+ * beside it, alternating sides for rhythm. Intentional grid, never the old
+ * scattered/rotated mess. Copy is Zoe's exact wording (confirmed facts).
  */
-type Room = { name: string; line?: string; img: string; alt: string };
+type Room = { name: string; line?: string; photos: [string, string, string]; alt: string };
 
 const ROOMS: Room[] = [
-  { name: "The Bedroom", line: "A beautiful super king-sized bed.", img: "sq-12.jpg", alt: "The super king bed with its red scalloped headboard" },
-  { name: "The Shower Room", img: "sq-38.jpg", alt: "The large walk-in shower" },
-  { name: "The Kitchen", line: "Fully equipped with small oven, hob, coffee machine and fridge freezer.", img: "sq-37.jpg", alt: "The kitchen sink beneath the window" },
-  { name: "The Courtyard", line: "Your own enclosed courtyard, with a table and chairs.", img: "sq-08.jpg", alt: "The private enclosed courtyard with its bistro table" },
+  { name: "The Bedroom", line: "A beautiful super king-sized bed.", photos: ["sq-12.jpg", "sq-33.jpg", "sq-40.jpg"], alt: "The bedroom" },
+  { name: "The Shower Room", photos: ["sq-38.jpg", "sq-39.jpg", "sq-20.jpg"], alt: "The shower room" },
+  { name: "The Kitchen", line: "Fully equipped with small oven, hob, coffee machine and fridge freezer.", photos: ["sq-37.jpg", "sq-24.jpg", "sq-29.jpg"], alt: "The kitchen" },
+  { name: "The Courtyard", line: "Your own enclosed courtyard, with a table and chairs.", photos: ["sq-08.jpg", "sq-04.jpg", "sq-06.jpg"], alt: "The courtyard" },
 ];
 
 export function TheSpaceRooms() {
   return (
-    <section
-      style={{
-        background: "var(--v2-bg)",
-        color: "var(--v2-ink)",
-        paddingBlock: "clamp(6rem, 14vh, 12rem)",
-      }}
-    >
-      <div className="mx-auto" style={{ maxWidth: "88rem", paddingInline: "clamp(1.5rem, 4vw, 4rem)" }}>
+    <section style={{ background: "var(--v2-bg)", color: "var(--v2-ink)", paddingBlock: "clamp(6rem, 14vh, 12rem)" }}>
+      <div className="mx-auto" style={{ maxWidth: "90rem", paddingInline: "clamp(1.5rem, 4vw, 4rem)" }}>
         <Reveal>
           <h2
             className="font-display"
@@ -43,7 +37,7 @@ export function TheSpaceRooms() {
           </h2>
         </Reveal>
 
-        <div style={{ display: "flex", flexDirection: "column", gap: "clamp(4rem, 9vw, 8rem)" }}>
+        <div style={{ display: "flex", flexDirection: "column", gap: "clamp(4.5rem, 10vw, 9rem)" }}>
           {ROOMS.map((r, i) => (
             <Reveal key={r.name}>
               <div
@@ -55,18 +49,24 @@ export function TheSpaceRooms() {
                   gap: "clamp(2rem, 5vw, 5rem)",
                 }}
               >
-                <div className="imgwipe" style={{ flex: "1 1 56%", borderRadius: "5px" }}>
-                  <span style={{ position: "relative", display: "block", aspectRatio: "3 / 2", borderRadius: "5px", overflow: "hidden" }}>
-                    <Image
-                      src={`/images/squirrels-nest/${r.img}`}
-                      alt={`${r.alt} — Squirrels' Nest`}
-                      fill
-                      sizes="(max-width: 860px) 100vw, 52vw"
-                      style={{ objectFit: "cover" }}
-                    />
-                  </span>
+                {/* image cluster: one large + two stacked */}
+                <div
+                  className="room-cluster"
+                  style={{
+                    flex: "1 1 60%",
+                    display: "grid",
+                    gridTemplateColumns: "1.45fr 1fr",
+                    gridTemplateRows: "1fr 1fr",
+                    gap: "clamp(0.5rem, 1vw, 0.85rem)",
+                    aspectRatio: "5 / 4",
+                  }}
+                >
+                  <Frame src={r.photos[0]} alt={`${r.alt} — Squirrels' Nest`} style={{ gridColumn: "1", gridRow: "1 / 3" }} />
+                  <Frame src={r.photos[1]} alt="" style={{ gridColumn: "2", gridRow: "1" }} />
+                  <Frame src={r.photos[2]} alt="" style={{ gridColumn: "2", gridRow: "2" }} />
                 </div>
-                <div style={{ flex: "1 1 44%" }}>
+
+                <div style={{ flex: "1 1 32%" }}>
                   <h3
                     className="font-display"
                     style={{
@@ -100,5 +100,19 @@ export function TheSpaceRooms() {
         </div>
       </div>
     </section>
+  );
+}
+
+function Frame({ src, alt, style }: { src: string; alt: string; style: React.CSSProperties }) {
+  return (
+    <div className="imgwipe" style={{ position: "relative", borderRadius: "4px", overflow: "hidden", ...style }}>
+      <Image
+        src={`/images/squirrels-nest/${src}`}
+        alt={alt}
+        fill
+        sizes="(max-width: 860px) 100vw, 30vw"
+        style={{ objectFit: "cover" }}
+      />
+    </div>
   );
 }

@@ -237,33 +237,35 @@ html.lenis, html.lenis body { height: auto; }
 .sv-pill {
   display: inline-flex;
   align-items: center;
-  height: 44px;
-  padding: 0 1.4rem;
+  height: 46px;
+  padding: 0 1.5rem;
   border-radius: 9999px;
-  background: var(--v2-bg);
+  background: transparent;           /* see-through — outline only */
   color: var(--v2-ink);
-  font-family: var(--font-geist), -apple-system, sans-serif;
-  font-size: 0.875rem;
+  font-family: var(--font-italiana), Georgia, serif;  /* Playfair Display */
+  font-size: 0.92rem;
   font-weight: 400;
-  letter-spacing: -0.005em;
+  letter-spacing: 0;
   cursor: pointer;
   text-decoration: none;
-  border: 1px solid color-mix(in srgb, var(--v2-ink) 12%, transparent);
+  border: 1.5px solid currentColor;
   transition: background-color 200ms var(--ease-out),
               color 200ms var(--ease-out),
               transform var(--dur-press) var(--ease-out);
 }
 @media (hover: hover) and (pointer: fine) {
-  .sv-pill:hover { background: color-mix(in srgb, var(--v2-ink) 6%, var(--v2-bg)); }
+  .sv-pill:hover { background: color-mix(in srgb, currentColor 9%, transparent); }
 }
 .sv-pill:active { transform: scale(0.97); }
+/* inherit the surrounding text colour so the outline reads light over photos
+   and dark over the cream — never a filled block. */
 .sv-pill.is-inverse {
-  background: var(--v2-accent);
-  color: #f7f3ec;
-  border-color: var(--v2-accent);
+  background: transparent;
+  color: inherit;
+  border-color: currentColor;
 }
 @media (hover: hover) and (pointer: fine) {
-  .sv-pill.is-inverse:hover { background: color-mix(in srgb, var(--v2-accent) 86%, #000); }
+  .sv-pill.is-inverse:hover { background: color-mix(in srgb, currentColor 12%, transparent); }
 }
 .sv-pill .sv-pill-rule {
   width: 1.5rem;

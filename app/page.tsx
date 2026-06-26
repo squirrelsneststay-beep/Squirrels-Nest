@@ -10,6 +10,7 @@ import { CinematicBreak } from "@/components/v2/CinematicBreak";
 import { Experiences } from "@/components/v2/Experiences";
 import { LocationMap } from "@/components/v2/LocationMap";
 import { ShepherdsHut } from "@/components/v2/ShepherdsHut";
+import { InspiredBy } from "@/components/v2/InspiredBy";
 import { GalleryTeaser } from "@/components/v2/GalleryTeaser";
 import { GuestWords } from "@/components/v2/GuestWords";
 import { FaqSection } from "@/components/v2/FaqSection";
@@ -23,13 +24,13 @@ export default function HomePage() {
 
   return (
     <div className="v2-root" style={{ background: "var(--v2-ink)", color: "var(--v2-ink)" }}>
-      {/* FIXED HERO — booking-led: name, statement, "Check availability" CTA. */}
+      {/* FIXED HERO */}
       <div style={{ position: "fixed", inset: "0 0 auto 0", height: "100dvh", zIndex: 0, overflow: "hidden" }}>
         <CleanHero />
       </div>
       <div aria-hidden style={{ height: "100dvh" }} />
 
-      {/* CONTENT — a structured, hotel-style flow that lifts over the hero. */}
+      {/* TOP PANEL — clipped (rounded top) panel that lifts over the hero. */}
       <div
         style={{
           position: "relative",
@@ -49,8 +50,13 @@ export default function HomePage() {
         <Experiences />
         <LocationMap />
         <ShepherdsHut />
+      </div>
+
+      {/* LOWER PANEL — NOT clipped, so InspiredBy's pinned scroll works. */}
+      <div style={{ position: "relative", zIndex: 2, background: "var(--v2-bg)" }}>
+        <InspiredBy />
         <GalleryTeaser />
-        {/* Gated on owner-facts — appear once Zoe confirms them. */}
+        {/* Gated on owner-facts. */}
         <GuestWords />
         <FaqSection />
         <HostNote />
