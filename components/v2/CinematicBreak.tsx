@@ -61,7 +61,7 @@ export function CinematicBreak() {
           position: "absolute",
           inset: 0,
           background:
-            "linear-gradient(180deg, rgba(6,22,14,0.5) 0%, rgba(6,22,14,0.18) 38%, rgba(6,22,14,0.28) 64%, rgba(6,22,14,0.62) 100%)",
+            "linear-gradient(180deg, rgba(28,18,10,0.5) 0%, rgba(28,18,10,0.18) 38%, rgba(28,18,10,0.28) 64%, rgba(28,18,10,0.62) 100%)",
         }}
       />
       <div

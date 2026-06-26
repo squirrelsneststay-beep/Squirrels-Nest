@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
-import { Geist_Mono, Instrument_Serif } from "next/font/google";
-import localFont from "next/font/local";
+import { Geist_Mono, Playfair_Display, Bricolage_Grotesque } from "next/font/google";
 import "./globals.css";
 import { SmoothScroll } from "@/components/SmoothScroll";
 import { Nav } from "@/components/Nav";
@@ -12,31 +11,23 @@ import { StructuredData } from "@/components/seo/StructuredData";
 import { Grain } from "@/components/v2/Grain";
 import { SITE_URL, BRAND } from "@/lib/site";
 
-// One neutral grotesque for the whole site — the way here-away.com uses a
-// single PP Neue Montreal. Switzer (Fontshare, free for commercial use) is the
-// close, self-hosted stand-in. Exposed on --font-switzer; globals.css maps the
-// display / accent / body variables onto it so every component picks it up.
-const switzer = localFont({
-  variable: "--font-switzer",
-  display: "swap",
-  src: [
-    { path: "../public/fonts/switzer/switzer-400.woff2", weight: "400", style: "normal" },
-    { path: "../public/fonts/switzer/switzer-500.woff2", weight: "500", style: "normal" },
-    { path: "../public/fonts/switzer/switzer-600.woff2", weight: "600", style: "normal" },
-    { path: "../public/fonts/switzer/switzer-700.woff2", weight: "700", style: "normal" },
-  ],
-});
-
-// Display / headings — Instrument Serif: a modern, high-contrast editorial
-// serif. Used large and a touch tight it reads contemporary-luxury (fashion
-// editorial, modern boutique hotel) rather than traditional country-house.
-// Its italic is doing a lot of the personality work in the accent lines.
-const instrumentSerif = Instrument_Serif({
-  variable: "--font-instrument",
+// Matched to the Mariven reference: Playfair Display for headings (classic
+// high-contrast luxury serif) + Bricolage Grotesque for body (modern, warm
+// grotesque). globals.css maps the display / accent / body variables onto
+// these so every component picks them up.
+const playfair = Playfair_Display({
+  variable: "--font-playfair",
   subsets: ["latin"],
   display: "swap",
-  weight: "400",
+  weight: ["400", "500", "600", "700"],
   style: ["normal", "italic"],
+});
+
+const bricolage = Bricolage_Grotesque({
+  variable: "--font-bricolage",
+  subsets: ["latin"],
+  display: "swap",
+  weight: ["400", "500", "600", "700"],
 });
 
 const geistMono = Geist_Mono({
@@ -128,16 +119,10 @@ export default function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
-      className={`${switzer.variable} ${instrumentSerif.variable} ${geistMono.variable} antialiased`}
+      className={`${bricolage.variable} ${playfair.variable} ${geistMono.variable} antialiased`}
     >
       <body>
         <StructuredData />
-        <script
-          dangerouslySetInnerHTML={{
-            __html:
-              "(function(){try{if(localStorage.getItem('sn-theme')==='dark')document.documentElement.setAttribute('data-theme','dark');}catch(e){}})();",
-          }}
-        />
         <IntroLoader />
         <ScrollProgress />
         <FloatingBookButton />

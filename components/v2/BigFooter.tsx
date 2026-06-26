@@ -57,7 +57,7 @@ export function BigFooter() {
     <footer
       ref={rootRef}
       data-section-tone="dark"
-      className="relative bf-pin"
+      className="relative"
       style={{
         background: "var(--v2-ink)",
         color: "var(--v2-bg)",

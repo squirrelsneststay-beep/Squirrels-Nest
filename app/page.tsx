@@ -4,7 +4,6 @@ import { useEffect } from "react";
 import { CleanHero } from "@/components/v2/CleanHero";
 import { StatementIntro } from "@/components/v2/StatementIntro";
 import { StatBand } from "@/components/v2/StatBand";
-import { InsideTheNest } from "@/components/v2/InsideTheNest";
 import { Amenities } from "@/components/v2/Amenities";
 import { CinematicBreak } from "@/components/v2/CinematicBreak";
 import { Experiences } from "@/components/v2/Experiences";
@@ -43,7 +42,6 @@ export default function HomePage() {
       >
         <StatementIntro />
         <StatBand />
-        <InsideTheNest />
         <Amenities />
         <CinematicBreak />
         <Experiences />

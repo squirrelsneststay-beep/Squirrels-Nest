@@ -6,7 +6,6 @@ import { useEffect, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { LiveTimeBadge } from "@/components/v2/LiveTimeBadge";
-import { ThemeToggle } from "@/components/v2/ThemeToggle";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
@@ -101,7 +100,6 @@ export function Nav() {
           <span style={{ display: "flex", gap: "clamp(0.9rem, 1.8vw, 1.7rem)" }}>
             <NavLink href="/gallery" ink={ink} light={light}>Gallery</NavLink>
             <NavLink href="/contact" ink={ink} light={light}>Contact</NavLink>
-            <ThemeToggle />
           </span>
         </nav>
 

@@ -41,7 +41,6 @@ export function Amenities() {
     >
       <div className="mx-auto" style={{ maxWidth: "80rem", paddingInline: "clamp(1.5rem, 4vw, 4rem)" }}>
         <Reveal>
-          <p style={labelStyle}>Amenities</p>
           <h2 className="font-display" style={titleStyle}>
             Everything you need,{" "}
             <span style={{ fontStyle: "italic", color: "var(--v2-ink-soft)" }}>already here.</span>
@@ -90,15 +89,6 @@ export function Amenities() {
     </section>
   );
 }
-
-const labelStyle: React.CSSProperties = {
-  margin: 0,
-  fontFamily: "var(--font-geist)",
-  fontSize: "0.72rem",
-  letterSpacing: "0.22em",
-  textTransform: "uppercase",
-  color: "var(--v2-mute)",
-};
 
 const titleStyle: React.CSSProperties = {
   margin: "1.5rem 0 0",

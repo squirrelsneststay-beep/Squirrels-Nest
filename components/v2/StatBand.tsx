@@ -8,11 +8,11 @@ import { Reveal } from "@/components/v2/Reveal";
  * spec strip on a high-end hotel site.
  */
 const STATS = [
-  { label: "Sleeps", value: "Two" },
-  { label: "Bedroom", value: "One" },
-  { label: "The bed", value: "Super king" },
-  { label: "Outside", value: "Private courtyard" },
-  { label: "Plus", value: "Shepherd's hut" },
+  "Sleeps two",
+  "One bedroom",
+  "Super king bed",
+  "Private courtyard",
+  "Shepherd's hut",
 ];
 
 export function StatBand() {
@@ -36,37 +36,28 @@ export function StatBand() {
         >
           {STATS.map((s, i) => (
             <div
-              key={s.label}
+              key={s}
               style={{
                 paddingBlock: "clamp(2.25rem, 5vh, 3.5rem)",
                 paddingInline: "clamp(1rem, 2vw, 1.75rem)",
                 borderLeft: i === 0 ? "none" : "1px solid var(--v2-line)",
                 textAlign: "center",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
               }}
             >
               <p
-                style={{
-                  margin: 0,
-                  fontFamily: "var(--font-geist)",
-                  fontSize: "0.66rem",
-                  letterSpacing: "0.2em",
-                  textTransform: "uppercase",
-                  color: "var(--v2-mute)",
-                }}
-              >
-                {s.label}
-              </p>
-              <p
                 className="font-display"
                 style={{
-                  margin: "0.7rem 0 0",
-                  fontSize: "clamp(1.15rem, 2vw, 1.7rem)",
+                  margin: 0,
+                  fontSize: "clamp(1.05rem, 1.7vw, 1.5rem)",
                   letterSpacing: "-0.01em",
-                  lineHeight: 1.05,
+                  lineHeight: 1.15,
                   color: "var(--v2-ink)",
                 }}
               >
-                {s.value}
+                {s}
               </p>
             </div>
           ))}

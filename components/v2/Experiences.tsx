@@ -85,22 +85,10 @@ export function Experiences() {
           }}
         >
           <Reveal>
-            <p
-              style={{
-                margin: 0,
-                fontFamily: "var(--font-geist)",
-                fontSize: "0.72rem",
-                letterSpacing: "0.24em",
-                textTransform: "uppercase",
-                color: "color-mix(in srgb, var(--v2-bg) 62%, transparent)",
-              }}
-            >
-              Your stay
-            </p>
             <h2
               className="font-display"
               style={{
-                margin: "1.25rem 0 2.5rem",
+                margin: "0 0 2.5rem",
                 fontSize: "clamp(2.2rem, 4.4vw, 4rem)",
                 lineHeight: 1.02,
                 letterSpacing: "-0.03em",
@@ -137,33 +125,18 @@ export function Experiences() {
                       display: "block",
                     }}
                   >
-                    <span style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", gap: "1rem" }}>
-                      <span
-                        className="font-display"
-                        style={{
-                          fontSize: "clamp(1.4rem, 2.4vw, 2.1rem)",
-                          letterSpacing: "-0.02em",
-                          lineHeight: 1.1,
-                          color: on ? "var(--v2-bg)" : "color-mix(in srgb, var(--v2-bg) 55%, transparent)",
-                          transition: "color 350ms var(--ease-out)",
-                        }}
-                      >
-                        {m.title}
-                      </span>
-                      <span
-                        style={{
-                          flex: "none",
-                          fontFamily: "var(--font-geist)",
-                          fontSize: "0.66rem",
-                          letterSpacing: "0.18em",
-                          textTransform: "uppercase",
-                          color: on ? "var(--v2-accent)" : "color-mix(in srgb, var(--v2-bg) 40%, transparent)",
-                          transition: "color 350ms var(--ease-out)",
-                          paddingTop: "0.4rem",
-                        }}
-                      >
-                        {m.when}
-                      </span>
+                    <span
+                      className="font-display"
+                      style={{
+                        display: "block",
+                        fontSize: "clamp(1.4rem, 2.4vw, 2.1rem)",
+                        letterSpacing: "-0.02em",
+                        lineHeight: 1.1,
+                        color: on ? "var(--v2-bg)" : "color-mix(in srgb, var(--v2-bg) 55%, transparent)",
+                        transition: "color 350ms var(--ease-out)",
+                      }}
+                    >
+                      {m.title}
                     </span>
                     <span
                       style={{

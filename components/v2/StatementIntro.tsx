@@ -30,25 +30,11 @@ export function StatementIntro() {
         }}
       >
         <div>
-          <Reveal>
-            <p
-              style={{
-                fontFamily: "var(--font-geist)",
-                fontSize: "0.72rem",
-                letterSpacing: "0.26em",
-                textTransform: "uppercase",
-                color: "var(--v2-mute)",
-                margin: 0,
-              }}
-            >
-              Welcome to the Nest
-            </p>
-          </Reveal>
           <Reveal delay={0.08}>
             <h2
               className="font-display"
               style={{
-                marginTop: "1.75rem",
+                marginTop: 0,
                 marginBottom: 0,
                 fontSize: "clamp(2.4rem, 5.2vw, 5.4rem)",
                 lineHeight: 1.02,

@@ -4,27 +4,37 @@ import { useEffect, useState } from "react";
 import { AIRBNB_URL, EXTERNAL_LINK_PROPS } from "@/lib/site";
 
 /**
- * Persistent "Book now" CTA — a SOLID yellow pill, fixed on every page.
- * Desktop: top-right, above the nav, so it stays visible even where the nav
- * fades over dark pinned sections. Mobile (<768px): docked bottom-right —
- * top-right covered the Home/Contact nav links and the morphing wordmark,
- * and sat outside one-handed thumb reach. Positioning lives in the
- * `.fbb-pos` class (globals.css) because inline styles can't carry the
- * breakpoint.
+ * Persistent "Book" CTA — a see-through (outline) pill, fixed on every page.
+ * Desktop: top-right. Mobile (<768px): docked bottom-right, hidden over the
+ * hero so it doesn't cover the headline, fading in on scroll.
+ *
+ * It adapts to what's behind it: cream outline over the dark hero / dark
+ * sections, espresso-brown outline over the cream content. A faint blur keeps
+ * it legible over photography.
  */
 export function FloatingBookButton() {
-  // Mobile only: stay hidden over the hero, where the bottom-docked pill
-  // would sit on top of the giant wordmark — the first thing a visitor
-  // sees. Fades in as soon as they scroll. Desktop is always visible.
   const [shown, setShown] = useState(false);
+  const [light, setLight] = useState(true); // light outline over dark surfaces
 
   useEffect(() => {
     const update = () => {
       const isMobile = window.matchMedia("(max-width: 767px)").matches;
       const heroPresent = !!document.querySelector("[data-hero]");
-      setShown(
-        !isMobile || !heroPresent || window.scrollY > window.innerHeight * 0.6
-      );
+      const vh = window.innerHeight;
+      setShown(!isMobile || !heroPresent || window.scrollY > vh * 0.6);
+
+      // Light when the pill sits over the hero or any dark-toned section.
+      const y = 48; // pill's vertical centre-ish on desktop
+      let overDark = heroPresent && window.scrollY < vh - 90;
+      if (!overDark) {
+        for (const s of document.querySelectorAll<HTMLElement>("[data-section-tone='dark']:not([data-hero])")) {
+          const r = s.getBoundingClientRect();
+          // mobile pill is near the bottom; desktop near the top
+          const probe = isMobile ? vh - 60 : y;
+          if (r.top < probe && r.bottom > probe) { overDark = true; break; }
+        }
+      }
+      setLight(overDark);
     };
     update();
     window.addEventListener("scroll", update, { passive: true });
@@ -35,32 +45,42 @@ export function FloatingBookButton() {
     };
   }, []);
 
+  const tone = light ? "#f3f0e6" : "var(--v2-ink)";
+
   return (
     <a
       href={AIRBNB_URL}
       {...EXTERNAL_LINK_PROPS}
       aria-label="Book on Airbnb"
       data-magnetic
-      className="sv-pill fbb-pulse fbb-pos"
+      className="fbb-pos"
       tabIndex={shown ? 0 : -1}
       aria-hidden={!shown}
       style={{
-        height: "52px",
-        padding: "0 1.8rem",
-        fontSize: "0.95rem",
-        fontWeight: 600,
+        display: "inline-flex",
+        alignItems: "center",
+        gap: "0.9rem",
+        height: "50px",
+        padding: "0 1.6rem",
+        borderRadius: "9999px",
+        fontFamily: "var(--font-geist)",
+        fontSize: "0.86rem",
+        fontWeight: 500,
         letterSpacing: "0.02em",
-        background: "var(--v2-accent)",
-        color: "#08351c",
-        borderColor: "var(--v2-accent)",
+        textDecoration: "none",
+        background: light ? "rgba(0,0,0,0.10)" : "transparent",
+        backdropFilter: light ? "blur(6px)" : "none",
+        WebkitBackdropFilter: light ? "blur(6px)" : "none",
+        color: tone,
+        border: `1px solid ${tone}`,
         opacity: shown ? 1 : 0,
         pointerEvents: shown ? "auto" : "none",
         transition:
-          "transform var(--dur-press) var(--ease-out), opacity 300ms ease",
+          "color 300ms ease, border-color 300ms ease, background 300ms ease, opacity 300ms ease, transform var(--dur-press) var(--ease-out)",
       }}
     >
       <span>Book</span>
-      <span className="sv-pill-rule" aria-hidden style={{ width: "1.75rem" }} />
+      <span aria-hidden style={{ width: "1.4rem", height: "1px", background: "currentColor", opacity: 0.5 }} />
       <span>now</span>
     </a>
   );

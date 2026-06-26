@@ -10,12 +10,11 @@ import { LOCATION_LINE, TRAVEL_TIMES, STATION_LINE } from "@/lib/owner-facts";
  * precise location is shared on booking, Airbnb-style.
  */
 
-// Centred on the RG20 postcode area (west Berkshire / North Wessex Downs,
-// on the Hampshire border) with a marker — precise enough to show where you
-// are, but RG20 covers a wide rural district, so it never pins the door.
-// Exact address is shared on booking.
+// Google satellite view centred on the real location
+// (51°21'47.7"N 1°17'24.9"W = 51.36325, -1.29025), RG20 / North Wessex Downs.
+// Satellite reads far nicer than the flat OS map and shows the real setting.
 const MAP_SRC =
-  "https://www.openstreetmap.org/export/embed.html?bbox=-1.56%2C51.28%2C-1.08%2C51.50&layer=mapnik&marker=51.385%2C-1.32";
+  "https://maps.google.com/maps?q=51.36325,-1.29025&t=k&z=15&output=embed";
 
 export function LocationMap() {
   return (
@@ -42,7 +41,6 @@ export function LocationMap() {
       >
         <div>
           <Reveal>
-            <p style={labelStyle}>Location</p>
             <h2 className="font-display" style={titleStyle}>
               In the Berkshire countryside,{" "}
               <span style={{ fontStyle: "italic", color: "var(--v2-ink-soft)" }}>
@@ -112,15 +110,14 @@ export function LocationMap() {
               overflow: "hidden",
               border: "1px solid var(--v2-line)",
               aspectRatio: "4 / 3",
-              background: "#f1ebe0",
+              background: "#1a1a1a",
             }}
           >
             <iframe
               src={MAP_SRC}
-              title="Map of the RG20 area — west Berkshire / North Wessex Downs, on the Hampshire border"
+              title="Satellite map of the area — RG20, west Berkshire / North Wessex Downs"
               loading="lazy"
-              // Warm the standard map toward the cream + brown palette.
-              style={{ width: "100%", height: "100%", border: 0, filter: "sepia(0.42) saturate(0.8) brightness(1.04) contrast(0.93)" }}
+              style={{ width: "100%", height: "100%", border: 0 }}
             />
           </div>
         </Reveal>
@@ -128,15 +125,6 @@ export function LocationMap() {
     </section>
   );
 }
-
-const labelStyle: React.CSSProperties = {
-  margin: 0,
-  fontFamily: "var(--font-geist)",
-  fontSize: "0.72rem",
-  letterSpacing: "0.22em",
-  textTransform: "uppercase",
-  color: "var(--v2-mute)",
-};
 
 const titleStyle: React.CSSProperties = {
   margin: "1.5rem 0 0",

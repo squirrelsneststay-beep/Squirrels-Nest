@@ -48,8 +48,8 @@ const cspDirectives = [
   "connect-src 'self'",
   // No <object>/<embed>/<applet> — kill the legacy plugin vector outright.
   "object-src 'none'",
-  // The Location section embeds an OpenStreetMap area map; allow only that.
-  "frame-src 'self' https://www.openstreetmap.org",
+  // The Location section embeds a Google Maps satellite view; allow only that.
+  "frame-src 'self' https://maps.google.com https://www.google.com",
   "frame-ancestors 'none'",
   "manifest-src 'self'",
   "base-uri 'self'",

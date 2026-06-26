@@ -75,9 +75,9 @@
    here-away.com uses one Neue Montreal. Map the old display / accent / body
    variables onto it so every component flips without edits. */
 :root {
-  --font-geist:     var(--font-switzer);      /* body — neutral grotesque, readable */
-  --font-italiana:  var(--font-instrument);   /* display / headings — Instrument Serif (modern editorial) */
-  --font-cormorant: var(--font-instrument);   /* accent lines — Instrument Serif italic */
+  --font-geist:     var(--font-bricolage);   /* body — Bricolage Grotesque (Mariven) */
+  --font-italiana:  var(--font-playfair);    /* display / headings — Playfair Display (Mariven) */
+  --font-cormorant: var(--font-playfair);    /* accent lines — Playfair Display italic */
 }
 
 /* ───────── Dark mode — inverts the palette (light ↔ dark). Photos are not
@@ -229,7 +229,7 @@ html.lenis, html.lenis body { height: auto; }
 }
 .lef-pill-sm:active { transform: scale(0.97); }
 .lef-pill-sm:focus-visible {
-  outline: 2px solid #08351c;
+  outline: 2px solid var(--v2-accent);
   outline-offset: 2px;
 }
 
@@ -259,7 +259,7 @@ html.lenis, html.lenis body { height: auto; }
 .sv-pill:active { transform: scale(0.97); }
 .sv-pill.is-inverse {
   background: var(--v2-accent);
-  color: #08351c;
+  color: #f7f3ec;
   border-color: var(--v2-accent);
 }
 @media (hover: hover) and (pointer: fine) {
@@ -302,7 +302,7 @@ html.lenis, html.lenis body { height: auto; }
 .lef-pill:hover { opacity: 0.92; }
 .lef-pill:active { transform: scale(0.97); }
 .lef-pill:focus-visible {
-  outline: 2px solid #08351c;
+  outline: 2px solid var(--v2-accent);
   outline-offset: 2px;
 }
 /* Word-reveal helper */
@@ -337,11 +337,11 @@ html.lenis, html.lenis body { height: auto; }
 .reveal-still { opacity: 0; }
 
 /* Selection */
-::selection { background: var(--v2-accent); color: #08351c; }
+::selection { background: var(--v2-accent); color: #f7f3ec; }
 
 /* Focus ring */
 :where(a, button, input, textarea, select):focus-visible {
-  outline: 2px solid #08351c;
+  outline: 2px solid var(--v2-accent);
   outline-offset: 3px;
   border-radius: 2px;
 }
@@ -352,7 +352,7 @@ html.lenis, html.lenis body { height: auto; }
 :where(a, button, [role="button"], [tabindex]:not([tabindex="-1"]))
   :focus-visible,
 :focus-visible {
-  outline: 2px solid #08351c;
+  outline: 2px solid var(--v2-accent);
   outline-offset: 2px;
   border-radius: 3px;
 }

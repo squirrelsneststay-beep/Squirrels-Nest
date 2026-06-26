@@ -122,7 +122,7 @@ export function CleanHero() {
           style={{
             pointerEvents: "none",
             background:
-              "linear-gradient(180deg, rgba(6,26,15,0.40) 0%, rgba(6,26,15,0.06) 22%, rgba(6,26,15,0) 50%, rgba(6,26,15,0.30) 78%, rgba(6,26,15,0.62) 100%)",
+              "linear-gradient(180deg, rgba(28,18,10,0.40) 0%, rgba(28,18,10,0.06) 22%, rgba(28,18,10,0) 50%, rgba(28,18,10,0.30) 78%, rgba(28,18,10,0.62) 100%)",
           }}
         />
       </div>
@@ -149,24 +149,10 @@ export function CleanHero() {
           color: "#f3f0e6",
         }}
       >
-        <p
-          className="ch-reveal"
-          style={{
-            fontFamily: "var(--font-geist)",
-            fontSize: "0.72rem",
-            letterSpacing: "0.28em",
-            textTransform: "uppercase",
-            opacity: 0.92,
-            margin: 0,
-            textShadow: "0 1px 8px rgba(0,0,0,0.4)",
-          }}
-        >
-          Berkshire · England
-        </p>
         <h2
           className="ch-reveal font-display"
           style={{
-            marginTop: "clamp(0.85rem, 1.6vh, 1.4rem)",
+            marginTop: 0,
             marginBottom: 0,
             fontSize: "clamp(2.6rem, 7.5vw, 7rem)",
             lineHeight: 0.96,
