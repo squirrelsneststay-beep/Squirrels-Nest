@@ -1,4 +1,5 @@
 import { SITE_URL, BRAND, AIRBNB_URL, INSTAGRAM_URL } from "@/lib/site";
+import { AIRBNB_RATING } from "@/lib/owner-facts";
 
 /**
  * JSON-LD structured data — tells Google this is a luxury self-catering cabin
@@ -36,25 +37,28 @@ const lodging = {
   priceRange: "££",
   currenciesAccepted: "GBP",
   numberOfRooms: 1,
-  // petsAllowed deliberately omitted: the policy is unverified either way
-  // (FACTS.md), and the page copy sells on-site dogs and cats — asserting
-  // `false` to Google while implying the opposite on-page misleads both.
-  // Add it back (true or false) once Zoe confirms.
+  petsAllowed: false,
   smokingAllowed: false,
+  tourBookingPage: AIRBNB_URL,
+  numberOfBedrooms: 1,
+  occupancy: { "@type": "QuantitativeValue", minValue: 1, maxValue: 4, unitText: "guests" },
   address: {
     "@type": "PostalAddress",
+    addressLocality: "Newbury",
     addressRegion: "Berkshire",
+    postalCode: "RG20",
     addressCountry: "GB",
   },
   areaServed: [
-    { "@type": "AdministrativeArea", name: "Berkshire" },
+    { "@type": "AdministrativeArea", name: "West Berkshire" },
     { "@type": "AdministrativeArea", name: "Hampshire" },
     { "@type": "Place", name: "North Wessex Downs" },
+    { "@type": "City", name: "Newbury" },
   ],
   geo: {
     "@type": "GeoCoordinates",
-    latitude: 51.45,
-    longitude: -1.07,
+    latitude: 51.36325,
+    longitude: -1.29025,
   },
   containedInPlace: {
     "@type": "Place",
@@ -75,6 +79,18 @@ const lodging = {
     name,
     value: true,
   })),
+  // aggregateRating only when Zoe confirms the live Airbnb figures — fabricated
+  // ratings are a manual-action risk and Google strips unverifiable ones.
+  ...(AIRBNB_RATING
+    ? {
+        aggregateRating: {
+          "@type": "AggregateRating",
+          ratingValue: AIRBNB_RATING.stars,
+          reviewCount: AIRBNB_RATING.count,
+          bestRating: 5,
+        },
+      }
+    : {}),
   ...(sameAs.length ? { sameAs } : {}),
 };
 

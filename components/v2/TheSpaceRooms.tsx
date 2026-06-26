@@ -61,9 +61,9 @@ export function TheSpaceRooms() {
                     aspectRatio: "5 / 4",
                   }}
                 >
-                  <Frame src={r.photos[0]} alt={`${r.alt} — Squirrels' Nest`} style={{ gridColumn: "1", gridRow: "1 / 3" }} />
-                  <Frame src={r.photos[1]} alt="" style={{ gridColumn: "2", gridRow: "1" }} />
-                  <Frame src={r.photos[2]} alt="" style={{ gridColumn: "2", gridRow: "2" }} />
+                  <Frame src={r.photos[0]} alt={`${r.name} at Squirrels' Nest — a one-bedroom cabin in the Berkshire countryside`} style={{ gridColumn: "1", gridRow: "1 / 3" }} />
+                  <Frame src={r.photos[1]} alt={`${r.name} — Squirrels' Nest boutique cabin near Newbury, Berkshire`} style={{ gridColumn: "2", gridRow: "1" }} />
+                  <Frame src={r.photos[2]} alt={`${r.name} — cosy cabin retreat in the North Wessex Downs, Berkshire`} style={{ gridColumn: "2", gridRow: "2" }} />
                 </div>
 
                 <div style={{ flex: "1 1 32%" }}>

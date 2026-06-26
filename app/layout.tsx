@@ -110,6 +110,13 @@ export const metadata: Metadata = {
     follow: true,
     googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1 },
   },
+  // Geotagging — pins the listing to its real location for local/maps search.
+  other: {
+    "geo.region": "GB-WBK",
+    "geo.placename": "Newbury, Berkshire",
+    "geo.position": "51.36325;-1.29025",
+    ICBM: "51.36325, -1.29025",
+  },
 };
 
 export default function RootLayout({
