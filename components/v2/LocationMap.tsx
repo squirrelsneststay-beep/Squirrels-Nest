@@ -10,10 +10,12 @@ import { LOCATION_LINE, TRAVEL_TIMES, STATION_LINE } from "@/lib/owner-facts";
  * precise location is shared on booking, Airbnb-style.
  */
 
-// Wider area around the North Wessex Downs / west Berkshire — deliberately
-// zoomed out so it reads as "the area", not a pin on the door.
+// Centred on the RG20 postcode area (west Berkshire / North Wessex Downs,
+// on the Hampshire border) with a marker — precise enough to show where you
+// are, but RG20 covers a wide rural district, so it never pins the door.
+// Exact address is shared on booking.
 const MAP_SRC =
-  "https://www.openstreetmap.org/export/embed.html?bbox=-1.62%2C51.30%2C-0.62%2C51.62&layer=mapnik";
+  "https://www.openstreetmap.org/export/embed.html?bbox=-1.56%2C51.28%2C-1.08%2C51.50&layer=mapnik&marker=51.385%2C-1.32";
 
 export function LocationMap() {
   return (
@@ -110,14 +112,15 @@ export function LocationMap() {
               overflow: "hidden",
               border: "1px solid var(--v2-line)",
               aspectRatio: "4 / 3",
-              background: "#0b1a13",
+              background: "#f1ebe0",
             }}
           >
             <iframe
               src={MAP_SRC}
-              title="Map of the wider area — west Berkshire and the North Wessex Downs"
+              title="Map of the RG20 area — west Berkshire / North Wessex Downs, on the Hampshire border"
               loading="lazy"
-              style={{ width: "100%", height: "100%", border: 0, filter: "saturate(0.85)" }}
+              // Warm the standard map toward the cream + brown palette.
+              style={{ width: "100%", height: "100%", border: 0, filter: "sepia(0.42) saturate(0.8) brightness(1.04) contrast(0.93)" }}
             />
           </div>
         </Reveal>

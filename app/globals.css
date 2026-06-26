@@ -8,28 +8,32 @@
   /* Palette — pure WHITE, contrasty near-BLACK, ONE accent: mustard/GOLD.
      Nothing else. The greys are neutral tints of black (secondary text +
      hairlines), not a second colour. */
-  --v2-bg:            oklch(0.968 0.005 155);   /* soft paper grey — a faint green-tinted off-white, never pure #fff (luxury) */
-  --v2-ink:           #08351c;   /* near-black — text + dark sections */
-  --v2-ink-soft:      #3a5d4e;   /* deep green-grey — secondary text */
-  --v2-mute:          #5e7a6d;   /* muted green-grey — small labels (AA on off-white) */
-  --v2-line:          #e1e7e2;   /* faint green-grey hairline on the off-white */
-  --v2-accent:        #ffd400;   /* mustard / gold — the single accent */
-  --v2-accent-honey:  #ffd400;   /* alias kept for older references */
+  /* Cream + luxury-brown palette (Mariven-inspired warm off-white). Warm
+     cream surface, espresso-brown ink, cognac accent. The green footer is
+     kept (pinned) as a grounding base note — cream + brown + forest green is
+     a classic countryside-luxury chord. */
+  --v2-bg:            #f7f3ec;   /* warm cream — the dominant surface */
+  --v2-ink:           #2b2218;   /* espresso brown — primary text */
+  --v2-ink-soft:      #6b5d4d;   /* warm taupe — secondary text */
+  --v2-mute:          #a1937f;   /* muted warm grey-brown — small labels */
+  --v2-line:          #e6ddce;   /* warm hairline on the cream */
+  --v2-accent:        #8a5a2b;   /* cognac / luxury brown — the accent */
+  --v2-accent-honey:  #8a5a2b;   /* alias kept for older references */
   --v2-container-px:  clamp(1.25rem, 6vw, 6rem);
 
-  /* Legacy aliases (contact/privacy pages) — remapped onto the same
-     white / black / gold system so nothing reverts to cream or green. */
-  --lef-cream:        oklch(0.968 0.005 155);
-  --lef-cream-soft:   oklch(0.955 0.005 155);
-  --lef-stone:        #e2e2e2;
-  --lef-moss:         #ffd400;   /* accent → mustard/gold */
-  --lef-forest:       #08351c;   /* near-black headings */
-  --lef-charcoal:     #2f4a40;   /* green-grey body text */
-  --lef-bark:         #3a5d4e;   /* green-grey labels (AA on white) */
-  --lef-rust:         #ffd400;   /* → mustard/gold */
+  /* Legacy aliases (contact/privacy pages) — remapped onto the cream/brown
+     system so nothing reverts to the old green. */
+  --lef-cream:        #f7f3ec;
+  --lef-cream-soft:   #f1ebe0;
+  --lef-stone:        #e6ddce;
+  --lef-moss:         #8a5a2b;   /* accent → cognac brown */
+  --lef-forest:       #2b2218;   /* espresso-brown headings */
+  --lef-charcoal:     #4a3f33;   /* warm body text */
+  --lef-bark:         #6b5d4d;   /* taupe labels */
+  --lef-rust:         #8a5a2b;   /* → cognac brown */
 
-  --background: oklch(0.968 0.005 155);
-  --foreground: #08351c;
+  --background: #f7f3ec;
+  --foreground: #2b2218;
 
   --grid-max:       144rem;
   --grid-cols:      12;
@@ -512,6 +516,17 @@ html.lenis, html.lenis body { height: auto; }
 }
 @media (prefers-reduced-motion: reduce) {
   .gal-item { opacity: 1; transform: none; transition: none; }
+}
+
+/* Responsive for the cream-rebuild sections. */
+@media (max-width: 900px) {
+  .am-grid { grid-template-columns: repeat(2, 1fr) !important; }
+  .loc-grid { grid-template-columns: 1fr !important; gap: 2.5rem !important; }
+  .exp-grid { grid-template-columns: 1fr !important; }
+  .exp-grid > div:last-child { min-height: 62vh !important; order: -1; }
+}
+@media (max-width: 560px) {
+  .am-grid { grid-template-columns: 1fr !important; }
 }
 
 /* ───────── Reveal-on-scroll (.rv). A clip-path + lift + fade that makes

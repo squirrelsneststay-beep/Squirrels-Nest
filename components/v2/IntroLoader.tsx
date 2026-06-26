@@ -4,9 +4,10 @@ import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 
 /**
- * IntroLoader — a quiet arrival. A deep-green curtain holds the wordmark, a
- * gold rule draws under it, then the curtain lifts to reveal the page. Brief,
- * scroll-locked while it plays, skipped entirely for reduced-motion.
+ * IntroLoader — a quiet, Mariven-style arrival. A cream curtain holds the
+ * wordmark while a thin brown rule draws across the centre like a progress
+ * line, then the curtain lifts to reveal the page. Brief, scroll-locked while
+ * it plays, skipped entirely for reduced-motion.
  */
 const MARK = "Squirrels' Nest";
 
@@ -45,10 +46,10 @@ export function IntroLoader() {
           setDone(true);
         },
       });
-      tl.from(".il-letter", { yPercent: 115, opacity: 0, duration: 0.8, ease: "power3.out", stagger: 0.025 }, 0.1)
-        .from(".il-rule", { scaleX: 0, duration: 0.7, ease: "power2.inOut" }, 0.35)
-        .to(".il-inner", { opacity: 0, y: -14, duration: 0.45, ease: "power2.in" }, 1.25)
-        .to(root, { yPercent: -100, duration: 0.9, ease: "power4.inOut" }, 1.45);
+      tl.from(".il-letter", { yPercent: 115, opacity: 0, duration: 0.85, ease: "power3.out", stagger: 0.03 }, 0.1)
+        .from(".il-rule", { scaleX: 0, duration: 1.0, ease: "power2.inOut" }, 0.3)
+        .to(".il-inner", { opacity: 0, y: -14, duration: 0.5, ease: "power2.in" }, 1.5)
+        .to(root, { yPercent: -100, duration: 0.95, ease: "power4.inOut" }, 1.7);
     }, rootRef);
 
     return () => {
@@ -67,13 +68,13 @@ export function IntroLoader() {
         position: "fixed",
         inset: 0,
         zIndex: 200,
-        background: "#08351c",
+        background: "#f7f3ec",
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
       }}
     >
-      <div className="il-inner" style={{ textAlign: "center", color: "#f3f0e6" }}>
+      <div className="il-inner" style={{ textAlign: "center", color: "#2b2218" }}>
         <div
           className="font-display"
           style={{ fontSize: "clamp(2.4rem, 7vw, 5.5rem)", letterSpacing: "-0.01em", lineHeight: 1, overflow: "hidden", padding: "0 0.1em" }}
@@ -86,7 +87,7 @@ export function IntroLoader() {
         </div>
         <div
           className="il-rule"
-          style={{ height: "1.5px", width: "min(13rem, 46vw)", background: "#ffd400", margin: "1.4rem auto 0", transformOrigin: "center" }}
+          style={{ height: "1px", width: "min(16rem, 52vw)", background: "#8a5a2b", margin: "1.6rem auto 0", transformOrigin: "center" }}
         />
       </div>
     </div>

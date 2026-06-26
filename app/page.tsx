@@ -7,6 +7,7 @@ import { StatBand } from "@/components/v2/StatBand";
 import { InsideTheNest } from "@/components/v2/InsideTheNest";
 import { Amenities } from "@/components/v2/Amenities";
 import { CinematicBreak } from "@/components/v2/CinematicBreak";
+import { Experiences } from "@/components/v2/Experiences";
 import { LocationMap } from "@/components/v2/LocationMap";
 import { ShepherdsHut } from "@/components/v2/ShepherdsHut";
 import { GalleryTeaser } from "@/components/v2/GalleryTeaser";
@@ -45,6 +46,7 @@ export default function HomePage() {
         <InsideTheNest />
         <Amenities />
         <CinematicBreak />
+        <Experiences />
         <LocationMap />
         <ShepherdsHut />
         <GalleryTeaser />
