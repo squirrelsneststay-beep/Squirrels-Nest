@@ -5,7 +5,7 @@ import Image from "next/image";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { AIRBNB_URL, EXTERNAL_LINK_PROPS } from "@/lib/site";
-import { FROM_PRICE_GBP } from "@/lib/owner-facts";
+import { FROM_PRICE_GBP, AIRBNB_RATING } from "@/lib/owner-facts";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
@@ -166,7 +166,32 @@ export function ReservationCard() {
 
           <p
             style={{
-              marginTop: "1.5rem",
+              marginTop: "1.25rem",
+              fontFamily: "var(--font-geist)",
+              fontSize: "0.82rem",
+              letterSpacing: "0.04em",
+              color: "var(--v2-ink)",
+            }}
+          >
+            Entire cabin · Sleeps four · Berkshire
+          </p>
+
+          {AIRBNB_RATING && (
+            <p
+              style={{
+                marginTop: "0.6rem",
+                fontFamily: "var(--font-geist)",
+                fontSize: "0.95rem",
+                color: "var(--v2-ink)",
+              }}
+            >
+              ★ {AIRBNB_RATING.stars.toFixed(1)} · {AIRBNB_RATING.count} reviews on Airbnb
+            </p>
+          )}
+
+          <p
+            style={{
+              marginTop: "1.25rem",
               fontFamily: "var(--font-geist)",
               fontSize: "1rem",
               lineHeight: 1.55,

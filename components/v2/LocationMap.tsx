@@ -1,6 +1,7 @@
 "use client";
 
 import { Reveal } from "@/components/v2/Reveal";
+import { ScrollType } from "@/components/v2/ScrollType";
 import { LOCATION_LINE, TRAVEL_TIMES, STATION_LINE } from "@/lib/owner-facts";
 
 /**
@@ -49,21 +50,20 @@ export function LocationMap() {
             </h2>
           </Reveal>
 
-          <Reveal delay={0.1}>
-            <p
-              style={{
-                marginTop: "1.75rem",
-                maxWidth: "40ch",
-                fontFamily: "var(--font-geist)",
-                fontSize: "1.0625rem",
-                lineHeight: 1.7,
-                color: "var(--v2-ink-soft)",
-              }}
-            >
-              {LOCATION_LINE ??
-                "Tucked into the grounds of a country house in west Berkshire, near the North Wessex Downs and the Hampshire border. Open countryside, quiet lanes, and good walking from the door."}
-            </p>
-          </Reveal>
+          <ScrollType
+            text={
+              LOCATION_LINE ??
+              "Tucked into the grounds of a country house in west Berkshire, near the North Wessex Downs and the Hampshire border. Open countryside, quiet lanes, and good walking from the door."
+            }
+            style={{
+              marginTop: "1.75rem",
+              maxWidth: "32ch",
+              fontFamily: "var(--font-geist)",
+              fontSize: "clamp(1.1rem, 1.6vw, 1.4rem)",
+              lineHeight: 1.55,
+              color: "var(--v2-ink)",
+            }}
+          />
 
           {(TRAVEL_TIMES.length > 0 || STATION_LINE) && (
             <Reveal delay={0.16}>

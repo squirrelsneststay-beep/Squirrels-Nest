@@ -508,8 +508,8 @@ html.lenis, html.lenis body { height: auto; }
   margin-bottom: clamp(0.6rem, 1.5vw, 1rem);
   opacity: 0;
   transform: translateY(28px);
-  transition: opacity 1.2s cubic-bezier(0.22, 1, 0.36, 1),
-    transform 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+  transition: opacity 1.5s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 1.5s cubic-bezier(0.22, 1, 0.36, 1);
   will-change: opacity, transform;
 }
 .gal-item.is-in {
@@ -543,9 +543,9 @@ html.lenis, html.lenis body { height: auto; }
   transform: translateY(34px);
   clip-path: inset(0 0 10% 0);
   transition:
-    opacity 1.15s cubic-bezier(0.22, 1, 0.36, 1),
-    transform 1.15s cubic-bezier(0.22, 1, 0.36, 1),
-    clip-path 1.15s cubic-bezier(0.22, 1, 0.36, 1);
+    opacity 1.6s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 1.6s cubic-bezier(0.22, 1, 0.36, 1),
+    clip-path 1.6s cubic-bezier(0.22, 1, 0.36, 1);
   transition-delay: var(--rv-d, 0s);
   will-change: opacity, transform;
 }
