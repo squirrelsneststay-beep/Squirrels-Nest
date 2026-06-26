@@ -185,21 +185,6 @@ export function CleanHero() {
             <span className="sv-pill-rule" aria-hidden />
             <span>Airbnb</span>
           </a>
-          <a
-            href="/gallery"
-            style={{
-              fontFamily: "var(--font-geist)",
-              fontSize: "0.82rem",
-              letterSpacing: "0.04em",
-              color: "#f3f0e6",
-              textDecoration: "none",
-              borderBottom: "1px solid color-mix(in srgb, #f3f0e6 55%, transparent)",
-              paddingBottom: "0.2rem",
-              textShadow: "0 1px 8px rgba(0,0,0,0.4)",
-            }}
-          >
-            View the gallery <span aria-hidden>&rarr;</span>
-          </a>
         </div>
       </div>
     </section>

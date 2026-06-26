@@ -5,7 +5,6 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { LiveTimeBadge } from "@/components/v2/LiveTimeBadge";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
@@ -97,16 +96,11 @@ export function Nav() {
           >
             Squirrels&apos; Nest
           </Link>
-          <span style={{ display: "flex", gap: "clamp(0.9rem, 1.8vw, 1.7rem)" }}>
+          <span style={{ display: "flex", gap: "clamp(1.1rem, 2vw, 2rem)" }}>
             <NavLink href="/gallery" ink={ink} light={light}>Gallery</NavLink>
             <NavLink href="/contact" ink={ink} light={light}>Contact</NavLink>
           </span>
         </nav>
-
-        {/* RIGHT — live badge, sat just left of the fixed Book pill. */}
-        <div className="hidden md:block" style={{ marginRight: "11.5rem" }}>
-          <LiveTimeBadge />
-        </div>
       </div>
     </header>
   );
@@ -130,8 +124,8 @@ function NavLink({
       style={{
         color: ink,
         fontFamily: "var(--font-geist)",
-        fontSize: "0.8rem",
-        letterSpacing: "0.02em",
+        fontSize: "1.02rem",
+        letterSpacing: "0",
         textShadow: light ? "0 1px 8px rgba(0,0,0,0.3)" : "none",
         transition: "color 300ms ease, opacity 200ms ease",
       }}

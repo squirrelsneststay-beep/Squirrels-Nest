@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { Reveal } from "@/components/v2/Reveal";
+import { ScrollType } from "@/components/v2/ScrollType";
 import { AIRBNB_URL, EXTERNAL_LINK_PROPS } from "@/lib/site";
 
 /**
@@ -50,22 +51,17 @@ export function StatementIntro() {
               weekends.
             </h2>
           </Reveal>
-          <Reveal delay={0.16}>
-            <p
-              style={{
-                marginTop: "2rem",
-                maxWidth: "38ch",
-                fontFamily: "var(--font-geist)",
-                fontSize: "1.0625rem",
-                lineHeight: 1.7,
-                color: "var(--v2-ink-soft)",
-              }}
-            >
-              A boutique cabin for two in the grounds of a Berkshire country
-              house. Hand-finished, quietly luxurious, and set against open
-              woodland. Close the gate, and the week falls away.
-            </p>
-          </Reveal>
+          <ScrollType
+            text="A boutique cabin in the grounds of a Berkshire country house. Hand-finished, quietly luxurious, set against open woodland. Close the gate, and the week falls away."
+            style={{
+              marginTop: "2rem",
+              maxWidth: "26ch",
+              fontFamily: "var(--font-geist)",
+              fontSize: "clamp(1.25rem, 2vw, 1.7rem)",
+              lineHeight: 1.5,
+              color: "var(--v2-ink)",
+            }}
+          />
           <Reveal delay={0.24}>
             <a
               href={AIRBNB_URL}

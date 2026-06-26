@@ -8,11 +8,11 @@ import { Reveal } from "@/components/v2/Reveal";
  * spec strip on a high-end hotel site.
  */
 const STATS = [
-  "Sleeps two",
-  "One bedroom",
+  "Sleeps four",
   "Super king bed",
+  "Twin shepherd's hut",
   "Private courtyard",
-  "Shepherd's hut",
+  "Private parking",
 ];
 
 export function StatBand() {

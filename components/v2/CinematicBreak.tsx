@@ -10,11 +10,15 @@ import Image from "next/image";
  */
 export function CinematicBreak() {
   const innerRef = useRef<HTMLDivElement>(null);
+  const headRef = useRef<HTMLHeadingElement>(null);
 
   useEffect(() => {
     const el = innerRef.current;
     if (!el) return;
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      if (headRef.current) headRef.current.style.opacity = "1";
+      return;
+    }
     let raf = 0;
     const onScroll = () => {
       cancelAnimationFrame(raf);
@@ -24,6 +28,11 @@ export function CinematicBreak() {
         // progress -1 (below) -> 1 (above); 0 when centred
         const p = (rect.top + rect.height / 2 - vh / 2) / vh;
         el.style.transform = `translate3d(0, ${(-p * 9).toFixed(2)}%, 0) scale(1.18)`;
+        // Long luxury fade: the line eases in as the frame rises to centre
+        // and eases back out as it leaves.
+        if (headRef.current) {
+          headRef.current.style.opacity = Math.max(0, 1 - Math.abs(p) * 1.55).toFixed(3);
+        }
       });
     };
     onScroll();
@@ -77,11 +86,13 @@ export function CinematicBreak() {
         }}
       >
         <h2
+          ref={headRef}
           className="font-display"
           style={{
             margin: 0,
             textAlign: "center",
             color: "#f3f0e6",
+            opacity: 0,
             fontSize: "clamp(2.2rem, 5.5vw, 5.4rem)",
             lineHeight: 1.05,
             letterSpacing: "-0.025em",

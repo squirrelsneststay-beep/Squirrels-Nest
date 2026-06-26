@@ -12,7 +12,7 @@ import { Reveal } from "@/components/v2/Reveal";
 type Room = { name: string; line?: string; photos: [string, string, string]; alt: string };
 
 const ROOMS: Room[] = [
-  { name: "The Bedroom", line: "A beautiful super king-sized bed.", photos: ["sq-12.jpg", "sq-33.jpg", "sq-40.jpg"], alt: "The bedroom" },
+  { name: "The Bedroom", line: "A beautiful super king-sized bed, sleeping two.", photos: ["sq-12.jpg", "sq-33.jpg", "sq-40.jpg"], alt: "The bedroom" },
   { name: "The Shower Room", photos: ["sq-38.jpg", "sq-39.jpg", "sq-20.jpg"], alt: "The shower room" },
   { name: "The Kitchen", line: "Fully equipped with small oven, hob, coffee machine and fridge freezer.", photos: ["sq-37.jpg", "sq-24.jpg", "sq-29.jpg"], alt: "The kitchen" },
   { name: "The Courtyard", line: "Your own enclosed courtyard, with a table and chairs.", photos: ["sq-08.jpg", "sq-04.jpg", "sq-06.jpg"], alt: "The courtyard" },
