@@ -4,7 +4,9 @@ import { SITE_URL } from "@/lib/site";
 // Fixed publish date instead of `new Date()`. A live timestamp told crawlers
 // every page changed on every request, wasting crawl budget. Bump this when
 // content materially changes.
-const LAST_MODIFIED = "2026-06-24";
+const LAST_MODIFIED = "2026-06-27";
+
+const img = (n: string) => `${SITE_URL}/images/squirrels-nest/${n}`;
 
 export default function sitemap(): MetadataRoute.Sitemap {
   return [
@@ -13,12 +15,19 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: LAST_MODIFIED,
       changeFrequency: "monthly",
       priority: 1,
+      // Image sitemap — surfaces the cabin photography in Google Images.
+      images: [img("sq-12.jpg"), img("sq-18.jpg"), img("sq-08.jpg"), img("sq-37.jpg"), img("sq-03.jpg")],
     },
     {
       url: `${SITE_URL}/gallery`,
       lastModified: LAST_MODIFIED,
       changeFrequency: "monthly",
       priority: 0.8,
+      images: [
+        img("sq-12.jpg"), img("sq-17.jpg"), img("sq-08.jpg"), img("sq-33.jpg"),
+        img("sq-37.jpg"), img("sq-20.jpg"), img("sq-03.jpg"), img("sq-30.jpg"),
+        img("sq-18.jpg"), img("sq-25.jpg"),
+      ],
     },
     {
       url: `${SITE_URL}/the-area`,

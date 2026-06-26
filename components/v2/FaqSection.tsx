@@ -15,11 +15,27 @@ import { FAQS } from "@/lib/owner-facts";
 export function FaqSection() {
   if (FAQS.length === 0) return null;
 
+  // FAQPage rich-results schema — eligible for the expandable FAQ snippet in
+  // Google. Only emitted with real answers (gated above), never fabricated.
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: FAQS.map((f) => ({
+      "@type": "Question",
+      name: f.question,
+      acceptedAnswer: { "@type": "Answer", text: f.answer },
+    })),
+  };
+
   return (
     <section
       className="relative"
       style={{ background: "var(--v2-bg)", paddingBlock: "12vh" }}
     >
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema).replace(/</g, "\\u003c") }}
+      />
       <div
         className="mx-auto"
         style={{ maxWidth: "46rem", paddingInline: "clamp(1.5rem, 4vw, 3.5rem)" }}

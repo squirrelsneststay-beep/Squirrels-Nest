@@ -66,6 +66,11 @@ const securityHeaders = [
   { key: "X-Content-Type-Options", value: "nosniff" },
   { key: "X-DNS-Prefetch-Control", value: "off" },
   { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
+  // Cross-origin isolation. same-origin-allow-popups keeps the Airbnb
+  // "Book" tab working (window.open) while isolating the browsing context;
+  // same-site CORP stops other sites hot-linking our assets.
+  { key: "Cross-Origin-Opener-Policy", value: "same-origin-allow-popups" },
+  { key: "Cross-Origin-Resource-Policy", value: "same-site" },
   { key: "Permissions-Policy", value: "camera=(), microphone=(), geolocation=(), browsing-topics=(), interest-cohort=(), payment=(), usb=(), magnetometer=(), accelerometer=(), gyroscope=()" },
   // 2-year max-age + preload, ready for HSTS preload-list submission once the
   // custom domain is live on Vercel (Vercel terminates TLS for us). Only submit
