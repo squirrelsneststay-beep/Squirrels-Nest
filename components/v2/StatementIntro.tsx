@@ -44,15 +44,14 @@ export function StatementIntro() {
                 maxWidth: "18ch",
               }}
             >
-              Made for slow,{" "}
+              A boutique cabin{" "}
               <span style={{ fontStyle: "italic", color: "var(--v2-ink-soft)" }}>
-                unhurried
-              </span>{" "}
-              weekends.
+                for two.
+              </span>
             </h2>
           </Reveal>
           <ScrollType
-            text="A boutique cabin in the grounds of a Berkshire country house. Hand-finished, quietly luxurious, set against open woodland. Close the gate, and the week falls away."
+            text="A one-bedroom cabin in the grounds of a country house in Berkshire. A super king bedroom, a private courtyard, and an optional shepherd's hut across the grounds. A comfortable base for a few days in the countryside."
             style={{
               marginTop: "2rem",
               maxWidth: "26ch",

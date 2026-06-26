@@ -141,28 +141,14 @@ export function ReservationCard() {
             className="font-display"
             style={{
               fontSize: "clamp(2rem, 4vw, 3.5rem)",
-              lineHeight: 0.98,
+              lineHeight: 1,
               letterSpacing: "-0.03em",
-              fontWeight: 300,
+              fontWeight: 400,
               margin: 0,
             }}
           >
-            Reserve Your Stay
+            Book your stay.
           </h3>
-          <p
-            style={{
-              fontFamily: "var(--font-cormorant)",
-              fontStyle: "italic",
-              fontWeight: 300,
-              fontSize: "clamp(1.5rem, 3vw, 2.5rem)",
-              color: "color-mix(in srgb, var(--v2-ink) 78%, transparent)",
-              letterSpacing: "-0.02em",
-              margin: 0,
-              marginTop: "0.25rem",
-            }}
-          >
-            at Squirrels&apos; Nest.
-          </p>
 
           <p
             style={{

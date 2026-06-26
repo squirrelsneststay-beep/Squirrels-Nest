@@ -11,46 +11,41 @@ import { Reveal } from "@/components/v2/Reveal";
  * Copy is evocative but grounded only in confirmed facts (courtyard, Downs,
  * kitchen, super king, woodland, the optional hut).
  */
-type Moment = { key: string; title: string; when: string; body: string; img: string; alt: string };
+type Moment = { key: string; title: string; body: string; img: string; alt: string };
 
 const MOMENTS: Moment[] = [
   {
-    key: "mornings",
-    title: "Mornings in the courtyard",
-    when: "Sunrise",
-    body: "Coffee outside in your own enclosed courtyard, the day in no hurry to start.",
+    key: "courtyard",
+    title: "The courtyard",
+    body: "A private, enclosed courtyard with a table and chairs — good for coffee outside or dinner in the evening.",
     img: "/images/squirrels-nest/sq-08.jpg",
     alt: "The private courtyard with its bistro table",
   },
   {
     key: "walks",
-    title: "Walks from the door",
-    when: "Anytime",
-    body: "Open countryside and the North Wessex Downs, straight from the gate.",
+    title: "Walking",
+    body: "Open countryside and the North Wessex Downs, with walks straight from the door.",
     img: "/images/squirrels-nest/sq-03.jpg",
     alt: "Wisteria on the country house, with countryside beyond",
   },
   {
-    key: "evenings",
-    title: "Slow evenings in",
-    when: "Dusk",
-    body: "A fully equipped kitchen, a long supper, and a super king to sink into.",
+    key: "kitchen",
+    title: "The kitchen",
+    body: "A fully equipped kitchen, so you can cook in if you'd rather not go out.",
     img: "/images/squirrels-nest/sq-18.jpg",
     alt: "The sitting room with its yellow velvet chairs",
   },
   {
-    key: "skies",
-    title: "Under dark skies",
-    when: "Night",
-    body: "Woodland quiet and proper darkness, a long way from the city glow.",
+    key: "quiet",
+    title: "Quiet nights",
+    body: "Wooded surroundings and proper dark skies, well away from town.",
     img: "/images/squirrels-nest/sq-25.jpg",
     alt: "A warm interior detail at dusk",
   },
   {
     key: "hut",
     title: "The shepherd's hut",
-    when: "Optional",
-    body: "An extra room for two, just across the grounds, whenever you need it.",
+    body: "An optional extra room for two, across the grounds.",
     img: "/images/shepherds-hut/hut-5.jpg",
     alt: "The red-and-white shepherd's hut on the grounds",
   },
@@ -96,9 +91,9 @@ export function Experiences() {
                 maxWidth: "16ch",
               }}
             >
-              Days made of{" "}
+              Around the{" "}
               <span style={{ fontStyle: "italic", color: "color-mix(in srgb, var(--v2-bg) 78%, transparent)" }}>
-                nothing much.
+                cabin.
               </span>
             </h2>
           </Reveal>

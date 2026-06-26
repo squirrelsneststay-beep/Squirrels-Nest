@@ -162,8 +162,8 @@ export function CleanHero() {
             textShadow: "0 2px 30px rgba(0,0,0,0.35)",
           }}
         >
-          Slow weekends in the{" "}
-          <span style={{ fontStyle: "italic" }}>Berkshire woods.</span>
+          A one-bedroom cabin in the{" "}
+          <span style={{ fontStyle: "italic" }}>Berkshire countryside.</span>
         </h2>
         <div
           className="ch-reveal"

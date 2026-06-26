@@ -42,8 +42,8 @@ export function Amenities() {
       <div className="mx-auto" style={{ maxWidth: "80rem", paddingInline: "clamp(1.5rem, 4vw, 4rem)" }}>
         <Reveal>
           <h2 className="font-display" style={titleStyle}>
-            Everything you need,{" "}
-            <span style={{ fontStyle: "italic", color: "var(--v2-ink-soft)" }}>already here.</span>
+            Everything you&apos;ll{" "}
+            <span style={{ fontStyle: "italic", color: "var(--v2-ink-soft)" }}>need.</span>
           </h2>
         </Reveal>
 

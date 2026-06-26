@@ -101,8 +101,8 @@ export function CinematicBreak() {
             textShadow: "0 2px 40px rgba(0,0,0,0.4)",
           }}
         >
-          At the end of a long{" "}
-          <span style={{ fontStyle: "italic" }}>country lane.</span>
+          In the Berkshire{" "}
+          <span style={{ fontStyle: "italic" }}>countryside.</span>
         </h2>
       </div>
     </section>

@@ -43,9 +43,9 @@ export function LocationMap() {
         <div>
           <Reveal>
             <h2 className="font-display" style={titleStyle}>
-              In the Berkshire countryside,{" "}
+              Where it{" "}
               <span style={{ fontStyle: "italic", color: "var(--v2-ink-soft)" }}>
-                on the edge of the Downs.
+                is.
               </span>
             </h2>
           </Reveal>
@@ -53,7 +53,7 @@ export function LocationMap() {
           <ScrollType
             text={
               LOCATION_LINE ??
-              "Tucked into the grounds of a country house in west Berkshire, near the North Wessex Downs and the Hampshire border. Open countryside, quiet lanes, and good walking from the door."
+              "In the grounds of a country house in west Berkshire, near Newbury and the North Wessex Downs, close to the Hampshire border. The exact address is sent when you book."
             }
             style={{
               marginTop: "1.75rem",
@@ -88,18 +88,6 @@ export function LocationMap() {
             </Reveal>
           )}
 
-          <Reveal delay={0.22}>
-            <p
-              style={{
-                marginTop: "1.5rem",
-                fontFamily: "var(--font-geist)",
-                fontSize: "0.82rem",
-                color: "var(--v2-mute)",
-              }}
-            >
-              The exact address is shared once your stay is booked.
-            </p>
-          </Reveal>
         </div>
 
         <Reveal delay={0.1}>

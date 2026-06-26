@@ -75,24 +75,10 @@ export function ShepherdsHut() {
         className="mx-auto text-center"
         style={{ maxWidth: "62rem", paddingInline: "clamp(1.5rem, 4vw, 3rem)" }}
       >
-        <p
-          className="sh-reveal"
-          style={{
-            fontFamily: "var(--font-geist)",
-            fontSize: "0.95rem",
-            fontWeight: 500,
-            letterSpacing: "-0.005em",
-            color: "var(--v2-mute)",
-            margin: 0,
-          }}
-        >
-          The shepherd&apos;s hut
-        </p>
-
         <h2
           className="sh-reveal font-display"
           style={{
-            marginTop: "1.25rem",
+            marginTop: 0,
             marginInline: "auto",
             fontSize: "clamp(2rem, 4.5vw, 3.4rem)",
             lineHeight: 1.04,
@@ -102,7 +88,7 @@ export function ShepherdsHut() {
             maxWidth: "20ch",
           }}
         >
-          And a shepherd&apos;s hut, just across the grounds.
+          An optional shepherd&apos;s hut, across the grounds.
         </h2>
 
         <p
@@ -117,23 +103,9 @@ export function ShepherdsHut() {
             color: "var(--v2-ink-soft)",
           }}
         >
-          For additional flexibility, a charming shepherd&apos;s hut is also
-          available on site, providing extra accommodation for two guests —
-          perfect for friends or family travelling together.
-        </p>
-
-        <p
-          className="sh-reveal font-display"
-          style={{
-            marginTop: "1.5rem",
-            fontStyle: "italic",
-            fontFamily: "var(--font-cormorant)",
-            fontSize: "1.35rem",
-            color: "var(--v2-mute)",
-            letterSpacing: "-0.01em",
-          }}
-        >
-          An optional hut on site. Extra room for two.
+          There&apos;s a separate shepherd&apos;s hut across the grounds, with
+          twin beds for two more guests. Handy if you&apos;re travelling with
+          friends or family — it takes the cabin up to four.
         </p>
       </div>
 
