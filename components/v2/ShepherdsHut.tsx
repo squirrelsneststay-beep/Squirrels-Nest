@@ -103,9 +103,9 @@ export function ShepherdsHut() {
             color: "var(--v2-ink-soft)",
           }}
         >
-          There&apos;s a separate shepherd&apos;s hut across the grounds, with
-          twin beds for two more guests. Handy if you&apos;re travelling with
-          friends or family — it takes the cabin up to four.
+          For additional flexibility, a charming shepherd&apos;s hut is also
+          available on site, providing extra accommodation for two guests —
+          perfect for friends or family travelling together.
         </p>
       </div>
 

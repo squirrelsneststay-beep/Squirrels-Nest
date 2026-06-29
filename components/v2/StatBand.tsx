@@ -8,10 +8,10 @@ import { Reveal } from "@/components/v2/Reveal";
  * spec strip on a high-end hotel site.
  */
 const STATS = [
-  "Sleeps four",
   "Super king bed",
-  "Twin shepherd's hut",
+  "Shepherd's hut, sleeps 2",
   "Private courtyard",
+  "Woodland views",
   "Private parking",
 ];
 

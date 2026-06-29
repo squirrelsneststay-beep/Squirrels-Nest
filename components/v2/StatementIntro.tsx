@@ -44,14 +44,14 @@ export function StatementIntro() {
                 maxWidth: "18ch",
               }}
             >
-              A boutique cabin{" "}
+              Welcome to{" "}
               <span style={{ fontStyle: "italic", color: "var(--v2-ink-soft)" }}>
-                for two.
+                Squirrels&apos; Nest.
               </span>
             </h2>
           </Reveal>
           <ScrollType
-            text="A one-bedroom cabin in the grounds of a country house in Berkshire. A super king bedroom, a private courtyard, and an optional shepherd's hut across the grounds. A comfortable base for a few days in the countryside."
+            text="A charming one-bedroom country boutique retreat nestled in the heart of Berkshire, set within the peaceful grounds of a beautiful country house. Wake up to stunning woodland views and the gentle sounds of nature, with horses, chickens, ducks, and friendly cats and dogs adding to the idyllic setting."
             style={{
               marginTop: "2rem",
               maxWidth: "26ch",
