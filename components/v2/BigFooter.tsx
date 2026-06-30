@@ -127,6 +127,7 @@ export function BigFooter() {
                 <li className="bf-link" style={{ paddingBlock: "0.35rem" }}><a href="/" className="hover:opacity-70 transition-opacity">Home</a></li>
                 <li className="bf-link" style={{ paddingBlock: "0.35rem" }}><a href="/gallery" className="hover:opacity-70 transition-opacity">Gallery</a></li>
                 <li className="bf-link" style={{ paddingBlock: "0.35rem" }}><a href="/the-area" className="hover:opacity-70 transition-opacity">The area</a></li>
+                <li className="bf-link" style={{ paddingBlock: "0.35rem" }}><a href="/journal" className="hover:opacity-70 transition-opacity">Journal</a></li>
                 <li className="bf-link" style={{ paddingBlock: "0.35rem" }}><a href="/contact" className="hover:opacity-70 transition-opacity">Contact</a></li>
                 <li className="bf-link" style={{ paddingBlock: "0.35rem" }}><a href={AIRBNB_URL} {...EXTERNAL_LINK_PROPS} className="hover:opacity-70 transition-opacity">Book on Airbnb</a></li>
                 {INSTAGRAM_URL && (

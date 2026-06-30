@@ -109,6 +109,7 @@ export function Nav() {
           </Link>
           <span style={{ display: "flex", gap: "clamp(1.1rem, 2vw, 2rem)" }}>
             <NavLink href="/gallery" ink={ink} light={light}>Gallery</NavLink>
+            <NavLink href="/journal" ink={ink} light={light}>Journal</NavLink>
             <NavLink href="/contact" ink={ink} light={light}>Contact</NavLink>
           </span>
         </nav>
