@@ -19,10 +19,20 @@ if (typeof window !== "undefined") {
 export function Nav() {
   const [scrolled, setScrolled] = useState(false);
   const [light, setLight] = useState(true); // light text (over dark surfaces)
+  const [hidden, setHidden] = useState(false); // hide on scroll down
   const pathname = usePathname();
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 40);
+    let lastY = window.scrollY;
+    const onScroll = () => {
+      const y = window.scrollY;
+      setScrolled(y > 40);
+      // Hide when scrolling down (past the hero zone), reveal on scroll up.
+      if (y < 90) setHidden(false);
+      else if (y > lastY + 5) setHidden(true);
+      else if (y < lastY - 5) setHidden(false);
+      lastY = y;
+    };
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
@@ -71,7 +81,8 @@ export function Nav() {
           : "transparent",
         backdropFilter: showBar ? "blur(10px)" : "none",
         WebkitBackdropFilter: showBar ? "blur(10px)" : "none",
-        transition: "background 350ms ease, backdrop-filter 350ms ease",
+        transform: hidden ? "translateY(-120%)" : "translateY(0)",
+        transition: "background 350ms ease, backdrop-filter 350ms ease, transform 450ms cubic-bezier(0.22,1,0.36,1)",
       }}
     >
       <div className="lef-container flex items-center justify-between">
@@ -120,12 +131,14 @@ function NavLink({
   return (
     <Link
       href={href}
-      className="hover:opacity-60 transition-opacity"
+      className="font-display hover:opacity-60 transition-opacity"
       style={{
         color: ink,
-        fontFamily: "var(--font-geist)",
-        fontSize: "1.02rem",
-        letterSpacing: "0",
+        fontFamily: "var(--font-italiana)",
+        fontSize: "clamp(1.15rem, 1.4vw, 1.35rem)",
+        fontWeight: 400,
+        letterSpacing: "-0.005em",
+        lineHeight: 1,
         textShadow: light ? "0 1px 8px rgba(0,0,0,0.3)" : "none",
         transition: "color 300ms ease, opacity 200ms ease",
       }}

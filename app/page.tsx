@@ -10,6 +10,7 @@ import { CinematicBreak } from "@/components/v2/CinematicBreak";
 import { Experiences } from "@/components/v2/Experiences";
 import { LocationMap } from "@/components/v2/LocationMap";
 import { ShepherdsHut } from "@/components/v2/ShepherdsHut";
+import { BookCTA } from "@/components/v2/BookCTA";
 import { InspiredBy } from "@/components/v2/InspiredBy";
 import { GalleryTeaser } from "@/components/v2/GalleryTeaser";
 import { GuestWords } from "@/components/v2/GuestWords";
@@ -46,10 +47,12 @@ export default function HomePage() {
         <StatBand />
         <TheSpaceRooms />
         <Amenities />
+        <BookCTA line="Book your stay." />
         <CinematicBreak />
         <Experiences />
         <LocationMap />
         <ShepherdsHut />
+        <BookCTA line="A weekend in Berkshire awaits." />
       </div>
 
       {/* LOWER PANEL — NOT clipped, so InspiredBy's pinned scroll works. */}

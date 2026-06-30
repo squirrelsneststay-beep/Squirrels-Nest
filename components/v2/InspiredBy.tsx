@@ -173,7 +173,7 @@ export function InspiredBy() {
         <h2
           className="ib-head-left font-display absolute"
           style={{
-            left: "8%",
+            right: "54%",
             top: "44%",
             transform: "translateY(-50%)",
             fontSize: "clamp(2.5rem, 6vw, 5.5rem)",
@@ -193,7 +193,7 @@ export function InspiredBy() {
         <h2
           className="ib-head-right font-display absolute"
           style={{
-            right: "6%",
+            left: "54%",
             top: "56%",
             transform: "translateY(-50%)",
             fontSize: "clamp(2.5rem, 6vw, 5.5rem)",
@@ -203,7 +203,7 @@ export function InspiredBy() {
             fontWeight: 400,
             margin: 0,
             fontStyle: "italic",
-            maxWidth: "26rem",
+            maxWidth: "20rem",
             textAlign: "left",
             willChange: "opacity, transform",
           }}

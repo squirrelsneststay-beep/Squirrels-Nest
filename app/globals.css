@@ -418,6 +418,17 @@ html.lenis, html.lenis body { height: auto; }
     right: clamp(1rem, 2.5vw, 2.5rem);
   }
 }
+/* Book CTA fills solid (cognac) on hover. !important overrides the adaptive
+   inline outline styles. */
+@media (hover: hover) and (pointer: fine) {
+  .fbb-cta:hover {
+    background: var(--v2-accent) !important;
+    color: #f7f3ec !important;
+    border-color: var(--v2-accent) !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+}
 
 /* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
