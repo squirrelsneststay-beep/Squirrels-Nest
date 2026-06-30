@@ -18,7 +18,7 @@ const stroke = {
 
 const AMENITIES: Amenity[] = [
   { label: "Super king bed", icon: (<svg viewBox="0 0 24 24" {...stroke}><path d="M3 17v-4a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v4M3 17v2M21 17v2M3 13h18M7 11V9a1 1 0 0 1 1-1h3M13 11V9a1 1 0 0 1 1-1h3" /></svg>) },
-  { label: "Fully equipped kitchen", icon: (<svg viewBox="0 0 24 24" {...stroke}><path d="M6 3v7M9 3v7M6 10a3 3 0 0 0 3-3M7.5 10v11M16 3c-1.5 1-2 3-2 5s.5 3 2 3M16 3v18" /></svg>) },
+  { label: "Kitchenette", icon: (<svg viewBox="0 0 24 24" {...stroke}><path d="M6 3v7M9 3v7M6 10a3 3 0 0 0 3-3M7.5 10v11M16 3c-1.5 1-2 3-2 5s.5 3 2 3M16 3v18" /></svg>) },
   { label: "Large walk-in shower", icon: (<svg viewBox="0 0 24 24" {...stroke}><path d="M5 21V8a4 4 0 0 1 4-4 4 4 0 0 1 4 4M13 8h6M16 5v3M9 13v.01M12 15v.01M9 17v.01M15 13v.01M12 19v.01M15 17v.01" /></svg>) },
   { label: "Private courtyard", icon: (<svg viewBox="0 0 24 24" {...stroke}><path d="M3 20h18M6 20v-6M18 20v-6M6 14h12M12 4c-2 2-3 4-3 6h6c0-2-1-4-3-6Z" /></svg>) },
   { label: "Free WiFi", icon: (<svg viewBox="0 0 24 24" {...stroke}><path d="M5 12.5a10 10 0 0 1 14 0M8 15.5a6 6 0 0 1 8 0M12 18.5h.01" /></svg>) },

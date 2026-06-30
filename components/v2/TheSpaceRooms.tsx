@@ -14,7 +14,7 @@ type Room = { name: string; line?: string; photos: [string, string, string]; alt
 const ROOMS: Room[] = [
   { name: "The Bedroom", line: "A thoughtfully designed, open-plan space with a luxurious super king-size bed.", photos: ["sq-12.jpg", "sq-33.jpg", "sq-40.jpg"], alt: "The bedroom" },
   { name: "The Shower Room", line: "A spacious shower room with a modern walk-in shower.", photos: ["sq-38.jpg", "sq-39.jpg", "sq-20.jpg"], alt: "The shower room" },
-  { name: "The Kitchen", line: "Fully equipped with small oven, hob, coffee machine and fridge freezer.", photos: ["sq-37.jpg", "sq-24.jpg", "sq-29.jpg"], alt: "The kitchen" },
+  { name: "The Kitchen", line: "A handy kitchenette with a microwave, sink and fridge.", photos: ["sq-37.jpg", "sq-24.jpg", "sq-29.jpg"], alt: "The kitchen" },
   { name: "The Courtyard", line: "Your private enclosed courtyard with outdoor seating — ideal for morning coffee, alfresco dining, or unwinding under the stars.", photos: ["sq-08.jpg", "sq-04.jpg", "sq-06.jpg"], alt: "The courtyard" },
 ];
 

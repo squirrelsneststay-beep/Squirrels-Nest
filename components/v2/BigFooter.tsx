@@ -141,7 +141,7 @@ export function BigFooter() {
               <ul style={{ listStyle: "none", padding: 0, margin: 0, fontFamily: "var(--font-geist)", fontSize: "1rem" }}>
                 <li className="bf-link" style={{ paddingBlock: "0.35rem" }}>Boutique 1-bedroom retreat</li>
                 <li className="bf-link" style={{ paddingBlock: "0.35rem" }}>Super king bed · optional hut (sleeps 2)</li>
-                <li className="bf-link" style={{ paddingBlock: "0.35rem" }}>Fully equipped kitchen</li>
+                <li className="bf-link" style={{ paddingBlock: "0.35rem" }}>Kitchenette</li>
                 <li className="bf-link" style={{ paddingBlock: "0.35rem" }}>Large walk-in shower room</li>
                 <li className="bf-link" style={{ paddingBlock: "0.35rem" }}>Private enclosed courtyard</li>
                 <li className="bf-link" style={{ paddingBlock: "0.35rem" }}>WiFi &amp; central heating</li>

@@ -25,7 +25,7 @@ const lodging = {
   "@id": `${SITE_URL}/#lodging`,
   name: BRAND.name,
   description:
-    "A cosy one-bedroom boutique cabin retreat in the Berkshire countryside, on the Hampshire border near the North Wessex Downs. A romantic countryside getaway with a luxurious super king-size bed, a fully equipped kitchen, a walk-in shower and a private enclosed courtyard — plus an optional shepherd's hut sleeping two.",
+    "A cosy one-bedroom boutique cabin retreat in the Berkshire countryside, on the Hampshire border near the North Wessex Downs. A romantic countryside getaway with a luxurious super king-size bed, a kitchenette, a walk-in shower and a private enclosed courtyard — plus an optional shepherd's hut sleeping two.",
   slogan: "A cosy cabin getaway in the Berkshire countryside",
   url: SITE_URL,
   image: [
@@ -67,7 +67,7 @@ const lodging = {
   amenityFeature: [
     "Free WiFi",
     "Free private parking",
-    "Fully equipped kitchen",
+    "Kitchenette (microwave, sink, fridge)",
     "Large walk-in shower room",
     "Private enclosed courtyard",
     "Central heating",

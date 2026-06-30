@@ -31,7 +31,7 @@ const MOMENTS: Moment[] = [
   {
     key: "comfort",
     title: "Cosy evenings in",
-    body: "A fully equipped kitchen and every comfort thought of — central heating, WiFi and a TV for relaxed evenings in.",
+    body: "A handy kitchenette and every comfort thought of — central heating, WiFi and a TV for relaxed evenings in.",
     img: "/images/squirrels-nest/sq-18.jpg",
     alt: "The sitting room with its yellow velvet chairs",
   },
