@@ -430,6 +430,23 @@ html.lenis, html.lenis body { height: auto; }
   }
 }
 
+/* InspiredBy headings flank the shrinking photo on desktop (fixed rem offsets
+   from centre). On narrow screens there's no room beside the photo, so stack
+   them: "Inspired by" above the frame, "the English countryside" below. */
+@media (max-width: 768px) {
+  .ib-head-left,
+  .ib-head-right {
+    left: 50% !important;
+    right: auto !important;
+    transform: translate(-50%, -50%) !important;
+    text-align: center !important;
+    max-width: 86vw !important;
+    font-size: clamp(2rem, 9vw, 3.2rem) !important;
+  }
+  .ib-head-left { top: 24% !important; }
+  .ib-head-right { top: 76% !important; }
+}
+
 /* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {

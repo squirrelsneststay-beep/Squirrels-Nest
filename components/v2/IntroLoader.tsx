@@ -72,15 +72,17 @@ export function IntroLoader() {
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
+        willChange: "transform",
+        backfaceVisibility: "hidden",
       }}
     >
-      <div className="il-inner" style={{ textAlign: "center", color: "#2b2218" }}>
+      <div className="il-inner" style={{ textAlign: "center", color: "#2b2218", willChange: "transform, opacity" }}>
         <div
           className="font-display"
           style={{ fontSize: "clamp(2.4rem, 7vw, 5.5rem)", letterSpacing: "-0.01em", lineHeight: 1, overflow: "hidden", padding: "0 0.1em" }}
         >
           {MARK.split("").map((c, i) => (
-            <span key={i} className="il-letter" style={{ display: "inline-block" }}>
+            <span key={i} className="il-letter" style={{ display: "inline-block", willChange: "transform, opacity" }}>
               {c === " " ? " " : c}
             </span>
           ))}

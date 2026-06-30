@@ -20,28 +20,45 @@ export function CinematicBreak() {
       return;
     }
     let raf = 0;
+    // Cache the section's document position + viewport height so the per-frame
+    // scroll handler never calls getBoundingClientRect (which forces a sync
+    // reflow on every frame and is what made this section judder under Lenis).
+    let docTop = 0;
+    let secH = 0;
+    let vh = 0;
+    const measure = () => {
+      const rect = el.getBoundingClientRect();
+      docTop = rect.top + window.scrollY;
+      secH = el.offsetHeight;
+      vh = window.innerHeight;
+    };
+    const render = () => {
+      const rectTop = docTop - window.scrollY;
+      // progress -1 (below) -> 1 (above); 0 when centred
+      const p = (rectTop + secH / 2 - vh / 2) / vh;
+      el.style.transform = `translate3d(0, ${(-p * 8).toFixed(2)}%, 0) scale(1.1)`;
+      // Long luxury fade: the line eases in as the frame rises to centre
+      // and eases back out as it leaves.
+      if (headRef.current) {
+        headRef.current.style.opacity = Math.max(0, 1 - Math.abs(p) * 1.55).toFixed(3);
+      }
+    };
     const onScroll = () => {
       cancelAnimationFrame(raf);
-      raf = requestAnimationFrame(() => {
-        const rect = el.getBoundingClientRect();
-        const vh = window.innerHeight;
-        // progress -1 (below) -> 1 (above); 0 when centred
-        const p = (rect.top + rect.height / 2 - vh / 2) / vh;
-        el.style.transform = `translate3d(0, ${(-p * 9).toFixed(2)}%, 0) scale(1.18)`;
-        // Long luxury fade: the line eases in as the frame rises to centre
-        // and eases back out as it leaves.
-        if (headRef.current) {
-          headRef.current.style.opacity = Math.max(0, 1 - Math.abs(p) * 1.55).toFixed(3);
-        }
-      });
+      raf = requestAnimationFrame(render);
     };
-    onScroll();
+    const onResize = () => {
+      measure();
+      onScroll();
+    };
+    measure();
+    render();
     window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", onScroll);
+    window.addEventListener("resize", onResize);
     return () => {
       cancelAnimationFrame(raf);
       window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("resize", onScroll);
+      window.removeEventListener("resize", onResize);
     };
   }, []);
 
@@ -55,7 +72,7 @@ export function CinematicBreak() {
         background: "var(--v2-ink)",
       }}
     >
-      <div ref={innerRef} style={{ position: "absolute", inset: "-9% 0", willChange: "transform" }}>
+      <div ref={innerRef} style={{ position: "absolute", inset: "-9% 0", willChange: "transform", backfaceVisibility: "hidden" }}>
         <Image
           src="/images/squirrels-nest/sq-03.jpg"
           alt="Wisteria climbing the timber-clad country house at Squirrels' Nest"
