@@ -197,6 +197,150 @@ export const JOURNAL_POSTS: JournalPost[] = [
       },
     ],
   },
+  {
+    slug: "highclere-castle-the-real-downton-abbey",
+    title: "Highclere Castle: The Real Downton Abbey on Your Doorstep",
+    excerpt:
+      "The grand house from Downton Abbey is a short drive from the cabin, with a thousand acres of Capability Brown parkland and an Egyptian exhibition hiding a Tutankhamun story.",
+    metaDescription:
+      "A short guide to visiting Highclere Castle near Newbury, the real Downton Abbey: the house, the Capability Brown gardens, the Egyptian exhibition and its Tutankhamun connection, and how to book.",
+    date: "2026-06-12",
+    dateLabel: "June 2026",
+    readMinutes: 4,
+    heroImage: "/images/squirrels-nest/sq-08.jpg",
+    heroAlt: "Country house grandeur near Squirrels' Nest, close to Highclere Castle in Berkshire",
+    keywords: [
+      "Highclere Castle",
+      "real Downton Abbey",
+      "visiting Highclere Castle",
+      "Downton Abbey filming location",
+      "things to do near Newbury",
+    ],
+    intro: [
+      "If you have watched Downton Abbey, you already know what Highclere Castle looks like. The honey-coloured towers, the long drive, the sweeping lawns: it is all real, and it is barely twenty minutes from the cabin.",
+      "It is one of the grandest days out in the area, and well worth planning a stay around. Here is what to expect.",
+    ],
+    sections: [
+      {
+        heading: "The house and the parkland",
+        body: [
+          "Highclere is the seat of the Earls of Carnarvon, and the present house was remodelled in the 1840s by Sir Charles Barry, the architect of the Houses of Parliament. The thousand acres of parkland around it were laid out by Capability Brown, England's greatest landscape gardener, and on a fine day the gardens alone are worth the trip. Wander up to the folly known as Jackdaws Castle, or simply find a bench and take in the view that millions have seen on screen.",
+        ],
+      },
+      {
+        heading: "The Egyptian exhibition",
+        body: [
+          "The real surprise at Highclere is downstairs. The fifth Earl of Carnarvon funded the search for the tomb of Tutankhamun, and it was his archaeologist, Howard Carter, who finally opened it in 1922. The cellars now hold an exhibition telling that story, from the early digs in 1906 to the moment Carter peered in and saw, in his own words, wonderful things. It is a genuinely gripping piece of history, hidden beneath a house most people come for the drawing room.",
+        ],
+      },
+      {
+        heading: "Planning your visit",
+        body: [
+          "Highclere opens to the public on selected dates, mainly over the Easter and summer holidays, with timed entry slots through the day. It is hugely popular and tickets sell out well ahead, so book before you travel rather than turning up on spec. Allow a few hours: the house, the exhibition and the gardens together make an easy half-day, and there is afternoon tea if you would like to linger.",
+        ],
+      },
+    ],
+  },
+  {
+    slug: "things-to-do-in-newbury",
+    title: "Things to Do in Newbury, Our Nearest Town",
+    excerpt:
+      "The market town down the road: a free museum in a 17th-century cloth hall, an Elizabethan manor, the canal at the Wharf, racing, and a proper market three days a week.",
+    metaDescription:
+      "What to do in Newbury, the market town near Squirrels' Nest: the West Berkshire Museum, Shaw House, the Kennet and Avon Canal at the Wharf, Newbury Racecourse, Victoria Park and the markets.",
+    date: "2026-06-07",
+    dateLabel: "June 2026",
+    readMinutes: 4,
+    heroImage: "/images/squirrels-nest/sq-37.jpg",
+    heroAlt: "A quiet corner of Squirrels' Nest, a short drive from the market town of Newbury",
+    keywords: [
+      "things to do in Newbury",
+      "Newbury Berkshire",
+      "West Berkshire Museum",
+      "Shaw House Newbury",
+      "Newbury market town",
+    ],
+    intro: [
+      "Newbury is the nearest town to the cabin, and a good one. It grew rich on the wool trade five hundred years ago, sits on the Kennet and Avon Canal, and still has a proper market and a handsome old centre.",
+      "It is the place to come for lunch, a rainy afternoon, or to stock the fridge. Here is what we would point you towards.",
+    ],
+    sections: [
+      {
+        heading: "The Wharf and the canal",
+        body: [
+          "Start at the Wharf, where the Kennet and Avon Canal runs through the middle of town. The free West Berkshire Museum sits right here, in a cloth hall built in 1627 and the old canal granary, telling the story of the town from the Civil War battles to the Greenham Common peace camp. From the Wharf you can pick up the towpath in either direction, or book a short narrowboat trip in summer.",
+        ],
+      },
+      {
+        heading: "Shaw House",
+        body: [
+          "On the edge of town stands Shaw House, a strikingly handsome Elizabethan manor finished in 1581 for a wealthy clothier and visited by Elizabeth the First herself. Recently restored, it opens at weekends through the warmer months, with afternoon teas, outdoor theatre and family events in the grounds.",
+        ],
+      },
+      {
+        heading: "Markets, racing and the arts",
+        body: [
+          "Newbury holds a street market on Tuesdays, Thursdays and Saturdays, good for local cheese, bread and flowers. The Corn Exchange in the Market Place is the town's arts centre, with film, comedy, theatre and music most weeks. And Newbury Racecourse, just south of the centre, holds flat and jump meetings through the year, often with live music on the bigger race days.",
+        ],
+      },
+      {
+        heading: "For families",
+        body: [
+          "If you have children with you, Victoria Park by the canal has a splash park, a boating pond and a bandstand in summer. The Living Rainforest, a short drive north at Hampstead Norreys, keeps a warm green glasshouse full of tropical plants and creatures, which is exactly where you want to be if the weather turns.",
+        ],
+      },
+    ],
+  },
+  {
+    slug: "a-rainy-day-in-west-berkshire",
+    title: "A Rainy Day in West Berkshire",
+    excerpt:
+      "It does rain, even here. When it does: antiques in Hungerford, a farm-shop lunch, murals by a war artist, and a tropical glasshouse to warm up in.",
+    metaDescription:
+      "What to do on a rainy day near Squirrels' Nest in West Berkshire: Hungerford's antiques arcade, Cobbs Farm Shop, Sandham Memorial Chapel, the West Berkshire Museum, the Living Rainforest and Highclere Castle.",
+    date: "2026-06-03",
+    dateLabel: "June 2026",
+    readMinutes: 4,
+    heroImage: "/images/squirrels-nest/sq-25.jpg",
+    heroAlt: "A warm, sheltered corner at Squirrels' Nest, made for a rainy West Berkshire afternoon",
+    keywords: [
+      "rainy day Berkshire",
+      "indoor things to do Newbury",
+      "Hungerford antiques",
+      "things to do West Berkshire",
+      "Cobbs Farm Shop",
+    ],
+    intro: [
+      "Some of the best days here happen when it rains. The countryside does not stop being lovely, it just asks you to go indoors for a while, and there is plenty to fill an afternoon close to the cabin.",
+      "Here is how we would spend a wet one.",
+    ],
+    sections: [
+      {
+        heading: "Antiques in Hungerford",
+        body: [
+          "Hungerford, a few minutes west, is one of the best antiques towns in the country. Hungerford Arcade is among the oldest and largest covered antiques markets anywhere, a warren of stalls you can lose an hour in whatever the weather, and the Georgian high street is lined with more shops, emporiums and good cafés.",
+        ],
+      },
+      {
+        heading: "A farm-shop lunch",
+        body: [
+          "Just outside Hungerford, Cobbs Farm Shop and Kitchen does a proper job of a rainy lunch: homegrown and local produce, a butchery and deli, and a café serving breakfast, lunch and Sunday roast. There is a play barn for children, so everyone is happy while the sky does its worst.",
+        ],
+      },
+      {
+        heading: "Murals and museums",
+        body: [
+          "For something quieter, Sandham Memorial Chapel at Burghclere holds Stanley Spencer's extraordinary cycle of murals, painted from his own experience of the First World War. It is small, intimate and entirely indoors. The free West Berkshire Museum in Newbury is another easy hour out of the rain, full of the town's long story.",
+        ],
+      },
+      {
+        heading: "Tropical and stately",
+        body: [
+          "If you have children, the Living Rainforest near Hampstead Norreys is the obvious answer, a warm glasshouse of tropical plants and creatures to wander while it pours outside. And Highclere Castle, the real Downton Abbey, is a grand way to spend a wet afternoon when it is open, with the house and its Egyptian exhibition both safely under cover.",
+        ],
+      },
+    ],
+  },
 ];
 
 export function getJournalPost(slug: string): JournalPost | undefined {

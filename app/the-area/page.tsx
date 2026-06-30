@@ -1,7 +1,36 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Reveal } from "@/components/v2/Reveal";
+import { FaqBlock, type FaqItem } from "@/components/seo/FaqBlock";
+import { JOURNAL_POSTS } from "@/lib/journal";
 import { AIRBNB_URL, EXTERNAL_LINK_PROPS, SITE_URL, BRAND } from "@/lib/site";
+
+const FAQS: FaqItem[] = [
+  {
+    q: "Where is Squirrels' Nest?",
+    a: "Squirrels' Nest is a one-bedroom cabin in the West Berkshire countryside, near Newbury and the Hampshire border, on the edge of the North Wessex Downs.",
+  },
+  {
+    q: "How do I book a stay?",
+    a: "Booking is handled through Airbnb. You will find the live availability calendar and rates on the listing, which is linked from every page of this site.",
+  },
+  {
+    q: "What is there to do nearby?",
+    a: "Plenty. Walks on the North Wessex Downs, country pubs, Highclere Castle (the real Downton Abbey), the Kennet and Avon Canal and the market town of Newbury are all a short drive away. Our journal has guides to each.",
+  },
+  {
+    q: "Is there parking at the cabin?",
+    a: "Yes, there is private parking on site.",
+  },
+  {
+    q: "What is the nearest town and railway station?",
+    a: "Newbury is the nearest town, a short drive away, with a mainline railway station running to London Paddington and west towards the South West.",
+  },
+  {
+    q: "Does the cabin have a kitchen?",
+    a: "The cabin has a handy kitchenette with a microwave, sink and fridge, which is all you need for a relaxed self-catering stay.",
+  },
+];
 
 export const metadata: Metadata = {
   title: "The Area — Things to do near Newbury & the North Wessex Downs",
@@ -135,6 +164,33 @@ export default function TheAreaPage() {
             </Reveal>
           ))}
         </div>
+
+        {/* From the journal — cross-links into the guide content */}
+        <section style={{ marginTop: "clamp(3.5rem, 9vh, 6rem)" }}>
+          <Reveal>
+            <h2
+              className="font-display"
+              style={{ margin: 0, fontSize: "clamp(1.8rem, 4vw, 3rem)", lineHeight: 1.05, letterSpacing: "-0.03em", fontWeight: 400 }}
+            >
+              From the journal
+            </h2>
+          </Reveal>
+          <div style={{ marginTop: "clamp(1.5rem, 3vh, 2.2rem)", display: "grid", gap: "0.9rem" }}>
+            {JOURNAL_POSTS.map((post, i) => (
+              <Reveal key={post.slug} delay={0.03 * i}>
+                <Link
+                  href={`/journal/${post.slug}`}
+                  className="font-display"
+                  style={{ fontSize: "clamp(1.15rem, 2vw, 1.45rem)", letterSpacing: "-0.02em", color: "var(--v2-ink)", textDecoration: "none" }}
+                >
+                  {post.title} &rarr;
+                </Link>
+              </Reveal>
+            ))}
+          </div>
+        </section>
+
+        <FaqBlock items={FAQS} />
 
         <Reveal>
           <div style={{ marginTop: "clamp(3.5rem, 8vw, 6rem)", display: "flex", gap: "1.5rem", flexWrap: "wrap", alignItems: "center" }}>

@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Geist_Mono, Playfair_Display, Bricolage_Grotesque } from "next/font/google";
 import "./globals.css";
 import { SmoothScroll } from "@/components/SmoothScroll";
@@ -82,7 +82,10 @@ export const metadata: Metadata = {
   creator: BRAND.name,
   publisher: BRAND.name,
   category: "travel",
-  alternates: { canonical: "/" },
+  alternates: {
+    canonical: "/",
+    types: { "application/rss+xml": [{ url: "/feed.xml", title: `The Journal — ${BRAND.name}` }] },
+  },
   openGraph: {
     type: "website",
     locale: "en_GB",
@@ -117,6 +120,11 @@ export const metadata: Metadata = {
     "geo.position": "51.36325;-1.29025",
     ICBM: "51.36325, -1.29025",
   },
+};
+
+export const viewport: Viewport = {
+  themeColor: "#f7f3ec",
+  colorScheme: "light",
 };
 
 export default function RootLayout({
