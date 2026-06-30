@@ -92,10 +92,10 @@ export const metadata: Metadata = {
     description: `A cosy one-bedroom boutique cabin getaway in the Berkshire countryside, on the Hampshire border. Super king bed, walk-in shower, private courtyard, woodland views and an optional shepherd's hut.`,
     images: [
       {
-        url: "/images/squirrels-nest/sq-12.jpg",
-        width: 1280,
-        height: 800,
-        alt: `The super king bedroom at ${BRAND.name}, a luxury cabin retreat in the Berkshire countryside`,
+        url: "/og.jpg",
+        width: 1200,
+        height: 630,
+        alt: `${BRAND.name} — a cosy one-bedroom cabin retreat in the Berkshire countryside`,
       },
     ],
   },
@@ -103,7 +103,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: `${BRAND.name} — Cosy Cabin Retreat in the Berkshire Countryside`,
     description: "A cosy one-bedroom boutique cabin getaway in the Berkshire countryside, on the Hampshire border. Super king bed, private courtyard, woodland views, optional shepherd's hut.",
-    images: ["/images/squirrels-nest/sq-12.jpg"],
+    images: ["/og.jpg"],
   },
   robots: {
     index: true,
